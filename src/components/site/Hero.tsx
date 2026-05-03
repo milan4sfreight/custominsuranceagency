@@ -8,7 +8,7 @@ export const Hero = () => {
       <img
         src={heroBg}
         alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
-        className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:object-[65%_center]"
+        className="absolute inset-0 h-full w-full object-cover object-center"
         loading="eager"
       />
       {/* Subtle left-side legibility wash */}
