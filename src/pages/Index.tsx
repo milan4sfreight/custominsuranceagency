@@ -6,7 +6,7 @@ import CoverageGrid from "@/components/site/CoverageGrid";
 import CtaBand from "@/components/site/CtaBand";
 import ContactSection from "@/components/site/ContactSection";
 import Footer from "@/components/site/Footer";
-import heroBg from "@/assets/hero-bg.png";
+import siteBg from "@/assets/site-bg.png";
 
 const Index = () => {
   return (
@@ -16,7 +16,7 @@ const Index = () => {
       <div
         className="relative isolate"
         style={{
-          backgroundImage: `url(${heroBg})`,
+          backgroundImage: `url(${siteBg})`,
           backgroundAttachment: "fixed",
           backgroundPosition: "center center",
           backgroundSize: "cover",
@@ -29,7 +29,7 @@ const Index = () => {
           className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              "linear-gradient(180deg, hsl(var(--background) / 0.25) 0%, hsl(var(--background) / 0.1) 50%, hsl(var(--background) / 0.3) 100%)",
+              "linear-gradient(180deg, hsl(var(--background) / 0.35) 0%, hsl(var(--background) / 0.2) 50%, hsl(var(--background) / 0.4) 100%)",
           }}
         />
         <div className="relative z-10">
