@@ -45,7 +45,7 @@ export const Hero = () => {
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-28 pb-12 sm:pt-32 lg:min-h-screen lg:pt-0 lg:px-10">
         <div
-          className="rounded-2xl p-4 sm:p-6 w-full max-w-[520px] lg:max-w-[620px] lg:absolute lg:left-[8%] lg:top-[20%]"
+          className="rounded-2xl w-full max-w-[520px] p-6 lg:max-w-[620px] lg:p-10 lg:ml-[8%] lg:mt-[6vh]"
           style={{
             background:
               "linear-gradient(135deg, hsl(220 60% 10% / 0.55) 0%, hsl(220 80% 25% / 0.35) 60%, transparent 100%)",
@@ -54,8 +54,8 @@ export const Hero = () => {
           }}
         >
           <h1
-            className="font-sans font-extrabold leading-[1.08] tracking-tight text-white will-change-transform transition-transform duration-300 ease-out"
-            style={{ fontSize: "clamp(24px, 5.1vw, 54px)", transform: headlineTransform }}
+            className="font-sans font-extrabold tracking-tight text-white will-change-transform transition-transform duration-300 ease-out"
+            style={{ fontSize: "clamp(42px, 4.5vw, 72px)", lineHeight: 1.05, transform: headlineTransform }}
           >
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">Getting</span>{" "}
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">insurance</span>
@@ -95,7 +95,7 @@ export const Hero = () => {
             ))}
           </p>
 
-          <div className="mt-6">
+          <div className="relative z-[2] mt-7">
             <Button
             size="lg"
             className="group relative h-12 w-[90%] max-w-[240px] justify-between overflow-hidden rounded-full pl-6 pr-1.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 sm:w-auto sm:justify-center"
