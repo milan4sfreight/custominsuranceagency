@@ -44,9 +44,17 @@ export const Hero = () => {
       />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-12 sm:pt-40 lg:min-h-screen lg:pt-48 lg:px-10">
-        <div className="max-w-2xl">
+        <div
+          className="max-w-2xl rounded-2xl p-4 sm:p-6"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(220 60% 10% / 0.55) 0%, hsl(220 80% 25% / 0.35) 60%, transparent 100%)",
+            backdropFilter: "blur(2px)",
+            WebkitBackdropFilter: "blur(2px)",
+          }}
+        >
           <h1
-            className="font-sans font-extrabold leading-[1.08] tracking-tight text-ink will-change-transform transition-transform duration-300 ease-out"
+            className="font-sans font-extrabold leading-[1.08] tracking-tight text-white will-change-transform transition-transform duration-300 ease-out"
             style={{ fontSize: "clamp(28px, 6vw, 64px)", transform: headlineTransform }}
           >
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">Getting</span>{" "}
