@@ -57,7 +57,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-white py-24">
+    <section id="contact" className="bg-white/40 py-24 backdrop-blur-sm">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-10">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">Contact</p>
@@ -89,7 +89,7 @@ export const ContactSection = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-[#e2e8f0] bg-[#f8f9fa] p-6 sm:p-8"
+          className="rounded-2xl border border-white/40 bg-white/70 p-6 backdrop-blur-md sm:p-8"
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
