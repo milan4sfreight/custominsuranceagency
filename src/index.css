@@ -2,23 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Custom Insurance design system. All colors HSL. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 40% 99%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 90% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --brand: 220 90% 52%;
+    --brand-foreground: 0 0% 100%;
+    --brand-deep: 230 70% 38%;
+    --brand-soft: 215 100% 96%;
+
+    --ink: 222 47% 11%;
+    --muted-ink: 215 20% 40%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -26,17 +33,23 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 215 100% 96%;
+    --accent-foreground: 230 70% 38%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 220 90% 52%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    --gradient-brand: linear-gradient(135deg, hsl(220 90% 56%) 0%, hsl(230 70% 42%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(210 50% 99% / 0.95) 0%, hsl(210 60% 96% / 0.6) 60%, hsl(210 60% 94% / 0.2) 100%);
+    --gradient-text: linear-gradient(135deg, hsl(220 90% 52%), hsl(230 70% 42%));
+    --shadow-brand: 0 18px 40px -12px hsl(220 90% 52% / 0.45);
+    --shadow-soft: 0 10px 30px -12px hsl(220 40% 30% / 0.18);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +113,25 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-brand-gradient { background-image: var(--gradient-brand); }
+  .text-brand-gradient {
+    background-image: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-brand-glow { box-shadow: var(--shadow-brand); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
 }
