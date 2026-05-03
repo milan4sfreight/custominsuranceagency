@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -56,59 +57,54 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-secondary py-20">
+    <section id="contact" className="bg-white py-24">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-10">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight text-ink sm:text-4xl">Get in touch</h2>
-          <p className="mt-3 text-muted-ink">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">Contact</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0b1530] sm:text-4xl">Get in touch</h2>
+          <p className="mt-3 text-slate-600">
             We're here to help with any insurance questions. Stop by, call, or send us a quick message.
           </p>
-          <ul className="mt-8 space-y-4 text-ink">
-            <li className="flex items-start gap-3">
-              <span className="text-xl" aria-hidden>📍</span>
-              <span>882 62nd St, La Grange Highlands, IL 60525</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-xl" aria-hidden>📞</span>
-              <span>
-                <a href="tel:7088101955" className="font-semibold hover:text-brand">708-810-1955</a>
-                <span className="text-muted-ink"> · Fax: 708-810-1970</span>
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-xl" aria-hidden>✉</span>
-              <a href="mailto:info@custominsure.com" className="hover:text-brand">info@custominsure.com</a>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-xl" aria-hidden>🕐</span>
-              <span>Monday–Friday · 9:00 AM – 5:00 PM</span>
-            </li>
+          <ul className="mt-8 space-y-5 text-[#0b1530]">
+            <ContactRow icon={<MapPin className="h-4 w-4" />} >
+              882 62nd St, La Grange Highlands, IL 60525
+            </ContactRow>
+            <ContactRow icon={<Phone className="h-4 w-4" />}>
+              <a href="tel:7088101955" className="font-semibold hover:text-[#1a6dd4]">708-810-1955</a>
+              <span className="text-slate-500"> · Fax: 708-810-1970</span>
+            </ContactRow>
+            <ContactRow icon={<Mail className="h-4 w-4" />}>
+              <a href="mailto:info@custominsure.com" className="hover:text-[#1a6dd4]">info@custominsure.com</a>
+            </ContactRow>
+            <ContactRow icon={<Clock className="h-4 w-4" />}>
+              Monday–Friday · 9:00 AM – 5:00 PM
+            </ContactRow>
           </ul>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-border bg-card p-6 shadow-soft sm:p-8"
+          className="rounded-2xl border border-[#e2e8f0] bg-[#f8f9fa] p-6 sm:p-8"
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="text-sm font-medium text-ink" htmlFor="firstName">First Name</label>
+              <label className="text-sm font-medium text-[#0b1530]" htmlFor="firstName">First Name</label>
               <Input id="firstName" name="firstName" required maxLength={60} className="mt-1" />
             </div>
             <div>
-              <label className="text-sm font-medium text-ink" htmlFor="lastName">Last Name</label>
+              <label className="text-sm font-medium text-[#0b1530]" htmlFor="lastName">Last Name</label>
               <Input id="lastName" name="lastName" required maxLength={60} className="mt-1" />
             </div>
             <div>
-              <label className="text-sm font-medium text-ink" htmlFor="email">Email</label>
+              <label className="text-sm font-medium text-[#0b1530]" htmlFor="email">Email</label>
               <Input id="email" name="email" type="email" required maxLength={255} className="mt-1" />
             </div>
             <div>
-              <label className="text-sm font-medium text-ink" htmlFor="phone">Phone</label>
+              <label className="text-sm font-medium text-[#0b1530]" htmlFor="phone">Phone</label>
               <Input id="phone" name="phone" type="tel" required maxLength={30} className="mt-1" />
             </div>
             <div className="sm:col-span-2">
-              <label className="text-sm font-medium text-ink" htmlFor="type">Insurance Type</label>
+              <label className="text-sm font-medium text-[#0b1530]" htmlFor="type">Insurance Type</label>
               <select
                 id="type"
                 name="type"
@@ -123,7 +119,7 @@ export const ContactSection = () => {
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label className="text-sm font-medium text-ink" htmlFor="comments">Comments</label>
+              <label className="text-sm font-medium text-[#0b1530]" htmlFor="comments">Comments</label>
               <Textarea id="comments" name="comments" maxLength={1000} rows={4} className="mt-1" />
             </div>
           </div>
@@ -131,7 +127,7 @@ export const ContactSection = () => {
             type="submit"
             disabled={submitting}
             size="lg"
-            className="mt-6 h-12 w-full rounded-full bg-brand text-base font-semibold text-brand-foreground hover:bg-brand/90 sm:w-auto sm:px-8"
+            className="mt-6 h-12 w-full rounded-full bg-[#1a6dd4] text-base font-semibold text-white hover:bg-[#1559b0] sm:w-auto sm:px-8"
           >
             {submitting ? "Sending…" : "Submit"}
           </Button>
@@ -142,3 +138,12 @@ export const ContactSection = () => {
 };
 
 export default ContactSection;
+
+const ContactRow = ({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) => (
+  <li className="flex items-start gap-3">
+    <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#f0f6ff] text-[#1a6dd4]">
+      {icon}
+    </span>
+    <span className="leading-7">{children}</span>
+  </li>
+);

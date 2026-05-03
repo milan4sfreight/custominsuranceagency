@@ -6,7 +6,7 @@ const companyLinks = ["About", "Contact", "Carriers", "Claims", "Privacy"];
 
 export const Footer = () => {
   return (
-    <footer className="bg-[hsl(222_47%_8%)] text-white/80">
+    <footer className="bg-[#0b1530] text-white/75">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
