@@ -57,7 +57,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-white/40 py-24 backdrop-blur-sm">
+    <section id="contact" className="bg-transparent py-24">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-10">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">Contact</p>

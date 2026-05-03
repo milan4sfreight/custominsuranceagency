@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export const CtaBand = () => {
   return (
-    <section className="bg-[#f0f6ff]/40 py-20 backdrop-blur-sm">
+    <section className="bg-transparent py-20">
       <div className="mx-auto max-w-5xl px-6 text-center lg:px-10">
         <h2
           className="font-bold tracking-tight text-[#0b1530]"

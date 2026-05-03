@@ -25,7 +25,7 @@ const coverages: Coverage[] = [
 
 export const CoverageGrid = () => {
   return (
-    <section id="coverage" className="bg-white/30 py-24 backdrop-blur-sm">
+    <section id="coverage" className="bg-transparent py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
           Coverage

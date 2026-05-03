@@ -18,7 +18,7 @@ const features = [
 
 export const WhyChooseUs = () => {
   return (
-    <section className="bg-white/40 py-24 backdrop-blur-sm">
+    <section className="bg-transparent py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
           Why us
