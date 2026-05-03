@@ -43,7 +43,7 @@ export const Hero = () => {
             size="lg"
             className="group h-14 rounded-full bg-[#1a56ff] pl-7 pr-2 text-base font-semibold text-white shadow-brand-glow transition-transform hover:-translate-y-0.5 hover:bg-[#1a56ff]/95"
           >
-            get your quote
+            get your
             <span className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5">
               <ArrowRight className="h-5 w-5 text-white" />
             </span>
