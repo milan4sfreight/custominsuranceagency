@@ -10,37 +10,36 @@ import heroBg from "@/assets/hero-bg.png";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <div className="relative">
-        {/* Parallax background image behind all sections after the hero */}
+      <div
+        className="relative isolate"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* soft wash so text stays legible without hiding the photo */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
-          style={{
-            backgroundImage: `url(${heroBg})`,
-            backgroundAttachment: "fixed",
-            backgroundPosition: "center center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            opacity: 0.95,
-          }}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
+          className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              "linear-gradient(180deg, hsl(var(--background) / 0.15) 0%, hsl(var(--background) / 0.05) 50%, hsl(var(--background) / 0.2) 100%)",
+              "linear-gradient(180deg, hsl(var(--background) / 0.25) 0%, hsl(var(--background) / 0.1) 50%, hsl(var(--background) / 0.3) 100%)",
           }}
         />
-        <InsuranceStrip />
-        <WhyChooseUs />
-        <CoverageGrid />
-        <CtaBand />
-        <ContactSection />
-        <Footer />
+        <div className="relative z-10">
+          <InsuranceStrip />
+          <WhyChooseUs />
+          <CoverageGrid />
+          <CtaBand />
+          <ContactSection />
+          <Footer />
+        </div>
       </div>
     </main>
   );
