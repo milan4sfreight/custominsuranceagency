@@ -47,7 +47,7 @@ export const Hero = () => {
         <div className="mt-12 flex flex-col items-center gap-4 pb-8 sm:mt-auto lg:pb-16">
           <Button
             size="lg"
-            className="group h-14 rounded-full bg-[#1a56ff] pl-7 pr-2 text-base font-semibold text-white shadow-brand-glow transition-transform hover:-translate-y-0.5 hover:bg-[#1a56ff]/95"
+            className="group h-14 w-[90%] max-w-[300px] justify-between rounded-full bg-[#1a56ff] pl-7 pr-2 text-base font-semibold text-white shadow-brand-glow transition-transform hover:-translate-y-0.5 hover:bg-[#1a56ff]/95 sm:w-auto sm:justify-center"
           >
             get your
             <span className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5">
