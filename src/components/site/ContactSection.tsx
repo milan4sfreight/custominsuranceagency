@@ -61,7 +61,12 @@ export const ContactSection = () => {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-10">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">Contact</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0b1530] sm:text-4xl">Get in touch</h2>
+          <h2
+            className="mt-3 font-bold tracking-tight text-[#0b1530]"
+            style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
+          >
+            Get in touch
+          </h2>
           <p className="mt-3 text-slate-600">
             We're here to help with any insurance questions. Stop by, call, or send us a quick message.
           </p>
