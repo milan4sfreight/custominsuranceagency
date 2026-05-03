@@ -4,7 +4,7 @@ import heroBg from "@/assets/hero-bg.png";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] w-full overflow-hidden lg:min-h-screen">
+    <section className="relative min-h-[100svh] w-full overflow-hidden lg:min-h-screen">
       <img
         src={heroBg}
         alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
@@ -21,9 +21,12 @@ export const Hero = () => {
         aria-hidden
       />
 
-      <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col px-6 pt-40 pb-16 lg:min-h-screen lg:pt-48 lg:px-10">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-12 sm:pt-40 lg:min-h-screen lg:pt-48 lg:px-10">
         <div className="max-w-2xl">
-          <h1 className="font-sans text-[40px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[48px] lg:text-[52px]">
+          <h1
+            className="font-sans font-extrabold leading-[1.08] tracking-tight text-ink"
+            style={{ fontSize: "clamp(28px, 6vw, 64px)" }}
+          >
             Getting insurance
             <br />
             is not the same
@@ -34,14 +37,14 @@ export const Hero = () => {
           </h1>
 
           <p
-            className="mt-6 max-w-xl text-[18px] font-semibold leading-relaxed text-white sm:text-[20px]"
+            className="mt-5 max-w-xl text-[16px] font-semibold leading-relaxed text-white sm:text-[20px]"
             style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}
           >
             Smarter coverage. Better service. Built for you.
           </p>
         </div>
 
-        <div className="mt-auto flex flex-col items-center gap-4 pb-8 lg:pb-16">
+        <div className="mt-12 flex flex-col items-center gap-4 pb-8 sm:mt-auto lg:pb-16">
           <Button
             size="lg"
             className="group h-14 rounded-full bg-[#1a56ff] pl-7 pr-2 text-base font-semibold text-white shadow-brand-glow transition-transform hover:-translate-y-0.5 hover:bg-[#1a56ff]/95"
