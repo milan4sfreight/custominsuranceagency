@@ -70,10 +70,11 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-72 border-l border-white/20 text-white !bg-[hsl(222_47%_11%/0.6)]"
+            className="w-72 text-white !bg-[hsl(222_47%_11%/0.6)]"
             style={{
               backdropFilter: "blur(24px) saturate(180%)",
               WebkitBackdropFilter: "blur(24px) saturate(180%)",
+              borderLeft: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
             <div className="mt-10 flex flex-col gap-6">
