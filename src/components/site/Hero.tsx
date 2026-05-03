@@ -1,38 +1,25 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import skyline from "@/assets/chicago-skyline.jpg";
-import quoteGlass from "@/assets/quote-glass.png";
+import heroBg from "@/assets/hero-bg.png";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Background image */}
+    <section
+      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center"
+      style={{ backgroundImage: `url(${heroBg})` }}
+    >
+      {/* Subtle left-side legibility wash */}
       <div
-        className="absolute inset-0 -z-20 bg-cover bg-center"
-        style={{ backgroundImage: `url(${skyline})` }}
-        aria-hidden
-      />
-      {/* Overlay gradients for legibility */}
-      <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(115deg, hsl(210 50% 99% / 0.96) 0%, hsl(210 60% 97% / 0.85) 38%, hsl(210 60% 95% / 0.45) 65%, hsl(210 60% 90% / 0.15) 100%)",
-        }}
-        aria-hidden
-      />
-      <div
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(70% 60% at 15% 35%, hsl(0 0% 100% / 0.7) 0%, transparent 70%)",
+            "linear-gradient(90deg, hsl(210 60% 99% / 0.55) 0%, hsl(210 60% 99% / 0.2) 35%, transparent 60%)",
         }}
         aria-hidden
       />
 
-      <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-32 lg:grid-cols-12 lg:px-10 lg:pt-36">
-        {/* Left: copy */}
-        <div className="lg:col-span-6">
+      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-24 lg:px-10">
+        <div className="max-w-2xl">
           <div className="mb-6 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-brand-gradient" />
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
@@ -48,8 +35,8 @@ export const Hero = () => {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-ink">
-            Smarter coverage. Better service. Built for modern businesses and the
-            people who run them.
+            Smarter coverage. Better service. Built for modern businesses and
+            the people who run them.
           </p>
 
           <div className="mt-10">
@@ -65,26 +52,6 @@ export const Hero = () => {
           <p className="mt-6 text-sm text-muted-ink">
             A+ rated · 10,000+ businesses covered · Licensed in 50 states
           </p>
-        </div>
-
-        {/* Right: visual */}
-        <div className="relative lg:col-span-6">
-          <div className="relative mx-auto max-w-xl lg:max-w-none">
-            <div
-              className="absolute inset-0 -z-10 blur-3xl"
-              style={{
-                background:
-                  "radial-gradient(50% 50% at 50% 50%, hsl(220 90% 60% / 0.25) 0%, transparent 70%)",
-              }}
-              aria-hidden
-            />
-            <img
-              src={quoteGlass}
-              alt="Translucent blue glass 'quote' sculpture with a professional woman seated on top working on a laptop"
-              className="relative h-auto w-full object-contain drop-shadow-2xl"
-              loading="eager"
-            />
-          </div>
         </div>
       </div>
     </section>
