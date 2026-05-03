@@ -70,7 +70,7 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-72 border-l border-white/20 text-white"
+            className="w-72 border-l border-white/20 text-white !bg-transparent"
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.1)",
               backdropFilter: "blur(20px)",
