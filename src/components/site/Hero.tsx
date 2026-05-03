@@ -23,13 +23,6 @@ export const Hero = () => {
 
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col px-6 pt-32 pb-16 lg:min-h-screen lg:px-10">
         <div className="max-w-2xl pt-4 lg:pt-10">
-          <div className="mb-6 inline-flex items-center gap-3">
-            <span className="h-px w-8 bg-brand-gradient" />
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
-              Insurance, reimagined
-            </span>
-          </div>
-
           <h1 className="font-sans text-[56px] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[60px] lg:text-[64px]">
             Getting insurance
             <br />
