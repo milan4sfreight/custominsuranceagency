@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.png";
+import heroBgMobile from "@/assets/hero-bg-mobile.png";
 
 export const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -30,12 +31,15 @@ export const Hero = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-[100svh] w-full overflow-hidden lg:min-h-screen">
-      <img
-        src={heroBg}
-        alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
-        className="absolute inset-0 h-full w-full object-cover object-[88%_center] lg:object-[right_center]"
-        loading="eager"
-      />
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={heroBg} />
+        <img
+          src={heroBgMobile}
+          alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
+          className="absolute inset-0 h-full w-full object-cover object-center lg:object-[right_center]"
+          loading="eager"
+        />
+      </picture>
       {/* Subtle left-side legibility wash */}
       <div
         className="absolute inset-0"
