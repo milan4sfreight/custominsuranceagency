@@ -18,7 +18,7 @@ const features = [
 
 export const WhyChooseUs = () => {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white/40 py-24 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
           Why us
@@ -33,7 +33,7 @@ export const WhyChooseUs = () => {
           {features.map((f) => (
             <div
               key={f.title}
-              className="group relative overflow-hidden rounded-2xl border border-[#e2e8f0] bg-[#f8f9fa] p-8 transition-all hover:-translate-y-1 hover:border-[#1a6dd4]/30 hover:bg-white hover:shadow-[0_12px_40px_-12px_rgba(26,109,212,0.15)]"
+              className="group relative overflow-hidden rounded-2xl border border-white/40 bg-white/60 p-8 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[#1a6dd4]/30 hover:bg-white/80 hover:shadow-[0_12px_40px_-12px_rgba(26,109,212,0.25)]"
             >
               <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[#1a6dd4] transition-transform duration-300 group-hover:scale-x-100" />
               <h3 className="text-xl font-semibold text-[#0b1530]">{f.title}</h3>

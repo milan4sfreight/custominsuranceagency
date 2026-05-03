@@ -25,7 +25,7 @@ const coverages: Coverage[] = [
 
 export const CoverageGrid = () => {
   return (
-    <section id="coverage" className="bg-[#f8f9fa] py-24">
+    <section id="coverage" className="bg-white/30 py-24 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
           Coverage
@@ -40,7 +40,7 @@ export const CoverageGrid = () => {
           {coverages.map(({ icon: Icon, name, desc }) => (
             <div
               key={name}
-              className="group flex flex-col rounded-2xl border border-[#e2e8f0] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#1a6dd4]/40 hover:shadow-[0_12px_40px_-16px_rgba(26,109,212,0.25)]"
+              className="group flex flex-col rounded-2xl border border-white/40 bg-white/65 p-6 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[#1a6dd4]/40 hover:bg-white/85 hover:shadow-[0_12px_40px_-16px_rgba(26,109,212,0.3)]"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f0f6ff] text-[#1a6dd4]">
                 <Icon className="h-5 w-5" strokeWidth={2} />
