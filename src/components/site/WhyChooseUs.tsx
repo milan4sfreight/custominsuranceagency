@@ -23,7 +23,10 @@ export const WhyChooseUs = () => {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
           Why us
         </p>
-        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[#0b1530] sm:text-4xl lg:text-5xl">
+        <h2
+          className="mx-auto mt-3 max-w-3xl text-center font-bold tracking-tight text-[#0b1530]"
+          style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
+        >
           Your neighborhood agency with national reach.
         </h2>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
