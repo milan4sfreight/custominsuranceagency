@@ -94,19 +94,19 @@ export const ContactSection = () => {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="text-sm font-medium text-[#0b1530]" htmlFor="firstName">First Name</label>
-              <Input id="firstName" name="firstName" required maxLength={60} className="mt-1" />
+              <Input id="firstName" name="firstName" required maxLength={60} className="mt-1 h-12" />
             </div>
             <div>
               <label className="text-sm font-medium text-[#0b1530]" htmlFor="lastName">Last Name</label>
-              <Input id="lastName" name="lastName" required maxLength={60} className="mt-1" />
+              <Input id="lastName" name="lastName" required maxLength={60} className="mt-1 h-12" />
             </div>
             <div>
               <label className="text-sm font-medium text-[#0b1530]" htmlFor="email">Email</label>
-              <Input id="email" name="email" type="email" required maxLength={255} className="mt-1" />
+              <Input id="email" name="email" type="email" required maxLength={255} className="mt-1 h-12" />
             </div>
             <div>
               <label className="text-sm font-medium text-[#0b1530]" htmlFor="phone">Phone</label>
-              <Input id="phone" name="phone" type="tel" required maxLength={30} className="mt-1" />
+              <Input id="phone" name="phone" type="tel" required maxLength={30} className="mt-1 h-12" />
             </div>
             <div className="sm:col-span-2">
               <label className="text-sm font-medium text-[#0b1530]" htmlFor="type">Insurance Type</label>
@@ -115,7 +115,7 @@ export const ContactSection = () => {
                 name="type"
                 required
                 defaultValue=""
-                className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
+                className="mt-1 flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring"
               >
                 <option value="" disabled>Select a type…</option>
                 {insuranceTypes.map((t) => (
