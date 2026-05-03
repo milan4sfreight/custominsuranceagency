@@ -23,7 +23,7 @@ export const Hero = () => {
 
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col px-6 pt-32 pb-16 lg:min-h-screen lg:px-10">
         <div className="max-w-2xl pt-4 lg:pt-10">
-          <h1 className="font-sans text-[56px] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[60px] lg:text-[64px]">
+          <h1 className="font-sans text-[40px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[48px] lg:text-[52px]">
             Getting insurance
             <br />
             is not the same
