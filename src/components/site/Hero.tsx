@@ -8,7 +8,7 @@ export const Hero = () => {
       <img
         src={heroBg}
         alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover object-[60%_center]"
         loading="eager"
       />
       {/* Subtle left-side legibility wash */}
@@ -30,16 +30,18 @@ export const Hero = () => {
             </span>
           </div>
 
-          <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-            Getting insurance is easy.
+          <h1 className="font-sans text-[56px] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[60px] lg:text-[64px]">
+            Getting insurance
             <br />
-            Getting it{" "}
-            <span className="text-brand-gradient italic">right isn't.</span>
+            is not the same
+            <br />
+            as getting insurance
+            <br />
+            <span className="text-brand">with custom insurance.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-ink">
-            Smarter coverage. Better service. Built for modern businesses and
-            the people who run them.
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-ink sm:text-lg">
+            Smarter coverage. Better service. Built for you.
           </p>
 
           <div className="mt-10">
