@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -137,3 +138,12 @@ export const ContactSection = () => {
 };
 
 export default ContactSection;
+
+const ContactRow = ({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) => (
+  <li className="flex items-start gap-3">
+    <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#f0f6ff] text-[#1a6dd4]">
+      {icon}
+    </span>
+    <span className="leading-7">{children}</span>
+  </li>
+);
