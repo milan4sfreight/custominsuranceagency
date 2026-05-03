@@ -77,13 +77,17 @@ export const Navbar = () => {
               borderLeft: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
-            <div className="mt-10 flex flex-col gap-6">
+            <div className="mt-12 flex flex-col gap-7">
               {links.map((l) => (
-                <a key={l.label} href={l.href} className="text-base font-semibold text-white">
+                <a
+                  key={l.label}
+                  href={l.href}
+                  className="text-xl font-semibold tracking-tight text-white transition-colors hover:text-white/80"
+                >
                   {l.label}
                 </a>
               ))}
-              <Button className="mt-4 rounded-full bg-brand-gradient text-brand-foreground shadow-brand-glow">
+              <Button className="mt-6 h-12 rounded-full bg-brand-gradient text-base font-semibold text-brand-foreground shadow-brand-glow">
                 Get a Quote
               </Button>
             </div>
