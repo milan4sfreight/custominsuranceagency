@@ -70,12 +70,7 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-72 border-l border-white/20 text-white"
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-            }}
+            className="w-72 border-l border-white/20 text-white !bg-white/10 backdrop-blur-2xl"
           >
             <div className="mt-10 flex flex-col gap-6">
               {links.map((l) => (
