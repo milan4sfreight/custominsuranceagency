@@ -4,7 +4,10 @@ export const CtaBand = () => {
   return (
     <section className="bg-[#f0f6ff] py-20">
       <div className="mx-auto max-w-5xl px-6 text-center lg:px-10">
-        <h2 className="text-3xl font-bold tracking-tight text-[#0b1530] sm:text-4xl lg:text-5xl">
+        <h2
+          className="font-bold tracking-tight text-[#0b1530]"
+          style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
+        >
           Not sure what coverage you need?
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
