@@ -43,9 +43,9 @@ export const Hero = () => {
         }}
       />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-32 pb-12 sm:pt-40 lg:min-h-screen lg:pt-48 lg:px-10">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-28 pb-12 sm:pt-32 lg:min-h-screen lg:pt-0 lg:px-10">
         <div
-          className="max-w-2xl rounded-2xl p-4 sm:p-6"
+          className="rounded-2xl p-4 sm:p-6 w-full max-w-[520px] lg:max-w-[620px] lg:absolute lg:left-[8%] lg:top-[20%]"
           style={{
             background:
               "linear-gradient(135deg, hsl(220 60% 10% / 0.55) 0%, hsl(220 80% 25% / 0.35) 60%, transparent 100%)",
@@ -55,7 +55,7 @@ export const Hero = () => {
         >
           <h1
             className="font-sans font-extrabold leading-[1.08] tracking-tight text-white will-change-transform transition-transform duration-300 ease-out"
-            style={{ fontSize: "clamp(28px, 6vw, 64px)", transform: headlineTransform }}
+            style={{ fontSize: "clamp(24px, 5.1vw, 54px)", transform: headlineTransform }}
           >
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">Getting</span>{" "}
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">insurance</span>
@@ -94,10 +94,9 @@ export const Hero = () => {
               </span>
             ))}
           </p>
-        </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4 pb-8 sm:mt-auto lg:pb-16">
-          <Button
+          <div className="mt-6">
+            <Button
             size="lg"
             className="group relative h-12 w-[90%] max-w-[240px] justify-between overflow-hidden rounded-full pl-6 pr-1.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 sm:w-auto sm:justify-center"
             style={{
@@ -132,12 +131,14 @@ export const Hero = () => {
                 filter: "blur(6px)",
               }}
             />
-          </Button>
-          <p className="text-sm text-muted-ink">
-            A+ rated · 10,000+ businesses covered · Licensed in 50 states
-          </p>
+            </Button>
+          </div>
         </div>
       </div>
+
+      <p className="absolute inset-x-0 bottom-3 z-10 px-6 text-center text-xs text-white/90 sm:text-sm" style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}>
+        A+ rated · 10,000+ businesses covered · Licensed in 50 states
+      </p>
     </section>
   );
 };
