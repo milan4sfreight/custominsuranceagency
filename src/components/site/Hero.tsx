@@ -45,17 +45,17 @@ export const Hero = () => {
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col px-6 pt-28 pb-12 sm:pt-32 lg:min-h-screen lg:pt-0 lg:px-10">
         <div
-          className="rounded-2xl w-full max-w-[520px] p-6 lg:max-w-[620px] lg:p-10 lg:ml-[8%] lg:mt-[6vh]"
+          className="rounded-2xl w-full max-w-[520px] p-6 lg:p-8 lg:ml-[6%] lg:mt-[12vh]"
           style={{
             background:
-              "linear-gradient(135deg, hsl(220 60% 10% / 0.55) 0%, hsl(220 80% 25% / 0.35) 60%, transparent 100%)",
+              "linear-gradient(90deg, hsl(220 60% 10% / 0.65) 0%, hsl(220 60% 15% / 0.45) 55%, transparent 100%)",
             backdropFilter: "blur(2px)",
             WebkitBackdropFilter: "blur(2px)",
           }}
         >
           <h1
             className="font-sans font-extrabold tracking-tight text-white will-change-transform transition-transform duration-300 ease-out"
-            style={{ fontSize: "clamp(42px, 4.5vw, 72px)", lineHeight: 1.05, transform: headlineTransform }}
+            style={{ fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.08, transform: headlineTransform }}
           >
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">Getting</span>{" "}
             <span className="inline-block transition-transform duration-300 hover:-translate-y-1 hover:text-brand">insurance</span>
