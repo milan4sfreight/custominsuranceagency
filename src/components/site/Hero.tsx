@@ -29,8 +29,7 @@ export const Hero = () => {
   const tagTransform = `translate3d(${mouse.x * 18}px, ${mouse.y * 12 + scrollY * 0.18}px, 0)`;
 
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden lg:min-h-screen">
-      <section ref={sectionRef} className="contents">
+    <section ref={sectionRef} className="relative min-h-[100svh] w-full overflow-hidden lg:min-h-screen">
       <img
         src={heroBg}
         alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
@@ -134,7 +133,6 @@ export const Hero = () => {
           </p>
         </div>
       </div>
-      </section>
     </section>
   );
 };
