@@ -30,10 +30,13 @@ export const CoverageGrid = () => {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
           Coverage
         </p>
-        <h2 className="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold tracking-tight text-[#0b1530] sm:text-4xl lg:text-5xl">
+        <h2
+          className="mx-auto mt-3 max-w-3xl text-center font-bold tracking-tight text-[#0b1530]"
+          style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
+        >
           Insurance for every part of your life.
         </h2>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
           {coverages.map(({ icon: Icon, name, desc }) => (
             <div
               key={name}
