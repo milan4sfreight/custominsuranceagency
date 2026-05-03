@@ -33,7 +33,10 @@ export const Hero = () => {
             <span className="text-brand">with custom insurance.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-ink sm:text-lg">
+          <p
+            className="mt-6 max-w-xl text-[18px] font-semibold leading-relaxed text-white sm:text-[20px]"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.6)" }}
+          >
             Smarter coverage. Better service. Built for you.
           </p>
         </div>
