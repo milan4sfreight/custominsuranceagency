@@ -33,7 +33,7 @@ export const Hero = () => {
       <img
         src={heroBg}
         alt="Custom Insurance Agency branded semi truck on an open highway under a bright blue sky"
-        className="absolute inset-0 h-full w-full object-cover object-[70%_center] lg:object-center"
+        className="absolute inset-0 h-full w-full object-cover object-[65%_85%] lg:object-center"
         loading="eager"
       />
       {/* Subtle left-side legibility wash */}
