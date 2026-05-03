@@ -21,8 +21,8 @@ export const Hero = () => {
         aria-hidden
       />
 
-      <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col px-6 pt-32 pb-16 lg:min-h-screen lg:px-10">
-        <div className="max-w-2xl pt-4 lg:pt-10">
+      <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col px-6 pt-40 pb-16 lg:min-h-screen lg:pt-48 lg:px-10">
+        <div className="max-w-2xl">
           <h1 className="font-sans text-[40px] font-extrabold leading-[1.08] tracking-tight text-ink sm:text-[48px] lg:text-[52px]">
             Getting insurance
             <br />
