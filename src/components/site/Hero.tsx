@@ -4,10 +4,13 @@ import heroBg from "@/assets/hero-bg.png";
 
 export const Hero = () => {
   return (
-    <section
-      className="relative min-h-screen w-full overflow-hidden bg-cover bg-center"
-      style={{ backgroundImage: `url(${heroBg})` }}
-    >
+    <section className="relative min-h-[90vh] w-full overflow-hidden lg:min-h-screen">
+      <img
+        src={heroBg}
+        alt="Chicago skyline across Lake Michigan with a professional woman seated on a translucent glass 'quote' sculpture"
+        className="absolute inset-0 h-full w-full object-cover object-[75%_center] lg:object-[65%_center]"
+        loading="eager"
+      />
       {/* Subtle left-side legibility wash */}
       <div
         className="absolute inset-0"
@@ -18,7 +21,7 @@ export const Hero = () => {
         aria-hidden
       />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-24 lg:px-10">
+      <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-6 pt-32 pb-24 lg:min-h-screen lg:px-10">
         <div className="max-w-2xl">
           <div className="mb-6 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-brand-gradient" />
