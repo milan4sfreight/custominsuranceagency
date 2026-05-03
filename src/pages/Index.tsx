@@ -24,7 +24,7 @@ const Index = () => {
             backgroundPosition: "center center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            opacity: 0.55,
+            opacity: 0.95,
           }}
         />
         <div
@@ -32,7 +32,7 @@ const Index = () => {
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
             background:
-              "linear-gradient(180deg, hsl(var(--background) / 0.35) 0%, hsl(var(--background) / 0.25) 50%, hsl(var(--background) / 0.4) 100%)",
+              "linear-gradient(180deg, hsl(var(--background) / 0.15) 0%, hsl(var(--background) / 0.05) 50%, hsl(var(--background) / 0.2) 100%)",
           }}
         />
         <InsuranceStrip />
