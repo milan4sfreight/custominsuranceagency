@@ -34,12 +34,13 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-white/10 backdrop-blur-[10px]",
-        scrolled && "shadow-soft",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
       )}
       style={{
         background:
-          "linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #0d2657 100%)",
+          "linear-gradient(180deg, #2272c3 0%, #1a5fa8 50%, #0d4a94 100%)",
+        borderBottom: "1px solid rgba(0,0,0,0.15)",
+        boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
       }}
     >
       <nav className="relative mx-auto flex h-20 min-h-20 max-w-7xl items-center justify-between px-6 lg:pl-14 lg:pr-10">
@@ -47,7 +48,7 @@ export const Navbar = () => {
           <img
             src={logo}
             alt="Custom Insurance Agency"
-            className="h-[44px] w-auto md:h-[64px]"
+            className="h-[52px] w-auto md:h-[64px]"
           />
         </Link>
 
@@ -70,14 +71,14 @@ export const Navbar = () => {
           >
             <div className="flex h-full flex-col px-8 pb-10 pt-20">
               <div className="flex flex-col gap-7" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                <Link to="/" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
+                <Link to="/" className="text-[24px] font-medium tracking-tight text-white hover:text-white/75">
                   Home
                 </Link>
                 <div>
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between text-[24px] font-bold tracking-tight text-white/85 hover:text-white"
+                    className="flex w-full items-center justify-between text-[24px] font-medium tracking-tight text-white hover:text-white/75"
                   >
                     Solutions
                     <ChevronDown
@@ -101,10 +102,10 @@ export const Navbar = () => {
                     </div>
                   )}
                 </div>
-                <Link to="/about" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
+                <Link to="/about" className="text-[24px] font-medium tracking-tight text-white hover:text-white/75">
                   About Us
                 </Link>
-                <Link to="/contact" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
+                <Link to="/contact" className="text-[24px] font-medium tracking-tight text-white hover:text-white/75">
                   Contact
                 </Link>
               </div>
@@ -114,7 +115,7 @@ export const Navbar = () => {
                 style={{
                   background:
                     "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
-                  boxShadow: "0 4px 15px rgba(245,130,31,0.4)",
+                  boxShadow: "0 4px 15px rgba(245,130,31,0.35)",
                 }}
               >
                 <Link to="/get-a-quote">Get a Quote</Link>
