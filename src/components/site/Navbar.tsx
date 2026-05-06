@@ -33,11 +33,11 @@ export const Navbar = () => {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Link to="/" className="flex items-center group">
+        <Link to="/" className="flex items-center group ml-2 md:ml-6">
           <img
             src={logo}
             alt="Custom Insurance Agency"
-            className="h-[43px] w-auto md:h-12"
+            className="h-[52px] w-auto md:h-[58px]"
           />
         </Link>
 
@@ -72,7 +72,7 @@ export const Navbar = () => {
               className="md:hidden h-11 w-11 text-white hover:bg-transparent hover:text-white drop-shadow-md"
               aria-label="Open menu"
             >
-              <Menu className="h-[34px] w-[34px]" strokeWidth={2.5} />
+              <Menu className="h-[41px] w-[41px]" strokeWidth={2.5} />
             </Button>
           </SheetTrigger>
           <SheetContent
