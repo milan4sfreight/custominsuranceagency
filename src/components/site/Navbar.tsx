@@ -33,15 +33,15 @@ export const Navbar = () => {
           : "bg-transparent",
       )}
     >
-      <nav className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
+      <nav className="relative mx-auto flex h-16 min-h-16 max-w-7xl items-center justify-between px-6 md:min-h-[80px] lg:pl-14 lg:pr-10">
         <Link
           to="/"
-          className="group flex items-center md:static md:translate-x-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:ml-6"
+          className="group flex items-center md:static md:translate-x-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <img
             src={logo}
             alt="Custom Insurance Agency"
-            className="h-[36px] w-auto md:h-[40px]"
+            className="h-[44px] w-auto md:h-[64px]"
           />
         </Link>
 
