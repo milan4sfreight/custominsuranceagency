@@ -1,20 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.webp";
+import heroVideo from "@/assets/hero-bg.mp4";
 
 export const Hero = () => {
   return (
     <section
       className="relative w-full overflow-hidden"
-      style={{
-        minHeight: "100svh",
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={{ minHeight: "100svh" }}
     >
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src={heroVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
       {/* Left-to-right overlay for text readability */}
       <div
         aria-hidden
