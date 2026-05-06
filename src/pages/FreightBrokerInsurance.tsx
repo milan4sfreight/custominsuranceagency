@@ -43,12 +43,12 @@ const forwardingCards = [
 const HERO_IMG =
   "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=2000&q=80";
 
-const H2 = "text-[24px] md:text-[26px] font-bold text-[#0b1530] leading-tight mb-4";
+const H2 = "text-[24px] md:text-[26px] font-bold text-[#0d2b2b] leading-tight mb-4";
 const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 
 const FreightBrokerInsurance = () => {
   return (
-    <main className="min-h-screen bg-white font-['DM_Sans',sans-serif]">
+    <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Navbar />
 
       {/* HERO */}
@@ -106,7 +106,7 @@ const FreightBrokerInsurance = () => {
             {otherCoverages.map((c) => (
               <div
                 key={c}
-                className="rounded-xl border-l-4 border-[#1a6dd4] bg-[#f5f7fa] px-5 py-4 text-[15px] font-semibold text-[#0b1530] shadow-sm transition hover:shadow-md"
+                className="rounded-xl border-l-4 border-[#3eaa6d] bg-[#f5f7fa] px-5 py-4 text-[15px] font-semibold text-[#0d2b2b] shadow-sm transition hover:shadow-md"
               >
                 {c}
               </div>
@@ -123,7 +123,7 @@ const FreightBrokerInsurance = () => {
                 key={c.title}
                 className="rounded-xl border border-[#e2e8f0] bg-white p-6"
               >
-                <h3 className="text-[18px] font-bold text-[#0b1530]">{c.title}</h3>
+                <h3 className="text-[18px] font-bold text-[#0d2b2b]">{c.title}</h3>
                 <p className="mt-2 text-[15px] leading-[1.75] text-[#4a5568]">
                   {c.desc}
                 </p>
@@ -134,13 +134,13 @@ const FreightBrokerInsurance = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0b1530] px-6 py-20 text-center md:px-12">
+      <section className="bg-[#0d2b2b] px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
           Get Your Freight Broker Insurance Quote Now
         </h2>
         <Link
           to="/get-a-quote"
-          className="mt-8 inline-block rounded-full bg-[#1a6dd4] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#1a6dd4]/90"
+          className="mt-8 inline-block rounded-full bg-[#3eaa6d] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
         >
           Get a Quote
         </Link>

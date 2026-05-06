@@ -20,11 +20,11 @@ export const WhyChooseUs = () => {
   return (
     <section className="bg-transparent py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#2abfbf]">
           Why us
         </p>
         <h2
-          className="mx-auto mt-3 max-w-3xl text-center font-bold tracking-tight text-[#0b1530]"
+          className="mx-auto mt-3 max-w-3xl text-center font-bold tracking-tight text-[#0d2b2b]"
           style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
         >
           Your neighborhood agency with national reach.
@@ -33,10 +33,10 @@ export const WhyChooseUs = () => {
           {features.map((f) => (
             <div
               key={f.title}
-              className="group relative overflow-hidden rounded-2xl border border-white/40 bg-white/60 p-8 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[#1a6dd4]/30 hover:bg-white/80 hover:shadow-[0_12px_40px_-12px_rgba(26,109,212,0.25)]"
+              className="group relative overflow-hidden rounded-2xl border border-white/40 bg-white/60 p-8 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[#3eaa6d]/30 hover:bg-white/80 hover:shadow-[0_12px_40px_-12px_rgba(26,109,212,0.25)]"
             >
-              <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[#1a6dd4] transition-transform duration-300 group-hover:scale-x-100" />
-              <h3 className="text-xl font-semibold text-[#0b1530]">{f.title}</h3>
+              <span className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[#3eaa6d] transition-transform duration-300 group-hover:scale-x-100" />
+              <h3 className="text-xl font-semibold text-[#0d2b2b]">{f.title}</h3>
               <p className="mt-3 leading-relaxed text-slate-600">{f.body}</p>
             </div>
           ))}

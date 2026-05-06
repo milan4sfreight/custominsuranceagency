@@ -15,14 +15,14 @@ const coverages = [
 const HERO_IMG =
   "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2000&q=80";
 
-const H2 = "text-[26px] font-bold text-[#0b1530] leading-tight";
+const H2 = "text-[26px] font-bold text-[#0d2b2b] leading-tight";
 const P = "mt-4 text-[16px] leading-[1.75] text-[#334155]";
 const Eyebrow =
-  "text-[13px] font-semibold uppercase tracking-[2px] text-[#1a6dd4]";
+  "text-[13px] font-semibold uppercase tracking-[2px] text-[#3eaa6d]";
 
 const TruckingInsurance = () => {
   return (
-    <main className="min-h-screen bg-white font-['DM_Sans',sans-serif]">
+    <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Navbar />
 
       {/* HERO */}
@@ -74,7 +74,7 @@ const TruckingInsurance = () => {
             {coverages.map((c) => (
               <div
                 key={c}
-                className="rounded-xl border-l-4 border-[#1a6dd4] bg-[#f1f5f9] px-5 py-5 text-[15px] font-semibold text-[#0b1530] shadow-sm transition hover:shadow-md"
+                className="rounded-xl border-l-4 border-[#3eaa6d] bg-[#f1f5f9] px-5 py-5 text-[15px] font-semibold text-[#0d2b2b] shadow-sm transition hover:shadow-md"
               >
                 {c}
               </div>
@@ -137,7 +137,7 @@ const TruckingInsurance = () => {
           <h2 className={H2}>Categories of Comprehensive Trucking Insurance</h2>
           <div className="mt-6 grid gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-[#e2e8f0] bg-white p-8">
-              <h3 className="text-[20px] font-bold text-[#0b1530]">
+              <h3 className="text-[20px] font-bold text-[#0d2b2b]">
                 Basic Coverage
               </h3>
               <p className="mt-3 text-[15px] leading-[1.75] text-[#334155]">
@@ -152,7 +152,7 @@ const TruckingInsurance = () => {
               </p>
             </div>
             <div className="rounded-2xl border border-[#e2e8f0] bg-white p-8">
-              <h3 className="text-[20px] font-bold text-[#0b1530]">
+              <h3 className="text-[20px] font-bold text-[#0d2b2b]">
                 Specialized Coverage
               </h3>
               <p className="mt-3 text-[15px] leading-[1.75] text-[#334155]">
@@ -195,7 +195,7 @@ const TruckingInsurance = () => {
         </section>
 
         {/* CTA */}
-        <section className="mt-16 rounded-2xl bg-[#0b1530] p-10 text-center text-white">
+        <section className="mt-16 rounded-2xl bg-[#0d2b2b] p-10 text-center text-white">
           <h3 className="text-[24px] font-bold">
             Ready to protect your trucking business?
           </h3>
@@ -204,7 +204,7 @@ const TruckingInsurance = () => {
           </p>
           <Link
             to="/get-a-quote"
-            className="mt-6 inline-block rounded-full bg-[#1a6dd4] px-8 py-3 text-[15px] font-semibold text-white transition hover:bg-[#1a6dd4]/90"
+            className="mt-6 inline-block rounded-full bg-[#3eaa6d] px-8 py-3 text-[15px] font-semibold text-white transition hover:bg-[#3eaa6d]/90"
           >
             Get a Quote
           </Link>

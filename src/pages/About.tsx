@@ -22,12 +22,12 @@ const contactItems = [
 const HERO_IMG =
   "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2000&q=80";
 
-const H2 = "text-[24px] md:text-[26px] font-bold text-[#0b1530] leading-tight mb-4";
+const H2 = "text-[24px] md:text-[26px] font-bold text-[#0d2b2b] leading-tight mb-4";
 const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 
 const About = () => {
   return (
-    <main className="min-h-screen bg-white font-['DM_Sans',sans-serif]">
+    <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Navbar />
 
       {/* HERO */}
@@ -61,8 +61,8 @@ const About = () => {
       {/* Section 2 — Mission */}
       <section className="bg-[#f0f6ff] px-6 py-[60px] md:px-12">
         <div className="mx-auto max-w-[700px] text-center">
-          <div className="text-[80px] leading-none text-[#1a6dd4] font-serif">"</div>
-          <h2 className="text-[28px] font-bold text-[#0b1530]">Our Mission</h2>
+          <div className="text-[80px] leading-none text-[#3eaa6d] font-serif">"</div>
+          <h2 className="text-[28px] font-bold text-[#0d2b2b]">Our Mission</h2>
           <p className="mt-4 text-[18px] italic leading-[1.7] text-[#4a5568]">
             It is our mission and responsibility to provide you with the best service possible. Our dedicated staff of insurance professionals is known for its friendly service and positive attitude. You can expect the exact same treatment that you would get from your neighborhood insurance agent.
           </p>
@@ -72,7 +72,7 @@ const About = () => {
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
         {/* Section 3 — Why Choose Us */}
         <section>
-          <p className="text-[13px] font-semibold uppercase tracking-[2px] text-[#1a6dd4]">
+          <p className="text-[13px] font-semibold uppercase tracking-[2px] text-[#3eaa6d]">
             Why Choose Us
           </p>
           <h2 className={`${H2} mt-2`}>The Custom Insurance Agency Difference</h2>
@@ -80,10 +80,10 @@ const About = () => {
             {whyCards.map((c) => (
               <div
                 key={c.title}
-                className="rounded-2xl border-t-[3px] border-t-[#f5821f] bg-[#f5f7fa] p-8 transition hover:shadow-md"
+                className="rounded-2xl border-t-[3px] border-t-[#2abfbf] bg-[#f5f7fa] p-8 transition hover:shadow-md"
               >
                 <div className="text-[32px]">{c.icon}</div>
-                <h3 className="mt-3 text-[18px] font-bold text-[#0b1530]">{c.title}</h3>
+                <h3 className="mt-3 text-[18px] font-bold text-[#0d2b2b]">{c.title}</h3>
                 <p className="mt-3 text-[15px] leading-[1.7] text-[#4a5568]">{c.text}</p>
               </div>
             ))}
@@ -105,14 +105,14 @@ const About = () => {
                 </li>
               ))}
             </ul>
-            <div className="rounded-2xl bg-[#0b1530] p-8 text-white">
+            <div className="rounded-2xl bg-[#0d2b2b] p-8 text-white">
               <h3 className="text-[20px] font-bold">Request a Free Quote</h3>
               <p className="mt-3 text-[15px] leading-[1.7] text-white/80">
                 Ready to get started? Fill out our quick quote form and a Custom Insurance Agency representative will contact you within 24 hours.
               </p>
               <Link
                 to="/get-a-quote"
-                className="mt-6 inline-block rounded-full bg-[#1a6dd4] px-6 py-3 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#1a6dd4]/90"
+                className="mt-6 inline-block rounded-full bg-[#3eaa6d] px-6 py-3 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
               >
                 Get a Quote →
               </Link>
@@ -122,7 +122,7 @@ const About = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0b1530] px-6 py-20 text-center md:px-12">
+      <section className="bg-[#0d2b2b] px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
           Serving Chicago & Surrounding Areas Since Day One
         </h2>
@@ -131,7 +131,7 @@ const About = () => {
         </p>
         <Link
           to="/contact"
-          className="mt-8 inline-block rounded-full bg-[#1a6dd4] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#1a6dd4]/90"
+          className="mt-8 inline-block rounded-full bg-[#3eaa6d] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
         >
           Contact Us
         </Link>

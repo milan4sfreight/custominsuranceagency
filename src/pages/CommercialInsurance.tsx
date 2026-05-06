@@ -31,12 +31,12 @@ const markets = [
 const HERO_IMG =
   "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80";
 
-const H2 = "text-[24px] md:text-[26px] font-bold text-[#0b1530] leading-tight mb-4";
+const H2 = "text-[24px] md:text-[26px] font-bold text-[#0d2b2b] leading-tight mb-4";
 const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 
 const CommercialInsurance = () => {
   return (
-    <main className="min-h-screen bg-white font-['DM_Sans',sans-serif]">
+    <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Navbar />
 
       {/* HERO */}
@@ -75,7 +75,7 @@ const CommercialInsurance = () => {
             {coverages.map((c) => (
               <div
                 key={c}
-                className="rounded-xl border-l-4 border-[#1a6dd4] bg-[#f5f7fa] px-5 py-4 text-[15px] font-semibold text-[#0b1530] shadow-sm transition hover:shadow-md"
+                className="rounded-xl border-l-4 border-[#3eaa6d] bg-[#f5f7fa] px-5 py-4 text-[15px] font-semibold text-[#0d2b2b] shadow-sm transition hover:shadow-md"
               >
                 {c}
               </div>
@@ -89,14 +89,14 @@ const CommercialInsurance = () => {
           <p className={P}>
             Custom Insurance Agency is your go-to source for finding the best business coverage for your business at the lowest price. We have a multitude of insurance coverage options available to meet the needs of each individual business. Our diverse customer base includes businesses across the United States. Whether you are looking for a general Business Owner's Policy (BOP) to cover your property and general liability or just looking to get a better understanding of how to manage your risk, make Custom Insurance Agency your only call today.
           </p>
-          <p className="mt-8 text-[13px] font-semibold uppercase tracking-[2px] text-[#1a6dd4]">
+          <p className="mt-8 text-[13px] font-semibold uppercase tracking-[2px] text-[#3eaa6d]">
             Our Markets
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {markets.map((m) => (
               <span
                 key={m}
-                className="rounded-full bg-[#e8f1fd] px-4 py-1.5 text-[14px] font-medium text-[#1a6dd4]"
+                className="rounded-full bg-[#e8f5ee] px-4 py-1.5 text-[14px] font-medium text-[#3eaa6d]"
               >
                 {m}
               </span>
@@ -114,13 +114,13 @@ const CommercialInsurance = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0b1530] px-6 py-20 text-center md:px-12">
+      <section className="bg-[#0d2b2b] px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
           Get Your Commercial Insurance Quote Now
         </h2>
         <Link
           to="/get-a-quote"
-          className="mt-8 inline-block rounded-full bg-[#1a6dd4] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#1a6dd4]/90"
+          className="mt-8 inline-block rounded-full bg-[#3eaa6d] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
         >
           Get a Quote
         </Link>

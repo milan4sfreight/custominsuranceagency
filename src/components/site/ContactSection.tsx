@@ -60,9 +60,9 @@ export const ContactSection = () => {
     <section id="contact" className="bg-transparent py-24">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-10">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">Contact</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2abfbf]">Contact</p>
           <h2
-            className="mt-3 font-bold tracking-tight text-[#0b1530]"
+            className="mt-3 font-bold tracking-tight text-[#0d2b2b]"
             style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
           >
             Get in touch
@@ -70,16 +70,16 @@ export const ContactSection = () => {
           <p className="mt-3 text-slate-600">
             We're here to help with any insurance questions. Stop by, call, or send us a quick message.
           </p>
-          <ul className="mt-8 space-y-5 text-[#0b1530]">
+          <ul className="mt-8 space-y-5 text-[#0d2b2b]">
             <ContactRow icon={<MapPin className="h-4 w-4" />} >
               882 62nd St, La Grange Highlands, IL 60525
             </ContactRow>
             <ContactRow icon={<Phone className="h-4 w-4" />}>
-              <a href="tel:7088101955" className="font-semibold hover:text-[#1a6dd4]">708-810-1955</a>
+              <a href="tel:7088101955" className="font-semibold hover:text-[#3eaa6d]">708-810-1955</a>
               <span className="text-slate-500"> · Fax: 708-810-1970</span>
             </ContactRow>
             <ContactRow icon={<Mail className="h-4 w-4" />}>
-              <a href="mailto:info@custominsure.com" className="hover:text-[#1a6dd4]">info@custominsure.com</a>
+              <a href="mailto:info@custominsure.com" className="hover:text-[#3eaa6d]">info@custominsure.com</a>
             </ContactRow>
             <ContactRow icon={<Clock className="h-4 w-4" />}>
               Monday–Friday · 9:00 AM – 5:00 PM
@@ -93,23 +93,23 @@ export const ContactSection = () => {
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className="text-sm font-medium text-[#0b1530]" htmlFor="firstName">First Name</label>
+              <label className="text-sm font-medium text-[#0d2b2b]" htmlFor="firstName">First Name</label>
               <Input id="firstName" name="firstName" required maxLength={60} className="mt-1 h-12" />
             </div>
             <div>
-              <label className="text-sm font-medium text-[#0b1530]" htmlFor="lastName">Last Name</label>
+              <label className="text-sm font-medium text-[#0d2b2b]" htmlFor="lastName">Last Name</label>
               <Input id="lastName" name="lastName" required maxLength={60} className="mt-1 h-12" />
             </div>
             <div>
-              <label className="text-sm font-medium text-[#0b1530]" htmlFor="email">Email</label>
+              <label className="text-sm font-medium text-[#0d2b2b]" htmlFor="email">Email</label>
               <Input id="email" name="email" type="email" required maxLength={255} className="mt-1 h-12" />
             </div>
             <div>
-              <label className="text-sm font-medium text-[#0b1530]" htmlFor="phone">Phone</label>
+              <label className="text-sm font-medium text-[#0d2b2b]" htmlFor="phone">Phone</label>
               <Input id="phone" name="phone" type="tel" required maxLength={30} className="mt-1 h-12" />
             </div>
             <div className="sm:col-span-2">
-              <label className="text-sm font-medium text-[#0b1530]" htmlFor="type">Insurance Type</label>
+              <label className="text-sm font-medium text-[#0d2b2b]" htmlFor="type">Insurance Type</label>
               <select
                 id="type"
                 name="type"
@@ -124,7 +124,7 @@ export const ContactSection = () => {
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label className="text-sm font-medium text-[#0b1530]" htmlFor="comments">Comments</label>
+              <label className="text-sm font-medium text-[#0d2b2b]" htmlFor="comments">Comments</label>
               <Textarea id="comments" name="comments" maxLength={1000} rows={4} className="mt-1" />
             </div>
           </div>
@@ -132,7 +132,7 @@ export const ContactSection = () => {
             type="submit"
             disabled={submitting}
             size="lg"
-            className="mt-6 h-12 w-full rounded-full bg-[#1a6dd4] text-base font-semibold text-white hover:bg-[#1559b0] sm:w-auto sm:px-8"
+            className="mt-6 h-12 w-full rounded-full bg-[#3eaa6d] text-base font-semibold text-white hover:bg-[#1559b0] sm:w-auto sm:px-8"
           >
             {submitting ? "Sending…" : "Submit"}
           </Button>
@@ -146,7 +146,7 @@ export default ContactSection;
 
 const ContactRow = ({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) => (
   <li className="flex items-start gap-3">
-    <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#f0f6ff] text-[#1a6dd4]">
+    <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#f0f6ff] text-[#3eaa6d]">
       {icon}
     </span>
     <span className="leading-7">{children}</span>

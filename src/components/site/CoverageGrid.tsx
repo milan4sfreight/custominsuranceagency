@@ -28,11 +28,11 @@ export const CoverageGrid = () => {
   return (
     <section id="coverage" className="bg-transparent py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#f5821f]">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-[#2abfbf]">
           Coverage
         </p>
         <h2
-          className="mx-auto mt-3 max-w-3xl text-center font-bold tracking-tight text-[#0b1530]"
+          className="mx-auto mt-3 max-w-3xl text-center font-bold tracking-tight text-[#0d2b2b]"
           style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
         >
           Insurance for every part of your life.
@@ -41,16 +41,16 @@ export const CoverageGrid = () => {
           {coverages.map(({ icon: Icon, name, desc }) => (
             <div
               key={name}
-              className="group flex flex-col rounded-2xl border border-white/40 bg-white/65 p-6 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[#1a6dd4]/40 hover:bg-white/85 hover:shadow-[0_12px_40px_-16px_rgba(26,109,212,0.3)]"
+              className="group flex flex-col rounded-2xl border border-white/40 bg-white/65 p-6 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-[#3eaa6d]/40 hover:bg-white/85 hover:shadow-[0_12px_40px_-16px_rgba(26,109,212,0.3)]"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f0f6ff] text-[#1a6dd4]">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#f0f6ff] text-[#3eaa6d]">
                 <Icon className="h-5 w-5" strokeWidth={2} />
               </span>
-              <h3 className="mt-5 text-base font-semibold text-[#0b1530]">{name}</h3>
+              <h3 className="mt-5 text-base font-semibold text-[#0d2b2b]">{name}</h3>
               <p className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-600">{desc}</p>
               <Link
                 to="/get-a-quote"
-                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#1a6dd4] transition-transform group-hover:translate-x-0.5"
+                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#3eaa6d] transition-transform group-hover:translate-x-0.5"
               >
                 Get a quote <span aria-hidden>→</span>
               </Link>
