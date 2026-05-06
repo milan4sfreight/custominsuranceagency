@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -55,10 +56,11 @@ export const Navbar = () => {
 
         <div className="hidden md:block">
           <Button
+            asChild
             size="lg"
             className="rounded-full bg-brand-gradient px-6 text-brand-foreground shadow-brand-glow hover:opacity-95"
           >
-            Get a Quote
+            <Link to="/get-a-quote">Get a Quote</Link>
           </Button>
         </div>
 
@@ -87,8 +89,8 @@ export const Navbar = () => {
                   {l.label}
                 </a>
               ))}
-              <Button className="mt-6 h-12 rounded-full bg-brand-gradient text-base font-semibold text-brand-foreground shadow-brand-glow">
-                Get a Quote
+              <Button asChild className="mt-6 h-12 rounded-full bg-brand-gradient text-base font-semibold text-brand-foreground shadow-brand-glow">
+                <Link to="/get-a-quote">Get a Quote</Link>
               </Button>
             </div>
           </SheetContent>
