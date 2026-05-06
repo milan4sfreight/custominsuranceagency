@@ -32,8 +32,11 @@ export const Navbar = () => {
           : "bg-transparent",
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Link to="/" className="flex items-center group ml-2 md:ml-6">
+      <nav className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
+        <Link
+          to="/"
+          className="group flex items-center md:static md:translate-x-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:ml-6"
+        >
           <img
             src={logo}
             alt="Custom Insurance Agency"
@@ -64,6 +67,7 @@ export const Navbar = () => {
           </Button>
         </div>
 
+        <div className="md:hidden flex-1" />
         <Sheet>
           <SheetTrigger asChild>
             <Button
