@@ -40,7 +40,7 @@ export const Navbar = () => {
           <img
             src={logo}
             alt="Custom Insurance Agency"
-            className="h-[52px] w-auto md:h-[58px]"
+            className="h-[36px] w-auto md:h-[40px]"
           />
         </Link>
 
@@ -73,10 +73,10 @@ export const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden h-16 w-16 text-white hover:bg-transparent hover:text-white drop-shadow-md"
+              className="md:hidden h-10 w-10 text-white hover:bg-transparent hover:text-white drop-shadow-md"
               aria-label="Open menu"
             >
-              <Menu className="h-[64px] w-[64px]" strokeWidth={3.5} />
+              <Menu className="h-[40px] w-[40px]" strokeWidth={3.5} />
             </Button>
           </SheetTrigger>
           <SheetContent
