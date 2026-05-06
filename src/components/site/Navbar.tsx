@@ -34,9 +34,13 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "bg-[#0d2b2b] shadow-soft" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-white/10 backdrop-blur-[10px]",
+        scrolled && "shadow-soft",
       )}
+      style={{
+        background:
+          "linear-gradient(135deg, #0a1628 0%, #1a3a6b 50%, #0d2657 100%)",
+      }}
     >
       <nav className="relative mx-auto flex h-20 min-h-20 max-w-7xl items-center justify-between px-6 lg:pl-14 lg:pr-10">
         <Link to="/" className="flex items-center">
@@ -66,14 +70,14 @@ export const Navbar = () => {
           >
             <div className="flex h-full flex-col px-8 pb-10 pt-20">
               <div className="flex flex-col gap-7" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                <Link to="/" className="text-[24px] font-bold tracking-tight text-white hover:text-white/80">
+                <Link to="/" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
                   Home
                 </Link>
                 <div>
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between text-[24px] font-bold tracking-tight text-white hover:text-white/80"
+                    className="flex w-full items-center justify-between text-[24px] font-bold tracking-tight text-white/85 hover:text-white"
                   >
                     Solutions
                     <ChevronDown
@@ -97,16 +101,21 @@ export const Navbar = () => {
                     </div>
                   )}
                 </div>
-                <Link to="/about" className="text-[24px] font-bold tracking-tight text-white hover:text-white/80">
+                <Link to="/about" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
                   About Us
                 </Link>
-                <Link to="/contact" className="text-[24px] font-bold tracking-tight text-white hover:text-white/80">
+                <Link to="/contact" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
                   Contact
                 </Link>
               </div>
               <Button
                 asChild
-                className="mt-auto h-14 w-full rounded-full bg-[#3eaa6d] text-base font-semibold uppercase tracking-[2px] text-white shadow-brand-glow hover:bg-[#2d9960]"
+                className="mt-auto h-14 w-full rounded-full border-0 text-base font-semibold uppercase tracking-[2px] text-white transition-transform hover:scale-[1.02]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                  boxShadow: "0 4px 15px rgba(245,130,31,0.4)",
+                }}
               >
                 <Link to="/get-a-quote">Get a Quote</Link>
               </Button>
