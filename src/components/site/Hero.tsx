@@ -73,8 +73,8 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="group h-12 bg-[#3eaa6d] px-7 text-sm text-white shadow-brand-glow transition-all hover:-translate-y-0.5 hover:bg-[#2d9960]"
-                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, borderRadius: "50px" }}
+                className="btn-quote group h-12 px-7 text-sm"
+                style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 <Link to="/get-a-quote">
                   Get a Quote

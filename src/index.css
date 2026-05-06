@@ -144,4 +144,19 @@
   }
   .shadow-brand-glow { box-shadow: var(--shadow-brand); }
   .shadow-soft { box-shadow: var(--shadow-soft); }
+
+  .btn-quote {
+    background: linear-gradient(135deg, #f5821f 0%, #f5c518 100%);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(245, 130, 31, 0.35);
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+  .btn-quote:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+    color: #ffffff;
+  }
 }
