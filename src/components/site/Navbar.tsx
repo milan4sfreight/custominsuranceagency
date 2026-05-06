@@ -68,7 +68,7 @@ export const Navbar = () => {
                   <Link
                     key={s.to}
                     to={s.to}
-                    className="block border-l-2 border-transparent px-5 py-3 text-sm font-medium text-[#0b1530] transition-colors hover:border-[#1a6dd4] hover:bg-[#1a6dd4]/5"
+                    className="block border-l-2 border-transparent px-5 py-3 text-sm font-medium text-[#0d2b2b] transition-colors hover:border-[#3eaa6d] hover:bg-[#3eaa6d]/5"
                   >
                     {s.label}
                   </Link>

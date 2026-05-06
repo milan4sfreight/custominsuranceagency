@@ -44,12 +44,12 @@ const stats = [
 const HERO_IMG =
   "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=2000&q=80";
 
-const H2 = "text-[24px] md:text-[26px] font-bold text-[#0b1530] leading-tight mb-4";
+const H2 = "text-[24px] md:text-[26px] font-bold text-[#0d2b2b] leading-tight mb-4";
 const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 
 const RiskManagement = () => {
   return (
-    <main className="min-h-screen bg-white font-['DM_Sans',sans-serif]">
+    <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <Navbar />
 
       {/* HERO */}
@@ -81,7 +81,7 @@ const RiskManagement = () => {
 
         {/* Section 2 */}
         <section className="mt-[60px]">
-          <p className="text-[13px] font-semibold uppercase tracking-[2px] text-[#1a6dd4]">
+          <p className="text-[13px] font-semibold uppercase tracking-[2px] text-[#3eaa6d]">
             What We Offer
           </p>
           <h2 className={`${H2} mt-2`}>Our Risk Management Solutions</h2>
@@ -89,10 +89,10 @@ const RiskManagement = () => {
             {solutions.map((s) => (
               <div
                 key={s.title}
-                className="rounded-2xl border border-[#e2e8f0] border-t-[3px] border-t-[#1a6dd4] bg-white p-8 transition hover:shadow-md"
+                className="rounded-2xl border border-[#e2e8f0] border-t-[3px] border-t-[#3eaa6d] bg-white p-8 transition hover:shadow-md"
               >
                 <div className="text-[32px]">{s.icon}</div>
-                <h3 className="mt-3 text-[20px] font-bold text-[#0b1530]">{s.title}</h3>
+                <h3 className="mt-3 text-[20px] font-bold text-[#0d2b2b]">{s.title}</h3>
                 <p className="mt-3 text-[15px] leading-[1.75] text-[#4a5568]">
                   {s.desc}
                 </p>
@@ -108,7 +108,7 @@ const RiskManagement = () => {
             {stats.map((s) => (
               <div
                 key={s.num}
-                className="rounded-2xl bg-[#1a6dd4] p-8 text-center text-white"
+                className="rounded-2xl bg-[#3eaa6d] p-8 text-center text-white"
               >
                 <div className="text-[44px] font-bold leading-none">{s.num}</div>
                 <p className="mt-4 text-[15px] leading-[1.6] text-white/90">
@@ -129,7 +129,7 @@ const RiskManagement = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0b1530] px-6 py-20 text-center md:px-12">
+      <section className="bg-[#0d2b2b] px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
           Ready to Improve Your Risk Profile?
         </h2>
@@ -138,7 +138,7 @@ const RiskManagement = () => {
         </p>
         <Link
           to="/get-a-quote"
-          className="mt-8 inline-block rounded-full bg-[#1a6dd4] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#1a6dd4]/90"
+          className="mt-8 inline-block rounded-full bg-[#3eaa6d] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
         >
           Get a Quote
         </Link>

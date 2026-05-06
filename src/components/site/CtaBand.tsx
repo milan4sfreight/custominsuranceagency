@@ -5,7 +5,7 @@ export const CtaBand = () => {
     <section className="bg-transparent py-20">
       <div className="mx-auto max-w-5xl px-6 text-center lg:px-10">
         <h2
-          className="font-bold tracking-tight text-[#0b1530]"
+          className="font-bold tracking-tight text-[#0d2b2b]"
           style={{ fontSize: "clamp(24px, 5vw, 48px)" }}
         >
           Not sure what coverage you need?
@@ -17,7 +17,7 @@ export const CtaBand = () => {
           <Button
             asChild
             size="lg"
-            className="h-12 rounded-full bg-[#1a6dd4] px-7 text-base font-semibold text-white hover:bg-[#1559b0]"
+            className="h-12 rounded-full bg-[#3eaa6d] px-7 text-base font-semibold text-white hover:bg-[#1559b0]"
           >
             <a href="tel:7088101955">Call 708-810-1955</a>
           </Button>
@@ -25,7 +25,7 @@ export const CtaBand = () => {
             asChild
             size="lg"
             variant="outline"
-            className="h-12 rounded-full border-[#1a6dd4]/30 bg-white px-7 text-base font-semibold text-[#1a6dd4] hover:bg-[#1a6dd4] hover:text-white"
+            className="h-12 rounded-full border-[#3eaa6d]/30 bg-white px-7 text-base font-semibold text-[#3eaa6d] hover:bg-[#3eaa6d] hover:text-white"
           >
             <a href="#contact">Send a Message</a>
           </Button>

@@ -22,8 +22,8 @@ import heroBg from "@/assets/hero-bg.webp";
 
 /* ───────────── constants / data ───────────── */
 
-const NAVY = "#0b1530";
-const BLUE = "#1a6dd4";
+const NAVY = "#0d2b2b";
+const BLUE = "#3eaa6d";
 
 const LANGUAGES = ["English", "Spanish", "Russian"];
 const FMCSA_TYPES = ["MC", "DOT", "FF"];
@@ -96,9 +96,9 @@ const newDoc = (): DocRow => ({ id: uid(), docType: "", customName: "", file: nu
 /* ───────────── shared classes ───────────── */
 
 const fieldCls =
-  "h-[52px] w-full rounded-lg border-[1.5px] border-[#e2e8f0] bg-[#f5f7fa] px-3.5 py-3.5 text-[15px] text-[#0b1530] shadow-none transition-all placeholder:text-[#94a3b8] focus-visible:border-[#1a6dd4] focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-[#1a6dd4]/15 focus-visible:ring-offset-0";
+  "h-[52px] w-full rounded-lg border-[1.5px] border-[#e2e8f0] bg-[#f5f7fa] px-3.5 py-3.5 text-[15px] text-[#0d2b2b] shadow-none transition-all placeholder:text-[#94a3b8] focus-visible:border-[#3eaa6d] focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-[#3eaa6d]/15 focus-visible:ring-offset-0";
 
-const labelCls = "mb-1.5 block text-[11px] font-semibold uppercase tracking-[1px] text-[#0b1530]";
+const labelCls = "mb-1.5 block text-[11px] font-semibold uppercase tracking-[1px] text-[#0d2b2b]";
 
 /* ───────────── small UI helpers ───────────── */
 
@@ -142,7 +142,7 @@ const AddBtn = ({
     variant="outline"
     onClick={onClick}
     disabled={disabled}
-    className="h-11 rounded-full border-[1.5px] border-[#1a6dd4] bg-white px-5 text-sm font-semibold text-[#1a6dd4] hover:bg-[#1a6dd4]/5"
+    className="h-11 rounded-full border-[1.5px] border-[#3eaa6d] bg-white px-5 text-sm font-semibold text-[#3eaa6d] hover:bg-[#3eaa6d]/5"
   >
     <Plus className="mr-1 h-4 w-4" /> {children}
   </Button>
@@ -346,7 +346,7 @@ export default function GetAQuote() {
   };
 
   return (
-    <main className="min-h-screen" style={{ background: "#f6f8fb", fontFamily: "'DM Sans', Inter, system-ui, sans-serif" }}>
+    <main className="min-h-screen" style={{ background: "#f6f8fb", fontFamily: "'Inter', Inter, system-ui, sans-serif" }}>
       <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet"
@@ -373,7 +373,7 @@ export default function GetAQuote() {
         <div className="relative mx-auto max-w-3xl px-6 text-center">
           <h1
             className="font-semibold tracking-tight text-white"
-            style={{ fontSize: "clamp(34px, 4.6vw, 56px)", lineHeight: 1.1, fontFamily: "'DM Sans', sans-serif" }}
+            style={{ fontSize: "clamp(34px, 4.6vw, 56px)", lineHeight: 1.1, fontFamily: "'Inter', sans-serif" }}
           >
             Get a Quote
           </h1>
@@ -847,7 +847,7 @@ function Step3({
       <div className="space-y-4">
         <div>
           <SectionHeading>Document Upload</SectionHeading>
-          <p className="mt-2 text-sm font-medium text-[#0b1530]">Attach Documents (Optional)</p>
+          <p className="mt-2 text-sm font-medium text-[#0d2b2b]">Attach Documents (Optional)</p>
           <p className="text-sm text-[#475569]">
             Accepted formats: PDF, JPG, PNG, DOC, DOCX — max {MAX_DOCS} documents
           </p>
@@ -951,7 +951,7 @@ function PrefixInput({
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-full w-full bg-transparent text-[15px] text-[#0b1530] outline-none placeholder:text-[#94a3b8]"
+        className="h-full w-full bg-transparent text-[15px] text-[#0d2b2b] outline-none placeholder:text-[#94a3b8]"
       />
     </div>
   );
@@ -966,7 +966,7 @@ function SuffixInput({
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-full w-full bg-transparent text-[15px] text-[#0b1530] outline-none placeholder:text-[#94a3b8]"
+        className="h-full w-full bg-transparent text-[15px] text-[#0d2b2b] outline-none placeholder:text-[#94a3b8]"
       />
       <span className="text-sm font-semibold text-[#64748b]">{suffix}</span>
     </div>
@@ -1016,10 +1016,10 @@ function DocRowComp({
             onClick={() => inputRef.current?.click()}
             className={cn(
               "flex min-h-[52px] cursor-pointer items-center justify-between gap-3 rounded-lg border-[1.5px] border-dashed px-3 py-2 text-sm transition-all",
-              drag ? "border-[#1a6dd4] bg-[#1a6dd4]/5" : "border-[#cbd5e1] bg-white hover:border-[#1a6dd4]/60",
+              drag ? "border-[#3eaa6d] bg-[#3eaa6d]/5" : "border-[#cbd5e1] bg-white hover:border-[#3eaa6d]/60",
             )}
           >
-            <span className={cn("truncate", doc.file ? "text-[#0b1530]" : "text-[#94a3b8]")}>
+            <span className={cn("truncate", doc.file ? "text-[#0d2b2b]" : "text-[#94a3b8]")}>
               {doc.file ? doc.file.name : "Drag file here or click to choose"}
             </span>
             <span
