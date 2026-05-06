@@ -160,14 +160,31 @@ export default function GetAQuote() {
         });
       }
 
-      const { error: fnErr } = await supabase.functions.invoke("send-quote-request", {
-        body: {
-          ...form,
-          insuranceTypes: selectedTypes,
-          documents: uploaded,
-        },
+      const { error: insErr } = await supabase.from("quote_requests").insert({
+        first_name: form.firstName,
+        last_name: form.lastName,
+        email: form.email,
+        phone: form.phone,
+        company: form.company || null,
+        zip: form.zip,
+        details: form.details || null,
+        insurance_types: selectedTypes,
+        documents: uploaded,
       });
-      if (fnErr) throw fnErr;
+      if (insErr) throw insErr;
+
+      // Best-effort email notification (silently ignored if not configured)
+      try {
+        await supabase.functions.invoke("notify-quote-request", {
+          body: {
+            ...form,
+            insuranceTypes: selectedTypes,
+            documents: uploaded,
+          },
+        });
+      } catch {
+        /* notification optional */
+      }
 
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
