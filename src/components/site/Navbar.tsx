@@ -37,7 +37,7 @@ export const Navbar = () => {
           <img
             src={logo}
             alt="Custom Insurance Agency"
-            className="h-9 w-auto md:h-10"
+            className="h-[43px] w-auto md:h-12"
           />
         </Link>
 
@@ -66,8 +66,13 @@ export const Navbar = () => {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden text-ink">
-              <Menu className="h-5 w-5" />
+            <Button
+              variant="outline"
+              size="icon"
+              className="md:hidden h-11 w-11 rounded-full border-2 border-ink/20 bg-background/80 text-ink shadow-soft backdrop-blur hover:bg-background"
+              aria-label="Open menu"
+            >
+              <Menu className="h-6 w-6" strokeWidth={2.5} />
             </Button>
           </SheetTrigger>
           <SheetContent
