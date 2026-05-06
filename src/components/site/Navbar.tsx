@@ -98,7 +98,7 @@ export const Navbar = () => {
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-brand-gradient px-6 text-brand-foreground shadow-brand-glow hover:opacity-95"
+            className="rounded-full bg-[#3eaa6d] px-6 text-white shadow-brand-glow hover:bg-[#2d9960]"
           >
             <Link to="/get-a-quote">Get a Quote</Link>
           </Button>
@@ -167,7 +167,7 @@ export const Navbar = () => {
               </div>
               <Button
                 asChild
-                className="mt-auto h-12 w-full rounded-full bg-brand-gradient text-base font-semibold text-brand-foreground shadow-brand-glow"
+                className="mt-auto h-12 w-full rounded-full bg-[#3eaa6d] text-base font-semibold text-white shadow-brand-glow hover:bg-[#2d9960]"
               >
                 <Link to="/get-a-quote">Get a Quote</Link>
               </Button>
