@@ -37,7 +37,7 @@ export const Navbar = () => {
           <img
             src={logo}
             alt="Custom Insurance Agency"
-            className="h-10 w-auto"
+            className="h-9 w-auto md:h-10"
           />
         </a>
 
