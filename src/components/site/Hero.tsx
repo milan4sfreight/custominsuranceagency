@@ -40,13 +40,22 @@ export const Hero = () => {
       <div className="relative mx-auto flex min-h-screen max-w-7xl items-start px-6 pt-32 sm:pt-36 lg:items-center lg:pt-0 lg:px-10">
         <div className="w-full lg:w-2/5 lg:pt-[15vh]">
           <div className="max-w-[520px]">
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.18em] text-brand-soft/90">
+            <span
+              className="inline-block text-xs uppercase text-brand-soft/90"
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, letterSpacing: "2px" }}
+            >
               Insurance, reimagined
             </span>
 
             <h1
-              className="mt-5 font-display font-semibold tracking-tight text-white"
-              style={{ fontSize: "clamp(36px, 4.6vw, 64px)", lineHeight: 1.05 }}
+              className="mt-5 tracking-tight text-white"
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontWeight: 800,
+                letterSpacing: "-0.5px",
+                fontSize: "clamp(36px, 4.6vw, 64px)",
+                lineHeight: 1.05,
+              }}
             >
               Smarter coverage.
               <br />
@@ -55,7 +64,7 @@ export const Hero = () => {
 
             <p
               className="mt-6 text-base leading-relaxed text-white/85 sm:text-lg"
-              style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}
             >
               Insurance solutions built for the road ahead.
             </p>
@@ -64,7 +73,8 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="group h-12 rounded-full bg-brand-gradient px-7 text-sm font-semibold text-brand-foreground shadow-brand-glow transition-all hover:-translate-y-0.5 hover:opacity-95"
+                className="group h-12 rounded-full bg-brand-gradient px-7 text-sm text-brand-foreground shadow-brand-glow transition-all hover:-translate-y-0.5 hover:opacity-95"
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600 }}
               >
                 <Link to="/get-a-quote">
                   Get a Quote
@@ -73,7 +83,10 @@ export const Hero = () => {
               </Button>
             </div>
 
-            <p className="mt-10 text-xs text-white/70 sm:text-sm">
+            <p
+              className="mt-10 text-xs text-white/70 sm:text-sm"
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+            >
               A+ rated · 10,000+ businesses covered · Licensed in 50 states
             </p>
           </div>
