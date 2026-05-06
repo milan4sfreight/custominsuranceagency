@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.webp";
 
 export const Hero = () => {
@@ -58,11 +59,14 @@ export const Hero = () => {
 
             <div className="mt-9">
               <Button
+                asChild
                 size="lg"
                 className="group h-12 rounded-full bg-brand-gradient px-7 text-sm font-semibold text-brand-foreground shadow-brand-glow transition-all hover:-translate-y-0.5 hover:opacity-95"
               >
-                Get a Quote
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                <Link to="/get-a-quote">
+                  Get a Quote
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Link>
               </Button>
             </div>
 
