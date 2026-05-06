@@ -67,12 +67,12 @@ export const Navbar = () => {
         <Sheet>
           <SheetTrigger asChild>
             <Button
-              variant="outline"
+              variant="ghost"
               size="icon"
-              className="md:hidden h-11 w-11 rounded-full border-2 border-ink/20 bg-background/80 text-ink shadow-soft backdrop-blur hover:bg-background"
+              className="md:hidden h-11 w-11 text-ink hover:bg-transparent"
               aria-label="Open menu"
             >
-              <Menu className="h-6 w-6" strokeWidth={2.5} />
+              <Menu className="h-7 w-7" strokeWidth={2.5} />
             </Button>
           </SheetTrigger>
           <SheetContent
