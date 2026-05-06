@@ -33,13 +33,13 @@ export const Navbar = () => {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <a href="#" className="flex items-center group">
+        <Link to="/" className="flex items-center group">
           <img
             src={logo}
             alt="Custom Insurance Agency"
             className="h-9 w-auto md:h-10"
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-9 md:flex">
           {links.map((l) => (
