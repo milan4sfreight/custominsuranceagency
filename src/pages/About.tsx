@@ -112,7 +112,7 @@ const About = () => {
               </p>
               <Link
                 to="/get-a-quote"
-                className="mt-6 inline-block rounded-full bg-[#3eaa6d] px-6 py-3 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
+                className="btn-quote mt-6 inline-block px-6 py-3 text-[14px] uppercase tracking-wider"
               >
                 Get a Quote →
               </Link>
@@ -131,7 +131,7 @@ const About = () => {
         </p>
         <Link
           to="/contact"
-          className="mt-8 inline-block rounded-full bg-[#3eaa6d] px-10 py-4 text-[14px] font-bold uppercase tracking-wider text-white transition hover:bg-[#3eaa6d]/90"
+          className="btn-quote mt-8 inline-block px-10 py-4 text-[14px] uppercase tracking-wider"
         >
           Contact Us
         </Link>

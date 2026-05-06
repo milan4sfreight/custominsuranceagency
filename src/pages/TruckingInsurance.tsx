@@ -204,7 +204,7 @@ const TruckingInsurance = () => {
           </p>
           <Link
             to="/get-a-quote"
-            className="mt-6 inline-block rounded-full bg-[#3eaa6d] px-8 py-3 text-[15px] font-semibold text-white transition hover:bg-[#3eaa6d]/90"
+            className="btn-quote mt-6 inline-block px-8 py-3 text-[15px]"
           >
             Get a Quote
           </Link>
