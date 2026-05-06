@@ -70,14 +70,14 @@ export const Navbar = () => {
           >
             <div className="flex h-full flex-col px-8 pb-10 pt-20">
               <div className="flex flex-col gap-7" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                <Link to="/" className="text-[24px] font-bold tracking-tight text-white hover:text-white/80">
+                <Link to="/" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
                   Home
                 </Link>
                 <div>
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between text-[24px] font-bold tracking-tight text-white hover:text-white/80"
+                    className="flex w-full items-center justify-between text-[24px] font-bold tracking-tight text-white/85 hover:text-white"
                   >
                     Solutions
                     <ChevronDown
@@ -101,10 +101,10 @@ export const Navbar = () => {
                     </div>
                   )}
                 </div>
-                <Link to="/about" className="text-[24px] font-bold tracking-tight text-white hover:text-white/80">
+                <Link to="/about" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
                   About Us
                 </Link>
-                <Link to="/contact" className="text-[24px] font-bold tracking-tight text-white hover:text-white/80">
+                <Link to="/contact" className="text-[24px] font-bold tracking-tight text-white/85 hover:text-white">
                   Contact
                 </Link>
               </div>
