@@ -9,6 +9,7 @@ import {
   Sailboat,
   type LucideIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 type Coverage = { icon: LucideIcon; name: string; desc: string };
 
