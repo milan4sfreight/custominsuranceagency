@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import GetAQuote from "./pages/GetAQuote.tsx";
 import TruckingInsurance from "./pages/TruckingInsurance.tsx";
 import CommercialInsurance from "./pages/CommercialInsurance.tsx";
+import FreightBrokerInsurance from "./pages/FreightBrokerInsurance.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/get-a-quote" element={<GetAQuote />} />
           <Route path="/trucking-insurance" element={<TruckingInsurance />} />
           <Route path="/commercial-insurance" element={<CommercialInsurance />} />
+          <Route path="/freight-broker-insurance" element={<FreightBrokerInsurance />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
