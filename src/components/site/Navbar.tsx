@@ -73,10 +73,10 @@ export const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden h-14 w-14 text-white hover:bg-transparent hover:text-white drop-shadow-md"
+              className="md:hidden h-16 w-16 text-white hover:bg-transparent hover:text-white drop-shadow-md"
               aria-label="Open menu"
             >
-              <Menu className="h-[53px] w-[53px]" strokeWidth={3.5} />
+              <Menu className="h-[64px] w-[64px]" strokeWidth={3.5} />
             </Button>
           </SheetTrigger>
           <SheetContent
