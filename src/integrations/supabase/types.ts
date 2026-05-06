@@ -25,6 +25,7 @@ export type Database = {
           id: string
           insurance_types: Json
           last_name: string
+          payload: Json | null
           phone: string
           zip: string
         }
@@ -38,6 +39,7 @@ export type Database = {
           id?: string
           insurance_types?: Json
           last_name: string
+          payload?: Json | null
           phone: string
           zip: string
         }
@@ -51,6 +53,7 @@ export type Database = {
           id?: string
           insurance_types?: Json
           last_name?: string
+          payload?: Json | null
           phone?: string
           zip?: string
         }
