@@ -123,6 +123,15 @@
     font-weight: 700;
     letter-spacing: -0.5px;
   }
+
+  /* Eyebrow / section label small uppercase text */
+  .eyebrow,
+  [class*="tracking-[2px]"].uppercase,
+  .uppercase[class*="tracking-[2px]"] {
+    font-family: 'Barlow', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
 }
 
 @layer utilities {
