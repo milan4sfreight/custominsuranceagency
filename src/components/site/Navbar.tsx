@@ -38,7 +38,7 @@ export const Navbar = () => {
       )}
       style={{
         background:
-          "linear-gradient(180deg, #2272c3 0%, #1a5fa8 50%, #0d4a94 100%)",
+          "linear-gradient(135deg, #0a1f5c 0%, #1a4db8 40%, #0d3a9e 70%, #071440 100%)",
         borderBottom: "1px solid rgba(0,0,0,0.15)",
         boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
       }}
@@ -70,7 +70,7 @@ export const Navbar = () => {
             className="w-full max-w-md border-0 p-0 text-white"
             style={{
               background:
-                "linear-gradient(180deg, #2272c3 0%, #1a5fa8 50%, #0d4a94 100%)",
+                "linear-gradient(135deg, #0a1f5c 0%, #1a4db8 40%, #0d3a9e 70%, #071440 100%)",
             }}
           >
             <div className="flex h-full flex-col px-8 pb-10 pt-20">
