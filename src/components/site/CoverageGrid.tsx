@@ -47,12 +47,12 @@ export const CoverageGrid = () => {
               </span>
               <h3 className="mt-5 text-base font-semibold text-[#0b1530]">{name}</h3>
               <p className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-600">{desc}</p>
-              <a
-                href="#contact"
+              <Link
+                to="/get-a-quote"
                 className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#1a6dd4] transition-transform group-hover:translate-x-0.5"
               >
                 Get a quote <span aria-hidden>→</span>
-              </a>
+              </Link>
             </div>
           ))}
         </div>
