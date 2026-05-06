@@ -8,7 +8,7 @@ export const Hero = () => {
     <section
       className="relative w-full overflow-hidden"
       style={{
-        minHeight: "100vh",
+        minHeight: "100svh",
         backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",

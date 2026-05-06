@@ -37,7 +37,7 @@ export const CoverageGrid = () => {
         >
           Insurance for every part of your life.
         </h2>
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {coverages.map(({ icon: Icon, name, desc }) => (
             <div
               key={name}
