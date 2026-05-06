@@ -17,7 +17,7 @@ export const CtaBand = () => {
           <Button
             asChild
             size="lg"
-            className="h-12 rounded-full bg-[#3eaa6d] px-7 text-base font-semibold text-white hover:bg-[#1559b0]"
+            className="h-12 rounded-full bg-[#3eaa6d] px-7 text-base font-semibold text-white hover:bg-[#2d9960]"
           >
             <a href="tel:7088101955">Call 708-810-1955</a>
           </Button>
