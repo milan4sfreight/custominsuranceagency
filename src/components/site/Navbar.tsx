@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -52,10 +52,12 @@ export const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="h-10 w-10 text-white hover:bg-transparent hover:text-white drop-shadow-md"
+              className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] text-white hover:bg-transparent hover:text-white"
               aria-label="Open menu"
             >
-              <Menu className="h-[28px] w-[28px]" strokeWidth={3.5} />
+              <span className="block h-[2px] w-[28px] bg-white" />
+              <span className="block h-[2px] w-[28px] bg-white" />
+              <span className="block h-[2px] w-[28px] bg-white" />
             </Button>
           </SheetTrigger>
           <SheetContent
