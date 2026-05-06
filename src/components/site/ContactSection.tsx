@@ -132,7 +132,7 @@ export const ContactSection = () => {
             type="submit"
             disabled={submitting}
             size="lg"
-            className="mt-6 h-12 w-full rounded-full bg-[#3eaa6d] text-base font-semibold text-white hover:bg-[#1559b0] sm:w-auto sm:px-8"
+            className="mt-6 h-12 w-full rounded-full bg-[#3eaa6d] text-base font-semibold text-white hover:bg-[#2d9960] sm:w-auto sm:px-8"
           >
             {submitting ? "Sending…" : "Submit"}
           </Button>
