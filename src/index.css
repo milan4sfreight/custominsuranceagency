@@ -114,13 +114,14 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
   }
 
-  h1, h2, h3, .font-display {
-    font-family: 'Fraunces', Georgia, serif;
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
     font-optical-sizing: auto;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
   }
 }
 
