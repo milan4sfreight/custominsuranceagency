@@ -69,7 +69,7 @@ export const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden h-11 w-11 text-ink hover:bg-transparent"
+              className="md:hidden h-11 w-11 text-white hover:bg-transparent hover:text-white drop-shadow-md"
               aria-label="Open menu"
             >
               <Menu className="h-7 w-7" strokeWidth={2.5} />
