@@ -1,6 +1,6 @@
-import { useState, useRef, useMemo, type ChangeEvent, type DragEvent } from "react";
+import { useState, useRef, type ChangeEvent, type DragEvent } from "react";
 import { format } from "date-fns";
-import { CalendarIcon, Check, ChevronRight, Plus, X, Upload, CheckCircle2, Loader2 } from "lucide-react";
+import { CalendarIcon, Check, Plus, X, Upload, CheckCircle2, Loader2 } from "lucide-react";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
