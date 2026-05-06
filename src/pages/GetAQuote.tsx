@@ -367,9 +367,7 @@ export default function GetAQuote() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(11,21,48,0.88) 0%, rgba(11,21,48,0.78) 100%)",
-            backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)",
+              "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.45) 100%)",
           }}
         />
         <div className="relative mx-auto max-w-3xl px-6 text-center">
