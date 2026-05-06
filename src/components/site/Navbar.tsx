@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
-const links = [
-  { label: "Home", href: "#" },
-  { label: "Coverage", href: "#coverage" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+const solutions = [
+  { label: "Trucking Insurance", to: "/trucking-insurance" },
+  { label: "Commercial Insurance", to: "/commercial-insurance" },
+  { label: "Freight Broker Insurance", to: "/freight-broker-insurance" },
+  { label: "Risk Management", to: "/risk-management" },
 ];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -45,16 +46,52 @@ export const Navbar = () => {
         </Link>
 
         <ul className="hidden items-center gap-9 md:flex">
-          {links.map((l) => (
-            <li key={l.label}>
-              <a
-                href={l.href}
-                className="relative text-sm font-medium text-muted-ink transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-brand-gradient after:transition-all hover:after:w-full"
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          <li>
+            <Link
+              to="/"
+              className="relative text-sm font-medium text-muted-ink transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-brand-gradient after:transition-all hover:after:w-full"
+            >
+              Home
+            </Link>
+          </li>
+          <li className="group relative">
+            <button
+              type="button"
+              className="relative inline-flex items-center gap-1 text-sm font-medium text-muted-ink transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-brand-gradient after:transition-all group-hover:after:w-full"
+            >
+              Solutions
+              <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
+              <div className="min-w-[260px] rounded-xl border border-border bg-white py-2 shadow-xl">
+                {solutions.map((s) => (
+                  <Link
+                    key={s.to}
+                    to={s.to}
+                    className="block border-l-2 border-transparent px-5 py-3 text-sm font-medium text-[#0b1530] transition-colors hover:border-[#1a6dd4] hover:bg-[#1a6dd4]/5"
+                  >
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className="relative text-sm font-medium text-muted-ink transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-brand-gradient after:transition-all hover:after:w-full"
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              className="relative text-sm font-medium text-muted-ink transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-brand-gradient after:transition-all hover:after:w-full"
+            >
+              Contact
+            </Link>
+          </li>
         </ul>
 
         <div className="hidden md:block">
@@ -88,17 +125,50 @@ export const Navbar = () => {
               borderLeft: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
-            <div className="mt-12 flex flex-col gap-7">
-              {links.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="text-xl font-semibold tracking-tight text-white transition-colors hover:text-white/80"
-                >
-                  {l.label}
-                </a>
-              ))}
-              <Button asChild className="mt-6 h-12 rounded-full bg-brand-gradient text-base font-semibold text-brand-foreground shadow-brand-glow">
+            <div className="mt-12 flex h-[calc(100%-3rem)] flex-col">
+              <div className="flex flex-col gap-6">
+                <Link to="/" className="text-xl font-semibold tracking-tight text-white hover:text-white/80">
+                  Home
+                </Link>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileSolutionsOpen((v) => !v)}
+                    className="flex w-full items-center justify-between text-xl font-semibold tracking-tight text-white hover:text-white/80"
+                  >
+                    Solutions
+                    <ChevronDown
+                      className={cn(
+                        "h-5 w-5 transition-transform duration-200",
+                        mobileSolutionsOpen && "rotate-180",
+                      )}
+                    />
+                  </button>
+                  {mobileSolutionsOpen && (
+                    <div className="mt-3 flex flex-col gap-3 pl-4">
+                      {solutions.map((s) => (
+                        <Link
+                          key={s.to}
+                          to={s.to}
+                          className="text-base font-medium text-white/85 hover:text-white"
+                        >
+                          {s.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <Link to="/about" className="text-xl font-semibold tracking-tight text-white hover:text-white/80">
+                  About Us
+                </Link>
+                <Link to="/contact" className="text-xl font-semibold tracking-tight text-white hover:text-white/80">
+                  Contact
+                </Link>
+              </div>
+              <Button
+                asChild
+                className="mt-auto h-12 w-full rounded-full bg-brand-gradient text-base font-semibold text-brand-foreground shadow-brand-glow"
+              >
                 <Link to="/get-a-quote">Get a Quote</Link>
               </Button>
             </div>
