@@ -10,7 +10,7 @@ export const Footer = () => {
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <img src={logo} alt="Custom Insurance" className="h-10 w-auto brightness-0 invert" />
+            <img src={logo} alt="Custom Insurance Agency" className="h-[44px] w-auto" />
             <p className="mt-4 text-sm leading-relaxed text-white/60">
               Independent insurance agency serving Illinois & Indiana with smarter coverage and friendly local service.
             </p>
