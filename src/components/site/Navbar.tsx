@@ -67,18 +67,22 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-full max-w-md border-0 p-0 text-white !bg-[#0d2b2b]"
+            className="w-full max-w-md border-0 p-0 text-white"
+            style={{
+              background:
+                "linear-gradient(180deg, #2272c3 0%, #1a5fa8 50%, #0d4a94 100%)",
+            }}
           >
             <div className="flex h-full flex-col px-8 pb-10 pt-20">
-              <div className="flex flex-col gap-7" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                <Link to="/" className="text-[24px] font-medium tracking-tight text-white hover:text-white/75">
+              <div className="flex flex-col" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                <Link to="/" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   Home
                 </Link>
-                <div>
+                <div className="border-b border-white/10">
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between text-[24px] font-medium tracking-tight text-white hover:text-white/75"
+                    className="flex w-full items-center justify-between py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                   >
                     Solutions
                     <ChevronDown
@@ -89,12 +93,12 @@ export const Navbar = () => {
                     />
                   </button>
                   {mobileSolutionsOpen && (
-                    <div className="mt-4 flex flex-col gap-4 pl-4">
+                    <div className="flex flex-col gap-3 pb-4 pl-5">
                       {solutions.map((s) => (
                         <Link
                           key={s.to}
                           to={s.to}
-                          className="text-lg font-medium text-white/85 hover:text-white"
+                          className="text-[18px] font-medium text-white/80 hover:text-white"
                         >
                           {s.label}
                         </Link>
@@ -102,21 +106,16 @@ export const Navbar = () => {
                     </div>
                   )}
                 </div>
-                <Link to="/about" className="text-[24px] font-medium tracking-tight text-white hover:text-white/75">
+                <Link to="/about" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   About Us
                 </Link>
-                <Link to="/contact" className="text-[24px] font-medium tracking-tight text-white hover:text-white/75">
+                <Link to="/contact" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   Contact
                 </Link>
               </div>
               <Button
                 asChild
-                className="mt-auto h-14 w-full rounded-full border-0 text-base font-semibold uppercase tracking-[2px] text-white transition-transform hover:scale-[1.02]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
-                  boxShadow: "0 4px 15px rgba(245,130,31,0.35)",
-                }}
+                className="btn-quote mt-auto h-14 w-full text-base uppercase tracking-[2px]"
               >
                 <Link to="/get-a-quote">Get a Quote</Link>
               </Button>
