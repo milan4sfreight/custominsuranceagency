@@ -73,12 +73,14 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                className="group h-12 rounded-full bg-brand-gradient px-7 text-sm text-brand-foreground shadow-brand-glow transition-all hover:-translate-y-0.5 hover:opacity-95"
-                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600 }}
+                className="group h-12 bg-[#3eaa6d] px-7 text-sm text-white shadow-brand-glow transition-all hover:-translate-y-0.5 hover:bg-[#2d9960]"
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, borderRadius: "50px" }}
               >
                 <Link to="/get-a-quote">
                   Get a Quote
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  <span className="ml-2 inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.22)" }}>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </Link>
               </Button>
             </div>
