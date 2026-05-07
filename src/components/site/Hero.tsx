@@ -14,24 +14,6 @@ export const Hero = () => {
         src={heroImage}
         alt="Aerial view of highway interchange"
       />
-      {/* Left-to-right overlay for text readability */}
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(5,25,55,0.78) 0%, rgba(5,25,55,0.55) 30%, rgba(5,25,55,0.25) 55%, rgba(5,25,55,0) 75%)",
-        }}
-      />
-      {/* Mobile: subtle top shade so text reads on smaller screens */}
-      <div
-        aria-hidden
-        className="absolute inset-0 lg:hidden"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(5,25,55,0.65) 0%, rgba(5,25,55,0.25) 45%, rgba(5,25,55,0) 75%)",
-        }}
-      />
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl items-start px-6 pt-32 sm:pt-36 lg:items-center lg:pt-0 lg:px-10">
         <div className="w-full lg:w-2/5 lg:pt-[15vh]">
