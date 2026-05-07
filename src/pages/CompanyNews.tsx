@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,7 @@ const CompanyNews = () => {
 
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="Company News | Custom Insurance Agency" description="Latest news and announcements from Custom Insurance Agency. Awards, industry updates, and company milestones." />
       <Navbar />
 
       {/* HERO */}

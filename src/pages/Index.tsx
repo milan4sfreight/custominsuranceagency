@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import Footer from "@/components/site/Footer";
@@ -105,6 +106,7 @@ const QuoteForm = () => {
 const Index = () => {
   return (
     <main className={`min-h-screen bg-white ${FONT}`}>
+      <SEO title="Custom Insurance Agency | Auto, Trucking & Business Insurance — IL & IN" description="Independent insurance agency serving Chicago, La Grange, Burr Ridge & surrounding areas. Auto, Trucking, Home, Business & more. 50+ carriers. Free quote today. Call 708-810-1955." />
       <Navbar />
       <Hero />
 
