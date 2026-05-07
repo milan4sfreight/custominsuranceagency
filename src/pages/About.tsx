@@ -107,7 +107,7 @@ const About = () => {
                 </li>
               ))}
             </ul>
-            <div className="rounded-2xl bg-[#0d2b2b] p-8 text-white">
+            <div className="rounded-2xl bg-dark-gradient p-8 text-white">
               <h3 className="text-[20px] font-bold">Request a Free Quote</h3>
               <p className="mt-3 text-[15px] leading-[1.7] text-white/80">
                 Ready to get started? Fill out our quick quote form and a Custom Insurance Agency representative will contact you within 24 hours.
@@ -124,7 +124,7 @@ const About = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0d2b2b] px-6 py-20 text-center md:px-12">
+      <section className="bg-dark-gradient px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
           Serving Chicago & Surrounding Areas Since Day One
         </h2>

@@ -143,7 +143,7 @@ const Resources = () => {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d2b2b] px-6 py-[60px] text-center md:px-12">
+      <section className="bg-dark-gradient px-6 py-[60px] text-center md:px-12">
         <h2 className="text-[32px] font-bold text-white" style={barlow}>Still Have Questions?</h2>
         <p className="mx-auto mt-4 max-w-[640px] text-[16px] text-white/60">
           Our agents are ready to help you find the right coverage.

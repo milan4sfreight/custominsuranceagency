@@ -150,7 +150,7 @@ const Careers = () => {
       </div>
 
       {/* Awards */}
-      <section className="bg-[#0d2b2b] px-6 py-12 text-center text-white md:px-12">
+      <section className="bg-dark-gradient px-6 py-12 text-center text-white md:px-12">
         <div className="mx-auto max-w-[900px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ fontFamily: "'Barlow', sans-serif" }}>Recognition</p>
           <h2 className="mt-2 text-[28px] font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>Award-Winning Workplace</h2>
@@ -194,7 +194,7 @@ const Careers = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0d2b2b] px-6 py-[60px] text-center md:px-12">
+      <section className="bg-dark-gradient px-6 py-[60px] text-center md:px-12">
         <h2 className="text-[32px] font-bold text-white" style={{ fontFamily: "'Barlow', sans-serif" }}>Ready to Join the Team?</h2>
         <p className="mx-auto mt-4 max-w-[640px] text-[16px] text-white/60">
           Send us your resume and let's start a conversation.

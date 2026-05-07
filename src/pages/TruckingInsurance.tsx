@@ -197,7 +197,7 @@ const TruckingInsurance = () => {
         </section>
 
         {/* CTA */}
-        <section className="mt-16 rounded-2xl bg-[#0d2b2b] p-10 text-center text-white">
+        <section className="mt-16 rounded-2xl bg-dark-gradient p-10 text-center text-white">
           <h3 className="text-[24px] font-bold">
             Ready to protect your trucking business?
           </h3>

@@ -134,7 +134,7 @@ const Index = () => {
       </section>
 
       {/* SECTION 2 — GET A QUOTE FORM */}
-      <section className="bg-[#0d2b2b] px-6 py-20 md:px-14 md:py-24">
+      <section className="bg-dark-gradient px-6 py-20 md:px-14 md:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-12 md:grid-cols-5">
           <div className="flex flex-col justify-center md:col-span-2">
             <p className={EYEBROW}>Free Quote</p>
@@ -160,7 +160,7 @@ const Index = () => {
           style={{ backgroundImage: "url(https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1600&q=80)" }}
           aria-label="Trucking on highway"
         />
-        <div className="flex flex-col justify-center bg-[#0d2b2b] px-6 py-16 md:px-14">
+        <div className="flex flex-col justify-center bg-dark-gradient px-6 py-16 md:px-14">
           <p className={EYEBROW}>Our Solutions</p>
           <h2 className="mt-3 text-[28px] md:text-[36px] font-bold leading-tight text-white">
             Insurance Solutions That Match Your Needs
@@ -178,7 +178,7 @@ const Index = () => {
 
       {/* SECTION 4 — ABOUT / MISSION (reversed) */}
       <section className="grid min-h-[500px] grid-cols-1 md:grid-cols-2">
-        <div className="order-2 flex flex-col justify-center bg-[#0d2b2b] px-6 py-16 md:order-1 md:px-14">
+        <div className="order-2 flex flex-col justify-center bg-dark-gradient px-6 py-16 md:order-1 md:px-14">
           <p className={EYEBROW}>About Us</p>
           <h2 className="mt-3 text-[28px] md:text-[36px] font-bold leading-tight text-white">
             Let's Achieve Success Together
@@ -219,7 +219,7 @@ const Index = () => {
       {/* SECTION 6 — CONTACT CTA */}
       <section
         className="px-6 py-20 md:px-14"
-        style={{ background: "linear-gradient(135deg, #0d2b2b 0%, #1a4040 100%)" }}
+        style={{ background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 50%, #0d2b2b 100%)" }}
       >
         <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
           <div className="max-w-[620px]">

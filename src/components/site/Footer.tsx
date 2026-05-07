@@ -15,7 +15,7 @@ const companyLinks: { label: string; href: string }[] = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#0d2b2b] text-white/75">
+    <footer className="bg-dark-gradient text-white/75">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
