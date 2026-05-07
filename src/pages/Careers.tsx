@@ -39,7 +39,7 @@ const jobs: Job[] = [
 const Pill = ({ children, color }: { children: React.ReactNode; color: "green" | "gray" | "orange" }) => {
   const styles =
     color === "green"
-      ? "bg-[#3eaa6d]/15 text-[#3eaa6d]"
+      ? "bg-[#3eaa6d] text-white"
       : color === "orange"
         ? "text-white"
         : "bg-[#f1f5f9] text-[#4a5568]";
@@ -70,7 +70,7 @@ const JobCard = ({ job }: { job: Job }) => {
     <div className="rounded-[12px] border border-[#e2e8f0] bg-white p-6 transition hover:shadow-md">
       <div className="flex items-start gap-2">
         {job.featured && <Star className="mt-1 h-5 w-5 fill-[#f5c518] text-[#f5821f]" />}
-        <h3 className="text-[18px] font-bold text-[#0d2b2b]">{job.title}</h3>
+        <h3 className="text-[18px] font-bold text-[#0d2b2b]" style={{ fontFamily: "'Barlow', sans-serif" }}>{job.title}</h3>
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         {job.featured && <Pill color="orange">Featured</Pill>}
@@ -125,8 +125,8 @@ const Careers = () => {
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
         {/* Culture */}
         <section>
-          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]">Our Culture</p>
-          <h2 className="mt-2 text-[32px] font-bold text-[#0d2b2b] leading-tight">A Great Place to Work & Grow</h2>
+          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ fontFamily: "'Barlow', sans-serif" }}>Our Culture</p>
+          <h2 className="mt-2 text-[32px] font-bold text-[#0d2b2b] leading-tight" style={{ fontFamily: "'Barlow', sans-serif" }}>A Great Place to Work & Grow</h2>
           <p className="mt-4 text-[16px] leading-[1.75] text-[#4a5568]">
             At Custom Insurance Agency, we bring a vibrant and energetic culture to the transportation insurance space. Our Culture First approach empowers team members by prioritizing their workplace experience. We emphasize efficiency through technology and innovation, paying close attention to those closest to our processes — our team members.
           </p>
@@ -140,7 +140,7 @@ const Careers = () => {
               className="rounded-2xl border-t-[3px] border-t-[#3eaa6d] bg-[#f5f7fa] p-7"
             >
               <div className="text-[32px]">{b.icon}</div>
-              <h3 className="mt-3 text-[18px] font-bold text-[#0d2b2b]">{b.title}</h3>
+              <h3 className="mt-3 text-[18px] font-bold text-[#0d2b2b]" style={{ fontFamily: "'Barlow', sans-serif" }}>{b.title}</h3>
               <p className="mt-3 text-[15px] leading-[1.7] text-[#4a5568]">{b.text}</p>
             </div>
           ))}
@@ -150,8 +150,8 @@ const Careers = () => {
       {/* Awards */}
       <section className="bg-[#0d2b2b] px-6 py-12 text-center text-white md:px-12">
         <div className="mx-auto max-w-[900px]">
-          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]">Recognition</p>
-          <h2 className="mt-2 text-[28px] font-bold">Award-Winning Workplace</h2>
+          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ fontFamily: "'Barlow', sans-serif" }}>Recognition</p>
+          <h2 className="mt-2 text-[28px] font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>Award-Winning Workplace</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {awards.map((a) => (
               <div
@@ -162,7 +162,7 @@ const Careers = () => {
                   borderColor: "rgba(255,255,255,0.1)",
                 }}
               >
-                <h3 className="text-[18px] font-bold text-white">{a.title}</h3>
+                <h3 className="text-[18px] font-bold text-white" style={{ fontFamily: "'Barlow', sans-serif" }}>{a.title}</h3>
                 <p className="mt-3 text-[14px] leading-[1.6] text-white/70">{a.text}</p>
               </div>
             ))}
@@ -173,8 +173,8 @@ const Careers = () => {
       {/* Open Positions */}
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
         <section>
-          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]">Join Our Team</p>
-          <h2 className="mt-2 text-[32px] font-bold text-[#0d2b2b] leading-tight">Current Open Positions</h2>
+          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ fontFamily: "'Barlow', sans-serif" }}>Join Our Team</p>
+          <h2 className="mt-2 text-[32px] font-bold text-[#0d2b2b] leading-tight" style={{ fontFamily: "'Barlow', sans-serif" }}>Current Open Positions</h2>
           <p className="mt-3 text-[16px] leading-[1.7] text-[#4a5568]">
             We are always looking for talented individuals to join our team. See our current openings below.
           </p>
@@ -193,7 +193,7 @@ const Careers = () => {
 
       {/* CTA */}
       <section className="bg-[#0d2b2b] px-6 py-[60px] text-center md:px-12">
-        <h2 className="text-[32px] font-bold text-white">Ready to Join the Team?</h2>
+        <h2 className="text-[32px] font-bold text-white" style={{ fontFamily: "'Barlow', sans-serif" }}>Ready to Join the Team?</h2>
         <p className="mx-auto mt-4 max-w-[640px] text-[16px] text-white/60">
           Send us your resume and let's start a conversation.
         </p>

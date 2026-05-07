@@ -47,10 +47,16 @@ const CompanyNews = () => {
 
       {/* MAIN CONTENT */}
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
-        <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]">
+        <p
+          className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]"
+          style={{ fontFamily: "'Barlow', sans-serif" }}
+        >
           Latest Updates
         </p>
-        <h2 className="mt-2 text-[36px] font-bold text-[#0d2b2b] leading-tight">
+        <h2
+          className="mt-2 text-[36px] font-bold text-[#0d2b2b] leading-tight"
+          style={{ fontFamily: "'Barlow', sans-serif" }}
+        >
           News & Announcements
         </h2>
         <p className="mt-3 text-[16px] leading-[1.7] text-[#4a5568]">
@@ -66,7 +72,10 @@ const CompanyNews = () => {
               <div className="grid gap-2 md:grid-cols-[140px_1fr] md:gap-6 md:px-2">
                 <div className="text-[13px] font-semibold text-[#3eaa6d]">{n.date}</div>
                 <div>
-                  <h3 className="text-[18px] font-semibold text-[#0d2b2b] leading-snug">
+                  <h3
+                    className="text-[18px] font-semibold text-[#0d2b2b] leading-snug"
+                    style={{ fontFamily: "'Barlow', sans-serif" }}
+                  >
                     {n.title}
                   </h3>
                   <p className="mt-2 text-[14px] leading-[1.6] text-[#4a5568]">{n.desc}</p>
@@ -94,7 +103,12 @@ const CompanyNews = () => {
 
       {/* CTA */}
       <section className="bg-[#0d2b2b] px-6 py-[60px] text-center md:px-12">
-        <h2 className="text-[32px] font-bold text-white">Want to Learn More About Us?</h2>
+        <h2
+          className="text-[32px] font-bold text-white"
+          style={{ fontFamily: "'Barlow', sans-serif" }}
+        >
+          Want to Learn More About Us?
+        </h2>
         <Link
           to="/about"
           className="btn-quote mt-8 inline-block px-10 py-4 text-[14px] uppercase tracking-wider"
