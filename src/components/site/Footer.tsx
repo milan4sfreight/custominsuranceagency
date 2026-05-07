@@ -8,6 +8,7 @@ const companyLinks: { label: string; href: string }[] = [
   { label: "Company News", href: "/company-news" },
   { label: "Careers", href: "/careers" },
   { label: "Claims", href: "/claims" },
+  { label: "Resources", href: "/resources" },
   { label: "Carriers", href: "#" },
   { label: "Privacy", href: "#" },
 ];

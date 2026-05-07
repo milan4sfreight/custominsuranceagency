@@ -14,6 +14,7 @@ import About from "./pages/About.tsx";
 import CompanyNews from "./pages/CompanyNews.tsx";
 import Careers from "./pages/Careers.tsx";
 import Claims from "./pages/Claims.tsx";
+import Resources from "./pages/Resources.tsx";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/company-news" element={<CompanyNews />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/claims" element={<Claims />} />
+          <Route path="/resources" element={<Resources />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

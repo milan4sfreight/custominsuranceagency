@@ -121,6 +121,9 @@ export const Navbar = () => {
                 <Link to="/claims" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   Claims
                 </Link>
+                <Link to="/resources" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
+                  Resources
+                </Link>
               </div>
               <Button
                 asChild
