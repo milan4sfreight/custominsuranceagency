@@ -19,19 +19,19 @@ export const Hero = () => {
         <div className="flex w-full max-w-[900px] flex-col items-center text-center">
           <span
             className="inline-block"
-            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, letterSpacing: "3px", fontSize: "12px", textTransform: "uppercase", color: "#2abfbf" }}
+            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, letterSpacing: "3px", fontSize: "12px", textTransform: "uppercase", color: "#2abfbf", marginBottom: "20px" }}
           >
             Insurance, reimagined
           </span>
 
           <h1
-            className="mt-5 text-white"
+            className="text-white text-center"
             style={{
               fontFamily: "'Barlow', sans-serif",
               fontWeight: 600,
-              letterSpacing: "-1px",
-              fontSize: "clamp(48px, 6vw, 80px)",
-              lineHeight: 1.05,
+              letterSpacing: "-0.5px",
+              fontSize: "clamp(40px, 5vw, 68px)",
+              lineHeight: 1.1,
               textTransform: "none",
             }}
           >
@@ -39,13 +39,13 @@ export const Hero = () => {
           </h1>
 
           <p
-            className="mt-6"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: "20px", color: "rgba(255,255,255,0.75)", maxWidth: "600px", textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}
+            className="mt-6 text-center"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: "clamp(16px, 1.8vw, 20px)", color: "rgba(255,255,255,0.75)", maxWidth: "600px", textShadow: "0 1px 6px rgba(0,0,0,0.4)", marginBottom: "36px" }}
           >
             Insurance solutions built for the road ahead.
           </p>
 
-          <div className="mt-9">
+          <div>
             <Button
               asChild
               size="lg"
