@@ -72,7 +72,7 @@ export const ContactSection = () => {
           </p>
           <ul className="mt-8 space-y-5 text-[#0d2b2b]">
             <ContactRow icon={<MapPin className="h-4 w-4" />} >
-              882 62nd St, La Grange Highlands, IL 60525
+              1333 Burr Ridge Pkwy STE 200, Burr Ridge, IL 60527
             </ContactRow>
             <ContactRow icon={<Phone className="h-4 w-4" />}>
               <a href="tel:7088101955" className="font-semibold hover:text-[#3eaa6d]">708-810-1955</a>

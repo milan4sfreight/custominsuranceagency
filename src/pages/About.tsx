@@ -13,7 +13,7 @@ const whyCards = [
 ];
 
 const contactItems = [
-  { icon: "📍", text: "882 62nd St, La Grange Highlands, IL 60525" },
+  { icon: "📍", text: "1333 Burr Ridge Pkwy STE 200, Burr Ridge, IL 60527" },
   { icon: "📞", text: "708-810-1955" },
   { icon: "📠", text: "Fax: 708-810-1970" },
   { icon: "✉️", text: "info@custominsure.com" },

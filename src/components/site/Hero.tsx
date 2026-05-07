@@ -28,14 +28,14 @@ export const Hero = () => {
             className="mt-5 text-white"
             style={{
               fontFamily: "'Barlow', sans-serif",
-              fontWeight: 800,
+              fontWeight: 700,
               letterSpacing: "-1px",
               fontSize: "clamp(48px, 6vw, 80px)",
               lineHeight: 1.05,
               textTransform: "none",
             }}
           >
-            Customized coverage by trucking experts
+            Customized Coverage By Trucking Experts
           </h1>
 
           <p
