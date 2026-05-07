@@ -35,9 +35,7 @@ export const Hero = () => {
               textTransform: "none",
             }}
           >
-            Smarter coverage.
-            <br />
-            Stronger business.
+            Customized coverage by trucking experts
           </h1>
 
           <p
