@@ -11,6 +11,7 @@ import CommercialInsurance from "./pages/CommercialInsurance.tsx";
 import FreightBrokerInsurance from "./pages/FreightBrokerInsurance.tsx";
 import RiskManagement from "./pages/RiskManagement.tsx";
 import About from "./pages/About.tsx";
+import CompanyNews from "./pages/CompanyNews.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/freight-broker-insurance" element={<FreightBrokerInsurance />} />
           <Route path="/risk-management" element={<RiskManagement />} />
           <Route path="/about" element={<About />} />
+          <Route path="/company-news" element={<CompanyNews />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
