@@ -202,14 +202,14 @@ const Index = () => {
       <section className="bg-white px-6 py-20 md:px-14">
         <div className="mx-auto max-w-[1200px] text-center">
           <p className={EYEBROW}>By the Numbers</p>
-          <h2 className="mt-3 text-[28px] md:text-[36px] font-bold text-[#0d2b2b]">
+          <h2 className="mt-3 text-[28px] md:text-[36px] font-bold text-[#0d2b2b]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700 }}>
             Trusted by Businesses Across Illinois &amp; Indiana
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s) => (
-              <div key={s.label} className="rounded-2xl bg-[#e8f5ee] p-8 text-center">
-                <div className="text-[44px] md:text-[48px] font-bold leading-none text-[#3eaa6d]">{s.num}</div>
-                <p className="mt-4 text-[15px] font-medium text-[#0d2b2b]">{s.label}</p>
+              <div key={s.label} className="rounded-2xl bg-[#e8f0fb] p-8 text-center">
+                <div className="text-[44px] md:text-[48px] font-bold leading-none text-[#173b5d]">{s.num}</div>
+                <p className="mt-4 text-[15px] font-medium text-[#173b5d]/70">{s.label}</p>
               </div>
             ))}
           </div>
@@ -233,13 +233,14 @@ const Index = () => {
           <div className="flex w-full flex-col items-stretch gap-3.5 md:w-auto md:flex-row md:items-center">
             <a
               href="tel:7088101955"
-              className="rounded-full bg-[#3eaa6d] px-7 py-[14px] text-center font-semibold text-white transition hover:bg-[#2d9960]"
+              className="rounded-full px-7 py-[14px] text-center font-semibold text-white transition hover:brightness-110"
+              style={{ background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)" }}
             >
               📞 Call 708-810-1955
             </a>
             <Link
               to="/contact"
-              className="rounded-full border-[1.5px] border-white/35 px-7 py-[14px] text-center font-semibold text-white transition hover:bg-white/10"
+              className="rounded-full border-[1.5px] border-[#173b5d] bg-white px-7 py-[14px] text-center font-semibold text-[#173b5d] transition hover:bg-[#173b5d] hover:text-white"
             >
               Send a Message
             </Link>
