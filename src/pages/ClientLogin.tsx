@@ -6,14 +6,12 @@ import Footer from "@/components/site/Footer";
 const HERO_IMG = "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7";
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
-const CERT_URL = "https://portal.csr24.com/mvc/8218044";
-const SERVICE_URL = "https://service.reliancepartners.com/";
-const EMPLOYEE_URL = "https://reliance.ukg.net";
+const CONTACT_URL = "/contact";
 
 const cards = [
-  { icon: "📄", title: "Issue a Certificate", text: "Generate and issue certificates of insurance instantly through our online portal.", link: CERT_URL, label: "Access Portal →" },
-  { icon: "🔄", title: "Make a Policy Change", text: "Request changes to your existing policy through our secure service portal.", link: SERVICE_URL, label: "Access Portal →" },
-  { icon: "👤", title: "Employee Login", text: "Custom Insurance Agency team members can access internal systems here.", link: EMPLOYEE_URL, label: "Employee Portal →" },
+  { icon: "📄", title: "Issue a Certificate", text: "Contact our team to request a certificate of insurance.", label: "Contact Us →" },
+  { icon: "🔄", title: "Make a Policy Change", text: "Reach out to our team to request changes to your existing policy.", label: "Contact Us →" },
+  { icon: "👤", title: "Employee Login", text: "Custom Insurance Agency team members — contact us for access details.", label: "Contact Us →" },
 ];
 
 const ClientLogin = () => {
@@ -56,20 +54,18 @@ const ClientLogin = () => {
             className="mt-4 max-w-[640px] text-white/60"
             style={{ fontFamily: "'Inter', sans-serif", fontSize: "18px", marginBottom: "48px" }}
           >
-            Access your policy portal or request a certificate of insurance below.
+            To request a certificate of insurance or make a policy change, please contact our team directly.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <a href={CERT_URL} target="_blank" rel="noopener noreferrer" style={primaryBtn}>
+            <Link to={CONTACT_URL} style={primaryBtn}>
               Issue a Certificate
-            </a>
-            <a href={SERVICE_URL} target="_blank" rel="noopener noreferrer" style={primaryBtn}>
+            </Link>
+            <Link to={CONTACT_URL} style={primaryBtn}>
               Make a Policy Change
-            </a>
-            <a
-              href={EMPLOYEE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            </Link>
+            <Link
+              to={CONTACT_URL}
               className="transition-colors"
               style={{
                 background: "transparent",
@@ -87,7 +83,7 @@ const ClientLogin = () => {
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               Employee Login
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -111,14 +107,12 @@ const ClientLogin = () => {
               <div className="text-[32px]">{c.icon}</div>
               <h3 className="mt-3 text-[16px] font-bold text-[#0d2b2b]" style={barlow}>{c.title}</h3>
               <p className="mt-2 text-[13px] leading-[1.6] text-[#4a5568]">{c.text}</p>
-              <a
-                href={c.link}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to={CONTACT_URL}
                 className="mt-4 inline-block text-[14px] font-semibold text-[#3eaa6d] hover:underline"
               >
                 {c.label}
-              </a>
+              </Link>
             </div>
           ))}
         </div>
