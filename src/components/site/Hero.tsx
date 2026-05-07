@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroVideo from "@/assets/hero-bg.mp4";
+import heroImage from "@/assets/hero-bg.jpg";
 
 export const Hero = () => {
   return (
@@ -9,14 +9,10 @@ export const Hero = () => {
       className="relative w-full overflow-hidden"
       style={{ minHeight: "100svh" }}
     >
-      <video
+      <img
         className="absolute inset-0 h-full w-full object-cover"
-        src={heroVideo}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+        src={heroImage}
+        alt="Aerial view of highway interchange"
       />
       {/* Left-to-right overlay for text readability */}
       <div
