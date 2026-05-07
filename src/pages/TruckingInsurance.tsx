@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -23,6 +24,7 @@ const Eyebrow =
 const TruckingInsurance = () => {
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="Trucking Insurance Illinois | Custom Insurance Agency" description="Specialized trucking insurance for owner-operators and fleets in Illinois & Indiana. Auto liability, cargo, physical damage, occupational accident & more. Get a free quote." />
       <Navbar />
 
       {/* HERO */}

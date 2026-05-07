@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Star } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -103,6 +104,7 @@ const JobCard = ({ job }: { job: Job }) => {
 const Careers = () => {
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="Careers | Custom Insurance Agency — Join Our Team" description="Join the Custom Insurance Agency team. We are hiring insurance professionals in the Chicago area. View open positions and apply today." />
       <Navbar />
 
       {/* HERO */}

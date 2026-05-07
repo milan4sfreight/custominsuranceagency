@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -49,6 +50,7 @@ const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 const FreightBrokerInsurance = () => {
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="Freight Broker Insurance | Custom Insurance Agency" description="Specialized insurance for freight brokers and 3PLs. Contingent cargo, E&O, general liability, surety bonds & more. Independent agency with 50+ carriers." />
       <Navbar />
 
       {/* HERO */}

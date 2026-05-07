@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -28,6 +29,7 @@ const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 const About = () => {
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="About Us | Custom Insurance Agency — La Grange Highlands, IL" description="Independent insurance agency serving Chicago area since day one. 50+ carrier partners, friendly local service, affordable coverage for IL & IN businesses and families." />
       <Navbar />
 
       {/* HERO */}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -61,6 +62,7 @@ const Claims = () => {
 
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="File a Claim | Custom Insurance Agency" description="Need to file an insurance claim? Custom Insurance Agency claims team is here to help. Call 708-810-1955 or email info@custominsure.com for immediate assistance." />
       <Navbar />
 
       {/* HERO */}

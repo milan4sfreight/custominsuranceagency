@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Plus, X } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -45,6 +46,7 @@ const Resources = () => {
 
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="Insurance Resources & Guides | Custom Insurance Agency" description="Free insurance guides, FAQ, and glossary from Custom Insurance Agency. Learn about trucking insurance, DOT compliance, CSA scores, and more." />
       <Navbar />
 
       {/* HERO */}

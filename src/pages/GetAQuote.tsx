@@ -1,6 +1,7 @@
 import { useState, useRef, type ChangeEvent, type DragEvent } from "react";
 import { format } from "date-fns";
 import { CalendarIcon, Check, Plus, X, Upload, CheckCircle2, Loader2 } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -351,6 +352,7 @@ export default function GetAQuote() {
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet"
       />
+      <SEO title="Get a Free Insurance Quote | Custom Insurance Agency" description="Get a free insurance quote from Custom Insurance Agency. Trucking, auto, home, business & more. We shop 50+ carriers to find you the best rate. Fast 24-hour response." />
       <Navbar />
 
       {/* Hero */}

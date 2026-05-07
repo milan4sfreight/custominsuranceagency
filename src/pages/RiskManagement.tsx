@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
@@ -50,6 +51,7 @@ const P = "text-[16px] leading-[1.75] text-[#4a5568]";
 const RiskManagement = () => {
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
+      <SEO title="Transportation Risk Management | Custom Insurance Agency" description="DOT compliance, CSA score improvement, safety consulting and fleet risk management services for trucking companies in Illinois & Indiana." />
       <Navbar />
 
       {/* HERO */}
