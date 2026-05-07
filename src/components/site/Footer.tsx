@@ -7,8 +7,8 @@ const companyLinks: { label: string; href: string }[] = [
   { label: "Contact", href: "#" },
   { label: "Company News", href: "/company-news" },
   { label: "Careers", href: "/careers" },
+  { label: "Claims", href: "/claims" },
   { label: "Carriers", href: "#" },
-  { label: "Claims", href: "#" },
   { label: "Privacy", href: "#" },
 ];
 
