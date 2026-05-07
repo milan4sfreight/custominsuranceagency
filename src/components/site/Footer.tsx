@@ -2,7 +2,15 @@ import logo from "@/assets/logo.png";
 
 const quoteLinks = ["Auto", "Homeowners", "Renters", "Business", "Life & Health"];
 const moreLinks = ["Trucking", "Flood", "Motorcycle", "Watercraft & Boat", "Recreational Vehicle"];
-const companyLinks = ["About", "Contact", "Carriers", "Claims", "Privacy"];
+const companyLinks: { label: string; href: string }[] = [
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "#" },
+  { label: "Company News", href: "/company-news" },
+  { label: "Careers", href: "/careers" },
+  { label: "Carriers", href: "#" },
+  { label: "Claims", href: "#" },
+  { label: "Privacy", href: "#" },
+];
 
 export const Footer = () => {
   return (
@@ -35,15 +43,27 @@ export const Footer = () => {
   );
 };
 
-const FooterCol = ({ title, links }: { title: string; links: string[] }) => (
+const FooterCol = ({
+  title,
+  links,
+}: {
+  title: string;
+  links: string[] | { label: string; href: string }[];
+}) => (
   <div>
     <h4 className="text-sm font-semibold uppercase tracking-wider text-white">{title}</h4>
     <ul className="mt-4 space-y-2 text-sm">
-      {links.map((l) => (
-        <li key={l}>
-          <a href="#" className="transition hover:text-white">{l}</a>
-        </li>
-      ))}
+      {links.map((l) => {
+        const label = typeof l === "string" ? l : l.label;
+        const href = typeof l === "string" ? "#" : l.href;
+        return (
+          <li key={label}>
+            <a href={href} className="transition hover:text-white">
+              {label}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   </div>
 );
