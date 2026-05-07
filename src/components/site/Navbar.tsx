@@ -52,9 +52,9 @@ export const Navbar = () => {
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
       )}
       style={{
-        background: scrolled
-          ? "#0f2a42"
-          : "linear-gradient(to bottom, #1f4d7a 0%, #173b5d 60%, #0f2a42 100%)",
+        background: "linear-gradient(to bottom, #1f4d7a 0%, #173b5d 60%, #0f2a42 100%)",
+        backdropFilter: scrolled ? "blur(10px)" : undefined,
+        WebkitBackdropFilter: scrolled ? "blur(10px)" : undefined,
         borderBottom: "1px solid rgba(0,0,0,0.15)",
         boxShadow: scrolled ? "0 4px 16px rgba(0,0,0,0.3)" : "0 2px 12px rgba(0,0,0,0.2)",
       }}
