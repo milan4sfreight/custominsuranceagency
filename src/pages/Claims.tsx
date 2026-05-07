@@ -105,7 +105,7 @@ const Claims = () => {
       </div>
 
       {/* WHAT TO HAVE READY */}
-      <section className="bg-[#0d2b2b] px-6 py-[60px] md:px-12">
+      <section className="bg-dark-gradient px-6 py-[60px] md:px-12">
         <div className="mx-auto max-w-[900px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
             Be Prepared
@@ -205,7 +205,7 @@ const Claims = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0d2b2b] px-6 py-[60px] text-center md:px-12">
+      <section className="bg-dark-gradient px-6 py-[60px] text-center md:px-12">
         <h2 className="text-[32px] font-bold text-white" style={barlow}>
           Questions About Your Coverage?
         </h2>

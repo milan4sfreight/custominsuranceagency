@@ -131,7 +131,7 @@ const RiskManagement = () => {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#0d2b2b] px-6 py-20 text-center md:px-12">
+      <section className="bg-dark-gradient px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
           Ready to Improve Your Risk Profile?
         </h2>
