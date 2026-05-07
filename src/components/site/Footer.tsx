@@ -4,7 +4,7 @@ const quoteLinks = ["Auto", "Homeowners", "Renters", "Business", "Life & Health"
 const moreLinks = ["Trucking", "Flood", "Motorcycle", "Watercraft & Boat", "Recreational Vehicle"];
 const companyLinks: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
-  { label: "Contact", href: "#" },
+  { label: "Contact", href: "/contact" },
   { label: "Company News", href: "/company-news" },
   { label: "Careers", href: "/careers" },
   { label: "Claims", href: "/claims" },
@@ -24,7 +24,7 @@ export const Footer = () => {
               Independent insurance agency serving Illinois & Indiana with smarter coverage and friendly local service.
             </p>
             <p className="mt-4 text-sm text-white/60">
-              882 62nd St, La Grange Highlands, IL 60525<br />
+              1333 Burr Ridge Pkwy STE 200, Burr Ridge, IL 60527<br />
               708-810-1955
             </p>
           </div>
