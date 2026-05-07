@@ -256,7 +256,7 @@ export const Navbar = () => {
               Get a Quote
             </Link>
             <Link
-              to="/contact"
+              to="/client-login"
               className="transition-colors"
               style={{
                 background: "transparent",
@@ -358,6 +358,9 @@ export const Navbar = () => {
                 </Link>
                 <Link to="/resources" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   Resources
+                </Link>
+                <Link to="/client-login" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
+                  Client Login
                 </Link>
               </div>
               <Button

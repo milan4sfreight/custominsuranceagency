@@ -9,6 +9,7 @@ const companyLinks: { label: string; href: string }[] = [
   { label: "Careers", href: "/careers" },
   { label: "Claims", href: "/claims" },
   { label: "Resources", href: "/resources" },
+  { label: "Client Login", href: "/client-login" },
   { label: "Carriers", href: "#" },
   { label: "Privacy", href: "#" },
 ];
