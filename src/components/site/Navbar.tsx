@@ -118,6 +118,9 @@ export const Navbar = () => {
                 <Link to="/careers" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   Careers
                 </Link>
+                <Link to="/claims" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
+                  Claims
+                </Link>
               </div>
               <Button
                 asChild
