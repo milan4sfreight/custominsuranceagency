@@ -15,61 +15,60 @@ export const Hero = () => {
         alt="Aerial view of highway interchange"
       />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-start px-6 pt-32 sm:pt-36 lg:items-center lg:pt-0 lg:px-10">
-        <div className="w-full lg:w-2/5 lg:pt-[15vh]">
-          <div className="max-w-[520px]">
-            <span
-              className="inline-block text-xs uppercase text-brand-soft/90"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, letterSpacing: "2px" }}
-            >
-              Insurance, reimagined
-            </span>
+      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center justify-center px-6 pt-32 pb-16 sm:pt-36 lg:pt-0 lg:px-10">
+        <div className="flex w-full max-w-[900px] flex-col items-center text-center">
+          <span
+            className="inline-block"
+            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, letterSpacing: "3px", fontSize: "12px", textTransform: "uppercase", color: "#2abfbf" }}
+          >
+            Insurance, reimagined
+          </span>
 
-            <h1
-              className="mt-5 tracking-tight text-white"
-              style={{
-                fontFamily: "'Barlow', sans-serif",
-                fontWeight: 800,
-                letterSpacing: "-0.5px",
-                fontSize: "clamp(36px, 4.6vw, 64px)",
-                lineHeight: 1.05,
-              }}
-            >
-              Smarter coverage.
-              <br />
-              Stronger business.
-            </h1>
+          <h1
+            className="mt-5 text-white"
+            style={{
+              fontFamily: "'Barlow', sans-serif",
+              fontWeight: 800,
+              letterSpacing: "-1px",
+              fontSize: "clamp(48px, 6vw, 80px)",
+              lineHeight: 1.05,
+              textTransform: "none",
+            }}
+          >
+            Smarter coverage.
+            <br />
+            Stronger business.
+          </h1>
 
-            <p
-              className="mt-6 text-base leading-relaxed text-white/85 sm:text-lg"
-              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}
-            >
-              Insurance solutions built for the road ahead.
-            </p>
+          <p
+            className="mt-6"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 300, fontSize: "20px", color: "rgba(255,255,255,0.75)", maxWidth: "600px", textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}
+          >
+            Insurance solutions built for the road ahead.
+          </p>
 
-            <div className="mt-9">
-              <Button
-                asChild
-                size="lg"
-                className="btn-quote group h-12 px-7 text-sm"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-              >
-                <Link to="/get-a-quote">
-                  Get a Quote
-                  <span className="ml-2 inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.22)" }}>
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
-              </Button>
-            </div>
-
-            <p
-              className="mt-10 text-xs text-white/70 sm:text-sm"
-              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400 }}
+          <div className="mt-9">
+            <Button
+              asChild
+              size="lg"
+              className="btn-quote group h-12 px-7 text-sm"
+              style={{ fontFamily: "'Inter', sans-serif", minWidth: "200px" }}
             >
-              A+ rated · 10,000+ businesses covered · Licensed in 50 states
-            </p>
+              <Link to="/get-a-quote">
+                Get a Quote
+                <span className="ml-2 inline-flex h-7 w-7 items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.22)" }}>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+            </Button>
           </div>
+
+          <p
+            className="mt-10 text-xs sm:text-sm"
+            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, color: "rgba(255,255,255,0.6)" }}
+          >
+            A+ rated · 10,000+ businesses covered · Licensed in 50 states
+          </p>
         </div>
       </div>
     </section>
