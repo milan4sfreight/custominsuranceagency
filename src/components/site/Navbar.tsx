@@ -60,9 +60,9 @@ export const Navbar = () => {
               className="flex h-10 w-10 flex-col items-center justify-center gap-[6px] text-white hover:bg-transparent hover:text-white"
               aria-label="Open menu"
             >
-              <span className="block h-[2px] w-[28px] bg-white" />
-              <span className="block h-[2px] w-[28px] bg-white" />
-              <span className="block h-[2px] w-[28px] bg-white" />
+              <span className="block h-[3px] w-[28px] rounded-full bg-white" />
+              <span className="block h-[3px] w-[28px] rounded-full bg-white" />
+              <span className="block h-[3px] w-[28px] rounded-full bg-white" />
             </Button>
           </SheetTrigger>
           <SheetContent
