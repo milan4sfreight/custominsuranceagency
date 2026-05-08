@@ -182,7 +182,10 @@ const Index = () => {
             >
               Get A Quote
             </h2>
-            <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px]">
+            <div className="mt-4">
+              <QuoteForm />
+            </div>
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px]">
               <a
                 href="tel:7088101955"
                 className="text-[#f5c518] font-semibold"
@@ -193,8 +196,6 @@ const Index = () => {
               <span className="text-white/30">|</span>
               <span className="text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</span>
             </div>
-            <div className="my-4 h-px w-full" style={{ background: "rgba(255,255,255,0.1)" }} />
-            <QuoteForm />
             </div>
           </div>
         </div>
