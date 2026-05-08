@@ -52,7 +52,7 @@ const inputSty = (err = false): React.CSSProperties => ({
   borderRadius: 6,
   padding: "12px 14px",
   fontFamily: "Inter, sans-serif",
-  fontSize: 14,
+  fontSize: 16,
   outline: "none",
   background: "#fff",
   color: "#0d2b2b",
@@ -277,6 +277,7 @@ export default function GetAQuote() {
 
       {/* HERO */}
       <section
+        className="bd-hero"
         style={{
           width: "100%",
           height: 280,
@@ -290,6 +291,7 @@ export default function GetAQuote() {
         }}
       >
         <h1
+          className="bd-hero-h1"
           style={{
             color: "#fff",
             fontFamily: "Barlow, sans-serif",
@@ -344,9 +346,10 @@ export default function GetAQuote() {
       ) : (
         <>
           {/* INTRO */}
-          <section style={{ background: "#fff", padding: "48px 20px" }}>
+          <section className="bd-intro" style={{ background: "#fff", padding: "48px 20px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
               <h2
+                className="bd-intro-h2"
                 style={{
                   color: ORANGE,
                   fontFamily: "Barlow, sans-serif",
@@ -368,7 +371,7 @@ export default function GetAQuote() {
           </section>
 
           {/* FORM */}
-          <form onSubmit={onSubmit} style={{ background: "#fff", padding: "0 20px 80px" }}>
+          <form className="bd-form" onSubmit={onSubmit} style={{ background: "#fff", padding: "0 20px 80px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
               {/* STEP 1 */}
               <Step label="Company Information" stepText="Step 1 of 7">
@@ -485,14 +488,14 @@ export default function GetAQuote() {
                       </Field>
                     </div>
                     {owners.length > 1 && (
-                      <div style={{ marginTop: 12, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(owners, setOwners, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(owners, setOwners, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setOwners([...owners, blankOwner()])}>Add an Owner</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setOwners([...owners, blankOwner()])}>Add an Owner</button>
                 </div>
 
                 <hr style={dividerSty} />
@@ -552,14 +555,14 @@ export default function GetAQuote() {
                       </div>
                     )}
                     {vehicles.length > 1 && (
-                      <div style={{ marginTop: 12, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(vehicles, setVehicles, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(vehicles, setVehicles, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setVehicles([...vehicles, blankVehicle()])}>Add Vehicle/Trailer</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setVehicles([...vehicles, blankVehicle()])}>Add Vehicle/Trailer</button>
                 </div>
               </Step>
 
@@ -610,14 +613,14 @@ export default function GetAQuote() {
                       </Field>
                     </div>
                     {drivers.length > 1 && (
-                      <div style={{ marginTop: 12, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(drivers, setDrivers, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(drivers, setDrivers, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setDrivers([...drivers, blankDriver()])}>Add Driver</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setDrivers([...drivers, blankDriver()])}>Add Driver</button>
                 </div>
               </Step>
 
@@ -668,14 +671,14 @@ export default function GetAQuote() {
                       </div>
                     </div>
                     {commodities.length > 1 && (
-                      <div style={{ marginTop: 8, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(commodities, setCommodities, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 8, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(commodities, setCommodities, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setCommodities([...commodities, blankCommodity()])}>Add Cargo</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setCommodities([...commodities, blankCommodity()])}>Add Cargo</button>
                 </div>
               </Step>
 
@@ -777,6 +780,7 @@ export default function GetAQuote() {
                 <div />
                 <button
                   type="submit"
+                  className="bd-submit"
                   style={{
                     width: "100%",
                     background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
@@ -813,11 +817,27 @@ export default function GetAQuote() {
         .bd-step-aside { position: sticky; top: 130px; align-self: start; }
         .bd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .bd-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .bd-step-mobile-indicator { display: none; }
         @media (max-width: 768px) {
           .bd-step { grid-template-columns: 1fr; gap: 16px; }
           .bd-step-aside { position: static; }
           .bd-grid-2, .bd-grid-3 { grid-template-columns: 1fr !important; }
           .bd-half { max-width: 100% !important; }
+          .bd-hero { height: auto !important; min-height: 200px; padding: 80px 20px 40px; }
+          .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
+          .bd-intro { padding: 32px 20px !important; }
+          .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
+          .bd-form { padding: 0 20px 48px !important; }
+          .bd-step { scroll-margin-top: 130px; }
+          .bd-step-aside { display: none !important; }
+          .bd-step-mobile-indicator { display: block; font-family: 'Barlow', sans-serif; font-weight: 600; color: ${ORANGE}; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+          .bd-submit { min-height: 56px; font-size: 16px !important; padding: 16px 24px !important; }
+          .bd-add-btn { width: 100% !important; min-height: 48px !important; padding: 14px 24px !important; }
+          .bd-remove-wrap { text-align: left !important; }
+          .bd-remove-btn { width: 100% !important; min-height: 44px !important; padding: 10px 14px !important; font-size: 14px !important; }
+          input, select, textarea { font-size: 16px !important; }
+          label[type="radio"], input[type="radio"] { min-width: 24px; min-height: 24px; }
+          html, body { overflow-x: hidden; }
         }
       `}</style>
     </div>
@@ -837,7 +857,10 @@ function Step({ label, stepText, children }: { label: string; stepText: string; 
           {stepText}
         </div>
       </aside>
-      <div>{children}</div>
+      <div>
+        <div className="bd-step-mobile-indicator">{stepText} — {label}</div>
+        {children}
+      </div>
     </div>
   );
 }
