@@ -266,8 +266,12 @@ export default function GetAQuote() {
   return (
     <div style={{ background: "#fff", minHeight: "100vh" }}>
       <SEO
-        title="Commercial Trucking Insurance Quote | Custom Insurance Agency"
-        description="Get a free commercial trucking insurance quote. Fill out our 7-step form and our experts will contact you within 24 hours."
+        title="Get Your Free Commercial Trucking Insurance Quote"
+        description="Get covered in 24 hours. 50+ insurance carriers. No pressure, no jargon. Custom Insurance Agency — serving Illinois & Indiana."
+        image="https://custominsurance.agency/og-get-a-quote.jpg"
+        url="https://custominsurance.agency/get-a-quote"
+        imageWidth={1200}
+        imageHeight={630}
       />
       <Navbar />
 
