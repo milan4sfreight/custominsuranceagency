@@ -282,7 +282,7 @@ export default function GetAQuote() {
           height: 280,
           backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${volvoTruck})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "right center",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
