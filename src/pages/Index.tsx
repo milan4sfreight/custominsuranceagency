@@ -40,13 +40,13 @@ const QuoteForm = () => {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="grid gap-4"
+      className="grid gap-3"
     >
         <div>
           <label className={labelCls}>Name *</label>
           <input required maxLength={100} className={inputCls} placeholder="John Smith" />
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2">
           <div>
             <label className={labelCls}>Email *</label>
             <input required type="email" maxLength={255} className={inputCls} placeholder="you@email.com" />
@@ -66,7 +66,7 @@ const QuoteForm = () => {
           <label className={labelCls}>Address *</label>
           <input required maxLength={200} className={inputCls} placeholder="Street, City, ZIP" />
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-3 md:grid-cols-2">
           <div>
             <label className={labelCls}>State *</label>
             <select required className={inputCls + " appearance-none"}>
@@ -87,7 +87,7 @@ const QuoteForm = () => {
         </div>
         <div>
           <label className={labelCls}>Comments / Questions</label>
-          <textarea rows={3} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." />
+          <textarea rows={2} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." />
         </div>
         <label className="flex items-start gap-3 text-[12px] leading-[1.6] text-white/60">
           <input type="checkbox" className="mt-1 h-4 w-4 accent-[#2abfbf]" />
@@ -158,9 +158,12 @@ const Index = () => {
           <div
             style={{
               background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 60%, #0d2b2b 100%)",
-              padding: "56px 40px",
+              padding: "32px 40px",
+              alignSelf: "flex-start",
+              position: "sticky",
+              top: 24,
             }}
-            className="md:sticky md:top-0 md:self-start"
+            className=""
           >
             <div
               style={{
