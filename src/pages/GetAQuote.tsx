@@ -488,14 +488,14 @@ export default function GetAQuote() {
                       </Field>
                     </div>
                     {owners.length > 1 && (
-                      <div style={{ marginTop: 12, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(owners, setOwners, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(owners, setOwners, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setOwners([...owners, blankOwner()])}>Add an Owner</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setOwners([...owners, blankOwner()])}>Add an Owner</button>
                 </div>
 
                 <hr style={dividerSty} />
@@ -555,14 +555,14 @@ export default function GetAQuote() {
                       </div>
                     )}
                     {vehicles.length > 1 && (
-                      <div style={{ marginTop: 12, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(vehicles, setVehicles, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(vehicles, setVehicles, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setVehicles([...vehicles, blankVehicle()])}>Add Vehicle/Trailer</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setVehicles([...vehicles, blankVehicle()])}>Add Vehicle/Trailer</button>
                 </div>
               </Step>
 
@@ -613,14 +613,14 @@ export default function GetAQuote() {
                       </Field>
                     </div>
                     {drivers.length > 1 && (
-                      <div style={{ marginTop: 12, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(drivers, setDrivers, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(drivers, setDrivers, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setDrivers([...drivers, blankDriver()])}>Add Driver</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setDrivers([...drivers, blankDriver()])}>Add Driver</button>
                 </div>
               </Step>
 
@@ -671,14 +671,14 @@ export default function GetAQuote() {
                       </div>
                     </div>
                     {commodities.length > 1 && (
-                      <div style={{ marginTop: 8, textAlign: "right" }}>
-                        <button type="button" style={removeBtnSty} onClick={() => removeRow(commodities, setCommodities, i)}>Remove</button>
+                      <div className="bd-remove-wrap" style={{ marginTop: 8, textAlign: "right" }}>
+                        <button type="button" className="bd-remove-btn" style={removeBtnSty} onClick={() => removeRow(commodities, setCommodities, i)}>Remove</button>
                       </div>
                     )}
                   </div>
                 ))}
                 <div style={{ marginTop: 20 }}>
-                  <button type="button" style={addBtnSty} onClick={() => setCommodities([...commodities, blankCommodity()])}>Add Cargo</button>
+                  <button type="button" className="bd-add-btn" style={addBtnSty} onClick={() => setCommodities([...commodities, blankCommodity()])}>Add Cargo</button>
                 </div>
               </Step>
 
