@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 
-type SEOProps = { title: string; description: string };
+type SEOProps = {
+  title: string;
+  description: string;
+  image?: string;
+  url?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+};
 
 const setMeta = (selector: string, attr: string, key: string, content: string) => {
   let el = document.head.querySelector<HTMLMetaElement>(selector);
@@ -12,7 +19,7 @@ const setMeta = (selector: string, attr: string, key: string, content: string) =
   el.setAttribute("content", content);
 };
 
-export const SEO = ({ title, description }: SEOProps) => {
+export const SEO = ({ title, description, image, url, imageWidth, imageHeight }: SEOProps) => {
   useEffect(() => {
     document.title = title;
     setMeta('meta[name="description"]', "name", "description", description);
@@ -21,14 +28,29 @@ export const SEO = ({ title, description }: SEOProps) => {
     setMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
     setMeta('meta[name="twitter:description"]', "name", "twitter:description", description);
 
+    const finalUrl = url || window.location.origin + window.location.pathname;
+    setMeta('meta[property="og:url"]', "property", "og:url", finalUrl);
+
+    if (image) {
+      setMeta('meta[property="og:image"]', "property", "og:image", image);
+      setMeta('meta[name="twitter:image"]', "name", "twitter:image", image);
+      setMeta('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
+      if (imageWidth) {
+        setMeta('meta[property="og:image:width"]', "property", "og:image:width", String(imageWidth));
+      }
+      if (imageHeight) {
+        setMeta('meta[property="og:image:height"]', "property", "og:image:height", String(imageHeight));
+      }
+    }
+
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement("link");
       canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute("href", window.location.origin + window.location.pathname);
-  }, [title, description]);
+    canonical.setAttribute("href", finalUrl);
+  }, [title, description, image, url, imageWidth, imageHeight]);
 
   return null;
 };
