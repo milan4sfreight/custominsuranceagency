@@ -117,7 +117,8 @@ const Index = () => {
           <p className={EYEBROW}>Why Choose Us</p>
           <h2
             className="mt-3 leading-tight text-[#0d2b2b]"
-            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", border: "1px solid orange" }}
+            data-rebuild-marker="homepage-why-choose-us-2026-05-08"
+            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", border: "2px dashed #f5821f" }}
           >
             Why Choose Custom Insurance Agency?
           </h2>
