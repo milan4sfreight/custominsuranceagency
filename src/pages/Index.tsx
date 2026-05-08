@@ -31,22 +31,22 @@ const formatPhone = (v: string) => {
 };
 
 const inputCls =
-  "w-full rounded-lg border border-white/15 bg-white/[0.08] px-[14px] py-[11px] text-[14px] text-white placeholder:text-white/35 outline-none transition focus:border-[#2abfbf] focus:shadow-[0_0_0_3px_rgba(42,191,191,0.15)]";
+  "w-full rounded-lg border border-white/15 bg-white/[0.08] px-[12px] py-[8px] text-[14px] text-white placeholder:text-white/35 outline-none transition focus:border-[#2abfbf] focus:shadow-[0_0_0_3px_rgba(42,191,191,0.15)]";
 
-const labelCls = "mb-2 block text-[11px] font-semibold uppercase tracking-[1px] text-[#2abfbf]";
+const labelCls = "mb-1 block text-[10px] font-semibold uppercase tracking-[1px] text-[#2abfbf]";
 
 const QuoteForm = () => {
   const [phone, setPhone] = useState("");
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="grid gap-3"
+      className="grid gap-[10px]"
     >
         <div>
           <label className={labelCls}>Name *</label>
           <input required maxLength={100} className={inputCls} placeholder="John Smith" />
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-[10px] md:grid-cols-2">
           <div>
             <label className={labelCls}>Email *</label>
             <input required type="email" maxLength={255} className={inputCls} placeholder="you@email.com" />
@@ -66,7 +66,7 @@ const QuoteForm = () => {
           <label className={labelCls}>Address *</label>
           <input required maxLength={200} className={inputCls} placeholder="Street, City, ZIP" />
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid gap-[10px] md:grid-cols-2">
           <div>
             <label className={labelCls}>State *</label>
             <select required className={inputCls + " appearance-none"}>
@@ -158,7 +158,7 @@ const Index = () => {
           <div
             style={{
               background: "#ffffff",
-              padding: "32px 40px",
+              padding: "0 40px",
               alignSelf: "flex-start",
               position: "sticky",
               top: 24,
@@ -171,25 +171,29 @@ const Index = () => {
                 border: "1px solid rgba(255, 255, 255, 0.15)",
                 borderRadius: 16,
                 boxShadow: "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
-                padding: "36px 32px",
+                padding: "24px",
+                marginTop: 72,
               }}
             >
-            <p className={EYEBROW}>Free Quote</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#2abfbf]">Free Quote</p>
             <h2
               className="mt-2 text-white leading-tight"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 32 }}
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 26 }}
             >
               Get A Quote
             </h2>
-            <a
-              href="tel:7088101955"
-              className="mt-4 block text-[#f5c518]"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
-            >
-              📞 708-810-1955
-            </a>
-            <p className="mt-1 text-[13px] text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</p>
-            <div className="my-5 h-px w-full" style={{ background: "rgba(255,255,255,0.1)" }} />
+            <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px]">
+              <a
+                href="tel:7088101955"
+                className="text-[#f5c518] font-semibold"
+                style={{ fontFamily: "'Barlow', sans-serif" }}
+              >
+                📞 708-810-1955
+              </a>
+              <span className="text-white/30">|</span>
+              <span className="text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</span>
+            </div>
+            <div className="my-4 h-px w-full" style={{ background: "rgba(255,255,255,0.1)" }} />
             <QuoteForm />
             </div>
           </div>
