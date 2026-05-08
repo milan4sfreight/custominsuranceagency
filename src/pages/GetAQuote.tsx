@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-import volvoTruck from "@/assets/volvo-vnl-860.jpg";
+import volvoTruck from "@/assets/volvo-vnl-860-2025-live.jpg";
 
 /* ───────── constants ───────── */
 
