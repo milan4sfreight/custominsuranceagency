@@ -52,7 +52,7 @@ const inputSty = (err = false): React.CSSProperties => ({
   borderRadius: 6,
   padding: "12px 14px",
   fontFamily: "Inter, sans-serif",
-  fontSize: 14,
+  fontSize: 16,
   outline: "none",
   background: "#fff",
   color: "#0d2b2b",
@@ -277,6 +277,7 @@ export default function GetAQuote() {
 
       {/* HERO */}
       <section
+        className="bd-hero"
         style={{
           width: "100%",
           height: 280,
@@ -290,6 +291,7 @@ export default function GetAQuote() {
         }}
       >
         <h1
+          className="bd-hero-h1"
           style={{
             color: "#fff",
             fontFamily: "Barlow, sans-serif",
@@ -344,9 +346,10 @@ export default function GetAQuote() {
       ) : (
         <>
           {/* INTRO */}
-          <section style={{ background: "#fff", padding: "48px 20px" }}>
+          <section className="bd-intro" style={{ background: "#fff", padding: "48px 20px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
               <h2
+                className="bd-intro-h2"
                 style={{
                   color: ORANGE,
                   fontFamily: "Barlow, sans-serif",
@@ -368,7 +371,7 @@ export default function GetAQuote() {
           </section>
 
           {/* FORM */}
-          <form onSubmit={onSubmit} style={{ background: "#fff", padding: "0 20px 80px" }}>
+          <form className="bd-form" onSubmit={onSubmit} style={{ background: "#fff", padding: "0 20px 80px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
               {/* STEP 1 */}
               <Step label="Company Information" stepText="Step 1 of 7">
