@@ -286,17 +286,18 @@ const Index = () => {
               Call us or send a message — our friendly agents will review your situation and find the right policy at the right price. No pressure, no jargon.
             </p>
           </div>
-          <div className="flex w-full flex-col items-stretch gap-3.5 md:w-auto md:flex-row md:items-center">
+          <div className="flex flex-row items-center" style={{ gap: 12 }}>
             <a
               href="tel:7088101955"
-              className="rounded-full px-7 py-[14px] text-center font-semibold text-white transition hover:brightness-110"
-              style={{ background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)" }}
+              className="rounded-full font-semibold text-white transition hover:brightness-110 inline-flex items-center justify-center"
+              style={{ background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)", height: 44, padding: "0 24px", whiteSpace: "nowrap" }}
             >
-              📞 Call 708-810-1955
+              📞 708-810-1955
             </a>
             <Link
               to="/contact"
-              className="rounded-full border-[1.5px] border-[#173b5d] bg-white px-7 py-[14px] text-center font-semibold text-[#173b5d] transition hover:bg-[#173b5d] hover:text-white"
+              className="rounded-full border-[1.5px] border-[#173b5d] bg-white font-semibold text-[#173b5d] transition hover:bg-[#173b5d] hover:text-white inline-flex items-center justify-center"
+              style={{ height: 44, padding: "0 24px", whiteSpace: "nowrap" }}
             >
               Send a Message
             </Link>
