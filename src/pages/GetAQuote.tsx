@@ -112,15 +112,6 @@ function Field({
   );
 }
 
-function StateSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return (
-    <select {...props} style={inputSty(!!(props as any).data-err)}>
-      <option value="">Select state</option>
-      {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
-    </select>
-  );
-}
-
 /* ───────── types ───────── */
 
 type Owner = { name: string; dob: string; license: string; licenseState: string; prev: string };
