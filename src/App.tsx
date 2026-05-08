@@ -17,6 +17,7 @@ import Claims from "./pages/Claims.tsx";
 import Resources from "./pages/Resources.tsx";
 import Contact from "./pages/Contact.tsx";
 import ClientLogin from "./pages/ClientLogin.tsx";
+import OccAccidentEnrollment from "./pages/OccAccidentEnrollment.tsx";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/client-login" element={<ClientLogin />} />
+          <Route path="/occ-accident-enrollment" element={<OccAccidentEnrollment />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
