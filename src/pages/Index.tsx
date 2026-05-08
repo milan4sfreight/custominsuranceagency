@@ -157,7 +157,7 @@ const Index = () => {
           {/* RIGHT — Get A Quote */}
           <div
             style={{
-              background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 60%, #0d2b2b 100%)",
+              background: "#ffffff",
               padding: "32px 40px",
               alignSelf: "flex-start",
               position: "sticky",
@@ -167,13 +167,11 @@ const Index = () => {
           >
             <div
               style={{
-                background: "rgba(255, 255, 255, 0.06)",
+                background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 60%, #0d2b2b 100%)",
                 border: "1px solid rgba(255, 255, 255, 0.15)",
                 borderRadius: 16,
                 boxShadow: "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
                 padding: "36px 32px",
-                backdropFilter: "blur(4px)",
-                WebkitBackdropFilter: "blur(4px)",
               }}
             >
             <p className={EYEBROW}>Free Quote</p>
