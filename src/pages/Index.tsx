@@ -265,11 +265,19 @@ const Index = () => {
       </section>
 
       {/* SECTION 6 — CONTACT CTA */}
-      <section
-        className="px-6 py-20 md:px-14"
-        style={{ background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 50%, #0d2b2b 100%)" }}
-      >
-        <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-10 md:flex-row md:items-center md:justify-between">
+      <section style={{ background: "#ffffff", padding: "60px 24px" }}>
+        <div
+          className="flex flex-col items-start gap-10 md:flex-row md:items-center md:justify-between"
+          style={{
+            background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 50%, #0d2b2b 100%)",
+            maxWidth: 1100,
+            margin: "0 auto",
+            borderRadius: 16,
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+            padding: "40px 48px",
+          }}
+        >
           <div className="max-w-[620px]">
             <h2 className="text-[30px] md:text-[38px] font-bold leading-tight text-white">
               Not Sure What Coverage You Need?
