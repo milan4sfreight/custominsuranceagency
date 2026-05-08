@@ -1,1048 +1,867 @@
-import { useState, useRef, type ChangeEvent, type DragEvent } from "react";
-import { format } from "date-fns";
-import { CalendarIcon, Check, Plus, X, Upload, CheckCircle2, Loader2 } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
+import { CheckCircle2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "@/hooks/use-toast";
-import heroBg from "@/assets/hero-bg.webp";
 
-/* ───────────── constants / data ───────────── */
+/* ───────── constants ───────── */
 
-const NAVY = "#0d2b2b";
-const BLUE = "#3eaa6d";
-
-const LANGUAGES = ["English", "Spanish", "Russian"];
-const FMCSA_TYPES = ["MC", "DOT", "FF"];
+const NAVY = "#173b5d";
+const NAVY_DARK = "#0f2a42";
+const ORANGE = "#f5821f";
+const TEAL = "#2abfbf";
+const RED = "#dc2626";
 
 const STATES = [
   "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut",
   "Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa",
   "Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan",
-  "Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire",
-  "New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio",
-  "Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota",
-  "Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia",
-  "Wisconsin","Wyoming","District of Columbia",
+  "Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada",
+  "New Hampshire","New Jersey","New Mexico","New York","North Carolina",
+  "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island",
+  "South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
+  "Virginia","Washington","West Virginia","Wisconsin","Wyoming",
+  "District of Columbia","Virgin Islands","Guam","Northern Mariana Islands",
+  "American Samoa","Puerto Rico",
 ];
 
-const COVERAGES = [
-  "Auto Liability","Physical Damage","Motor Truck Cargo","Reefer Breakdown",
-  "General Liability","Garage Keepers Liability","On-Hook","Trailer Interchange",
-  "Non Owned Physical Damage","Excess/Umbrella","UM/UIM","Hired/Non-owned",
-  "Non-Trucking Liability/Bobtail","Workers Compensation","Occupational Accident",
-];
+const ENTITY_TYPES = ["Corporation","LLC","Partnership","Sole Proprietor","Individual","Other"];
+const RADIUS = ["50","100","150","200","300","500","Unlimited"];
+const VEHICLE_TYPES = ["Tractor","Trailer","Truck","Box Truck","Dump Truck","Cargo Van","Pickup","Dry Van","Reefer","Bulk","Flatbed","Tank","Auto Hauler","Low Boy","Customized","Dump-End","Dump-Side","Dump-Bottom","Gooseneck","Hazmat","Other"];
+const COMMODITIES = ["Agriculture/Farm Supplies","Amazon Type Merchandise","Auto Parts/Tires","Beverages","Boats","Building Materials","Campers/RVs","Canned Goods","Chemicals","Coal/Coke","Construction","Dairy Products","Department Store Merchandise","Dry Bulk","Electronics","Fresh Meat (Boxed)","Fresh Produce","Fresh Seafood","Frozen Meat/Poultry","Frozen Seafood","Garbage/Refuse/Trash","General Freight","Grain/Feed/Hay","Household Goods","Intermodal Containers","Liquids/Gas","Livestock","Logs/Poles/Beams/Lumber","Lumber","Machinery/Large Objects","Meat","Metal: Sheets/Coils/Rolls","Mobile Homes","Motor Vehicles","Oilfield Equipment","Other","Paper Products","Passengers","Plastic Products","Produce","Refrigerated Food","Sand/Gravel","Scrap/Recyclables","Steel (Non-Coiled)","Tow Away","US Mail","Utility","Water Well"];
+const AL_LIMITS = ["$300,000","$500,000","$750,000","$1,000,000","$1,500,000","Other"];
+const AL_DEDS = ["$1,000","$2,500","$5,000"];
+const MTC_LIMITS = ["$100,000","$250,000","Other"];
+const MTC_DEDS = ["$1,000","$2,500","Other"];
 
-const COMMODITIES = [
-  "General Freight","Household Goods","Metal: Sheets/Coils/Rolls","Motor Vehicles",
-  "Drive Away/Towaway","Logs/Polls/Beams/Lumber","Building Materials","Mobile Homes",
-  "Machinery/Large Objects","Fresh Produce","Liquids/Gases","Intermodal Container",
-  "Passengers","Oil Field Equipment","Livestock","Grain/Feed/Hay","Coal/Coke","Meat",
-  "Garbage/Refuse/Trash","U.S. Mail","Chemicals","Commodities Dry Bulk",
-  "Refrigerated Food","Beverages","Paper Products","Utilities",
-  "Agricultural/Farm Supplies","Construction","Water Well","Other",
-];
+/* ───────── shared field styles ───────── */
 
-const DOC_TYPES = [
-  "Loss Run Report","IFTA Report","Bank Statements","Insurance Certificate",
-  "Driver's License","Vehicle Registration","DOT Authority Letter","W-9 Form",
-  "Lease Agreement","Other",
-];
-
-const MAX_DOCS = 10;
-const ACCEPT =
-  ".pdf,.jpg,.jpeg,.png,.doc,.docx,application/pdf,image/jpeg,image/png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-
-const STEPS = [
-  { full: "Basic Info", short: "Info" },
-  { full: "Coverage", short: "Coverage" },
-  { full: "Equipment", short: "Equipment" },
-];
-
-/* ───────────── types ───────────── */
-
-type CoverageRow = { id: string; coverage: string; limit: string; deductible: string };
-type CommodityRow = {
-  id: string; commodity: string; hauled: string; aveLoad: string; maxLoad: string; shipper: string;
+const labelSty: React.CSSProperties = {
+  fontFamily: "Inter, sans-serif",
+  fontSize: 13,
+  color: NAVY,
+  fontWeight: 500,
+  display: "block",
+  marginBottom: 6,
 };
-type DriverRow = {
-  id: string; name: string; license: string; state: string; dob: string; experience: string;
+const inputSty = (err = false): React.CSSProperties => ({
+  width: "100%",
+  border: `1.5px solid ${err ? RED : "#c5d5e8"}`,
+  borderRadius: 6,
+  padding: "12px 14px",
+  fontFamily: "Inter, sans-serif",
+  fontSize: 14,
+  outline: "none",
+  background: "#fff",
+  color: "#0d2b2b",
+});
+const subHeading: React.CSSProperties = {
+  fontFamily: "Barlow, sans-serif",
+  fontWeight: 700,
+  textTransform: "uppercase",
+  color: NAVY,
+  fontSize: 14,
+  letterSpacing: 1,
+  marginBottom: 20,
 };
-type EquipmentRow = {
-  id: string; equipment: string; year: string; make: string; vin: string; value: string; lienholder: string;
+const dividerSty: React.CSSProperties = {
+  border: 0,
+  borderTop: "1px solid #e2e8f0",
+  margin: "28px 0",
 };
-type DocRow = { id: string; docType: string; customName: string; file: File | null };
+const addBtnSty: React.CSSProperties = {
+  background: NAVY,
+  color: "#fff",
+  fontFamily: "Barlow, sans-serif",
+  fontWeight: 600,
+  textTransform: "uppercase",
+  padding: "10px 24px",
+  borderRadius: 6,
+  border: "none",
+  cursor: "pointer",
+  fontSize: 13,
+  letterSpacing: 0.5,
+};
+const removeBtnSty: React.CSSProperties = {
+  color: RED,
+  background: "transparent",
+  border: `1px solid ${RED}`,
+  borderRadius: 4,
+  padding: "6px 14px",
+  fontSize: 12,
+  fontWeight: 600,
+  cursor: "pointer",
+  fontFamily: "Inter, sans-serif",
+};
 
-const uid = () => crypto.randomUUID();
-const newCoverage = (): CoverageRow => ({ id: uid(), coverage: "", limit: "", deductible: "" });
-const newCommodity = (): CommodityRow => ({ id: uid(), commodity: "", hauled: "", aveLoad: "", maxLoad: "", shipper: "" });
-const newDriver = (): DriverRow => ({ id: uid(), name: "", license: "", state: "", dob: "", experience: "" });
-const newEquipment = (): EquipmentRow => ({ id: uid(), equipment: "", year: "", make: "", vin: "", value: "", lienholder: "" });
-const newDoc = (): DocRow => ({ id: uid(), docType: "", customName: "", file: null });
+/* ───────── small primitives ───────── */
 
-/* ───────────── shared classes ───────────── */
+const Req = () => <span style={{ color: RED }}> *</span>;
 
-const fieldCls =
-  "h-[52px] w-full rounded-lg border-[1.5px] border-[#e2e8f0] bg-[#f5f7fa] px-3.5 py-3.5 text-[15px] text-[#0d2b2b] shadow-none transition-all placeholder:text-[#94a3b8] focus-visible:border-[#3eaa6d] focus-visible:bg-white focus-visible:ring-4 focus-visible:ring-[#3eaa6d]/15 focus-visible:ring-offset-0";
+function Field({
+  label, required, children,
+}: { label: string; required?: boolean; children: React.ReactNode }) {
+  return (
+    <div>
+      <label style={labelSty}>
+        {label}{required && <Req />}
+      </label>
+      {children}
+    </div>
+  );
+}
 
-const labelCls = "mb-1.5 block text-[11px] font-semibold uppercase tracking-[1px] text-[#0d2b2b]";
+function StateSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
+  return (
+    <select {...props} style={inputSty(!!(props as any).data-err)}>
+      <option value="">Select state</option>
+      {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+    </select>
+  );
+}
 
-/* ───────────── small UI helpers ───────────── */
+/* ───────── types ───────── */
 
-const SectionHeading = ({ children }: { children: React.ReactNode }) => (
-  <h2
-    className="border-l-[3px] pl-3 text-[13px] font-bold uppercase tracking-[2px]"
-    style={{ color: BLUE, borderColor: BLUE }}
-  >
-    {children}
-  </h2>
-);
+type Owner = { name: string; dob: string; license: string; licenseState: string; prev: string };
+type Vehicle = { vin: string; year: string; make: string; model: string; type: string; otherType: string; value: string };
+type Driver = { name: string; dob: string; hireDate: string; experience: string; license: string; licenseState: string; cdl: string };
+type Commodity = { name: string; otherName: string; percent: string };
 
-const FieldLabel = ({
-  htmlFor, required, children,
-}: { htmlFor?: string; required?: boolean; children: React.ReactNode }) => (
-  <Label htmlFor={htmlFor} className={labelCls}>
-    {children}
-    {required && <span className="ml-0.5 text-destructive">*</span>}
-  </Label>
-);
+const blankOwner = (): Owner => ({ name: "", dob: "", license: "", licenseState: "", prev: "" });
+const blankVehicle = (): Vehicle => ({ vin: "", year: "", make: "", model: "", type: "", otherType: "", value: "" });
+const blankDriver = (): Driver => ({ name: "", dob: "", hireDate: "", experience: "", license: "", licenseState: "", cdl: "No" });
+const blankCommodity = (): Commodity => ({ name: "", otherName: "", percent: "" });
 
-const ErrorText = ({ msg }: { msg?: string }) =>
-  msg ? <p className="mt-1 text-xs font-medium text-destructive">{msg}</p> : null;
-
-const RemoveBtn = ({ onClick }: { onClick: () => void }) => (
-  <button
-    type="button"
-    onClick={onClick}
-    aria-label="Remove"
-    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-destructive transition hover:bg-destructive/10"
-  >
-    <X className="h-4 w-4" />
-  </button>
-);
-
-const AddBtn = ({
-  onClick, disabled, children,
-}: { onClick: () => void; disabled?: boolean; children: React.ReactNode }) => (
-  <Button
-    type="button"
-    variant="outline"
-    onClick={onClick}
-    disabled={disabled}
-    className="h-11 rounded-full border-[1.5px] border-[#3eaa6d] bg-white px-5 text-sm font-semibold text-[#3eaa6d] hover:bg-[#3eaa6d]/5"
-  >
-    <Plus className="mr-1 h-4 w-4" /> {children}
-  </Button>
-);
-
-/* ───────────── progress bar ───────────── */
-
-const ProgressBar = ({ step }: { step: number }) => (
-  <div className="mx-auto flex w-full max-w-[900px] items-stretch gap-2 sm:gap-3">
-    {STEPS.map((s, i) => {
-      const isActive = step === i;
-      const isDone = step > i;
-      return (
-        <div key={s.full} className="flex flex-1 items-center">
-          <div
-            className={cn(
-              "relative flex h-12 flex-1 items-center justify-center gap-2 px-3 text-[11px] font-bold uppercase tracking-[1.5px] transition-all sm:h-14 sm:text-[13px]",
-              "clip-chevron",
-            )}
-            style={{
-              clipPath:
-                "polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%)",
-              background: isActive ? BLUE : isDone ? NAVY : "#e2e8f0",
-              color: isActive || isDone ? "#fff" : "#64748b",
-            }}
-          >
-            {isDone && <Check className="h-4 w-4" strokeWidth={3} />}
-            <span className="hidden sm:inline">{s.full}</span>
-            <span className="sm:hidden">{s.short}</span>
-          </div>
-        </div>
-      );
-    })}
-  </div>
-);
-
-/* ───────────── main page ───────────── */
+/* ───────── page ───────── */
 
 export default function GetAQuote() {
-  const [step, setStep] = useState(0);
-  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   // Step 1
-  const [s1, setS1] = useState({
-    businessName: "",
-    language: "",
-    fmcsaType: "",
-    fmcsaId: "",
-    ein: "",
-    yearsInBusiness: "",
-    trucks: "",
-    trailers: "",
-    targetDate: undefined as Date | undefined,
-    address: "",
-    address2: "",
-    city: "",
-    state: "",
-    zip: "",
-    contactName: "",
-    email: "",
-    phone: "",
-    fax: "",
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [usDot, setUsDot] = useState("");
+  const [mc, setMc] = useState("");
+  const [other, setOther] = useState("");
+  const [taxId, setTaxId] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [dba, setDba] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [entity, setEntity] = useState("");
+  const [yearsInBiz, setYearsInBiz] = useState("");
+  const [fedFilings, setFedFilings] = useState("");
+  const [pAddr1, setPAddr1] = useState("");
+  const [pAddr2, setPAddr2] = useState("");
+  const [pCity, setPCity] = useState("");
+  const [pState, setPState] = useState("");
+  const [pZip, setPZip] = useState("");
+  const [mAddr1, setMAddr1] = useState("");
+  const [mAddr2, setMAddr2] = useState("");
+  const [mCity, setMCity] = useState("");
+  const [mState, setMState] = useState("");
+  const [mZip, setMZip] = useState("");
+  const [badDays, setBadDays] = useState("");
 
   // Step 2
-  const [coverages, setCoverages] = useState<CoverageRow[]>([newCoverage()]);
-  const [radius, setRadius] = useState({
-    r0_50: "", r51_200: "", r201_500: "", r500p: "", avg: "", max: "",
-  });
-  const [projections, setProjections] = useState({ mileage: "", revenue: "" });
-  const [commodities, setCommodities] = useState<CommodityRow[]>([newCommodity()]);
+  const [owners, setOwners] = useState<Owner[]>([blankOwner()]);
+  const [area, setArea] = useState("");
+  const [radius, setRadius] = useState("");
 
   // Step 3
-  const [drivers, setDrivers] = useState<DriverRow[]>([newDriver()]);
-  const [tractors, setTractors] = useState<EquipmentRow[]>([newEquipment()]);
-  const [trailers, setTrailers] = useState<EquipmentRow[]>([newEquipment()]);
-  const [docs, setDocs] = useState<DocRow[]>([newDoc()]);
+  const [vehicles, setVehicles] = useState<Vehicle[]>([blankVehicle()]);
 
-  const setField = <K extends keyof typeof s1>(k: K) =>
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const v = e.target.value;
-      setS1((p) => ({ ...p, [k]: v }));
-      if (errors[k as string]) setErrors((er) => ({ ...er, [k as string]: "" }));
-    };
+  // Step 4
+  const [drivers, setDrivers] = useState<Driver[]>([blankDriver()]);
 
-  const setPhone = (e: ChangeEvent<HTMLInputElement>) => {
-    const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
-    let formatted = digits;
-    if (digits.length > 6) formatted = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
-    else if (digits.length > 3) formatted = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
-    else if (digits.length > 0) formatted = `(${digits}`;
-    setS1((p) => ({ ...p, phone: formatted }));
-    if (errors.phone) setErrors((er) => ({ ...er, phone: "" }));
+  // Step 5
+  const [commodities, setCommodities] = useState<Commodity[]>([blankCommodity()]);
+
+  // Step 6
+  const [alLimit, setAlLimit] = useState("");
+  const [alLimitOther, setAlLimitOther] = useState("");
+  const [alDed, setAlDed] = useState("");
+  const [mtcLimit, setMtcLimit] = useState("");
+  const [mtcLimitOther, setMtcLimitOther] = useState("");
+  const [mtcDed, setMtcDed] = useState("");
+  const [mtcDedOther, setMtcDedOther] = useState("");
+  const [coverageNotes, setCoverageNotes] = useState("");
+
+  // Step 7
+  const [losses, setLosses] = useState("");
+  const [lossesWhen, setLossesWhen] = useState("");
+  const [lossesComments, setLossesComments] = useState("");
+  const [currentCarrier, setCurrentCarrier] = useState("");
+  const [renewalDate, setRenewalDate] = useState("");
+  const [currentPremiums, setCurrentPremiums] = useState("");
+  const [effectiveDate, setEffectiveDate] = useState("");
+
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+  /* helpers */
+  const updateList = <T,>(list: T[], setList: (v: T[]) => void, i: number, patch: Partial<T>) =>
+    setList(list.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
+  const removeRow = <T,>(list: T[], setList: (v: T[]) => void, i: number) => {
+    if (list.length <= 1) return;
+    setList(list.filter((_, idx) => idx !== i));
   };
 
-  const validateStep1 = () => {
-    const required: Array<[keyof typeof s1, string]> = [
-      ["businessName", "Business name is required"],
-      ["fmcsaId", "FMCSA ID is required"],
-      ["ein", "EIN is required"],
-      ["trucks", "Required"],
-      ["trailers", "Required"],
-      ["address", "Address is required"],
-      ["city", "City is required"],
-      ["state", "State is required"],
-      ["zip", "ZIP is required"],
-      ["contactName", "Contact name is required"],
-      ["email", "Email is required"],
-      ["phone", "Phone is required"],
-    ];
-    const er: Record<string, string> = {};
-    for (const [k, m] of required) {
-      if (!String(s1[k] ?? "").trim()) er[k as string] = m;
-    }
-    if (s1.email && !/^\S+@\S+\.\S+$/.test(s1.email)) er.email = "Invalid email";
-    if (!s1.targetDate) er.targetDate = "Date is required";
-    setErrors(er);
-    return Object.keys(er).length === 0;
+  const addOwnersAsDrivers = () => {
+    const newOnes: Driver[] = owners
+      .filter((o) => o.name || o.license)
+      .map((o) => ({
+        name: o.name, dob: o.dob, hireDate: "", experience: "",
+        license: o.license, licenseState: o.licenseState, cdl: "No",
+      }));
+    if (newOnes.length === 0) return;
+    setDrivers((d) => {
+      const onlyEmpty = d.length === 1 && !d[0].name && !d[0].license;
+      return onlyEmpty ? newOnes : [...d, ...newOnes];
+    });
   };
 
-  const goNext = () => {
-    if (step === 0 && !validateStep1()) {
-      window.scrollTo({ top: 250, behavior: "smooth" });
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const errs: Record<string, boolean> = {};
+    const req = (k: string, v: string) => { if (!v.trim()) errs[k] = true; };
+
+    req("usDot", usDot);
+    req("companyName", companyName);
+    req("phone", phone);
+    req("email", email);
+    req("entity", entity);
+    req("pAddr1", pAddr1);
+    req("pCity", pCity);
+    req("pState", pState);
+    req("pZip", pZip);
+
+    owners.forEach((o, i) => {
+      if (!o.name) errs[`owner-${i}-name`] = true;
+      if (!o.dob) errs[`owner-${i}-dob`] = true;
+      if (!o.license) errs[`owner-${i}-license`] = true;
+    });
+    vehicles.forEach((v, i) => {
+      if (!v.vin) errs[`veh-${i}-vin`] = true;
+      if (!v.year) errs[`veh-${i}-year`] = true;
+      if (!v.make) errs[`veh-${i}-make`] = true;
+      if (!v.model) errs[`veh-${i}-model`] = true;
+      if (!v.type) errs[`veh-${i}-type`] = true;
+      if (!v.value) errs[`veh-${i}-value`] = true;
+    });
+    drivers.forEach((d, i) => {
+      if (!d.name) errs[`drv-${i}-name`] = true;
+      if (!d.dob) errs[`drv-${i}-dob`] = true;
+      if (!d.license) errs[`drv-${i}-license`] = true;
+      if (!d.licenseState) errs[`drv-${i}-licenseState`] = true;
+    });
+    commodities.forEach((c, i) => {
+      if (!c.name) errs[`com-${i}-name`] = true;
+      if (!c.percent) errs[`com-${i}-percent`] = true;
+    });
+
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    setStep((s) => Math.min(2, s + 1));
-    window.scrollTo({ top: 250, behavior: "smooth" });
-  };
-  const goPrev = () => {
-    setStep((s) => Math.max(0, s - 1));
-    window.scrollTo({ top: 250, behavior: "smooth" });
+    setSubmitted(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      const uploaded: { path: string; name: string; docType: string }[] = [];
-      for (const d of docs) {
-        if (!d.file) continue;
-        const ext = d.file.name.split(".").pop() ?? "bin";
-        const path = `${uid()}.${ext}`;
-        const { error } = await supabase.storage
-          .from("quote-uploads")
-          .upload(path, d.file, { contentType: d.file.type });
-        if (error) throw error;
-        uploaded.push({
-          path,
-          name: d.file.name,
-          docType: d.docType === "Other" ? d.customName || "Other" : d.docType,
-        });
-      }
+  const err = (k: string) => errors[k];
 
-      const payload = {
-        basicInfo: {
-          ...s1,
-          targetDate: s1.targetDate ? format(s1.targetDate, "yyyy-MM-dd") : null,
-        },
-        coverage: {
-          coverages,
-          radius,
-          projections,
-          commodities,
-        },
-        equipment: { drivers, tractors, trailers },
-        documents: uploaded,
-      };
-
-      const { error: insErr } = await supabase.from("quote_requests").insert({
-        first_name: s1.contactName.split(" ")[0] || s1.contactName,
-        last_name: s1.contactName.split(" ").slice(1).join(" ") || "-",
-        email: s1.email,
-        phone: s1.phone,
-        company: s1.businessName,
-        zip: s1.zip,
-        details: null,
-        insurance_types: coverages.map((c) => c.coverage).filter(Boolean),
-        documents: uploaded,
-        payload,
-      });
-      if (insErr) throw insErr;
-
-      try {
-        await supabase.functions.invoke("notify-quote-request", { body: payload });
-      } catch { /* optional */ }
-
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (err) {
-      console.error(err);
-      toast({
-        title: "Something went wrong. Please try again.",
-        description: err instanceof Error ? err.message : undefined,
-        variant: "destructive",
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  /* ───────── render ───────── */
 
   return (
-    <main className="min-h-screen" style={{ background: "#f6f8fb", fontFamily: "'Inter', Inter, system-ui, sans-serif" }}>
-      <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
+    <div style={{ background: "#fff", minHeight: "100vh" }}>
+      <SEO
+        title="Commercial Trucking Insurance Quote | Custom Insurance Agency"
+        description="Get a free commercial trucking insurance quote. Fill out our 7-step form and our experts will contact you within 24 hours."
       />
-      <SEO title="Get a Free Insurance Quote | Custom Insurance Agency" description="Get a free insurance quote from Custom Insurance Agency. Trucking, auto, home, business & more. We shop 50+ carriers to find you the best rate. Fast 24-hour response." />
       <Navbar />
 
-      {/* Hero */}
+      {/* HERO */}
       <section
-        className="relative overflow-hidden pb-24 pt-32 sm:pt-36 lg:pb-32 lg:pt-44"
         style={{
-          backgroundImage: `url(${heroBg})`,
+          width: "100%",
+          height: 280,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(https://images.unsplash.com/photo-1601584115197-04ecc0da31d7)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 110,
         }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0"
+        <h1
           style={{
-            background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.45) 100%)",
+            color: "#fff",
+            fontFamily: "Barlow, sans-serif",
+            fontWeight: 800,
+            textTransform: "uppercase",
+            fontSize: "clamp(28px, 5vw, 48px)",
+            textAlign: "center",
+            padding: "0 20px",
+            lineHeight: 1.1,
           }}
-        />
-        <div className="relative mx-auto max-w-3xl px-6 text-center">
-          <h1
-            className="font-semibold tracking-tight text-white"
-            style={{ fontSize: "clamp(34px, 4.6vw, 56px)", lineHeight: 1.1, fontFamily: "'Inter', sans-serif" }}
-          >
-            Get a Quote
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-            Complete the form below and a Custom Insurance Agency representative will contact you within 24 hours.
-          </p>
-        </div>
-      </section>
-
-      {/* Progress */}
-      <section className="relative -mt-12 px-4 sm:px-6">
-        <ProgressBar step={step} />
-      </section>
-
-      {/* Form card */}
-      <section className="px-4 pb-24 pt-8 sm:px-6">
-        <div
-          className="mx-auto w-full max-w-[900px] rounded-2xl bg-white p-6 sm:p-10 lg:p-12"
-          style={{ boxShadow: "0 30px 60px -20px rgba(15,30,75,0.18)" }}
         >
-          {submitted ? (
-            <div className="flex flex-col items-center py-16 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
-                <CheckCircle2 className="h-9 w-9 text-emerald-600" />
-              </div>
-              <h2 className="mt-6 text-3xl font-semibold" style={{ color: NAVY }}>
-                Thank you for contacting Custom Insurance Agency!
+          Commercial Trucking Insurance Quote
+        </h1>
+      </section>
+
+      {submitted ? (
+        <section
+          style={{
+            background: `linear-gradient(135deg, ${NAVY_DARK} 0%, ${NAVY} 100%)`,
+            padding: "80px 20px",
+            textAlign: "center",
+          }}
+        >
+          <div style={{ maxWidth: 700, margin: "0 auto" }}>
+            <CheckCircle2 size={88} color={TEAL} style={{ margin: "0 auto 24px" }} />
+            <h2 style={{ color: "#fff", fontFamily: "Barlow, sans-serif", fontWeight: 700, fontSize: 32, marginBottom: 16 }}>
+              Thank You!
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.8)", fontFamily: "Inter, sans-serif", fontSize: 16, marginBottom: 32 }}>
+              Your quote request has been submitted. A Custom Insurance Agency representative will contact you within 24 hours.
+            </p>
+            <Link
+              to="/"
+              style={{
+                display: "inline-block",
+                background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                color: "#fff",
+                fontFamily: "Barlow, sans-serif",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                padding: "14px 36px",
+                borderRadius: 6,
+                letterSpacing: 1,
+                fontSize: 14,
+                textDecoration: "none",
+              }}
+            >
+              Return to Home
+            </Link>
+          </div>
+        </section>
+      ) : (
+        <>
+          {/* INTRO */}
+          <section style={{ background: "#fff", padding: "48px 20px" }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              <h2
+                style={{
+                  color: ORANGE,
+                  fontFamily: "Barlow, sans-serif",
+                  fontWeight: 700,
+                  fontSize: 32,
+                  textTransform: "uppercase",
+                  marginBottom: 20,
+                }}
+              >
+                Ready to get started?
               </h2>
-              <p className="mt-3 max-w-md text-[#475569]">
-                A representative will be in touch with you within 24 hours.
+              <p style={{ fontFamily: "Inter, sans-serif", color: "#334155", fontSize: 16, lineHeight: 1.7, marginBottom: 16 }}>
+                You are one step closer to securing the best insurance coverage for your trucking business. Our team of dedicated transportation insurance experts are standing by ready to assist you.
+              </p>
+              <p style={{ fontFamily: "Inter, sans-serif", color: "#334155", fontSize: 16, lineHeight: 1.7 }}>
+                Fill out the short form below, and we'll handle the rest. Your peace of mind is just a conversation away.
               </p>
             </div>
-          ) : (
-            <form
-              onSubmit={(e) => {
-                if (step < 2) { e.preventDefault(); goNext(); } else { handleSubmit(e); }
-              }}
-              className="space-y-10"
-            >
-              {step === 0 && (
-                <Step1
-                  s1={s1} setS1={setS1} errors={errors}
-                  setField={setField} setPhone={setPhone}
-                />
-              )}
-              {step === 1 && (
-                <Step2
-                  coverages={coverages} setCoverages={setCoverages}
-                  radius={radius} setRadius={setRadius}
-                  projections={projections} setProjections={setProjections}
-                  commodities={commodities} setCommodities={setCommodities}
-                />
-              )}
-              {step === 2 && (
-                <Step3
-                  drivers={drivers} setDrivers={setDrivers}
-                  tractors={tractors} setTractors={setTractors}
-                  trailers={trailers} setTrailers={setTrailers}
-                  docs={docs} setDocs={setDocs}
-                />
-              )}
+          </section>
 
-              {/* Nav buttons */}
-              <div className={cn("flex flex-col-reverse items-stretch gap-3 border-t border-[#e2e8f0] pt-8 sm:flex-row sm:items-center", step === 0 ? "sm:justify-end" : "sm:justify-between")}>
-                {step > 0 && (
-                  <Button
+          {/* FORM */}
+          <form onSubmit={onSubmit} style={{ background: "#fff", padding: "0 20px 80px" }}>
+            <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+              {/* STEP 1 */}
+              <Step label="Company Information" stepText="Step 1 of 7">
+                <div style={subHeading}>Licensing Information</div>
+                <Grid2>
+                  <Field label="US DOT# (if available)" required>
+                    <input style={inputSty(err("usDot"))} value={usDot} onChange={(e) => setUsDot(e.target.value)} />
+                  </Field>
+                  <Field label="MC#"><input style={inputSty()} value={mc} onChange={(e) => setMc(e.target.value)} /></Field>
+                  <Field label="Other"><input style={inputSty()} value={other} onChange={(e) => setOther(e.target.value)} /></Field>
+                  <Field label="Tax ID Number"><input style={inputSty()} value={taxId} onChange={(e) => setTaxId(e.target.value)} /></Field>
+                </Grid2>
+
+                <hr style={dividerSty} />
+                <div style={subHeading}>Company Information</div>
+                <Grid2>
+                  <Field label="Company Name" required>
+                    <input style={inputSty(err("companyName"))} value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
+                  </Field>
+                  <Field label="DBA"><input style={inputSty()} value={dba} onChange={(e) => setDba(e.target.value)} /></Field>
+                  <Field label="Phone Number" required>
+                    <input style={inputSty(err("phone"))} value={phone} onChange={(e) => setPhone(e.target.value)} />
+                  </Field>
+                  <Field label="Email" required>
+                    <input type="email" style={inputSty(err("email"))} value={email} onChange={(e) => setEmail(e.target.value)} />
+                  </Field>
+                  <Field label="Business Entity Type" required>
+                    <select style={inputSty(err("entity"))} value={entity} onChange={(e) => setEntity(e.target.value)}>
+                      <option value="">Select…</option>
+                      {ENTITY_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+                    </select>
+                  </Field>
+                  <Field label="Continuous Years in Business">
+                    <input style={inputSty()} value={yearsInBiz} onChange={(e) => setYearsInBiz(e.target.value)} />
+                  </Field>
+                </Grid2>
+                <div style={{ marginTop: 16 }}>
+                  <label style={labelSty}>FED Fillings Required?</label>
+                  <RadioYN name="fedFilings" value={fedFilings} onChange={setFedFilings} />
+                </div>
+
+                <hr style={dividerSty} />
+                <div style={subHeading}>Physical Address</div>
+                <Grid2>
+                  <Field label="Address Line 1" required>
+                    <input style={inputSty(err("pAddr1"))} value={pAddr1} onChange={(e) => setPAddr1(e.target.value)} />
+                  </Field>
+                  <Field label="Address Line 2"><input style={inputSty()} value={pAddr2} onChange={(e) => setPAddr2(e.target.value)} /></Field>
+                </Grid2>
+                <Grid3 style={{ marginTop: 16 }}>
+                  <Field label="City" required>
+                    <input style={inputSty(err("pCity"))} value={pCity} onChange={(e) => setPCity(e.target.value)} />
+                  </Field>
+                  <Field label="State" required>
+                    <select style={inputSty(err("pState"))} value={pState} onChange={(e) => setPState(e.target.value)}>
+                      <option value="">Select state</option>
+                      {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                  </Field>
+                  <Field label="Zip Code" required>
+                    <input style={inputSty(err("pZip"))} value={pZip} onChange={(e) => setPZip(e.target.value)} />
+                  </Field>
+                </Grid3>
+
+                <hr style={dividerSty} />
+                <div style={subHeading}>Mailing Address (if different)</div>
+                <Grid2>
+                  <Field label="Address Line 1"><input style={inputSty()} value={mAddr1} onChange={(e) => setMAddr1(e.target.value)} /></Field>
+                  <Field label="Address Line 2"><input style={inputSty()} value={mAddr2} onChange={(e) => setMAddr2(e.target.value)} /></Field>
+                </Grid2>
+                <Grid3 style={{ marginTop: 16 }}>
+                  <Field label="City"><input style={inputSty()} value={mCity} onChange={(e) => setMCity(e.target.value)} /></Field>
+                  <Field label="State">
+                    <select style={inputSty()} value={mState} onChange={(e) => setMState(e.target.value)}>
+                      <option value="">Select state</option>
+                      {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                    </select>
+                  </Field>
+                  <Field label="Zip Code"><input style={inputSty()} value={mZip} onChange={(e) => setMZip(e.target.value)} /></Field>
+                </Grid3>
+
+                <div style={{ marginTop: 24, maxWidth: "50%" }} className="bd-half">
+                  <Field label="Number of Bad Days">
+                    <input style={inputSty()} value={badDays} onChange={(e) => setBadDays(e.target.value)} />
+                  </Field>
+                </div>
+              </Step>
+
+              {/* STEP 2 */}
+              <Step label="Operations" stepText="Step 2 of 7">
+                {owners.map((o, i) => (
+                  <div key={i}>
+                    {i > 0 && <hr style={dividerSty} />}
+                    <Grid2>
+                      <Field label="Owner's Name" required>
+                        <input style={inputSty(err(`owner-${i}-name`))} value={o.name} onChange={(e) => updateList(owners, setOwners, i, { name: e.target.value })} />
+                      </Field>
+                      <Field label="Date of Birth" required>
+                        <input type="date" style={inputSty(err(`owner-${i}-dob`))} value={o.dob} onChange={(e) => updateList(owners, setOwners, i, { dob: e.target.value })} />
+                      </Field>
+                      <Field label="Drivers License #" required>
+                        <input style={inputSty(err(`owner-${i}-license`))} value={o.license} onChange={(e) => updateList(owners, setOwners, i, { license: e.target.value })} />
+                      </Field>
+                      <Field label="License State">
+                        <select style={inputSty()} value={o.licenseState} onChange={(e) => updateList(owners, setOwners, i, { licenseState: e.target.value })}>
+                          <option value="">Select state</option>
+                          {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                        </select>
+                      </Field>
+                    </Grid2>
+                    <div style={{ marginTop: 16 }}>
+                      <Field label="Previous Company">
+                        <input style={inputSty()} value={o.prev} onChange={(e) => updateList(owners, setOwners, i, { prev: e.target.value })} />
+                      </Field>
+                    </div>
+                    {owners.length > 1 && (
+                      <div style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" style={removeBtnSty} onClick={() => removeRow(owners, setOwners, i)}>Remove</button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <div style={{ marginTop: 20 }}>
+                  <button type="button" style={addBtnSty} onClick={() => setOwners([...owners, blankOwner()])}>Add an Owner</button>
+                </div>
+
+                <hr style={dividerSty} />
+                <Grid2>
+                  <Field label="Area">
+                    <select style={inputSty()} value={area} onChange={(e) => setArea(e.target.value)}>
+                      <option value="">Select…</option>
+                      <option value="Local">Local</option>
+                      <option value="Interstate">Interstate</option>
+                    </select>
+                  </Field>
+                  <Field label="Radius of Operations">
+                    <select style={inputSty()} value={radius} onChange={(e) => setRadius(e.target.value)}>
+                      <option value="">Select…</option>
+                      {RADIUS.map((r) => <option key={r} value={r}>{r}</option>)}
+                    </select>
+                  </Field>
+                </Grid2>
+              </Step>
+
+              {/* STEP 3 */}
+              <Step label="Vehicles" stepText="Step 3 of 7">
+                {vehicles.map((v, i) => (
+                  <div key={i}>
+                    {i > 0 && <hr style={dividerSty} />}
+                    <Grid2>
+                      <Field label="VIN #" required>
+                        <input style={inputSty(err(`veh-${i}-vin`))} value={v.vin} onChange={(e) => updateList(vehicles, setVehicles, i, { vin: e.target.value })} />
+                      </Field>
+                      <Field label="Year" required>
+                        <input style={inputSty(err(`veh-${i}-year`))} value={v.year} onChange={(e) => updateList(vehicles, setVehicles, i, { year: e.target.value })} />
+                      </Field>
+                      <Field label="Make" required>
+                        <input style={inputSty(err(`veh-${i}-make`))} value={v.make} onChange={(e) => updateList(vehicles, setVehicles, i, { make: e.target.value })} />
+                      </Field>
+                      <Field label="Model" required>
+                        <input style={inputSty(err(`veh-${i}-model`))} value={v.model} onChange={(e) => updateList(vehicles, setVehicles, i, { model: e.target.value })} />
+                      </Field>
+                      <Field label="Type" required>
+                        <select style={inputSty(err(`veh-${i}-type`))} value={v.type} onChange={(e) => updateList(vehicles, setVehicles, i, { type: e.target.value })}>
+                          <option value="">Select…</option>
+                          {VEHICLE_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                      </Field>
+                      <Field label="Value (for physical damage)" required>
+                        <input style={inputSty(err(`veh-${i}-value`))} value={v.value} onChange={(e) => updateList(vehicles, setVehicles, i, { value: e.target.value })} />
+                      </Field>
+                    </Grid2>
+                    {v.type === "Other" && (
+                      <div style={{ marginTop: 12 }}>
+                        <input
+                          style={inputSty()}
+                          placeholder="Enter vehicle type"
+                          value={v.otherType}
+                          onChange={(e) => updateList(vehicles, setVehicles, i, { otherType: e.target.value })}
+                        />
+                      </div>
+                    )}
+                    {vehicles.length > 1 && (
+                      <div style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" style={removeBtnSty} onClick={() => removeRow(vehicles, setVehicles, i)}>Remove</button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <div style={{ marginTop: 20 }}>
+                  <button type="button" style={addBtnSty} onClick={() => setVehicles([...vehicles, blankVehicle()])}>Add Vehicle/Trailer</button>
+                </div>
+              </Step>
+
+              {/* STEP 4 */}
+              <Step label="Drivers Information" stepText="Step 4 of 7">
+                <div style={{ marginBottom: 24 }}>
+                  <button
                     type="button"
-                    onClick={goPrev}
-                    variant="outline"
-                    className="h-12 w-full rounded-full border-[1.5px] px-10 text-sm font-bold uppercase tracking-wider sm:w-auto"
-                    style={{ borderColor: BLUE, color: BLUE }}
+                    style={{ ...addBtnSty, background: TEAL }}
+                    onClick={addOwnersAsDrivers}
                   >
-                    « Previous
-                  </Button>
-                )}
-                {step < 2 ? (
-                  <Button
-                    type="submit"
-                    className="h-12 w-full rounded-full px-10 text-sm font-bold uppercase tracking-wider text-white sm:w-auto"
-                    style={{ background: BLUE }}
-                  >
-                    Continue »
-                  </Button>
-                ) : (
-                  <div className="flex w-full flex-col items-center gap-4 sm:w-auto sm:items-end">
-                    <p className="max-w-xl text-center text-[11px] leading-relaxed text-[#64748b]">
-                      By submitting this form, you agree to receive communications from Custom Insurance Agency related to your insurance quote, policy updates, and other relevant information. We will not resell your information to any third party. Any submissions made via this website do not constitute a binding agreement to your policy or coverages.
-                    </p>
-                    <Button
-                      type="submit"
-                      disabled={submitting}
-                      className="h-12 w-full rounded-full px-10 text-sm font-bold uppercase tracking-wider text-white sm:w-auto"
-                      style={{ background: BLUE }}
-                    >
-                      {submitting ? (<><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting…</>) : "Submit"}
-                    </Button>
+                    Add Owners as Drivers
+                  </button>
+                </div>
+
+                {drivers.map((d, i) => (
+                  <div key={i}>
+                    {i > 0 && <hr style={dividerSty} />}
+                    <Grid2>
+                      <Field label="Full Name" required>
+                        <input style={inputSty(err(`drv-${i}-name`))} value={d.name} onChange={(e) => updateList(drivers, setDrivers, i, { name: e.target.value })} />
+                      </Field>
+                      <Field label="Date of Birth" required>
+                        <input type="date" style={inputSty(err(`drv-${i}-dob`))} value={d.dob} onChange={(e) => updateList(drivers, setDrivers, i, { dob: e.target.value })} />
+                      </Field>
+                      <Field label="Hire Date">
+                        <input type="date" style={inputSty()} value={d.hireDate} onChange={(e) => updateList(drivers, setDrivers, i, { hireDate: e.target.value })} />
+                      </Field>
+                      <Field label="Years of Experience">
+                        <input style={inputSty()} value={d.experience} onChange={(e) => updateList(drivers, setDrivers, i, { experience: e.target.value })} />
+                      </Field>
+                      <Field label="Drivers License #" required>
+                        <input style={inputSty(err(`drv-${i}-license`))} value={d.license} onChange={(e) => updateList(drivers, setDrivers, i, { license: e.target.value })} />
+                      </Field>
+                      <Field label="License State" required>
+                        <select style={inputSty(err(`drv-${i}-licenseState`))} value={d.licenseState} onChange={(e) => updateList(drivers, setDrivers, i, { licenseState: e.target.value })}>
+                          <option value="">Select state</option>
+                          {STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                        </select>
+                      </Field>
+                    </Grid2>
+                    <div style={{ marginTop: 16, maxWidth: "50%" }} className="bd-half">
+                      <Field label="Driver Has a CDL?">
+                        <select style={inputSty()} value={d.cdl} onChange={(e) => updateList(drivers, setDrivers, i, { cdl: e.target.value })}>
+                          <option value="No">No</option>
+                          <option value="Yes">Yes</option>
+                        </select>
+                      </Field>
+                    </div>
+                    {drivers.length > 1 && (
+                      <div style={{ marginTop: 12, textAlign: "right" }}>
+                        <button type="button" style={removeBtnSty} onClick={() => removeRow(drivers, setDrivers, i)}>Remove</button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <div style={{ marginTop: 20 }}>
+                  <button type="button" style={addBtnSty} onClick={() => setDrivers([...drivers, blankDriver()])}>Add Driver</button>
+                </div>
+              </Step>
+
+              {/* STEP 5 */}
+              <Step label="Commodities" stepText="Step 5 of 7">
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "2fr 1fr",
+                    gap: 20,
+                    marginBottom: 12,
+                    fontFamily: "Barlow, sans-serif",
+                    fontWeight: 700,
+                    color: NAVY,
+                    textTransform: "uppercase",
+                    fontSize: 13,
+                    letterSpacing: 1,
+                  }}
+                  className="bd-grid-2"
+                >
+                  <div>Commodity</div>
+                  <div>Percent</div>
+                </div>
+                {commodities.map((c, i) => (
+                  <div key={i} style={{ marginBottom: 16 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 20 }} className="bd-grid-2">
+                      <div>
+                        <select style={inputSty(err(`com-${i}-name`))} value={c.name} onChange={(e) => updateList(commodities, setCommodities, i, { name: e.target.value })}>
+                          <option value="">Select commodity</option>
+                          {COMMODITIES.map((co) => <option key={co} value={co}>{co}</option>)}
+                        </select>
+                        {c.name === "Other" && (
+                          <input
+                            style={{ ...inputSty(), marginTop: 8 }}
+                            placeholder="Enter commodity"
+                            value={c.otherName}
+                            onChange={(e) => updateList(commodities, setCommodities, i, { otherName: e.target.value })}
+                          />
+                        )}
+                      </div>
+                      <div>
+                        <input
+                          type="number"
+                          style={inputSty(err(`com-${i}-percent`))}
+                          value={c.percent}
+                          onChange={(e) => updateList(commodities, setCommodities, i, { percent: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    {commodities.length > 1 && (
+                      <div style={{ marginTop: 8, textAlign: "right" }}>
+                        <button type="button" style={removeBtnSty} onClick={() => removeRow(commodities, setCommodities, i)}>Remove</button>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <div style={{ marginTop: 20 }}>
+                  <button type="button" style={addBtnSty} onClick={() => setCommodities([...commodities, blankCommodity()])}>Add Cargo</button>
+                </div>
+              </Step>
+
+              {/* STEP 6 */}
+              <Step label="Coverage" stepText="Step 6 of 7">
+                <div style={subHeading}>Auto Liability</div>
+                <Grid2>
+                  <Field label="Limit">
+                    <select style={inputSty()} value={alLimit} onChange={(e) => setAlLimit(e.target.value)}>
+                      <option value="">Select limit</option>
+                      {AL_LIMITS.map((l) => <option key={l} value={l}>{l}</option>)}
+                    </select>
+                    {alLimit === "Other" && (
+                      <input style={{ ...inputSty(), marginTop: 8 }} placeholder="Enter limit" value={alLimitOther} onChange={(e) => setAlLimitOther(e.target.value)} />
+                    )}
+                  </Field>
+                  <Field label="Deductible">
+                    <select style={inputSty()} value={alDed} onChange={(e) => setAlDed(e.target.value)}>
+                      <option value="">Select deductible</option>
+                      {AL_DEDS.map((d) => <option key={d} value={d}>{d}</option>)}
+                    </select>
+                  </Field>
+                </Grid2>
+
+                <hr style={dividerSty} />
+                <div style={subHeading}>Motor Truck Cargo</div>
+                <Grid2>
+                  <Field label="Limit">
+                    <select style={inputSty()} value={mtcLimit} onChange={(e) => setMtcLimit(e.target.value)}>
+                      <option value="">Select limit</option>
+                      {MTC_LIMITS.map((l) => <option key={l} value={l}>{l}</option>)}
+                    </select>
+                    {mtcLimit === "Other" && (
+                      <input style={{ ...inputSty(), marginTop: 8 }} placeholder="Enter limit" value={mtcLimitOther} onChange={(e) => setMtcLimitOther(e.target.value)} />
+                    )}
+                  </Field>
+                  <Field label="Deductible">
+                    <select style={inputSty()} value={mtcDed} onChange={(e) => setMtcDed(e.target.value)}>
+                      <option value="">Select deductible</option>
+                      {MTC_DEDS.map((d) => <option key={d} value={d}>{d}</option>)}
+                    </select>
+                    {mtcDed === "Other" && (
+                      <input style={{ ...inputSty(), marginTop: 8 }} placeholder="Enter deductible" value={mtcDedOther} onChange={(e) => setMtcDedOther(e.target.value)} />
+                    )}
+                  </Field>
+                </Grid2>
+
+                <div style={{ marginTop: 20 }}>
+                  <Field label="Notes">
+                    <textarea
+                      rows={3}
+                      style={{ ...inputSty(), resize: "vertical", fontFamily: "Inter, sans-serif" }}
+                      placeholder="Additional coverage notes..."
+                      value={coverageNotes}
+                      onChange={(e) => setCoverageNotes(e.target.value)}
+                    />
+                  </Field>
+                </div>
+              </Step>
+
+              {/* STEP 7 */}
+              <Step label="Current Insurance Information" stepText="Step 7 of 7">
+                <div>
+                  <label style={labelSty}>Any Losses within the last 5 years?</label>
+                  <RadioYN name="losses" value={losses} onChange={setLosses} />
+                </div>
+                {losses === "Yes" && (
+                  <div style={{ marginTop: 20 }}>
+                    <Grid2>
+                      <Field label="If Yes, When?">
+                        <input style={inputSty()} value={lossesWhen} onChange={(e) => setLossesWhen(e.target.value)} />
+                      </Field>
+                      <Field label="Comments">
+                        <textarea rows={3} style={{ ...inputSty(), resize: "vertical", fontFamily: "Inter, sans-serif" }} value={lossesComments} onChange={(e) => setLossesComments(e.target.value)} />
+                      </Field>
+                    </Grid2>
                   </div>
                 )}
+
+                <hr style={dividerSty} />
+                <Grid2>
+                  <Field label="Current Insurance Carrier">
+                    <input style={inputSty()} value={currentCarrier} onChange={(e) => setCurrentCarrier(e.target.value)} />
+                  </Field>
+                  <Field label="Renewal Date">
+                    <input type="date" style={inputSty()} value={renewalDate} onChange={(e) => setRenewalDate(e.target.value)} />
+                  </Field>
+                  <Field label="Current Premiums">
+                    <input style={inputSty()} value={currentPremiums} onChange={(e) => setCurrentPremiums(e.target.value)} />
+                  </Field>
+                  <Field label="Effective Date">
+                    <input type="date" style={inputSty()} value={effectiveDate} onChange={(e) => setEffectiveDate(e.target.value)} />
+                  </Field>
+                </Grid2>
+              </Step>
+
+              {/* SUBMIT */}
+              <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: "200px 1fr", gap: 40 }} className="bd-step">
+                <div />
+                <button
+                  type="submit"
+                  style={{
+                    width: "100%",
+                    background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                    color: "#fff",
+                    fontFamily: "Barlow, sans-serif",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    padding: "16px 48px",
+                    borderRadius: 6,
+                    fontSize: 16,
+                    letterSpacing: 1,
+                    border: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  Submit Quote Request
+                </button>
               </div>
-            </form>
-          )}
-        </div>
-      </section>
+
+              {Object.keys(errors).length > 0 && (
+                <p style={{ color: RED, marginTop: 16, fontFamily: "Inter, sans-serif", fontSize: 14, textAlign: "right" }}>
+                  Please fill in all required fields highlighted in red.
+                </p>
+              )}
+            </div>
+          </form>
+        </>
+      )}
 
       <Footer />
-    </main>
-  );
-}
 
-/* ─────────────────────── STEP 1 ─────────────────────── */
-
-function Step1({
-  s1, setS1, errors, setField, setPhone,
-}: {
-  s1: any;
-  setS1: React.Dispatch<React.SetStateAction<any>>;
-  errors: Record<string, string>;
-  setField: (k: any) => (e: ChangeEvent<HTMLInputElement>) => void;
-  setPhone: (e: ChangeEvent<HTMLInputElement>) => void;
-}) {
-  return (
-    <div className="space-y-10">
-      {/* Company */}
-      <div className="space-y-5">
-        <SectionHeading>Company Information</SectionHeading>
-
-        <div>
-          <FieldLabel htmlFor="businessName" required>Business Name</FieldLabel>
-          <Input id="businessName" className={fieldCls} value={s1.businessName} onChange={setField("businessName")} />
-          <ErrorText msg={errors.businessName} />
-        </div>
-
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <FieldLabel>Preferred Language</FieldLabel>
-            <SelectField value={s1.language} onChange={(v) => setS1((p: any) => ({ ...p, language: v }))} options={LANGUAGES} placeholder="Select language" />
-          </div>
-          <div>
-            <FieldLabel>FMCSA Type</FieldLabel>
-            <SelectField value={s1.fmcsaType} onChange={(v) => setS1((p: any) => ({ ...p, fmcsaType: v }))} options={FMCSA_TYPES} placeholder="Select type" />
-          </div>
-
-          <div>
-            <FieldLabel htmlFor="fmcsaId" required>FMCSA ID</FieldLabel>
-            <Input id="fmcsaId" className={fieldCls} value={s1.fmcsaId} onChange={setField("fmcsaId")} />
-            <ErrorText msg={errors.fmcsaId} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="ein" required>EIN</FieldLabel>
-            <Input id="ein" className={fieldCls} value={s1.ein} onChange={setField("ein")} />
-            <ErrorText msg={errors.ein} />
-          </div>
-
-          <div>
-            <FieldLabel htmlFor="yearsInBusiness">Years in Business</FieldLabel>
-            <Input id="yearsInBusiness" className={fieldCls} value={s1.yearsInBusiness} onChange={setField("yearsInBusiness")} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="trucks" required>How Many Trucks Do You Have?</FieldLabel>
-            <Input id="trucks" type="number" min="0" className={fieldCls} value={s1.trucks} onChange={setField("trucks")} />
-            <ErrorText msg={errors.trucks} />
-          </div>
-
-          <div>
-            <FieldLabel htmlFor="trailers" required>How Many Trailers Do You Have?</FieldLabel>
-            <Input id="trailers" type="number" min="0" className={fieldCls} value={s1.trailers} onChange={setField("trailers")} />
-            <ErrorText msg={errors.trailers} />
-          </div>
-          <div>
-            <FieldLabel required>Target Effective Date</FieldLabel>
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  className={cn(
-                    fieldCls,
-                    "flex items-center justify-between text-left",
-                    !s1.targetDate && "text-[#94a3b8]",
-                  )}
-                >
-                  <span>{s1.targetDate ? format(s1.targetDate, "MM/dd/yyyy") : "MM/DD/YYYY"}</span>
-                  <CalendarIcon className="h-4 w-4 opacity-60" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  mode="single"
-                  selected={s1.targetDate}
-                  onSelect={(d) => setS1((p: any) => ({ ...p, targetDate: d }))}
-                  initialFocus
-                  className={cn("p-3 pointer-events-auto")}
-                />
-              </PopoverContent>
-            </Popover>
-            <ErrorText msg={errors.targetDate} />
-          </div>
-        </div>
-      </div>
-
-      {/* Address */}
-      <div className="space-y-5">
-        <SectionHeading>Physical Address</SectionHeading>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <FieldLabel htmlFor="address" required>Address</FieldLabel>
-            <Input id="address" className={fieldCls} value={s1.address} onChange={setField("address")} />
-            <ErrorText msg={errors.address} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="address2">Address 2</FieldLabel>
-            <Input id="address2" className={fieldCls} value={s1.address2} onChange={setField("address2")} />
-          </div>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-3">
-          <div>
-            <FieldLabel htmlFor="city" required>City</FieldLabel>
-            <Input id="city" className={fieldCls} value={s1.city} onChange={setField("city")} />
-            <ErrorText msg={errors.city} />
-          </div>
-          <div>
-            <FieldLabel required>State</FieldLabel>
-            <SelectField value={s1.state} onChange={(v) => setS1((p: any) => ({ ...p, state: v }))} options={STATES} placeholder="Select state" />
-            <ErrorText msg={errors.state} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="zip" required>ZIP</FieldLabel>
-            <Input id="zip" className={fieldCls} value={s1.zip} onChange={setField("zip")} />
-            <ErrorText msg={errors.zip} />
-          </div>
-        </div>
-      </div>
-
-      {/* Contact */}
-      <div className="space-y-5">
-        <SectionHeading>Contact Information</SectionHeading>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <FieldLabel htmlFor="contactName" required>Contact Name</FieldLabel>
-            <Input id="contactName" className={fieldCls} value={s1.contactName} onChange={setField("contactName")} />
-            <ErrorText msg={errors.contactName} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="email" required>Email</FieldLabel>
-            <Input id="email" type="email" className={fieldCls} value={s1.email} onChange={setField("email")} />
-            <ErrorText msg={errors.email} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="phone" required>Phone</FieldLabel>
-            <Input id="phone" inputMode="tel" placeholder="(XXX) XXX-XXXX" className={fieldCls} value={s1.phone} onChange={setPhone} />
-            <ErrorText msg={errors.phone} />
-          </div>
-          <div>
-            <FieldLabel htmlFor="fax">Fax</FieldLabel>
-            <Input id="fax" className={fieldCls} value={s1.fax} onChange={setField("fax")} placeholder="Optional" />
-          </div>
-        </div>
-      </div>
+      <style>{`
+        .bd-step { display: grid; grid-template-columns: 200px 1fr; gap: 40px; margin-top: 48px; }
+        .bd-step-aside { position: sticky; top: 130px; align-self: start; }
+        .bd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .bd-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) {
+          .bd-step { grid-template-columns: 1fr; gap: 16px; }
+          .bd-step-aside { position: static; }
+          .bd-grid-2, .bd-grid-3 { grid-template-columns: 1fr !important; }
+          .bd-half { max-width: 100% !important; }
+        }
+      `}</style>
     </div>
   );
 }
 
-/* ─────────────────────── STEP 2 ─────────────────────── */
+/* ───────── helpers ───────── */
 
-function Step2({
-  coverages, setCoverages, radius, setRadius, projections, setProjections, commodities, setCommodities,
-}: any) {
-  const updateCoverage = (id: string, patch: Partial<CoverageRow>) =>
-    setCoverages((rows: CoverageRow[]) => rows.map((r) => r.id === id ? { ...r, ...patch } : r));
-  const removeCoverage = (id: string) =>
-    setCoverages((rows: CoverageRow[]) => rows.length === 1 ? [newCoverage()] : rows.filter((r) => r.id !== id));
-
-  const updateCommodity = (id: string, patch: Partial<CommodityRow>) =>
-    setCommodities((rows: CommodityRow[]) => rows.map((r) => r.id === id ? { ...r, ...patch } : r));
-  const removeCommodity = (id: string) =>
-    setCommodities((rows: CommodityRow[]) => rows.length === 1 ? [newCommodity()] : rows.filter((r) => r.id !== id));
-
+function Step({ label, stepText, children }: { label: string; stepText: string; children: React.ReactNode }) {
   return (
-    <div className="space-y-10">
-      {/* Coverages */}
-      <div className="space-y-4">
-        <SectionHeading>Coverage Information</SectionHeading>
-        <p className="text-sm text-[#475569]">Add one or more coverage types needed</p>
-
-        <div className="space-y-4">
-          {coverages.map((row: CoverageRow, i: number) => (
-            <div key={row.id} className="rounded-xl border border-[#e2e8f0] bg-[#f9fbff] p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#64748b]">Coverage {i + 1}</p>
-                <RemoveBtn onClick={() => removeCoverage(row.id)} />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div>
-                  <FieldLabel>Coverage</FieldLabel>
-                  <SelectField value={row.coverage} onChange={(v) => updateCoverage(row.id, { coverage: v })} options={COVERAGES} placeholder="Select coverage" />
-                </div>
-                <div>
-                  <FieldLabel>Insurance Limit</FieldLabel>
-                  <PrefixInput prefix="$" type="number" value={row.limit} onChange={(v) => updateCoverage(row.id, { limit: v })} />
-                </div>
-                <div>
-                  <FieldLabel>Deductible</FieldLabel>
-                  <PrefixInput prefix="$" type="number" value={row.deductible} onChange={(v) => updateCoverage(row.id, { deductible: v })} />
-                </div>
-              </div>
-            </div>
-          ))}
+    <div className="bd-step">
+      <aside className="bd-step-aside">
+        <div style={{ fontFamily: "Barlow, sans-serif", fontWeight: 700, color: NAVY, fontSize: 18, textTransform: "uppercase", lineHeight: 1.2 }}>
+          {label}
         </div>
-        <AddBtn onClick={() => setCoverages((r: CoverageRow[]) => [...r, newCoverage()])}>Add Coverage</AddBtn>
-      </div>
-
-      {/* Radius */}
-      <div className="space-y-4">
-        <SectionHeading>Operation Radius</SectionHeading>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-6">
-          {[
-            ["r0_50", "0-50 Miles"],
-            ["r51_200", "51-200 Miles"],
-            ["r201_500", "201-500 Miles"],
-            ["r500p", "500+ Miles"],
-            ["avg", "Average Radius"],
-            ["max", "Maximum Radius"],
-          ].map(([k, label]) => (
-            <div key={k}>
-              <FieldLabel>{label}</FieldLabel>
-              <Input
-                type="number"
-                className={fieldCls}
-                value={(radius as any)[k]}
-                onChange={(e) => setRadius((p: any) => ({ ...p, [k]: e.target.value }))}
-              />
-            </div>
-          ))}
+        <div style={{ fontFamily: "Barlow, sans-serif", fontWeight: 600, color: ORANGE, fontSize: 13, marginTop: 6, textTransform: "uppercase", letterSpacing: 1 }}>
+          {stepText}
         </div>
-      </div>
-
-      {/* Projections */}
-      <div className="space-y-4">
-        <SectionHeading>Upcoming Projections</SectionHeading>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <FieldLabel>Estimated Annual Mileage</FieldLabel>
-            <Input type="number" className={fieldCls} value={projections.mileage}
-              onChange={(e) => setProjections((p: any) => ({ ...p, mileage: e.target.value }))} />
-          </div>
-          <div>
-            <FieldLabel>Estimated Annual Revenue</FieldLabel>
-            <PrefixInput prefix="$" type="number" value={projections.revenue}
-              onChange={(v) => setProjections((p: any) => ({ ...p, revenue: v }))} />
-          </div>
-        </div>
-      </div>
-
-      {/* Commodities */}
-      <div className="space-y-4">
-        <SectionHeading>Commodities Hauled</SectionHeading>
-        <p className="text-sm text-[#475569]">Add all commodities your fleet hauls</p>
-
-        <div className="space-y-4">
-          {commodities.map((row: CommodityRow, i: number) => (
-            <div key={row.id} className="rounded-xl border border-[#e2e8f0] bg-[#f9fbff] p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#64748b]">Commodity {i + 1}</p>
-                <RemoveBtn onClick={() => removeCommodity(row.id)} />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <div>
-                  <FieldLabel>Commodity</FieldLabel>
-                  <SelectField value={row.commodity} onChange={(v) => updateCommodity(row.id, { commodity: v })} options={COMMODITIES} placeholder="Select commodity" />
-                </div>
-                <div>
-                  <FieldLabel>Hauled</FieldLabel>
-                  <SuffixInput suffix="%" type="number" value={row.hauled} onChange={(v) => updateCommodity(row.id, { hauled: v })} />
-                </div>
-                <div>
-                  <FieldLabel>Ave Load Value</FieldLabel>
-                  <PrefixInput prefix="$" type="number" value={row.aveLoad} onChange={(v) => updateCommodity(row.id, { aveLoad: v })} />
-                </div>
-                <div>
-                  <FieldLabel>Max Load Value</FieldLabel>
-                  <PrefixInput prefix="$" type="number" value={row.maxLoad} onChange={(v) => updateCommodity(row.id, { maxLoad: v })} />
-                </div>
-                <div className="lg:col-span-2">
-                  <FieldLabel>Shipper</FieldLabel>
-                  <Input className={fieldCls} value={row.shipper} onChange={(e) => updateCommodity(row.id, { shipper: e.target.value })} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <AddBtn onClick={() => setCommodities((r: CommodityRow[]) => [...r, newCommodity()])}>Add Commodity</AddBtn>
-      </div>
+      </aside>
+      <div>{children}</div>
     </div>
   );
 }
 
-/* ─────────────────────── STEP 3 ─────────────────────── */
-
-function Step3({
-  drivers, setDrivers, tractors, setTractors, trailers, setTrailers, docs, setDocs,
-}: any) {
-  const updRow = <T extends { id: string }>(setter: any) => (id: string, patch: Partial<T>) =>
-    setter((rows: T[]) => rows.map((r) => r.id === id ? { ...r, ...patch } : r));
-  const rmRow = <T extends { id: string }>(setter: any, factory: () => T) => (id: string) =>
-    setter((rows: T[]) => rows.length === 1 ? [factory()] : rows.filter((r) => r.id !== id));
-
-  const updDriver = updRow<DriverRow>(setDrivers);
-  const rmDriver = rmRow<DriverRow>(setDrivers, newDriver);
-  const updTractor = updRow<EquipmentRow>(setTractors);
-  const rmTractor = rmRow<EquipmentRow>(setTractors, newEquipment);
-  const updTrailer = updRow<EquipmentRow>(setTrailers);
-  const rmTrailer = rmRow<EquipmentRow>(setTrailers, newEquipment);
-
-  const updDoc = (id: string, patch: Partial<DocRow>) =>
-    setDocs((rows: DocRow[]) => rows.map((r) => r.id === id ? { ...r, ...patch } : r));
-  const rmDoc = (id: string) =>
-    setDocs((rows: DocRow[]) => rows.length === 1 ? [newDoc()] : rows.filter((r) => r.id !== id));
-
-  return (
-    <div className="space-y-10">
-      {/* Drivers */}
-      <div className="space-y-4">
-        <SectionHeading>Drivers</SectionHeading>
-        <div className="space-y-4">
-          {drivers.map((row: DriverRow, i: number) => (
-            <div key={row.id} className="rounded-xl border border-[#e2e8f0] bg-[#f9fbff] p-4 sm:p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#64748b]">Driver {i + 1}</p>
-                <RemoveBtn onClick={() => rmDriver(row.id)} />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <div>
-                  <FieldLabel>Driver Name</FieldLabel>
-                  <Input className={fieldCls} value={row.name} onChange={(e) => updDriver(row.id, { name: e.target.value })} />
-                </div>
-                <div>
-                  <FieldLabel>License Number</FieldLabel>
-                  <Input className={fieldCls} value={row.license} onChange={(e) => updDriver(row.id, { license: e.target.value })} />
-                </div>
-                <div>
-                  <FieldLabel>State</FieldLabel>
-                  <SelectField value={row.state} onChange={(v) => updDriver(row.id, { state: v })} options={STATES} placeholder="Select state" />
-                </div>
-                <div>
-                  <FieldLabel>Date of Birth</FieldLabel>
-                  <Input placeholder="MM/DD/YY" className={fieldCls} value={row.dob} onChange={(e) => updDriver(row.id, { dob: e.target.value })} />
-                </div>
-                <div>
-                  <FieldLabel>Years of Experience</FieldLabel>
-                  <Input type="number" className={fieldCls} value={row.experience} onChange={(e) => updDriver(row.id, { experience: e.target.value })} />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <AddBtn onClick={() => setDrivers((r: DriverRow[]) => [...r, newDriver()])}>Add Driver</AddBtn>
-      </div>
-
-      {/* Tractors */}
-      <EquipmentBlock
-        title="Tractors" rows={tractors} update={updTractor} remove={rmTractor}
-        onAdd={() => setTractors((r: EquipmentRow[]) => [...r, newEquipment()])} addLabel="Add Tractor"
-      />
-
-      {/* Trailers */}
-      <EquipmentBlock
-        title="Trailers" rows={trailers} update={updTrailer} remove={rmTrailer}
-        onAdd={() => setTrailers((r: EquipmentRow[]) => [...r, newEquipment()])} addLabel="Add Trailer"
-      />
-
-      {/* Documents */}
-      <div className="space-y-4">
-        <div>
-          <SectionHeading>Document Upload</SectionHeading>
-          <p className="mt-2 text-sm font-medium text-[#0d2b2b]">Attach Documents (Optional)</p>
-          <p className="text-sm text-[#475569]">
-            Accepted formats: PDF, JPG, PNG, DOC, DOCX — max {MAX_DOCS} documents
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          {docs.map((d: DocRow, i: number) => (
-            <DocRowComp key={d.id} doc={d} index={i} onUpdate={(p) => updDoc(d.id, p)} onRemove={() => rmDoc(d.id)} />
-          ))}
-        </div>
-        <AddBtn onClick={() => setDocs((r: DocRow[]) => r.length >= MAX_DOCS ? r : [...r, newDoc()])} disabled={docs.length >= MAX_DOCS}>
-          Add Another Document
-        </AddBtn>
-      </div>
-
-      {/* Loss runs */}
-      <div className="space-y-3">
-        <SectionHeading>Loss Runs</SectionHeading>
-        <p className="rounded-lg bg-[#f5f7fa] p-4 text-sm text-[#475569]">
-          A Custom Insurance Agency representative will be in contact with you to gather Loss Run documents.
-        </p>
-      </div>
-
-      {/* IFTA */}
-      <div className="space-y-3">
-        <SectionHeading>IFTA Documents</SectionHeading>
-        <p className="rounded-lg bg-[#f5f7fa] p-4 text-sm text-[#475569]">
-          A Custom Insurance Agency representative will be in contact with you to gather IFTA documents.
-        </p>
-      </div>
-    </div>
-  );
+function Grid2({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  return <div className="bd-grid-2" style={style}>{children}</div>;
+}
+function Grid3({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  return <div className="bd-grid-3" style={style}>{children}</div>;
 }
 
-function EquipmentBlock({
-  title, rows, update, remove, onAdd, addLabel,
-}: {
-  title: string;
-  rows: EquipmentRow[];
-  update: (id: string, patch: Partial<EquipmentRow>) => void;
-  remove: (id: string) => void;
-  onAdd: () => void;
-  addLabel: string;
-}) {
+function RadioYN({ name, value, onChange }: { name: string; value: string; onChange: (v: string) => void }) {
   return (
-    <div className="space-y-4">
-      <SectionHeading>{title}</SectionHeading>
-      <div className="space-y-4">
-        {rows.map((row, i) => (
-          <div key={row.id} className="rounded-xl border border-[#e2e8f0] bg-[#f9fbff] p-4 sm:p-5">
-            <div className="mb-3 flex items-center justify-between">
-              <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#64748b]">{title.slice(0, -1)} {i + 1}</p>
-              <RemoveBtn onClick={() => remove(row.id)} />
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <div><FieldLabel>Equipment</FieldLabel>
-                <Input className={fieldCls} value={row.equipment} onChange={(e) => update(row.id, { equipment: e.target.value })} /></div>
-              <div><FieldLabel>Year</FieldLabel>
-                <Input type="number" className={fieldCls} value={row.year} onChange={(e) => update(row.id, { year: e.target.value })} /></div>
-              <div><FieldLabel>Make</FieldLabel>
-                <Input className={fieldCls} value={row.make} onChange={(e) => update(row.id, { make: e.target.value })} /></div>
-              <div><FieldLabel>VIN</FieldLabel>
-                <Input className={fieldCls} value={row.vin} onChange={(e) => update(row.id, { vin: e.target.value })} /></div>
-              <div><FieldLabel>Value</FieldLabel>
-                <PrefixInput prefix="$" type="number" value={row.value} onChange={(v) => update(row.id, { value: v })} /></div>
-              <div><FieldLabel>Lienholder</FieldLabel>
-                <Input className={fieldCls} value={row.lienholder} onChange={(e) => update(row.id, { lienholder: e.target.value })} /></div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <AddBtn onClick={onAdd}>{addLabel}</AddBtn>
-    </div>
-  );
-}
-
-/* ───────────── reusable inputs ───────────── */
-
-function SelectField({
-  value, onChange, options, placeholder,
-}: { value: string; onChange: (v: string) => void; options: string[]; placeholder?: string }) {
-  return (
-    <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className={cn(fieldCls, "data-[placeholder]:text-[#94a3b8]")}>
-        <SelectValue placeholder={placeholder ?? "Select..."} />
-      </SelectTrigger>
-      <SelectContent className="max-h-72">
-        {options.map((o) => <SelectItem key={o} value={o}>{o}</SelectItem>)}
-      </SelectContent>
-    </Select>
-  );
-}
-
-function PrefixInput({
-  prefix, value, onChange, type = "text",
-}: { prefix: string; value: string; onChange: (v: string) => void; type?: string }) {
-  return (
-    <div className={cn(fieldCls, "flex items-center gap-2 px-3 py-0")}>
-      <span className="text-sm font-semibold text-[#64748b]">{prefix}</span>
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="h-full w-full bg-transparent text-[15px] text-[#0d2b2b] outline-none placeholder:text-[#94a3b8]"
-      />
-    </div>
-  );
-}
-
-function SuffixInput({
-  suffix, value, onChange, type = "text",
-}: { suffix: string; value: string; onChange: (v: string) => void; type?: string }) {
-  return (
-    <div className={cn(fieldCls, "flex items-center gap-2 px-3 py-0")}>
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="h-full w-full bg-transparent text-[15px] text-[#0d2b2b] outline-none placeholder:text-[#94a3b8]"
-      />
-      <span className="text-sm font-semibold text-[#64748b]">{suffix}</span>
-    </div>
-  );
-}
-
-function DocRowComp({
-  doc, index, onUpdate, onRemove,
-}: {
-  doc: DocRow; index: number; onUpdate: (p: Partial<DocRow>) => void; onRemove: () => void;
-}) {
-  const [drag, setDrag] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const onDrop = (e: DragEvent) => {
-    e.preventDefault();
-    setDrag(false);
-    const f = e.dataTransfer.files?.[0];
-    if (f) onUpdate({ file: f });
-  };
-
-  return (
-    <div className="rounded-xl border border-[#e2e8f0] bg-[#f9fbff] p-4 sm:p-5">
-      <div className="mb-3 flex items-center justify-between">
-        <p className="text-[11px] font-bold uppercase tracking-[1.5px] text-[#64748b]">Document {index + 1}</p>
-        <RemoveBtn onClick={onRemove} />
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <FieldLabel>Document Type</FieldLabel>
-          <SelectField value={doc.docType} onChange={(v) => onUpdate({ docType: v })} options={DOC_TYPES} placeholder="Select type..." />
-          {doc.docType === "Other" && (
-            <Input
-              className={cn(fieldCls, "mt-2")}
-              placeholder="Document Name"
-              value={doc.customName}
-              onChange={(e) => onUpdate({ customName: e.target.value })}
-            />
-          )}
-        </div>
-        <div>
-          <FieldLabel>File</FieldLabel>
-          <div
-            onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
-            onDragLeave={() => setDrag(false)}
-            onDrop={onDrop}
-            onClick={() => inputRef.current?.click()}
-            className={cn(
-              "flex min-h-[52px] cursor-pointer items-center justify-between gap-3 rounded-lg border-[1.5px] border-dashed px-3 py-2 text-sm transition-all",
-              drag ? "border-[#3eaa6d] bg-[#3eaa6d]/5" : "border-[#cbd5e1] bg-white hover:border-[#3eaa6d]/60",
-            )}
-          >
-            <span className={cn("truncate", doc.file ? "text-[#0d2b2b]" : "text-[#94a3b8]")}>
-              {doc.file ? doc.file.name : "Drag file here or click to choose"}
-            </span>
-            <span
-              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold text-white"
-              style={{ background: BLUE }}
-            >
-              <Upload className="h-3 w-3" /> Choose File
-            </span>
-            <input
-              ref={inputRef}
-              type="file"
-              accept={ACCEPT}
-              className="hidden"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                if (f) onUpdate({ file: f });
-              }}
-            />
-          </div>
-        </div>
-      </div>
+    <div style={{ display: "flex", gap: 24, fontFamily: "Inter, sans-serif", fontSize: 14, color: "#0d2b2b" }}>
+      {["Yes", "No"].map((opt) => (
+        <label key={opt} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
+          <input type="radio" name={name} value={opt} checked={value === opt} onChange={() => onChange(opt)} />
+          {opt}
+        </label>
+      ))}
     </div>
   );
 }
