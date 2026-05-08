@@ -780,6 +780,7 @@ export default function GetAQuote() {
                 <div />
                 <button
                   type="submit"
+                  className="bd-submit"
                   style={{
                     width: "100%",
                     background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
@@ -816,11 +817,27 @@ export default function GetAQuote() {
         .bd-step-aside { position: sticky; top: 130px; align-self: start; }
         .bd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .bd-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .bd-step-mobile-indicator { display: none; }
         @media (max-width: 768px) {
           .bd-step { grid-template-columns: 1fr; gap: 16px; }
           .bd-step-aside { position: static; }
           .bd-grid-2, .bd-grid-3 { grid-template-columns: 1fr !important; }
           .bd-half { max-width: 100% !important; }
+          .bd-hero { height: auto !important; min-height: 200px; padding: 80px 20px 40px; }
+          .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
+          .bd-intro { padding: 32px 20px !important; }
+          .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
+          .bd-form { padding: 0 20px 48px !important; }
+          .bd-step { scroll-margin-top: 130px; }
+          .bd-step-aside { display: none !important; }
+          .bd-step-mobile-indicator { display: block; font-family: 'Barlow', sans-serif; font-weight: 600; color: ${ORANGE}; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+          .bd-submit { min-height: 56px; font-size: 16px !important; padding: 16px 24px !important; }
+          .bd-add-btn { width: 100% !important; min-height: 48px !important; padding: 14px 24px !important; }
+          .bd-remove-wrap { text-align: left !important; }
+          .bd-remove-btn { width: 100% !important; min-height: 44px !important; padding: 10px 14px !important; font-size: 14px !important; }
+          input, select, textarea { font-size: 16px !important; }
+          label[type="radio"], input[type="radio"] { min-width: 24px; min-height: 24px; }
+          html, body { overflow-x: hidden; }
         }
       `}</style>
     </div>
@@ -840,7 +857,10 @@ function Step({ label, stepText, children }: { label: string; stepText: string; 
           {stepText}
         </div>
       </aside>
-      <div>{children}</div>
+      <div>
+        <div className="bd-step-mobile-indicator">{stepText} — {label}</div>
+        {children}
+      </div>
     </div>
   );
 }
