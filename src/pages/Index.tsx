@@ -111,82 +111,73 @@ const Index = () => {
       <Navbar />
       <Hero />
 
-      {/* SECTION 1 — WHY CHOOSE US */}
-      <section className="bg-white px-6 py-14 md:px-14" style={{ paddingTop: 72, paddingBottom: 72 }}>
-        <div className="mx-auto max-w-[1100px]">
-          <p className={EYEBROW}>Why Choose Us</p>
-          <h2
-            className="mt-3 leading-tight text-[#0d2b2b]"
-            data-rebuild-marker="homepage-why-choose-us-2026-05-08"
-            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", border: "2px dashed #f5821f" }}
-          >
-            Why Choose Custom Insurance Agency?
-          </h2>
-          <div className="mt-8">
-            {features.map((f, i) => (
-              <div
-                key={f.title}
-                className="flex flex-col gap-4 py-6 md:flex-row md:items-start md:gap-5"
-                style={{ borderTop: i === 0 ? "none" : "1px solid #f0f0f0" }}
+      {/* COMBINED SECTION — WHY CHOOSE US + GET A QUOTE */}
+      <section className="bg-white">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-1 md:grid-cols-[60%_40%]">
+          {/* LEFT — Why Choose Us */}
+          <div className="bg-white px-5 py-12 md:px-14" style={{ paddingTop: 72, paddingBottom: 72, paddingLeft: undefined }}>
+            <div className="md:pl-2 md:pr-8" style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <p className={EYEBROW}>Why Choose Us</p>
+              <h2
+                className="mt-3 leading-tight text-[#0d2b2b]"
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4.2vw, 42px)" }}
               >
-                <div
-                  className="flex shrink-0 items-center justify-center rounded-full text-[20px] text-[#2abfbf]"
-                  style={{ width: 48, height: 48, background: "#e8f0fb" }}
-                >
-                  {f.icon}
-                </div>
-                <div className="flex-1">
-                  <h3
-                    className="text-[#2abfbf]"
-                    style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, fontSize: 18 }}
+                Why Choose Custom Insurance Agency?
+              </h2>
+              <div className="mt-8">
+                {features.map((f, i) => (
+                  <div
+                    key={f.title}
+                    className="flex flex-col gap-4 py-6 md:flex-row md:items-start md:gap-5"
+                    style={{ borderTop: i === 0 ? "none" : "1px solid #f0f0f0" }}
                   >
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] text-[#4a5568]" style={{ lineHeight: 1.6 }}>
-                    {f.text}
-                  </p>
-                </div>
+                    <div
+                      className="flex shrink-0 items-center justify-center rounded-full text-[20px] text-[#2abfbf]"
+                      style={{ width: 48, height: 48, background: "#e8f0fb" }}
+                    >
+                      {f.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3
+                        className="text-[#2abfbf]"
+                        style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, fontSize: 18 }}
+                      >
+                        {f.title}
+                      </h3>
+                      <p className="mt-2 text-[15px] text-[#4a5568]" style={{ lineHeight: 1.6 }}>
+                        {f.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* SECTION 2 — GET A QUOTE FORM */}
-      <section className="bg-dark-gradient">
-        <div className="mx-auto grid max-w-[1200px] grid-cols-1 md:grid-cols-2">
-          <div className="flex flex-col justify-center px-6 py-12 md:px-12 md:py-14">
+          {/* RIGHT — Get A Quote */}
+          <div
+            style={{
+              background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 60%, #0d2b2b 100%)",
+              padding: "56px 40px",
+            }}
+            className="md:sticky md:top-0 md:self-start"
+          >
             <p className={EYEBROW}>Free Quote</p>
             <h2
-              className="mt-3 text-white leading-tight"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 38px)" }}
+              className="mt-2 text-white leading-tight"
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 32 }}
             >
               Get A Quote
             </h2>
-            <p className="mt-4 text-[15px] text-white/65">
-              Our agents will find you the best coverage at the best price.
-            </p>
             <a
               href="tel:7088101955"
-              className="mt-6 block text-[#f5c518]"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 28 }}
+              className="mt-4 block text-[#f5c518]"
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
             >
               📞 708-810-1955
             </a>
             <p className="mt-1 text-[13px] text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</p>
-            <ul className="mt-6 space-y-2 text-[14px] text-white/70">
-              {["50+ insurance carriers", "Response within 24 hours", "No obligation quote"].map((b) => (
-                <li key={b} className="flex items-center gap-2">
-                  <span className="text-[#2abfbf] font-bold">✓</span>
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            className="px-6 py-12 md:py-12"
-            style={{ padding: "48px 40px", borderLeft: "1px solid rgba(255,255,255,0.1)" }}
-          >
+            <div className="my-5 h-px w-full" style={{ background: "rgba(255,255,255,0.1)" }} />
             <QuoteForm />
           </div>
         </div>
