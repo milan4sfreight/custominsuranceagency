@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-const volvoTruck = "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7";
+import volvoTruck from "@/assets/hero-truck-highway.png";
 
 /* ───────── constants ───────── */
 
