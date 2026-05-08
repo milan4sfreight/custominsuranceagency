@@ -11,9 +11,9 @@ const EYEBROW = "text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfb
 const FONT = "font-['Inter',sans-serif]";
 
 const features = [
-  { icon: "🌐", title: "We Speak Your Language", text: "Whether it's Spanish, Bosnian, or the language of trucking. Operating ratios or CSA scores. We get it. Our diverse team of experts works closely with you to ensure that you make the best decisions to protect your business. We understand the road you're on — and we want to ride along." },
-  { icon: "🚀", title: "We Build Your Perfect Strategy", text: "We start by listening. By leveraging our extensive network of over 50 insurance companies, we create a customized strategy that aligns with your goals and priorities. Whether you are a small operation with a single truck or a large enterprise with a fleet, we have you covered." },
-  { icon: "🏆", title: "We Go The Extra Mile", text: "At Custom Insurance Agency, we offer guidance on industry changes, help you file claims, and assist in fixing any incorrect violations. We provide fast and direct online access to certificates of insurance. No runaround — just results." },
+  { icon: "🌐", title: "We Speak Your Language", text: "Whether it's Spanish, Bosnian, or the language of trucking — operating ratios or CSA scores, we get it. Our diverse team works closely with you to protect your business." },
+  { icon: "🚀", title: "We Build Your Perfect Strategy", text: "We start by listening. Leveraging our network of 50+ insurance companies, we create a customized strategy aligned with your goals — from a single truck to a full fleet." },
+  { icon: "🏆", title: "We Go The Extra Mile", text: "We offer guidance on industry changes, help you file claims, and assist in fixing incorrect violations. Fast, direct online access to certificates of insurance. No runaround — just results." },
 ];
 
 const stats = [
@@ -31,27 +31,28 @@ const formatPhone = (v: string) => {
 };
 
 const inputCls =
-  "w-full rounded-lg border border-white/15 bg-white/[0.08] px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-[#3eaa6d] focus:shadow-[0_0_0_3px_rgba(62,170,109,0.15)]";
+  "w-full rounded-lg border border-white/15 bg-white/[0.08] px-[14px] py-[11px] text-[14px] text-white placeholder:text-white/35 outline-none transition focus:border-[#2abfbf] focus:shadow-[0_0_0_3px_rgba(42,191,191,0.15)]";
+
+const labelCls = "mb-2 block text-[11px] font-semibold uppercase tracking-[1px] text-[#2abfbf]";
 
 const QuoteForm = () => {
   const [phone, setPhone] = useState("");
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="rounded-2xl border border-white/10 bg-white/[0.06] p-9"
+      className="grid gap-4"
     >
-      <div className="grid gap-4">
         <div>
-          <label className={`${EYEBROW} mb-2 block`}>Name *</label>
+          <label className={labelCls}>Name *</label>
           <input required maxLength={100} className={inputCls} placeholder="John Smith" />
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label className={`${EYEBROW} mb-2 block`}>Email *</label>
+            <label className={labelCls}>Email *</label>
             <input required type="email" maxLength={255} className={inputCls} placeholder="you@email.com" />
           </div>
           <div>
-            <label className={`${EYEBROW} mb-2 block`}>Phone *</label>
+            <label className={labelCls}>Phone *</label>
             <input
               required
               value={phone}
@@ -62,12 +63,12 @@ const QuoteForm = () => {
           </div>
         </div>
         <div>
-          <label className={`${EYEBROW} mb-2 block`}>Address *</label>
+          <label className={labelCls}>Address *</label>
           <input required maxLength={200} className={inputCls} placeholder="Street, City, ZIP" />
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label className={`${EYEBROW} mb-2 block`}>State *</label>
+            <label className={labelCls}>State *</label>
             <select required className={inputCls + " appearance-none"}>
               <option value="" className="text-[#0d2b2b]">Select state</option>
               {US_STATES.map((s) => (
@@ -76,7 +77,7 @@ const QuoteForm = () => {
             </select>
           </div>
           <div>
-            <label className={`${EYEBROW} mb-2 block`}>Language</label>
+            <label className={labelCls}>Language</label>
             <select className={inputCls + " appearance-none"} defaultValue="English">
               {["English","Español","Russian"].map((l) => (
                 <option key={l} value={l} className="text-[#0d2b2b]">{l}</option>
@@ -85,20 +86,20 @@ const QuoteForm = () => {
           </div>
         </div>
         <div>
-          <label className={`${EYEBROW} mb-2 block`}>Comments / Questions</label>
-          <textarea rows={4} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." />
+          <label className={labelCls}>Comments / Questions</label>
+          <textarea rows={3} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." />
         </div>
-        <label className="flex items-start gap-3 text-[13px] leading-[1.6] text-white/70">
-          <input type="checkbox" className="mt-1 h-4 w-4 accent-[#3eaa6d]" />
+        <label className="flex items-start gap-3 text-[12px] leading-[1.6] text-white/60">
+          <input type="checkbox" className="mt-1 h-4 w-4 accent-[#2abfbf]" />
           <span>By checking this box, I consent to receive SMS messages from Custom Insurance Agency regarding my insurance quote. Message and data rates may apply. Reply STOP to unsubscribe.</span>
         </label>
         <button
           type="submit"
-          className="mt-2 w-full rounded-lg bg-[#3eaa6d] px-6 py-[14px] text-[14px] font-semibold uppercase tracking-wider text-white transition hover:bg-[#2d9960]"
+          className="mt-2 w-full rounded-lg px-6 py-[13px] text-[14px] font-semibold uppercase tracking-wider text-white transition hover:brightness-110"
+          style={{ background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)", fontFamily: "'Barlow', sans-serif" }}
         >
           Get Quote
         </button>
-      </div>
     </form>
   );
 };
@@ -111,21 +112,38 @@ const Index = () => {
       <Hero />
 
       {/* SECTION 1 — WHY CHOOSE US */}
-      <section className="bg-white px-6 py-20 md:px-14 md:py-24">
+      <section className="bg-white px-6 py-14 md:px-14" style={{ paddingTop: 72, paddingBottom: 72 }}>
         <div className="mx-auto max-w-[1100px]">
           <p className={EYEBROW}>Why Choose Us</p>
-          <h2 className="mt-3 text-[32px] md:text-[42px] font-bold leading-tight text-[#0d2b2b]">
+          <h2
+            className="mt-3 leading-tight text-[#0d2b2b]"
+            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)" }}
+          >
             Why Choose Custom Insurance Agency?
           </h2>
-          <div className="mt-12 divide-y divide-[#e2e8f0]">
-            {features.map((f) => (
-              <div key={f.title} className="flex flex-col gap-6 py-10 md:flex-row md:items-start md:gap-8">
-                <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#e8f5ee] text-[28px] text-[#3eaa6d]">
+          <div className="mt-8">
+            {features.map((f, i) => (
+              <div
+                key={f.title}
+                className="flex flex-col gap-4 py-6 md:flex-row md:items-start md:gap-5"
+                style={{ borderTop: i === 0 ? "none" : "1px solid #f0f0f0" }}
+              >
+                <div
+                  className="flex shrink-0 items-center justify-center rounded-full text-[20px] text-[#2abfbf]"
+                  style={{ width: 48, height: 48, background: "#e8f0fb" }}
+                >
                   {f.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-[20px] font-bold text-[#3eaa6d]">{f.title}</h3>
-                  <p className="mt-3 text-[16px] leading-[1.75] text-[#4a5568]">{f.text}</p>
+                  <h3
+                    className="text-[#2abfbf]"
+                    style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, fontSize: 18 }}
+                  >
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-[15px] text-[#4a5568]" style={{ lineHeight: 1.6 }}>
+                    {f.text}
+                  </p>
                 </div>
               </div>
             ))}
@@ -134,20 +152,40 @@ const Index = () => {
       </section>
 
       {/* SECTION 2 — GET A QUOTE FORM */}
-      <section className="bg-dark-gradient px-6 py-20 md:px-14 md:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-12 md:grid-cols-5">
-          <div className="flex flex-col justify-center md:col-span-2">
+      <section className="bg-dark-gradient">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 md:grid-cols-2">
+          <div className="flex flex-col justify-center px-6 py-12 md:px-12 md:py-14">
             <p className={EYEBROW}>Free Quote</p>
-            <h2 className="mt-3 text-[34px] md:text-[42px] font-bold leading-tight text-white">Get A Quote</h2>
-            <p className="mt-4 text-[18px] leading-relaxed text-white/60">
+            <h2
+              className="mt-3 text-white leading-tight"
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4vw, 38px)" }}
+            >
+              Get A Quote
+            </h2>
+            <p className="mt-4 text-[15px] text-white/65">
               Our agents will find you the best coverage at the best price.
             </p>
-            <a href="tel:7088101955" className="mt-8 block text-[24px] md:text-[28px] font-bold text-[#3eaa6d]">
+            <a
+              href="tel:7088101955"
+              className="mt-6 block text-[#f5c518]"
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 28 }}
+            >
               📞 708-810-1955
             </a>
-            <p className="mt-2 text-[14px] text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</p>
+            <p className="mt-1 text-[13px] text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</p>
+            <ul className="mt-6 space-y-2 text-[14px] text-white/70">
+              {["50+ insurance carriers", "Response within 24 hours", "No obligation quote"].map((b) => (
+                <li key={b} className="flex items-center gap-2">
+                  <span className="text-[#2abfbf] font-bold">✓</span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="md:col-span-3">
+          <div
+            className="px-6 py-12 md:py-12"
+            style={{ padding: "48px 40px", borderLeft: "1px solid rgba(255,255,255,0.1)" }}
+          >
             <QuoteForm />
           </div>
         </div>
