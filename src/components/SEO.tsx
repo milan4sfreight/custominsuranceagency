@@ -33,6 +33,7 @@ export const SEO = ({ title, description, image, url, imageWidth, imageHeight }:
 
     if (image) {
       setMeta('meta[property="og:image"]', "property", "og:image", image);
+      setMeta('meta[property="og:image:secure_url"]', "property", "og:image:secure_url", image);
       setMeta('meta[name="twitter:image"]', "name", "twitter:image", image);
       setMeta('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
       if (imageWidth) {
