@@ -162,6 +162,17 @@ const Index = () => {
             }}
             className="md:sticky md:top-0 md:self-start"
           >
+            <div
+              style={{
+                background: "rgba(255, 255, 255, 0.06)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                borderRadius: 16,
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+                padding: "36px 32px",
+                backdropFilter: "blur(4px)",
+                WebkitBackdropFilter: "blur(4px)",
+              }}
+            >
             <p className={EYEBROW}>Free Quote</p>
             <h2
               className="mt-2 text-white leading-tight"
@@ -179,6 +190,7 @@ const Index = () => {
             <p className="mt-1 text-[13px] text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</p>
             <div className="my-5 h-px w-full" style={{ background: "rgba(255,255,255,0.1)" }} />
             <QuoteForm />
+            </div>
           </div>
         </div>
       </section>
