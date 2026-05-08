@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import volvoTruck from "@/assets/volvo-vnl-860.jpg";
 
 /* ───────── constants ───────── */
 
@@ -275,7 +276,7 @@ export default function GetAQuote() {
         style={{
           width: "100%",
           height: 280,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(https://images.unsplash.com/photo-1601584115197-04ecc0da31d7)`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${volvoTruck})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
