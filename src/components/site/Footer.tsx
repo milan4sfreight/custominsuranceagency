@@ -1,6 +1,13 @@
 import logo from "@/assets/logo.png";
 
-const quoteLinks = ["Auto", "Homeowners", "Renters", "Business", "Life & Health"];
+const quoteLinks: { label: string; href: string }[] = [
+  { label: "Auto", href: "#" },
+  { label: "Homeowners", href: "#" },
+  { label: "Renters", href: "#" },
+  { label: "Business", href: "#" },
+  { label: "Life & Health", href: "#" },
+  { label: "OCC/ACC Enrollment", href: "/occ-accident-enrollment" },
+];
 const moreLinks = ["Trucking", "Flood", "Motorcycle", "Watercraft & Boat", "Recreational Vehicle"];
 const companyLinks: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
