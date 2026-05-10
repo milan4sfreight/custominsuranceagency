@@ -165,6 +165,13 @@ function buildFilename(input: SendQuoteEmailInput) {
 }
 
 export async function sendQuoteEmail(input: SendQuoteEmailInput) {
+  console.log("[sendQuoteEmail] invoking edge function", {
+    formKind: input.formKind,
+    source: input.source,
+    primaryName: input.primaryName,
+    customerEmail: input.customerEmail,
+    sections: input.sections.map((s) => s.title),
+  });
   const pdfBase64 = buildPdfBase64(input);
   const filename = buildFilename(input);
   const subject = buildSubject(input);
@@ -191,10 +198,15 @@ export async function sendQuoteEmail(input: SendQuoteEmailInput) {
       attachment: { filename, contentBase64: pdfBase64 },
     },
   });
-  if (error) throw error;
+  if (error) {
+    console.error("[sendQuoteEmail] invoke error", error);
+    throw error;
+  }
   if (data && (data as { error?: string }).error) {
+    console.error("[sendQuoteEmail] function returned error", data);
     throw new Error((data as { error: string }).error);
   }
+  console.log("[sendQuoteEmail] success", data);
   return data;
 }
 
