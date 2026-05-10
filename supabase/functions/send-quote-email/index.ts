@@ -124,7 +124,7 @@ Deno.serve(async (req) => {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: "Custom Insurance Quotes <Quotes@custominsure.com>",
+        from: "Custom Insurance Quotes <onboarding@resend.dev>",
         to: ["Quotes@custominsure.com"],
         reply_to: body.customerEmail ? [body.customerEmail] : undefined,
         subject: body.subject,
