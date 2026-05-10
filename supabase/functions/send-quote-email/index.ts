@@ -128,6 +128,15 @@ Deno.serve(async (req) => {
     if (!apiKey) return json({ error: "Email service not configured" }, 500);
 
     const body = (await req.json()) as Payload;
+    console.log("[send-quote-email] received submission", {
+      subject: body?.subject,
+      source: body?.source,
+      formKind: body?.formKind,
+      primaryName: body?.primaryName,
+      customerEmail: body?.customerEmail,
+      hasAttachment: !!body?.attachment?.contentBase64,
+      sectionsCount: body?.sections?.length ?? 0,
+    });
     if (!body?.subject) return json({ error: "Missing subject" }, 400);
 
     const html = buildHtml(body);
@@ -143,7 +152,7 @@ Deno.serve(async (req) => {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: "Custom Insurance Quotes <onboarding@resend.dev>",
+        from: "Custom Insurance Agency <Quotes@custominsure.com>",
         to: ["Quotes@custominsure.com"],
         reply_to: body.customerEmail ? [body.customerEmail] : undefined,
         subject: body.subject,
@@ -154,10 +163,11 @@ Deno.serve(async (req) => {
 
     const data = await r.json();
     if (!r.ok) {
-      console.error("Resend error", data);
+      console.error("[send-quote-email] Resend error", { status: r.status, data });
       return json({ error: data?.message || "Email send failed" }, 502);
     }
 
+    console.log("[send-quote-email] sent successfully", { id: data?.id });
     return json({ success: true, id: data?.id });
   } catch (e) {
     console.error(e);
