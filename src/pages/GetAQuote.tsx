@@ -5,6 +5,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import volvoTruck from "@/assets/hero-truck-highway.png";
+import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 /* ───────── constants ───────── */
 
@@ -188,6 +189,7 @@ export default function GetAQuote() {
   const [effectiveDate, setEffectiveDate] = useState("");
 
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "error">("idle");
 
   /* helpers */
   const updateList = <T,>(list: T[], setList: (v: T[]) => void, i: number, patch: Partial<T>) =>
@@ -211,7 +213,7 @@ export default function GetAQuote() {
     });
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const errs: Record<string, boolean> = {};
     const req = (k: string, v: string) => { if (!v.trim()) errs[k] = true; };
@@ -255,8 +257,58 @@ export default function GetAQuote() {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (submitStatus === "sending") return;
+    setSubmitStatus("sending");
+    try {
+      await sendQuoteEmail({
+        subject: "New Trucking Insurance Quote Request",
+        source: "Get A Quote — Trucking (7-step form)",
+        customerName: companyName,
+        customerEmail: email,
+        customerPhone: phone,
+        fields: {
+          "USDOT #": usDot,
+          "MC #": mc,
+          "Other Filing #": other,
+          "Tax ID": taxId,
+          "Company Name": companyName,
+          DBA: dba,
+          Phone: phone,
+          Email: email,
+          "Entity Type": entity,
+          "Years in Business": yearsInBiz,
+          "Federal Filings": fedFilings,
+          "Physical Address": `${pAddr1} ${pAddr2}, ${pCity}, ${pState} ${pZip}`.trim(),
+          "Mailing Address": `${mAddr1} ${mAddr2}, ${mCity}, ${mState} ${mZip}`.trim(),
+          "Bad Weather Days": badDays,
+          Owners: owners,
+          "Operating Area": area,
+          "Operating Radius": radius,
+          Vehicles: vehicles,
+          Drivers: drivers,
+          Commodities: commodities,
+          "Auto Liability Limit": alLimit === "Other" ? alLimitOther : alLimit,
+          "Auto Liability Deductible": alDed,
+          "Motor Truck Cargo Limit": mtcLimit === "Other" ? mtcLimitOther : mtcLimit,
+          "Motor Truck Cargo Deductible": mtcDed === "Other" ? mtcDedOther : mtcDed,
+          "Coverage Notes": coverageNotes,
+          "Losses (last 5 yrs)": losses,
+          "Losses When": lossesWhen,
+          "Losses Comments": lossesComments,
+          "Current Carrier": currentCarrier,
+          "Renewal Date": renewalDate,
+          "Current Premiums": currentPremiums,
+          "Effective Date": effectiveDate,
+        },
+      });
+      setSubmitted(true);
+      setSubmitStatus("idle");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus("error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const err = (k: string) => errors[k];
