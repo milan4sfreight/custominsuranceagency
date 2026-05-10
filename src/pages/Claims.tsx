@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
 
@@ -51,13 +52,37 @@ const Claims = () => {
     description: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      await sendQuoteEmail({
+        subject: "New Claim Submission",
+        source: "Claims Page",
+        customerName: form.name,
+        customerEmail: form.email,
+        customerPhone: form.phone,
+        fields: {
+          "Full Name": form.name,
+          "Policy Number": form.policy,
+          Phone: form.phone,
+          Email: form.email,
+          "Type of Claim": form.type,
+          "Description": form.description,
+        },
+      });
+      setSubmitted(true);
+      setStatus("idle");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   return (
@@ -158,8 +183,8 @@ const Claims = () => {
           >
             <h3 className="text-[20px] font-bold text-[#0d2b2b]" style={barlow}>Start Your Claim</h3>
             {submitted ? (
-              <p className="mt-4 rounded-md bg-[#3eaa6d]/10 p-4 text-[14px] text-[#0d2b2b]">
-                Thanks — your claim has been submitted. Our team will contact you shortly.
+              <p className="mt-4 rounded-md border border-green-500/40 bg-green-500/10 p-4 text-[14px] font-semibold text-[#15803d]">
+                {SUCCESS_MSG}
               </p>
             ) : (
               <div className="mt-5 space-y-4">
@@ -192,11 +217,17 @@ const Claims = () => {
                     className="mt-1 w-full rounded-md border border-[#e2e8f0] bg-white px-3 py-2 text-[14px] text-[#0d2b2b] focus:border-[#3eaa6d] focus:outline-none"
                   />
                 </div>
+                {status === "error" && (
+                  <p className="rounded-md border border-red-500/40 bg-red-500/10 p-3 text-[13px] font-semibold text-[#b91c1c]">
+                    {ERROR_MSG}
+                  </p>
+                )}
                 <button
                   type="submit"
+                  disabled={status === "sending"}
                   className="btn-quote w-full px-6 py-3 text-[14px] uppercase tracking-wider"
                 >
-                  Submit Claim
+                  {status === "sending" ? "Sending…" : "Submit Claim"}
                 </button>
               </div>
             )}

@@ -1,0 +1,153 @@
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
+interface Payload {
+  subject: string;
+  source: string; // page name
+  fields: Record<string, unknown>;
+  customerName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+}
+
+function escapeHtml(s: string) {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderValue(v: unknown): string {
+  if (v === null || v === undefined || v === "") return "<em style='color:#999'>—</em>";
+  if (Array.isArray(v)) {
+    if (v.length === 0) return "<em style='color:#999'>—</em>";
+    if (typeof v[0] === "object") {
+      return v
+        .map(
+          (item, i) =>
+            `<div style="margin:8px 0;padding:8px 12px;background:#f5f7fa;border-radius:6px;"><strong>#${
+              i + 1
+            }</strong><br/>${renderObject(item as Record<string, unknown>)}</div>`,
+        )
+        .join("");
+    }
+    return escapeHtml(v.join(", "));
+  }
+  if (typeof v === "object") return renderObject(v as Record<string, unknown>);
+  return escapeHtml(String(v));
+}
+
+function renderObject(obj: Record<string, unknown>): string {
+  return Object.entries(obj)
+    .map(
+      ([k, v]) =>
+        `<div style="margin:2px 0;font-size:13px;"><span style="color:#475569;">${escapeHtml(
+          k,
+        )}:</span> ${renderValue(v)}</div>`,
+    )
+    .join("");
+}
+
+function buildHtml(p: Payload): string {
+  const ts = new Date().toLocaleString("en-US", { timeZone: "America/Chicago", dateStyle: "full", timeStyle: "short" });
+  const rows = Object.entries(p.fields)
+    .map(
+      ([k, v]) => `
+      <tr>
+        <td style="padding:10px 12px;border-bottom:1px solid #e2e8f0;font-weight:600;color:#0d2b2b;width:40%;vertical-align:top;">${escapeHtml(
+          k,
+        )}</td>
+        <td style="padding:10px 12px;border-bottom:1px solid #e2e8f0;color:#334155;">${renderValue(v)}</td>
+      </tr>`,
+    )
+    .join("");
+
+  return `<!doctype html><html><body style="margin:0;padding:0;background:#f5f7fa;font-family:Arial,sans-serif;">
+    <div style="max-width:680px;margin:0 auto;padding:24px;background:#ffffff;">
+      <div style="background:linear-gradient(135deg,#0f2a42 0%,#173b5d 100%);padding:24px;border-radius:8px 8px 0 0;color:#fff;">
+        <h1 style="margin:0;font-size:22px;">${escapeHtml(p.subject)}</h1>
+        <p style="margin:6px 0 0;font-size:13px;color:#cbd5e1;">Submitted from: <strong>${escapeHtml(
+          p.source,
+        )}</strong> · ${escapeHtml(ts)}</p>
+      </div>
+      <div style="padding:24px;border:1px solid #e2e8f0;border-top:0;border-radius:0 0 8px 8px;">
+        ${
+          p.customerName
+            ? `<p style="font-size:18px;margin:0 0 8px;"><strong>${escapeHtml(p.customerName)}</strong></p>`
+            : ""
+        }
+        ${
+          p.customerPhone
+            ? `<p style="font-size:15px;margin:4px 0;color:#0d2b2b;">📞 <strong>${escapeHtml(
+                p.customerPhone,
+              )}</strong></p>`
+            : ""
+        }
+        ${
+          p.customerEmail
+            ? `<p style="font-size:15px;margin:4px 0;color:#0d2b2b;">✉️ <strong>${escapeHtml(
+                p.customerEmail,
+              )}</strong></p>`
+            : ""
+        }
+        <hr style="border:0;border-top:1px solid #e2e8f0;margin:16px 0;"/>
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">${rows}</table>
+      </div>
+    </div>
+  </body></html>`;
+}
+
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+
+  try {
+    const apiKey = Deno.env.get("RESEND_API_KEY");
+    if (!apiKey) {
+      return json({ error: "Email service not configured" }, 500);
+    }
+    const body = (await req.json()) as Payload;
+    if (!body?.subject || !body?.fields) {
+      return json({ error: "Missing required fields" }, 400);
+    }
+
+    const html = buildHtml(body);
+
+    const r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        from: "Custom Insurance Quotes <Quotes@custominsure.com>",
+        to: ["Quotes@custominsure.com"],
+        reply_to: body.customerEmail ? [body.customerEmail] : undefined,
+        subject: body.subject,
+        html,
+      }),
+    });
+
+    const data = await r.json();
+    if (!r.ok) {
+      console.error("Resend error", data);
+      return json({ error: data?.message || "Email send failed" }, 502);
+    }
+
+    return json({ success: true, id: data?.id });
+  } catch (e) {
+    console.error(e);
+    return json({ error: e instanceof Error ? e.message : "Unknown error" }, 500);
+  }
+});
+
+function json(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}

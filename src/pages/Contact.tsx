@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1423666639041-f56000c27a9a";
 const barlow = { fontFamily: "'Barlow', sans-serif" };
@@ -45,8 +46,9 @@ const contactItems = [
 
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const data = {
@@ -62,12 +64,33 @@ const Contact = () => {
       toast.error(parsed.error.issues[0]?.message ?? "Please check your inputs");
       return;
     }
+    const form = e.currentTarget;
     setSubmitting(true);
-    setTimeout(() => {
+    setStatus("idle");
+    try {
+      await sendQuoteEmail({
+        subject: "New Contact Form Submission",
+        source: "Contact Page",
+        customerName: `${data.firstName} ${data.lastName}`.trim(),
+        customerEmail: data.email,
+        customerPhone: data.phone,
+        fields: {
+          "First Name": data.firstName,
+          "Last Name": data.lastName,
+          Email: data.email,
+          Phone: data.phone,
+          "Inquiry Type": data.inquiry,
+          Message: data.message,
+        },
+      });
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    } finally {
       setSubmitting(false);
-      toast.success("Thanks! We'll be in touch shortly.");
-      (e.target as HTMLFormElement).reset();
-    }, 600);
+    }
   };
 
   const inputCls =
@@ -187,6 +210,16 @@ const Contact = () => {
             >
               {submitting ? "Sending…" : "Send Message"}
             </button>
+            {status === "success" && (
+              <p className="mt-3 rounded-md border border-green-500/40 bg-green-500/10 p-3 text-[13px] font-semibold text-[#15803d]">
+                {SUCCESS_MSG}
+              </p>
+            )}
+            {status === "error" && (
+              <p className="mt-3 rounded-md border border-red-500/40 bg-red-500/10 p-3 text-[13px] font-semibold text-[#b91c1c]">
+                {ERROR_MSG}
+              </p>
+            )}
             <p className="mt-3 text-[12px] text-[#94a3b8]">
               We will not resell your information to any third party.
             </p>

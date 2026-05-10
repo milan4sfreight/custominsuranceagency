@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import Footer from "@/components/site/Footer";
+import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 const US_STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
 
@@ -37,19 +38,59 @@ const labelCls = "mb-1 block text-[10px] font-semibold uppercase tracking-[1px] 
 
 const QuoteForm = () => {
   const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [stateVal, setStateVal] = useState("");
+  const [language, setLanguage] = useState("English");
+  const [comments, setComments] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      await sendQuoteEmail({
+        subject: "New Quote Request - Homepage",
+        source: "Homepage — Get A Quote",
+        customerName: name,
+        customerEmail: email,
+        customerPhone: phone,
+        fields: {
+          Name: name,
+          Email: email,
+          Phone: phone,
+          Address: address,
+          State: stateVal,
+          Language: language,
+          "Comments / Questions": comments,
+          "SMS Consent": consent ? "Yes" : "No",
+        },
+      });
+      setStatus("success");
+      setName(""); setEmail(""); setPhone(""); setAddress("");
+      setStateVal(""); setLanguage("English"); setComments(""); setConsent(false);
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
+  };
+
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={onSubmit}
       className="grid gap-[10px]"
     >
         <div>
           <label className={labelCls}>Name *</label>
-          <input required maxLength={100} className={inputCls} placeholder="John Smith" />
+          <input required maxLength={100} className={inputCls} placeholder="John Smith" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="grid gap-[10px] md:grid-cols-2">
           <div>
             <label className={labelCls}>Email *</label>
-            <input required type="email" maxLength={255} className={inputCls} placeholder="you@email.com" />
+            <input required type="email" maxLength={255} className={inputCls} placeholder="you@email.com" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div>
             <label className={labelCls}>Phone *</label>
@@ -64,12 +105,12 @@ const QuoteForm = () => {
         </div>
         <div>
           <label className={labelCls}>Address *</label>
-          <input required maxLength={200} className={inputCls} placeholder="Street, City, ZIP" />
+          <input required maxLength={200} className={inputCls} placeholder="Street, City, ZIP" value={address} onChange={(e) => setAddress(e.target.value)} />
         </div>
         <div className="grid gap-[10px] md:grid-cols-2">
           <div>
             <label className={labelCls}>State *</label>
-            <select required className={inputCls + " appearance-none"}>
+            <select required className={inputCls + " appearance-none"} value={stateVal} onChange={(e) => setStateVal(e.target.value)}>
               <option value="" className="text-[#0d2b2b]">Select state</option>
               {US_STATES.map((s) => (
                 <option key={s} value={s} className="text-[#0d2b2b]">{s}</option>
@@ -78,7 +119,7 @@ const QuoteForm = () => {
           </div>
           <div>
             <label className={labelCls}>Language</label>
-            <select className={inputCls + " appearance-none"} defaultValue="English">
+            <select className={inputCls + " appearance-none"} value={language} onChange={(e) => setLanguage(e.target.value)}>
               {["English","Español","Russian"].map((l) => (
                 <option key={l} value={l} className="text-[#0d2b2b]">{l}</option>
               ))}
@@ -87,18 +128,29 @@ const QuoteForm = () => {
         </div>
         <div>
           <label className={labelCls}>Comments / Questions</label>
-          <textarea rows={2} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." />
+          <textarea rows={2} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." value={comments} onChange={(e) => setComments(e.target.value)} />
         </div>
         <label className="flex items-start gap-3 text-[12px] leading-[1.6] text-white/60">
-          <input type="checkbox" className="mt-1 h-4 w-4 accent-[#2abfbf]" />
+          <input type="checkbox" className="mt-1 h-4 w-4 accent-[#2abfbf]" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
           <span>By checking this box, I consent to receive SMS messages from Custom Insurance Agency regarding my insurance quote. Message and data rates may apply. Reply STOP to unsubscribe.</span>
         </label>
+        {status === "success" && (
+          <div className="rounded-md border border-green-400/40 bg-green-500/15 px-3 py-2 text-[13px] text-green-200">
+            {SUCCESS_MSG}
+          </div>
+        )}
+        {status === "error" && (
+          <div className="rounded-md border border-red-400/40 bg-red-500/15 px-3 py-2 text-[13px] text-red-200">
+            {ERROR_MSG}
+          </div>
+        )}
         <button
           type="submit"
+          disabled={status === "sending"}
           className="mt-2 w-full rounded-lg px-6 py-[13px] text-[14px] font-semibold uppercase tracking-wider text-white transition hover:brightness-110"
           style={{ background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)", fontFamily: "'Barlow', sans-serif" }}
         >
-          Get Quote
+          {status === "sending" ? "Sending…" : "Get Quote"}
         </button>
     </form>
   );

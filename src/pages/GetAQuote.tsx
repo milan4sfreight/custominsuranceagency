@@ -5,6 +5,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import volvoTruck from "@/assets/hero-truck-highway.png";
+import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 /* ───────── constants ───────── */
 
@@ -188,6 +189,7 @@ export default function GetAQuote() {
   const [effectiveDate, setEffectiveDate] = useState("");
 
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "error">("idle");
 
   /* helpers */
   const updateList = <T,>(list: T[], setList: (v: T[]) => void, i: number, patch: Partial<T>) =>
@@ -211,7 +213,7 @@ export default function GetAQuote() {
     });
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const errs: Record<string, boolean> = {};
     const req = (k: string, v: string) => { if (!v.trim()) errs[k] = true; };
@@ -255,8 +257,58 @@ export default function GetAQuote() {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (submitStatus === "sending") return;
+    setSubmitStatus("sending");
+    try {
+      await sendQuoteEmail({
+        subject: "New Trucking Insurance Quote Request",
+        source: "Get A Quote — Trucking (7-step form)",
+        customerName: companyName,
+        customerEmail: email,
+        customerPhone: phone,
+        fields: {
+          "USDOT #": usDot,
+          "MC #": mc,
+          "Other Filing #": other,
+          "Tax ID": taxId,
+          "Company Name": companyName,
+          DBA: dba,
+          Phone: phone,
+          Email: email,
+          "Entity Type": entity,
+          "Years in Business": yearsInBiz,
+          "Federal Filings": fedFilings,
+          "Physical Address": `${pAddr1} ${pAddr2}, ${pCity}, ${pState} ${pZip}`.trim(),
+          "Mailing Address": `${mAddr1} ${mAddr2}, ${mCity}, ${mState} ${mZip}`.trim(),
+          "Bad Weather Days": badDays,
+          Owners: owners,
+          "Operating Area": area,
+          "Operating Radius": radius,
+          Vehicles: vehicles,
+          Drivers: drivers,
+          Commodities: commodities,
+          "Auto Liability Limit": alLimit === "Other" ? alLimitOther : alLimit,
+          "Auto Liability Deductible": alDed,
+          "Motor Truck Cargo Limit": mtcLimit === "Other" ? mtcLimitOther : mtcLimit,
+          "Motor Truck Cargo Deductible": mtcDed === "Other" ? mtcDedOther : mtcDed,
+          "Coverage Notes": coverageNotes,
+          "Losses (last 5 yrs)": losses,
+          "Losses When": lossesWhen,
+          "Losses Comments": lossesComments,
+          "Current Carrier": currentCarrier,
+          "Renewal Date": renewalDate,
+          "Current Premiums": currentPremiums,
+          "Effective Date": effectiveDate,
+        },
+      });
+      setSubmitted(true);
+      setSubmitStatus("idle");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err);
+      setSubmitStatus("error");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const err = (k: string) => errors[k];
@@ -320,8 +372,8 @@ export default function GetAQuote() {
             <h2 style={{ color: "#fff", fontFamily: "Barlow, sans-serif", fontWeight: 700, fontSize: 32, marginBottom: 16 }}>
               Thank You!
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.8)", fontFamily: "Inter, sans-serif", fontSize: 16, marginBottom: 32 }}>
-              Your quote request has been submitted. A Custom Insurance Agency representative will contact you within 24 hours.
+            <p style={{ color: "rgba(255,255,255,0.95)", fontFamily: "Inter, sans-serif", fontSize: 16, marginBottom: 32, fontWeight: 600 }}>
+              {SUCCESS_MSG}
             </p>
             <Link
               to="/"
@@ -780,6 +832,7 @@ export default function GetAQuote() {
                 <div />
                 <button
                   type="submit"
+                  disabled={submitStatus === "sending"}
                   className="bd-submit"
                   style={{
                     width: "100%",
@@ -794,15 +847,21 @@ export default function GetAQuote() {
                     letterSpacing: 1,
                     border: "none",
                     cursor: "pointer",
+                    opacity: submitStatus === "sending" ? 0.7 : 1,
                   }}
                 >
-                  Submit Quote Request
+                  {submitStatus === "sending" ? "Sending…" : "Submit Quote Request"}
                 </button>
               </div>
 
               {Object.keys(errors).length > 0 && (
                 <p style={{ color: RED, marginTop: 16, fontFamily: "Inter, sans-serif", fontSize: 14, textAlign: "right" }}>
                   Please fill in all required fields highlighted in red.
+                </p>
+              )}
+              {submitStatus === "error" && (
+                <p style={{ color: "#b91c1c", marginTop: 16, fontFamily: "Inter, sans-serif", fontSize: 14, textAlign: "center", fontWeight: 600, background: "#fee2e2", border: "1px solid #fca5a5", borderRadius: 6, padding: 12 }}>
+                  {ERROR_MSG}
                 </p>
               )}
             </div>
