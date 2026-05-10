@@ -53,21 +53,32 @@ const QuoteForm = () => {
     setStatus("sending");
     try {
       await sendQuoteEmail({
-        subject: "New Quote Request - Homepage",
+        formKind: "Homepage Quote",
         source: "Homepage — Get A Quote",
+        primaryName: name,
         customerName: name,
         customerEmail: email,
         customerPhone: phone,
-        fields: {
-          Name: name,
-          Email: email,
-          Phone: phone,
-          Address: address,
-          State: stateVal,
-          Language: language,
-          "Comments / Questions": comments,
-          "SMS Consent": consent ? "Yes" : "No",
-        },
+        sections: [
+          {
+            title: "Contact Info",
+            rows: [
+              ["Name", name],
+              ["Email", email],
+              ["Phone", phone],
+              ["Address", address],
+              ["State", stateVal],
+              ["Preferred Language", language],
+            ],
+          },
+          {
+            title: "Message",
+            rows: [
+              ["Comments / Questions", comments],
+              ["SMS Consent", consent ? "Yes" : "No"],
+            ],
+          },
+        ],
       });
       setStatus("success");
       setName(""); setEmail(""); setPhone(""); setAddress("");
