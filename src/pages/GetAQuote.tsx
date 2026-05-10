@@ -832,6 +832,7 @@ export default function GetAQuote() {
                 <div />
                 <button
                   type="submit"
+                  disabled={submitStatus === "sending"}
                   className="bd-submit"
                   style={{
                     width: "100%",
@@ -846,15 +847,21 @@ export default function GetAQuote() {
                     letterSpacing: 1,
                     border: "none",
                     cursor: "pointer",
+                    opacity: submitStatus === "sending" ? 0.7 : 1,
                   }}
                 >
-                  Submit Quote Request
+                  {submitStatus === "sending" ? "Sending…" : "Submit Quote Request"}
                 </button>
               </div>
 
               {Object.keys(errors).length > 0 && (
                 <p style={{ color: RED, marginTop: 16, fontFamily: "Inter, sans-serif", fontSize: 14, textAlign: "right" }}>
                   Please fill in all required fields highlighted in red.
+                </p>
+              )}
+              {submitStatus === "error" && (
+                <p style={{ color: "#b91c1c", marginTop: 16, fontFamily: "Inter, sans-serif", fontSize: 14, textAlign: "center", fontWeight: 600, background: "#fee2e2", border: "1px solid #fca5a5", borderRadius: 6, padding: 12 }}>
+                  {ERROR_MSG}
                 </p>
               )}
             </div>
