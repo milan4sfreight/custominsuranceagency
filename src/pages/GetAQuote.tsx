@@ -372,8 +372,8 @@ export default function GetAQuote() {
             <h2 style={{ color: "#fff", fontFamily: "Barlow, sans-serif", fontWeight: 700, fontSize: 32, marginBottom: 16 }}>
               Thank You!
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.8)", fontFamily: "Inter, sans-serif", fontSize: 16, marginBottom: 32 }}>
-              Your quote request has been submitted. A Custom Insurance Agency representative will contact you within 24 hours.
+            <p style={{ color: "rgba(255,255,255,0.95)", fontFamily: "Inter, sans-serif", fontSize: 16, marginBottom: 32, fontWeight: 600 }}>
+              {SUCCESS_MSG}
             </p>
             <Link
               to="/"
