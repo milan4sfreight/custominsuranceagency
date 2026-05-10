@@ -69,19 +69,30 @@ const Contact = () => {
     setStatus("idle");
     try {
       await sendQuoteEmail({
-        subject: "New Contact Form Submission",
+        formKind: "Contact Request",
         source: "Contact Page",
+        primaryName: `${data.firstName} ${data.lastName}`.trim(),
         customerName: `${data.firstName} ${data.lastName}`.trim(),
         customerEmail: data.email,
         customerPhone: data.phone,
-        fields: {
-          "First Name": data.firstName,
-          "Last Name": data.lastName,
-          Email: data.email,
-          Phone: data.phone,
-          "Inquiry Type": data.inquiry,
-          Message: data.message,
-        },
+        sections: [
+          {
+            title: "Contact Info",
+            rows: [
+              ["First Name", data.firstName],
+              ["Last Name", data.lastName],
+              ["Email", data.email],
+              ["Phone", data.phone],
+            ],
+          },
+          {
+            title: "Inquiry",
+            rows: [
+              ["Inquiry Type", data.inquiry],
+              ["Message", data.message],
+            ],
+          },
+        ],
       });
       setStatus("success");
       form.reset();
