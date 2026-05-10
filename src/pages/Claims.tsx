@@ -63,19 +63,30 @@ const Claims = () => {
     setStatus("sending");
     try {
       await sendQuoteEmail({
-        subject: "New Claim Submission",
+        formKind: "Claim Submission",
         source: "Claims Page",
+        primaryName: form.name,
         customerName: form.name,
         customerEmail: form.email,
         customerPhone: form.phone,
-        fields: {
-          "Full Name": form.name,
-          "Policy Number": form.policy,
-          Phone: form.phone,
-          Email: form.email,
-          "Type of Claim": form.type,
-          "Description": form.description,
-        },
+        sections: [
+          {
+            title: "Claimant",
+            rows: [
+              ["Full Name", form.name],
+              ["Phone", form.phone],
+              ["Email", form.email],
+            ],
+          },
+          {
+            title: "Claim Details",
+            rows: [
+              ["Policy Number", form.policy],
+              ["Type of Claim", form.type],
+              ["Description", form.description],
+            ],
+          },
+        ],
       });
       setSubmitted(true);
       setStatus("idle");
