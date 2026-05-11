@@ -8,6 +8,12 @@ export interface FormSection {
   rows: Array<[string, unknown]>;
 }
 
+export interface EmailAttachment {
+  filename: string;
+  contentBase64: string;
+  contentType?: string;
+}
+
 export interface SendQuoteEmailInput {
   formKind: FormKind;
   source: string;
@@ -16,6 +22,7 @@ export interface SendQuoteEmailInput {
   customerEmail?: string;
   customerPhone?: string;
   sections: FormSection[];
+  attachments?: EmailAttachment[];
 }
 
 const SITE_URL = "custominsurance.agency";
@@ -175,6 +182,10 @@ export async function sendQuoteEmail(input: SendQuoteEmailInput) {
   const pdfBase64 = buildPdfBase64(input);
   const filename = buildFilename(input);
   const subject = buildSubject(input);
+  const attachments = [
+    { filename, contentBase64: pdfBase64, contentType: "application/pdf" },
+    ...(input.attachments ?? []),
+  ];
 
   // Flatten sections to fields object for HTML email rendering
   const fields: Record<string, unknown> = {};
@@ -196,6 +207,7 @@ export async function sendQuoteEmail(input: SendQuoteEmailInput) {
       sections: input.sections,
       fields,
       attachment: { filename, contentBase64: pdfBase64 },
+      attachments,
     },
   });
   if (error) {
