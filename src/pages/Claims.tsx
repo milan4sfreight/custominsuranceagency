@@ -8,7 +8,6 @@ import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
 
 type ClaimForm = {
-  filingAs: "policyHolder" | "someoneElse";
   sameAsHolder: boolean;
   policyHolderName: string;
   policyNumber: string;
@@ -55,7 +54,6 @@ type ClaimForm = {
 };
 
 const initialForm: ClaimForm = {
-  filingAs: "policyHolder",
   sameAsHolder: false,
   policyHolderName: "",
   policyNumber: "",
