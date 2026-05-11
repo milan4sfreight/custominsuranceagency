@@ -7,52 +7,44 @@ import Footer from "@/components/site/Footer";
 import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 type ClaimForm = {
-  // policy holder
   policyHolderName: string;
   policyNumber: string;
   insuredPhone: string;
   insuredEmail: string;
-  // who is filing
   sameAsHolder: boolean;
   claimantName: string;
   claimantAddress: string;
   claimantPhone: string;
   claimantEmail: string;
-  // location of loss
   dateOfLoss: string;
-  timeOfLoss: string;
+  timeHour: string;
+  timeMinute: string;
+  timeAmpm: string;
   lossAddress: string;
   lossCity: string;
   lossState: string;
   lossZip: string;
   policeReportFiled: string;
-  // accident description
   accidentDescription: string;
   thirdPartyDamage: string;
   injuries: string;
-  // driver info
   driverName: string;
   driverPhone: string;
   driverDob: string;
   driverLicense: string;
   driverLicenseState: string;
-  // tractor
   tractorYear: string;
   tractorMake: string;
   tractorVin: string;
   tractorDamage: string;
-  // trailer
   trailerDamage: string;
   trailerDescription: string;
-  // towing
   vehicleTowed: string;
   towingCompany: string;
   towingCost: string;
-  // cargo
   cargoDamage: string;
   cargoDescription: string;
   cargoValue: string;
-  // additional
   additionalInformation: string;
 };
 
@@ -67,7 +59,9 @@ const initialForm: ClaimForm = {
   claimantPhone: "",
   claimantEmail: "",
   dateOfLoss: "",
-  timeOfLoss: "",
+  timeHour: "",
+  timeMinute: "",
+  timeAmpm: "AM",
   lossAddress: "",
   lossCity: "",
   lossState: "",
@@ -111,6 +105,7 @@ const formatFileSize = (size: number) => {
 
 const TEAL = "#2abfbf";
 const DARK = "#0d2b2b";
+const LABEL_COLOR = "#374151";
 
 const inputBase: React.CSSProperties = {
   background: "#f8fafc",
@@ -121,13 +116,19 @@ const inputBase: React.CSSProperties = {
   width: "100%",
   fontSize: 14,
   outline: "none",
+  fontFamily: "Inter, sans-serif",
 };
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
     <label
-      className="mb-1.5 block font-semibold"
-      style={{ color: TEAL, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase" }}
+      className="mb-1.5 block"
+      style={{
+        color: LABEL_COLOR,
+        fontSize: 14,
+        fontWeight: 500,
+        fontFamily: "Inter, sans-serif",
+      }}
     >
       {children}
     </label>
@@ -145,7 +146,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-function YesNo({
+function YesNoRadio({
   name,
   value,
   onChange,
@@ -155,25 +156,24 @@ function YesNo({
   onChange: (name: keyof ClaimForm, v: string) => void;
 }) {
   return (
-    <div className="flex gap-2">
-      {["Yes", "No"].map((opt) => {
-        const active = value === opt;
-        return (
-          <button
-            key={opt}
-            type="button"
-            onClick={() => onChange(name, opt)}
-            className="flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors"
-            style={{
-              background: active ? TEAL : "#f8fafc",
-              border: `1px solid ${active ? TEAL : "#e2e8f0"}`,
-              color: active ? "#fff" : DARK,
-            }}
-          >
-            {opt}
-          </button>
-        );
-      })}
+    <div className="flex flex-col gap-2 mt-2">
+      {["Yes", "No"].map((opt) => (
+        <label
+          key={opt}
+          className="flex items-center gap-2.5 cursor-pointer"
+          style={{ color: LABEL_COLOR, fontSize: 14, fontFamily: "Inter, sans-serif" }}
+        >
+          <input
+            type="radio"
+            name={String(name)}
+            value={opt}
+            checked={value === opt}
+            onChange={() => onChange(name, opt)}
+            style={{ accentColor: TEAL, width: 16, height: 16 }}
+          />
+          <span>{opt}</span>
+        </label>
+      ))}
     </div>
   );
 }
@@ -223,6 +223,11 @@ export default function ClaimForm() {
       const claimantPhoneVal = form.sameAsHolder ? form.insuredPhone : form.claimantPhone;
       const claimantEmailVal = form.sameAsHolder ? form.insuredEmail : form.claimantEmail;
 
+      const timeOfLoss =
+        form.timeHour || form.timeMinute
+          ? `${form.timeHour || "--"}:${(form.timeMinute || "--").toString().padStart(2, "0")} ${form.timeAmpm}`
+          : "";
+
       await sendQuoteEmail({
         formKind: "Claim Submission",
         source: "Claim Form Page",
@@ -259,7 +264,7 @@ export default function ClaimForm() {
             title: "Location of Loss",
             rows: [
               ["Date of Loss", form.dateOfLoss],
-              ["Time of Loss", form.timeOfLoss],
+              ["Time of Loss", timeOfLoss],
               ["Address", form.lossAddress],
               ["City", form.lossCity],
               ["State", form.lossState],
@@ -348,6 +353,8 @@ export default function ClaimForm() {
     }
   };
 
+  const stack = "flex flex-col gap-6";
+
   return (
     <div className="min-h-screen w-full bg-white">
       <SEO
@@ -376,7 +383,7 @@ export default function ClaimForm() {
           <form onSubmit={onSubmit} className="mt-10">
             {/* Policy Holder */}
             <SectionTitle>Policy Holder Information</SectionTitle>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className={stack}>
               <div>
                 <Label>Policy Holder Name</Label>
                 <input required name="policyHolderName" value={form.policyHolderName} onChange={onChange} style={inputBase} />
@@ -405,17 +412,17 @@ export default function ClaimForm() {
                 onChange={onChange}
                 style={{ accentColor: TEAL, width: 16, height: 16 }}
               />
-              <span style={{ color: DARK, fontSize: 14 }} className="font-medium">
+              <span style={{ color: LABEL_COLOR, fontSize: 14, fontFamily: "Inter, sans-serif" }}>
                 Same as Policy Holder
               </span>
             </label>
             {!form.sameAsHolder && (
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className={stack}>
                 <div>
                   <Label>Name of Claimant</Label>
                   <input required name="claimantName" value={form.claimantName} onChange={onChange} style={inputBase} />
                 </div>
-                <div className="sm:col-span-2">
+                <div>
                   <Label>Address</Label>
                   <input required name="claimantAddress" value={form.claimantAddress} onChange={onChange} style={inputBase} />
                 </div>
@@ -432,16 +439,47 @@ export default function ClaimForm() {
 
             {/* Location of Loss */}
             <SectionTitle>Location of Loss</SectionTitle>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className={stack}>
               <div>
                 <Label>Date of Loss</Label>
                 <input required type="date" name="dateOfLoss" value={form.dateOfLoss} onChange={onChange} style={inputBase} />
               </div>
               <div>
-                <Label>Time of Loss</Label>
-                <input type="time" name="timeOfLoss" value={form.timeOfLoss} onChange={onChange} style={inputBase} />
+                <Label>Time of Accident</Label>
+                <div className="flex gap-2 items-center">
+                  <input
+                    type="number"
+                    min={1}
+                    max={12}
+                    name="timeHour"
+                    placeholder="HH"
+                    value={form.timeHour}
+                    onChange={onChange}
+                    style={{ ...inputBase, width: 80 }}
+                  />
+                  <span style={{ color: LABEL_COLOR, fontSize: 16 }}>:</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={59}
+                    name="timeMinute"
+                    placeholder="MM"
+                    value={form.timeMinute}
+                    onChange={onChange}
+                    style={{ ...inputBase, width: 80 }}
+                  />
+                  <select
+                    name="timeAmpm"
+                    value={form.timeAmpm}
+                    onChange={onChange}
+                    style={{ ...inputBase, width: 90 }}
+                  >
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
               </div>
-              <div className="sm:col-span-2">
+              <div>
                 <Label>Address</Label>
                 <input required name="lossAddress" value={form.lossAddress} onChange={onChange} style={inputBase} />
               </div>
@@ -449,25 +487,22 @@ export default function ClaimForm() {
                 <Label>City</Label>
                 <input required name="lossCity" value={form.lossCity} onChange={onChange} style={inputBase} />
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>State</Label>
-                  <input required name="lossState" value={form.lossState} onChange={onChange} style={inputBase} />
-                </div>
-                <div>
-                  <Label>ZIP</Label>
-                  <input required name="lossZip" value={form.lossZip} onChange={onChange} style={inputBase} />
-                </div>
+              <div>
+                <Label>State</Label>
+                <input required name="lossState" value={form.lossState} onChange={onChange} style={inputBase} />
               </div>
-              <div className="sm:col-span-2">
+              <div>
+                <Label>ZIP</Label>
+                <input required name="lossZip" value={form.lossZip} onChange={onChange} style={inputBase} />
+              </div>
+              <div>
                 <Label>Police Report Filed?</Label>
-                <YesNo name="policeReportFiled" value={form.policeReportFiled} onChange={setField} />
+                <YesNoRadio name="policeReportFiled" value={form.policeReportFiled} onChange={setField} />
               </div>
             </div>
 
-            {/* Accident Description */}
-            <SectionTitle>Accident Description</SectionTitle>
-            <div className="grid gap-4">
+            {/* Accident Description (no section heading) */}
+            <div className={`${stack} mt-10`}>
               <div>
                 <Label>Briefly Describe the Accident</Label>
                 <textarea
@@ -480,17 +515,17 @@ export default function ClaimForm() {
               </div>
               <div>
                 <Label>Was there damage to third party property or state property?*</Label>
-                <YesNo name="thirdPartyDamage" value={form.thirdPartyDamage} onChange={setField} />
+                <YesNoRadio name="thirdPartyDamage" value={form.thirdPartyDamage} onChange={setField} />
               </div>
               <div>
                 <Label>Were there injuries?*</Label>
-                <YesNo name="injuries" value={form.injuries} onChange={setField} />
+                <YesNoRadio name="injuries" value={form.injuries} onChange={setField} />
               </div>
             </div>
 
             {/* Driver */}
             <SectionTitle>Driver Information</SectionTitle>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className={stack}>
               <div>
                 <Label>Driver Name</Label>
                 <input name="driverName" value={form.driverName} onChange={onChange} style={inputBase} />
@@ -515,7 +550,7 @@ export default function ClaimForm() {
 
             {/* Tractor */}
             <SectionTitle>Tractor Information</SectionTitle>
-            <div className="grid gap-4 sm:grid-cols-3">
+            <div className={stack}>
               <div>
                 <Label>Year</Label>
                 <input name="tractorYear" value={form.tractorYear} onChange={onChange} style={inputBase} />
@@ -528,18 +563,18 @@ export default function ClaimForm() {
                 <Label>VIN</Label>
                 <input name="tractorVin" value={form.tractorVin} onChange={onChange} style={inputBase} />
               </div>
-            </div>
-            <div className="mt-4">
-              <Label>Tractor Damage?</Label>
-              <YesNo name="tractorDamage" value={form.tractorDamage} onChange={setField} />
+              <div>
+                <Label>Tractor Damage?</Label>
+                <YesNoRadio name="tractorDamage" value={form.tractorDamage} onChange={setField} />
+              </div>
             </div>
 
             {/* Trailer */}
             <SectionTitle>Trailer Information</SectionTitle>
-            <div className="grid gap-4">
+            <div className={stack}>
               <div>
                 <Label>Trailer Damage?</Label>
-                <YesNo name="trailerDamage" value={form.trailerDamage} onChange={setField} />
+                <YesNoRadio name="trailerDamage" value={form.trailerDamage} onChange={setField} />
               </div>
               {form.trailerDamage === "Yes" && (
                 <div>
@@ -557,13 +592,13 @@ export default function ClaimForm() {
 
             {/* Towing */}
             <SectionTitle>Towing Information</SectionTitle>
-            <div className="grid gap-4">
+            <div className={stack}>
               <div>
                 <Label>Vehicle Towed?</Label>
-                <YesNo name="vehicleTowed" value={form.vehicleTowed} onChange={setField} />
+                <YesNoRadio name="vehicleTowed" value={form.vehicleTowed} onChange={setField} />
               </div>
               {form.vehicleTowed === "Yes" && (
-                <div className="grid gap-4 sm:grid-cols-2">
+                <>
                   <div>
                     <Label>Towing Company</Label>
                     <input name="towingCompany" value={form.towingCompany} onChange={onChange} style={inputBase} />
@@ -572,20 +607,20 @@ export default function ClaimForm() {
                     <Label>Towing Cost</Label>
                     <input name="towingCost" value={form.towingCost} onChange={onChange} style={inputBase} />
                   </div>
-                </div>
+                </>
               )}
             </div>
 
             {/* Cargo */}
             <SectionTitle>Cargo Information</SectionTitle>
-            <div className="grid gap-4">
+            <div className={stack}>
               <div>
                 <Label>Cargo Damage?</Label>
-                <YesNo name="cargoDamage" value={form.cargoDamage} onChange={setField} />
+                <YesNoRadio name="cargoDamage" value={form.cargoDamage} onChange={setField} />
               </div>
               {form.cargoDamage === "Yes" && (
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="sm:col-span-2">
+                <>
+                  <div>
                     <Label>Cargo Description</Label>
                     <textarea
                       name="cargoDescription"
@@ -599,7 +634,7 @@ export default function ClaimForm() {
                     <Label>Cargo Value</Label>
                     <input name="cargoValue" value={form.cargoValue} onChange={onChange} style={inputBase} />
                   </div>
-                </div>
+                </>
               )}
             </div>
 
