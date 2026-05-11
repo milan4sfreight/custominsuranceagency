@@ -349,20 +349,14 @@ export default function ClaimForm() {
   };
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-white">
       <SEO
         title="File a Claim | Custom Insurance Agency"
         description="Submit a commercial trucking insurance claim online. Our claims team will review your report and contact you to begin the process."
       />
-      <div className="flex w-full flex-col md:flex-row" style={{ minHeight: "100vh" }}>
-        {/* LEFT COLUMN */}
-        <aside
-          className="md:sticky md:top-0 md:h-screen md:w-[40%] md:flex-shrink-0 md:overflow-y-auto"
-          style={{
-            background: "linear-gradient(135deg,#0f2a42,#173b5d 60%,#0d2b2b)",
-            padding: "64px 48px",
-          }}
-        >
+      <Navbar />
+      <main style={{ padding: "64px 24px" }}>
+        <div className="mx-auto" style={{ maxWidth: 860 }}>
           <p
             className="font-semibold uppercase"
             style={{ color: TEAL, fontSize: 11, letterSpacing: "0.15em" }}
@@ -370,60 +364,16 @@ export default function ClaimForm() {
             CLAIM REPORT
           </p>
           <h1
-            className="mt-3 font-display font-bold leading-tight text-white"
-            style={{ fontSize: 38 }}
+            className="mt-3 font-display font-bold leading-tight"
+            style={{ fontSize: 38, color: DARK }}
           >
             Tell us what happened
           </h1>
-          <p className="mt-5 text-[15px] leading-relaxed text-white/50">
+          <p className="mt-4 text-[15px] leading-relaxed text-slate-600">
             Fill out the form with as much detail as possible. You can upload photos, police reports, and any supporting documents to help us start your claim quickly.
           </p>
 
-          <div
-            className="mt-10 rounded-[10px]"
-            style={{ border: "1px solid rgba(255,255,255,0.1)", padding: 24 }}
-          >
-            <p className="text-[13px] font-semibold uppercase tracking-wide text-white/80">
-              Need immediate help?
-            </p>
-            <div className="mt-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <Phone size={18} style={{ color: TEAL }} className="mt-0.5" />
-                <div>
-                  <div className="text-[11px] uppercase tracking-wide text-white/50">Phone</div>
-                  <div className="text-[14px] font-medium" style={{ color: TEAL }}>
-                    708-810-1955
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail size={18} style={{ color: TEAL }} className="mt-0.5" />
-                <div>
-                  <div className="text-[11px] uppercase tracking-wide text-white/50">Email</div>
-                  <div className="text-[14px] font-medium break-all" style={{ color: TEAL }}>
-                    claims@custominsure.com
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock size={18} style={{ color: TEAL }} className="mt-0.5" />
-                <div>
-                  <div className="text-[11px] uppercase tracking-wide text-white/50">Hours</div>
-                  <div className="text-[14px] font-medium" style={{ color: TEAL }}>
-                    Mon–Fri, 9:00 AM – 5:00 PM
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
-
-        {/* RIGHT COLUMN */}
-        <main
-          className="flex-1 bg-white md:overflow-y-auto"
-          style={{ padding: "64px 48px" }}
-        >
-          <form onSubmit={onSubmit} className="mx-auto max-w-[640px]">
+          <form onSubmit={onSubmit} className="mt-10">
             {/* Policy Holder */}
             <SectionTitle>Policy Holder Information</SectionTitle>
             <div className="grid gap-4 sm:grid-cols-2">
