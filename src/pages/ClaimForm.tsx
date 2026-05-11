@@ -674,8 +674,9 @@ export default function ClaimForm() {
               )}
             </button>
           </form>
-        </main>
-      </div>
+        </div>
+      </main>
+      <Footer />
     </div>
   );
 }
