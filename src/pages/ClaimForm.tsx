@@ -517,25 +517,22 @@ export default function ClaimForm() {
             <SectionTitle>Accident Description</SectionTitle>
             <div className="grid gap-4">
               <div>
-                <Label>What happened?</Label>
+                <Label>Briefly Describe the Accident</Label>
                 <textarea
                   required
                   name="accidentDescription"
                   value={form.accidentDescription}
                   onChange={onChange}
-                  rows={5}
-                  style={{ ...inputBase, resize: "vertical" }}
+                  style={{ ...inputBase, resize: "vertical", minHeight: 200 }}
                 />
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <Label>Third Party Damage?</Label>
-                  <YesNo name="thirdPartyDamage" value={form.thirdPartyDamage} onChange={setField} />
-                </div>
-                <div>
-                  <Label>Any Injuries?</Label>
-                  <YesNo name="injuries" value={form.injuries} onChange={setField} />
-                </div>
+              <div>
+                <Label>Was there damage to third party property or state property?*</Label>
+                <YesNo name="thirdPartyDamage" value={form.thirdPartyDamage} onChange={setField} />
+              </div>
+              <div>
+                <Label>Were there injuries?*</Label>
+                <YesNo name="injuries" value={form.injuries} onChange={setField} />
               </div>
             </div>
 
