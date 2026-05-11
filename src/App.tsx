@@ -14,6 +14,7 @@ import About from "./pages/About.tsx";
 import CompanyNews from "./pages/CompanyNews.tsx";
 import Careers from "./pages/Careers.tsx";
 import Claims from "./pages/Claims.tsx";
+import ClaimForm from "./pages/ClaimForm.tsx";
 import Resources from "./pages/Resources.tsx";
 import Contact from "./pages/Contact.tsx";
 import ClientLogin from "./pages/ClientLogin.tsx";
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/company-news" element={<CompanyNews />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/claims" element={<Claims />} />
+          <Route path="/claims/file-a-claim" element={<ClaimForm />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/client-login" element={<ClientLogin />} />
