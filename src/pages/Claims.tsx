@@ -365,21 +365,21 @@ const Claims = () => {
         </div>
       </section>
 
-      <section id="claim-form" className="px-6 py-[64px] md:px-12">
+      <section id="claim-form" className="bg-dark-gradient px-6 py-[64px] md:px-12">
         <div className="mx-auto max-w-[1080px]">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <aside className="lg:sticky lg:top-28">
               <p className="eyebrow text-[11px] uppercase text-brand">Claim Report</p>
-              <h2 className="mt-2 text-[32px] font-bold leading-tight text-foreground">Tell us what happened</h2>
-              <p className="mt-4 text-[15px] leading-[1.75] text-muted-foreground">
+              <h2 className="mt-2 text-[32px] font-bold leading-tight text-primary-foreground">Tell us what happened</h2>
+              <p className="mt-4 text-[15px] leading-[1.75] text-primary-foreground/70">
                 Include as much detail as possible. Photos, police reports, bills of lading, and towing documents can be uploaded before submission.
               </p>
-              <div className="mt-8 rounded-[8px] border border-border bg-card p-6 shadow-soft">
-                <h3 className="text-[18px] font-bold text-foreground">Need immediate help?</h3>
-                <ul className="mt-4 space-y-3 text-[15px] text-muted-foreground">
-                  <li><span className="font-semibold text-foreground">Phone:</span> 708-810-1955</li>
-                  <li><span className="font-semibold text-foreground">Email:</span> info@custominsure.com</li>
-                  <li><span className="font-semibold text-foreground">Hours:</span> Monday – Friday, 9:00 AM – 5:00 PM</li>
+              <div className="mt-8 rounded-[8px] border border-white/15 bg-white/5 p-6 shadow-soft backdrop-blur">
+                <h3 className="text-[18px] font-bold text-primary-foreground">Need immediate help?</h3>
+                <ul className="mt-4 space-y-3 text-[15px] text-primary-foreground/70">
+                  <li><span className="font-semibold text-primary-foreground">Phone:</span> 708-810-1955</li>
+                  <li><span className="font-semibold text-primary-foreground">Email:</span> info@custominsure.com</li>
+                  <li><span className="font-semibold text-primary-foreground">Hours:</span> Monday – Friday, 9:00 AM – 5:00 PM</li>
                 </ul>
               </div>
             </aside>
@@ -525,14 +525,14 @@ const FormPanel = ({
   children: ReactNode;
   columns?: boolean;
 }) => (
-  <section className="rounded-[8px] border border-border bg-card p-5 shadow-soft md:p-6">
-    <h3 className="text-[18px] font-bold text-foreground">{title}</h3>
+  <section className="rounded-[8px] border border-white/15 bg-white/5 p-5 shadow-soft backdrop-blur md:p-6">
+    <h3 className="text-[18px] font-bold text-primary-foreground">{title}</h3>
     <div className={columns ? "mt-5 grid gap-4 md:grid-cols-2" : "mt-5 space-y-5"}>{children}</div>
   </section>
 );
 
-const labelClass = "block text-[13px] font-semibold text-foreground";
-const inputClass = "mt-1 w-full rounded-[6px] border border-input bg-background px-3 py-3 text-[14px] text-foreground outline-none transition placeholder:text-muted-foreground focus:border-brand focus:ring-2 focus:ring-ring/20";
+const labelClass = "block text-[13px] font-semibold text-primary-foreground";
+const inputClass = "mt-1 w-full rounded-[6px] border border-white/20 bg-white/10 px-3 py-3 text-[14px] text-primary-foreground outline-none transition placeholder:text-primary-foreground/50 focus:border-brand focus:ring-2 focus:ring-ring/20";
 
 type BaseFieldProps = {
   name: keyof ClaimForm;
