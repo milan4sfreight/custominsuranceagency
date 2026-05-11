@@ -350,7 +350,15 @@ const Claims = () => {
           </p>
           <a
             href="#claim-form"
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-[8px] bg-cta-gradient px-12 py-4 text-[15px] font-bold text-cta-foreground shadow-brand-glow transition hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            className="mt-8 inline-flex items-center justify-center gap-2 shadow-brand-glow transition hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            style={{
+              background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+              color: "#1a1a1a",
+              fontFamily: "Barlow, system-ui, sans-serif",
+              fontWeight: 700,
+              padding: "16px 48px",
+              borderRadius: "8px",
+            }}
           >
             Start Your Claim <ArrowRight className="h-5 w-5" />
           </a>
