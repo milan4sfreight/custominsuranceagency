@@ -194,25 +194,42 @@ const Claims = () => {
       await sendQuoteEmail({
         formKind: "Claim Submission",
         source: "Claims Page — Claim Report",
-        primaryName: form.insuredName || form.contactName || "Claim Report",
-        customerName: form.contactName || form.insuredName,
-        customerEmail: form.email,
-        customerPhone: form.phone,
+        primaryName: form.policyHolderName || form.claimantName || "Claim Report",
+        customerName: form.filingAs === "someoneElse" ? form.claimantName : form.policyHolderName,
+        customerEmail: form.filingAs === "someoneElse" ? form.claimantEmail : form.insuredEmail,
+        customerPhone: form.filingAs === "someoneElse" ? form.claimantPhone : form.insuredPhone,
         attachments: uploadedAttachments,
         sections: [
           {
-            title: "General Information",
+            title: "Who Is Filing",
             rows: [
-              ["Insured Name", form.insuredName],
-              ["Policy Number", form.policyNumber],
-              ["Contact Name", form.contactName],
-              ["Phone", form.phone],
-              ["Email", form.email],
+              ["Filing As", form.filingAs === "someoneElse" ? "Someone Else (Claimant)" : "Policy Holder"],
               ["Claim Type", form.claimType],
               ["Date of Loss", form.dateOfLoss],
               ["Time of Loss", form.timeOfLoss],
             ],
           },
+          {
+            title: "Policy Holder Information",
+            rows: [
+              ["Policy Holder Name", form.policyHolderName],
+              ["Policy Number", form.policyNumber],
+              ["Phone", form.insuredPhone],
+              ["Email", form.insuredEmail],
+            ],
+          },
+          ...(form.filingAs === "someoneElse"
+            ? [{
+                title: "Claimant Information",
+                rows: [
+                  ["Same as Policy Holder", form.sameAsHolder ? "Yes" : "No"],
+                  ["Claimant Name", form.claimantName],
+                  ["Claimant Address", form.claimantAddress],
+                  ["Claimant Phone", form.claimantPhone],
+                  ["Claimant Email", form.claimantEmail],
+                ] as Array<[string, unknown]>,
+              }]
+            : []),
           {
             title: "Location of Loss",
             rows: [
