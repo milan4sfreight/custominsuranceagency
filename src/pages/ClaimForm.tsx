@@ -81,27 +81,26 @@ const formatFileSize = (size: number) => {
 
 const TEAL = "#2abfbf";
 const ORANGE = "#f5821f";
+const NAVY = "#173b5d";
 
 const inputBase: React.CSSProperties = {
-  background: "rgba(255,255,255,0.07)",
-  border: "1px solid rgba(255,255,255,0.15)",
-  borderRadius: 8,
-  padding: "12px 14px",
-  color: "#ffffff",
+  background: "#ffffff",
+  border: "1px solid #d1d5db",
+  borderRadius: 6,
+  padding: "10px 14px",
+  color: "#0d2b2b",
   width: "100%",
-  fontSize: 14,
+  fontSize: 16,
   outline: "none",
   fontFamily: "Inter, sans-serif",
-  transition: "border-color .15s ease, background .15s ease",
+  transition: "border-color .15s ease",
 };
 
 const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
   e.currentTarget.style.borderColor = TEAL;
-  e.currentTarget.style.background = "rgba(42,191,191,0.06)";
 };
 const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-  e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
-  e.currentTarget.style.background = "rgba(255,255,255,0.07)";
+  e.currentTarget.style.borderColor = "#d1d5db";
 };
 
 const fieldProps = {
@@ -113,17 +112,16 @@ const fieldProps = {
 function Label({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
     <label
-      className="mb-2 block uppercase"
+      className="mb-2 block"
       style={{
-        color: TEAL,
-        fontSize: 11,
-        fontWeight: 600,
-        letterSpacing: "0.1em",
+        color: NAVY,
+        fontSize: 13,
+        fontWeight: 500,
         fontFamily: "Inter, sans-serif",
       }}
     >
       {children}
-      {required && <span style={{ color: ORANGE, marginLeft: 4 }}>*</span>}
+      {required && <span style={{ color: "#dc2626", marginLeft: 4 }}>*</span>}
     </label>
   );
 }
@@ -132,21 +130,16 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <div
       className="mb-8"
-      style={{
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 12,
-        padding: "32px 36px",
-      }}
     >
       <h3
-        className="mb-6 pb-3 font-display uppercase"
+        className="mb-6 pb-3 uppercase"
         style={{
-          color: TEAL,
+          color: NAVY,
           fontSize: 13,
-          letterSpacing: "0.12em",
-          borderBottom: "1px solid rgba(42,191,191,0.2)",
+          letterSpacing: "0.08em",
+          borderBottom: "1px solid #e5e7eb",
           fontWeight: 700,
+          fontFamily: "Inter, sans-serif",
         }}
       >
         {title}
@@ -169,7 +162,7 @@ function YesNoRadio({
         <label
           key={opt}
           className="flex items-center gap-2.5 cursor-pointer"
-          style={{ color: "#ffffff", fontSize: 14, fontFamily: "Inter, sans-serif" }}
+          style={{ color: NAVY, fontSize: 13, fontFamily: "Inter, sans-serif" }}
         >
           <input
             type="radio"
@@ -325,7 +318,7 @@ export default function ClaimForm() {
   return (
     <div
       className="min-h-screen w-full"
-      style={{ background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 50%, #0d2b2b 100%)" }}
+      style={{ background: "#ffffff" }}
     >
       <SEO
         title="File a Claim | Custom Insurance Agency"
@@ -349,8 +342,8 @@ export default function ClaimForm() {
         </div>
       </section>
 
-      <main style={{ padding: "64px 24px" }}>
-        <div className="mx-auto" style={{ maxWidth: 860 }}>
+      <main style={{ padding: "64px 24px", background: "#ffffff" }}>
+        <div className="mx-auto" style={{ maxWidth: 760 }}>
           <form onSubmit={onSubmit}>
             <Section title="Policy Holder Information">
               <div><Label required>Policy Holder Name</Label>
@@ -367,7 +360,7 @@ export default function ClaimForm() {
               <label className="flex cursor-pointer items-center gap-2.5">
                 <input type="checkbox" name="sameAsHolder" checked={form.sameAsHolder} onChange={onChange}
                   style={{ accentColor: TEAL, width: 16, height: 16 }} />
-                <span style={{ color: "#ffffff", fontSize: 14, fontFamily: "Inter, sans-serif" }}>Same as Policy Holder</span>
+                <span style={{ color: NAVY, fontSize: 13, fontFamily: "Inter, sans-serif" }}>Same as Policy Holder</span>
               </label>
               {!form.sameAsHolder && (
                 <>
@@ -391,7 +384,7 @@ export default function ClaimForm() {
                 <div className="flex gap-2 items-center">
                   <input type="number" min={1} max={12} name="timeHour" placeholder="HH"
                     value={form.timeHour} onChange={onChange} {...fieldProps} style={{ ...inputBase, width: 90 }} />
-                  <span style={{ color: "#ffffff", fontSize: 16 }}>:</span>
+                  <span style={{ color: NAVY, fontSize: 16 }}>:</span>
                   <input type="number" min={0} max={59} name="timeMinute" placeholder="MM"
                     value={form.timeMinute} onChange={onChange} {...fieldProps} style={{ ...inputBase, width: 90 }} />
                   <select name="timeAmpm" value={form.timeAmpm} onChange={onChange} {...fieldProps} style={{ ...inputBase, width: 100 }}>
@@ -492,14 +485,14 @@ export default function ClaimForm() {
             <Section title="Upload Files">
               <div
                 className="flex flex-col items-center justify-center gap-3 rounded-[8px] py-10 text-center"
-                style={{ border: "2px dashed rgba(42,191,191,0.35)", background: "transparent" }}
+                style={{ border: "2px dashed #d1d5db", background: "#fafafa" }}
               >
                 <Upload size={26} style={{ color: TEAL }} />
-                <div style={{ color: "rgba(255,255,255,0.85)", fontSize: 14, fontFamily: "Inter, sans-serif" }}>
+                <div style={{ color: NAVY, fontSize: 13, fontFamily: "Inter, sans-serif" }}>
                   Drop photos, police report, or documents here
                 </div>
                 <label
-                  className="cursor-pointer font-display uppercase"
+                  className="cursor-pointer uppercase"
                   style={{
                     background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                     color: "#1a1a1a",
@@ -508,23 +501,24 @@ export default function ClaimForm() {
                     borderRadius: 8,
                     fontSize: 13,
                     letterSpacing: "0.08em",
+                    fontFamily: "Inter, sans-serif",
                   }}
                 >
                   Select Files
                   <input type="file" multiple onChange={onFilesChange} className="hidden" />
                 </label>
-                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>Up to 8 files</div>
+                <div style={{ color: "#6b7280", fontSize: 12 }}>Up to 8 files</div>
               </div>
               {files.length > 0 && (
                 <ul className="space-y-2">
                   {files.map((f, i) => (
                     <li key={i}
                       className="flex items-center justify-between rounded-[8px] px-3 py-2 text-[13px]"
-                      style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "#ffffff" }}>
+                      style={{ background: "#f9fafb", border: "1px solid #e5e7eb", color: NAVY }}>
                       <span className="truncate pr-3">
-                        {f.name} <span style={{ color: "rgba(255,255,255,0.5)" }}>({formatFileSize(f.size)})</span>
+                        {f.name} <span style={{ color: "#6b7280" }}>({formatFileSize(f.size)})</span>
                       </span>
-                      <button type="button" onClick={() => removeFile(i)} style={{ color: "rgba(255,255,255,0.6)" }}>
+                      <button type="button" onClick={() => removeFile(i)} style={{ color: "#6b7280" }}>
                         <X size={16} />
                       </button>
                     </li>
