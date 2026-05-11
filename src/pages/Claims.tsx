@@ -8,7 +8,6 @@ import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
 
 type ClaimForm = {
-  filingAs: "policyHolder" | "someoneElse";
   sameAsHolder: boolean;
   policyHolderName: string;
   policyNumber: string;
@@ -55,7 +54,6 @@ type ClaimForm = {
 };
 
 const initialForm: ClaimForm = {
-  filingAs: "policyHolder",
   sameAsHolder: false,
   policyHolderName: "",
   policyNumber: "",
@@ -166,15 +164,16 @@ const Claims = () => {
   };
 
   useEffect(() => {
-    if (form.filingAs === "someoneElse" && form.sameAsHolder) {
+    if (form.sameAsHolder) {
       setForm((c) => ({
         ...c,
         claimantName: c.policyHolderName,
         claimantPhone: c.insuredPhone,
         claimantEmail: c.insuredEmail,
+        claimantAddress: "",
       }));
     }
-  }, [form.filingAs, form.sameAsHolder, form.policyHolderName, form.insuredPhone, form.insuredEmail]);
+  }, [form.sameAsHolder, form.policyHolderName, form.insuredPhone, form.insuredEmail]);
 
   const onFilesChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nextFiles = Array.from(e.target.files ?? []);
@@ -202,7 +201,7 @@ const Claims = () => {
         })),
       );
 
-      const useHolderAsClaimant = form.filingAs === "policyHolder" || form.sameAsHolder;
+      const useHolderAsClaimant = form.sameAsHolder;
       const claimantNameVal = useHolderAsClaimant ? form.policyHolderName : form.claimantName;
       const claimantPhoneVal = useHolderAsClaimant ? form.insuredPhone : form.claimantPhone;
       const claimantEmailVal = useHolderAsClaimant ? form.insuredEmail : form.claimantEmail;
@@ -220,7 +219,7 @@ const Claims = () => {
           {
             title: "Who Is Filing",
             rows: [
-              ["Filing As", form.filingAs === "someoneElse" ? "Someone Else (Claimant)" : "Policy Holder"],
+              ["Same as Policy Holder", form.sameAsHolder ? "Yes" : "No"],
               ["Claim Type", form.claimType],
               ["Date of Loss", form.dateOfLoss],
               ["Time of Loss", form.timeOfLoss],
@@ -235,11 +234,10 @@ const Claims = () => {
               ["Email", form.insuredEmail],
             ],
           },
-          ...(form.filingAs === "someoneElse"
+          ...(!form.sameAsHolder
             ? [{
                 title: "Claimant Information",
                 rows: [
-                  ["Same as Policy Holder", form.sameAsHolder ? "Yes" : "No"],
                   ["Claimant Name", claimantNameVal],
                   ["Claimant Address", claimantAddressVal],
                   ["Claimant Phone", claimantPhoneVal],
@@ -442,43 +440,24 @@ const Claims = () => {
               )}
 
               <FormPanel title="WHO IS FILING THIS CLAIM?">
-                <div className="grid gap-4 md:grid-cols-2">
-                  {[
-                    { id: "policyHolder", label: "Policy Holder", sub: "I am the insured on this policy" },
-                    { id: "someoneElse", label: "Someone Else (Claimant)", sub: "I am filing on behalf of another party" },
-                  ].map((opt) => {
-                    const selected = form.filingAs === (opt.id as ClaimForm["filingAs"]);
-                    return (
-                      <label
-                        key={opt.id}
-                        className="flex cursor-pointer items-start gap-3 rounded-[10px] px-6 py-5 transition"
-                        style={{
-                          background: selected ? "rgba(42,191,191,0.08)" : "rgba(255,255,255,0.05)",
-                          border: `1px solid ${selected ? "#2abfbf" : "rgba(255,255,255,0.15)"}`,
-                        }}
-                      >
-                        <input
-                          type="radio"
-                          name="filingAs"
-                          value={opt.id}
-                          checked={selected}
-                          onChange={() => setForm((c) => ({ ...c, filingAs: opt.id as ClaimForm["filingAs"] }))}
-                          className="sr-only"
-                        />
-                        <span
-                          className="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded-full border"
-                          style={{ borderColor: selected ? "#2abfbf" : "rgba(255,255,255,0.4)" }}
-                        >
-                          {selected && <span className="h-2 w-2 rounded-full" style={{ background: "#2abfbf" }} />}
-                        </span>
-                        <span className="flex flex-col">
-                          <span style={{ fontFamily: "Barlow, system-ui, sans-serif", fontWeight: 700, fontSize: 16, color: "#ffffff" }}>{opt.label}</span>
-                          <span style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>{opt.sub}</span>
-                        </span>
-                      </label>
-                    );
-                  })}
-                </div>
+                <label className="flex cursor-pointer items-center gap-2" style={{ fontFamily: "Inter, system-ui, sans-serif", fontSize: 14, color: "#ffffff" }}>
+                  <input
+                    type="checkbox"
+                    checked={form.sameAsHolder}
+                    onChange={(e) => setForm((c) => ({ ...c, sameAsHolder: e.target.checked }))}
+                    className="h-4 w-4"
+                    style={{ accentColor: "#2abfbf" }}
+                  />
+                  Same as Policy Holder
+                </label>
+                {!form.sameAsHolder && (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <Field name="claimantName" label="Name of Claimant" value={form.claimantName} onChange={onChange} required />
+                    <Field name="claimantAddress" label="Address" value={form.claimantAddress} onChange={onChange} required className="md:col-span-2" />
+                    <Field name="claimantPhone" label="Phone Number" type="tel" value={form.claimantPhone} onChange={onChange} required />
+                    <Field name="claimantEmail" label="Email Address" type="email" value={form.claimantEmail} onChange={onChange} required />
+                  </div>
+                )}
               </FormPanel>
 
               <FormPanel title="POLICY HOLDER INFORMATION" columns>
@@ -488,25 +467,6 @@ const Claims = () => {
                 <Field name="insuredEmail" label="Email Address" type="email" value={form.insuredEmail} onChange={onChange} required className="md:col-span-2" />
               </FormPanel>
 
-              {form.filingAs === "someoneElse" && (
-                <FormPanel title="CLAIMANT INFORMATION">
-                  <label className="flex cursor-pointer items-center gap-2 text-[14px] text-primary-foreground">
-                    <input
-                      type="checkbox"
-                      checked={form.sameAsHolder}
-                      onChange={(e) => setForm((c) => ({ ...c, sameAsHolder: e.target.checked }))}
-                      className="h-4 w-4 accent-brand"
-                    />
-                    Same as Policy Holder
-                  </label>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <Field name="claimantName" label="Claimant Name" value={form.claimantName} onChange={onChange} required disabled={form.sameAsHolder} />
-                    <Field name="claimantAddress" label="Claimant Address" value={form.claimantAddress} onChange={onChange} required className="md:col-span-2" disabled={form.sameAsHolder} />
-                    <Field name="claimantPhone" label="Phone Number" type="tel" value={form.claimantPhone} onChange={onChange} required disabled={form.sameAsHolder} />
-                    <Field name="claimantEmail" label="Email Address" type="email" value={form.claimantEmail} onChange={onChange} required disabled={form.sameAsHolder} />
-                  </div>
-                </FormPanel>
-              )}
 
               <FormPanel title="CLAIM DETAILS" columns>
                 <SelectField name="claimType" label="Type of Claim" value={form.claimType} options={claimTypeOptions} onChange={onChange} />
