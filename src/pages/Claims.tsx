@@ -202,13 +202,19 @@ const Claims = () => {
         })),
       );
 
+      const useHolderAsClaimant = form.filingAs === "policyHolder" || form.sameAsHolder;
+      const claimantNameVal = useHolderAsClaimant ? form.policyHolderName : form.claimantName;
+      const claimantPhoneVal = useHolderAsClaimant ? form.insuredPhone : form.claimantPhone;
+      const claimantEmailVal = useHolderAsClaimant ? form.insuredEmail : form.claimantEmail;
+      const claimantAddressVal = useHolderAsClaimant ? "" : form.claimantAddress;
+
       await sendQuoteEmail({
         formKind: "Claim Submission",
         source: "Claims Page — Claim Report",
-        primaryName: form.policyHolderName || form.claimantName || "Claim Report",
-        customerName: form.filingAs === "someoneElse" ? form.claimantName : form.policyHolderName,
-        customerEmail: form.filingAs === "someoneElse" ? form.claimantEmail : form.insuredEmail,
-        customerPhone: form.filingAs === "someoneElse" ? form.claimantPhone : form.insuredPhone,
+        primaryName: form.policyHolderName || claimantNameVal || "Claim Report",
+        customerName: claimantNameVal,
+        customerEmail: claimantEmailVal,
+        customerPhone: claimantPhoneVal,
         attachments: uploadedAttachments,
         sections: [
           {
@@ -234,10 +240,10 @@ const Claims = () => {
                 title: "Claimant Information",
                 rows: [
                   ["Same as Policy Holder", form.sameAsHolder ? "Yes" : "No"],
-                  ["Claimant Name", form.claimantName],
-                  ["Claimant Address", form.claimantAddress],
-                  ["Claimant Phone", form.claimantPhone],
-                  ["Claimant Email", form.claimantEmail],
+                  ["Claimant Name", claimantNameVal],
+                  ["Claimant Address", claimantAddressVal],
+                  ["Claimant Phone", claimantPhoneVal],
+                  ["Claimant Email", claimantEmailVal],
                 ] as Array<[string, unknown]>,
               }]
             : []),
