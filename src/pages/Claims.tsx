@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { AlertCircle, ArrowRight, Check, CheckCircle2, FileText, Loader2, Upload, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
@@ -8,11 +8,16 @@ import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
 
 type ClaimForm = {
-  insuredName: string;
+  filingAs: "policyHolder" | "someoneElse";
+  sameAsHolder: boolean;
+  policyHolderName: string;
   policyNumber: string;
-  contactName: string;
-  phone: string;
-  email: string;
+  insuredPhone: string;
+  insuredEmail: string;
+  claimantName: string;
+  claimantAddress: string;
+  claimantPhone: string;
+  claimantEmail: string;
   claimType: string;
   dateOfLoss: string;
   timeOfLoss: string;
@@ -50,11 +55,16 @@ type ClaimForm = {
 };
 
 const initialForm: ClaimForm = {
-  insuredName: "",
+  filingAs: "policyHolder",
+  sameAsHolder: false,
+  policyHolderName: "",
   policyNumber: "",
-  contactName: "",
-  phone: "",
-  email: "",
+  insuredPhone: "",
+  insuredEmail: "",
+  claimantName: "",
+  claimantAddress: "",
+  claimantPhone: "",
+  claimantEmail: "",
   claimType: "Auto / Trucking",
   dateOfLoss: "",
   timeOfLoss: "",
