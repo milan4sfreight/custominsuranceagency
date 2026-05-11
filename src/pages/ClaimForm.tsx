@@ -1,7 +1,9 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Loader2, Upload, X, Phone, Mail, Clock } from "lucide-react";
+import { Loader2, Upload, X } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
+import Navbar from "@/components/site/Navbar";
+import Footer from "@/components/site/Footer";
 import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 type ClaimForm = {
