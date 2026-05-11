@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { AlertCircle, ArrowRight, Check, CheckCircle2, FileText, Loader2, Upload, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
@@ -514,7 +514,7 @@ const FormPanel = ({
   columns = false,
 }: {
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
   columns?: boolean;
 }) => (
   <section className="rounded-[8px] border border-border bg-card p-5 shadow-soft md:p-6">
@@ -599,8 +599,8 @@ const StatusMessage = ({
   children,
 }: {
   tone: "success" | "error";
-  icon: React.ReactNode;
-  children: React.ReactNode;
+  icon: ReactNode;
+  children: ReactNode;
 }) => (
   <div className={`flex items-start gap-3 rounded-[8px] border p-4 text-[14px] font-semibold ${tone === "success" ? "border-brand/30 bg-brand-soft text-brand-deep" : "border-destructive/30 bg-destructive/10 text-destructive"}`}>
     <span className="mt-0.5 flex-none">{icon}</span>
