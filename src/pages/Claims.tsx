@@ -466,28 +466,28 @@ const Claims = () => {
               </FormPanel>
 
               <FormPanel title="UPLOAD FILES">
-                <label className="flex min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-border bg-muted/50 px-5 py-8 text-center transition hover:border-brand hover:bg-brand-soft">
+                <label className="flex min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-[8px] border border-dashed border-white/25 bg-white/5 px-5 py-8 text-center transition hover:border-brand hover:bg-white/10">
                   <Upload className="h-8 w-8 text-brand" />
-                  <span className="mt-3 text-[15px] font-semibold text-foreground">Upload claim documents</span>
-                  <span className="mt-1 text-[13px] leading-6 text-muted-foreground">Photos, police reports, towing invoices, bills of lading, or repair estimates. Up to 8 files.</span>
+                  <span className="mt-3 text-[15px] font-semibold text-primary-foreground">Upload claim documents</span>
+                  <span className="mt-1 text-[13px] leading-6 text-primary-foreground/65">Photos, police reports, towing invoices, bills of lading, or repair estimates. Up to 8 files.</span>
                   <input type="file" multiple className="sr-only" onChange={onFilesChange} />
                 </label>
 
                 {files.length > 0 && (
                   <ul className="space-y-3">
                     {files.map((file, index) => (
-                      <li key={`${file.name}-${index}`} className="flex items-center justify-between gap-4 rounded-[8px] border border-border bg-card px-4 py-3">
+                      <li key={`${file.name}-${index}`} className="flex items-center justify-between gap-4 rounded-[8px] border border-white/15 bg-white/10 px-4 py-3">
                         <span className="flex min-w-0 items-center gap-3">
                           <FileText className="h-5 w-5 flex-none text-brand" />
                           <span className="min-w-0">
-                            <span className="block truncate text-[14px] font-semibold text-foreground">{file.name}</span>
-                            <span className="text-[12px] text-muted-foreground">{formatFileSize(file.size)}</span>
+                            <span className="block truncate text-[14px] font-semibold text-primary-foreground">{file.name}</span>
+                            <span className="text-[12px] text-primary-foreground/60">{formatFileSize(file.size)}</span>
                           </span>
                         </span>
                         <button
                           type="button"
                           onClick={() => removeFile(index)}
-                          className="flex h-8 w-8 flex-none items-center justify-center rounded-full text-muted-foreground transition hover:bg-muted hover:text-foreground"
+                          className="flex h-8 w-8 flex-none items-center justify-center rounded-full text-primary-foreground/70 transition hover:bg-white/10 hover:text-primary-foreground"
                           aria-label={`Remove ${file.name}`}
                         >
                           <X className="h-4 w-4" />
@@ -585,7 +585,7 @@ const RadioGroup = ({
     <legend className={labelClass}>{label}</legend>
     <div className="mt-2 flex flex-wrap gap-2">
       {options.map((option) => (
-        <label key={option} className="flex cursor-pointer items-center gap-2 rounded-[8px] border border-border bg-background px-3 py-2 text-[14px] font-medium text-foreground transition has-[:checked]:border-brand has-[:checked]:bg-brand-soft">
+        <label key={option} className="flex cursor-pointer items-center gap-2 rounded-[8px] border border-white/20 bg-white/10 px-3 py-2 text-[14px] font-medium text-primary-foreground transition has-[:checked]:border-brand has-[:checked]:bg-brand/30">
           <input
             type="radio"
             name={name}
