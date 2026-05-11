@@ -17,6 +17,7 @@ interface Payload {
   sections?: Section[];
   fields?: Record<string, unknown>;
   attachment?: { filename: string; contentBase64: string };
+  attachments?: Array<{ filename: string; contentBase64: string; contentType?: string }>;
 }
 
 function escapeHtml(s: string) {
@@ -141,9 +142,11 @@ Deno.serve(async (req) => {
 
     const html = buildHtml(body);
 
-    const attachments = body.attachment?.contentBase64
-      ? [{ filename: body.attachment.filename, content: body.attachment.contentBase64 }]
-      : undefined;
+    const attachments = body.attachments?.length
+      ? body.attachments.map((file) => ({ filename: file.filename, content: file.contentBase64 }))
+      : body.attachment?.contentBase64
+        ? [{ filename: body.attachment.filename, content: body.attachment.contentBase64 }]
+        : undefined;
 
     const r = await fetch("https://api.resend.com/emails", {
       method: "POST",
