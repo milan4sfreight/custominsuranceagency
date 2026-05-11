@@ -148,6 +148,8 @@ Deno.serve(async (req) => {
         ? [{ filename: body.attachment.filename, content: body.attachment.contentBase64 }]
         : undefined;
 
+    const toEmail = body.formKind === "Claim Submission" ? "Claims@custominsure.com" : "Quotes@custominsure.com";
+
     const r = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -156,7 +158,7 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         from: "Custom Insurance Agency <Quotes@custominsure.com>",
-        to: ["Quotes@custominsure.com"],
+        to: [toEmail],
         reply_to: body.customerEmail ? [body.customerEmail] : undefined,
         subject: body.subject,
         html,
