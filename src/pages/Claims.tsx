@@ -165,6 +165,17 @@ const Claims = () => {
     setForm((current) => ({ ...current, [name]: value }));
   };
 
+  useEffect(() => {
+    if (form.filingAs === "someoneElse" && form.sameAsHolder) {
+      setForm((c) => ({
+        ...c,
+        claimantName: c.policyHolderName,
+        claimantPhone: c.insuredPhone,
+        claimantEmail: c.insuredEmail,
+      }));
+    }
+  }, [form.filingAs, form.sameAsHolder, form.policyHolderName, form.insuredPhone, form.insuredEmail]);
+
   const onFilesChange = (e: ChangeEvent<HTMLInputElement>) => {
     const nextFiles = Array.from(e.target.files ?? []);
     setFiles((current) => [...current, ...nextFiles].slice(0, 8));
