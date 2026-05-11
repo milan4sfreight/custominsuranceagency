@@ -352,10 +352,10 @@ export default function ClaimForm() {
         title="File a Claim | Custom Insurance Agency"
         description="Submit a commercial trucking insurance claim online. Our claims team will review your report and contact you to begin the process."
       />
-      <div className="flex min-h-screen w-full flex-col lg:flex-row">
+      <div className="flex w-full flex-col md:flex-row" style={{ minHeight: "100vh" }}>
         {/* LEFT COLUMN */}
         <aside
-          className="lg:sticky lg:top-0 lg:h-screen lg:w-[40%]"
+          className="md:sticky md:top-0 md:h-screen md:w-[40%] md:flex-shrink-0 md:overflow-y-auto"
           style={{
             background: "linear-gradient(135deg,#0f2a42,#173b5d 60%,#0d2b2b)",
             padding: "64px 48px",
@@ -418,7 +418,7 @@ export default function ClaimForm() {
 
         {/* RIGHT COLUMN */}
         <main
-          className="bg-white lg:w-[60%] lg:overflow-y-auto"
+          className="flex-1 bg-white md:overflow-y-auto"
           style={{ padding: "64px 48px" }}
         >
           <form onSubmit={onSubmit} className="mx-auto max-w-[640px]">
