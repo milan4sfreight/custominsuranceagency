@@ -141,6 +141,38 @@ const Claims = () => {
       </div>
 
       {/* WHAT TO HAVE READY */}
+      {/* START YOUR CLAIM CTA */}
+      <section
+        className="px-6 py-[80px] md:px-12"
+        style={{ background: "linear-gradient(135deg, #0f2a42 0%, #173b5d 60%, #0d2b2b 100%)" }}
+      >
+        <div className="mx-auto max-w-[800px] text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
+            Ready To File?
+          </p>
+          <h2 className="mt-3 text-[36px] font-bold leading-tight text-white" style={barlow}>
+            Start Your Claim Online
+          </h2>
+          <p className="mx-auto mt-4 max-w-[560px] text-[15px] text-white/50">
+            Complete our secure online form and our claims team will contact you within 24 hours.
+          </p>
+          <Link
+            to="/claims/file-a-claim"
+            className="mt-8 inline-block"
+            style={{
+              background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+              color: "#1a1a1a",
+              fontFamily: "'Barlow', sans-serif",
+              fontWeight: 700,
+              padding: "16px 48px",
+              borderRadius: "8px",
+            }}
+          >
+            Start Your Claim →
+          </Link>
+        </div>
+      </section>
+
       <section className="bg-dark-gradient px-6 py-[60px] md:px-12">
         <div className="mx-auto max-w-[900px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
