@@ -397,7 +397,7 @@ const Claims = () => {
                 </StatusMessage>
               )}
 
-              <FormPanel title="GENERAL INFORMATION" columns>
+              <FormPanel title="WHO IS FILING THIS CLAIM?" columns>
                 <Field name="insuredName" label="Insured Name" value={form.insuredName} onChange={onChange} required />
                 <Field name="policyNumber" label="Policy Number" value={form.policyNumber} onChange={onChange} required />
                 <Field name="contactName" label="Contact Name" value={form.contactName} onChange={onChange} required />
