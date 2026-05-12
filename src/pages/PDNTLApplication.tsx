@@ -142,6 +142,14 @@ export default function PDNTLApplication() {
   const [ownerState, setOwnerState] = useState("Alabama");
   const [ownerZip, setOwnerZip] = useState("");
 
+  // Section 5 — Lienholder
+  const [lienName, setLienName] = useState("");
+  const [lienTel, setLienTel] = useState("");
+  const [lienAddress, setLienAddress] = useState("");
+  const [lienCity, setLienCity] = useState("");
+  const [lienState, setLienState] = useState("Alabama");
+  const [lienZip, setLienZip] = useState("");
+
   const [status, setStatus] = useState<"idle" | "sending">("idle");
 
   const onSubmit = async (e: FormEvent) => {
@@ -177,6 +185,14 @@ export default function PDNTLApplication() {
             ["City", ownerCity],
             ["State", ownerState],
             ["ZIP", ownerZip],
+          ]},
+          { title: "Lienholder Information", rows: [
+            ["Lienholder Name", lienName],
+            ["Tel #", lienTel],
+            ["Address", lienAddress],
+            ["City", lienCity],
+            ["State", lienState],
+            ["ZIP", lienZip],
           ]},
         ],
       });
