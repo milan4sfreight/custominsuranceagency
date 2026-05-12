@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useRef, useEffect, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
@@ -156,6 +156,79 @@ export default function PDNTLApplication() {
   const updateDoc = (i: number, patch: Partial<DocEntry>) =>
     setDocuments((c) => c.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
 
+  // Section 7 — Signature
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const drawingRef = useRef(false);
+  const lastPointRef = useRef<{ x: number; y: number } | null>(null);
+  const hasSignatureRef = useRef(false);
+  const [signedAt] = useState<string>(() =>
+    new Date().toLocaleString("en-US", {
+      month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
+    })
+  );
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.scale(dpr, dpr);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.strokeStyle = "#0d2b2b";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+  }, []);
+
+  const getPoint = (e: React.MouseEvent | React.TouchEvent) => {
+    const canvas = canvasRef.current!;
+    const rect = canvas.getBoundingClientRect();
+    if ("touches" in e) {
+      const t = e.touches[0] || e.changedTouches[0];
+      return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+    }
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  };
+
+  const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    drawingRef.current = true;
+    lastPointRef.current = getPoint(e);
+  };
+  const moveDraw = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!drawingRef.current) return;
+    e.preventDefault();
+    const ctx = canvasRef.current?.getContext("2d");
+    if (!ctx || !lastPointRef.current) return;
+    const p = getPoint(e);
+    ctx.beginPath();
+    ctx.moveTo(lastPointRef.current.x, lastPointRef.current.y);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    lastPointRef.current = p;
+    hasSignatureRef.current = true;
+  };
+  const endDraw = () => {
+    drawingRef.current = false;
+    lastPointRef.current = null;
+  };
+
+  const clearSignature = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const rect = canvas.getBoundingClientRect();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    hasSignatureRef.current = false;
+  };
+
   const [status, setStatus] = useState<"idle" | "sending">("idle");
 
   const fileToBase64 = (file: File) =>
@@ -180,6 +253,15 @@ export default function PDNTLApplication() {
             contentType: d.file!.type || "application/octet-stream",
           })),
       );
+
+      if (hasSignatureRef.current && canvasRef.current) {
+        const dataUrl = canvasRef.current.toDataURL("image/png");
+        attachments.push({
+          filename: "signature.png",
+          contentBase64: dataUrl.split(",").pop() || "",
+          contentType: "image/png",
+        });
+      }
 
       await sendQuoteEmail({
         formKind: "Trucking Quote",
