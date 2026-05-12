@@ -555,6 +555,53 @@ export default function PDNTLApplication() {
               </button>
             </Section>
 
+            {/* SECTION 7 — SIGNATURE */}
+            <Section title="Signature">
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, color: "#6b7280", marginBottom: 16 }}>
+                By signing below, you confirm that all information provided is accurate and complete.
+              </p>
+              <canvas
+                ref={canvasRef}
+                style={{
+                  width: "100%",
+                  height: 180,
+                  background: "#ffffff",
+                  border: "2px solid #e5e7eb",
+                  borderRadius: 8,
+                  cursor: "crosshair",
+                  touchAction: "none",
+                  display: "block",
+                }}
+                onMouseDown={startDraw}
+                onMouseMove={moveDraw}
+                onMouseUp={endDraw}
+                onMouseLeave={endDraw}
+                onTouchStart={startDraw}
+                onTouchMove={moveDraw}
+                onTouchEnd={endDraw}
+              />
+              <div className="flex items-center justify-between mt-3">
+                <button
+                  type="button"
+                  onClick={clearSignature}
+                  style={{
+                    background: "transparent",
+                    color: TEAL,
+                    border: "none",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: 13,
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                >
+                  Clear Signature
+                </button>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
+                  Signed on: {signedAt}
+                </span>
+              </div>
+            </Section>
+
             <button
               type="submit"
               disabled={status === "sending"}
