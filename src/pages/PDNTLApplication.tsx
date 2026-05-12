@@ -359,6 +359,27 @@ export default function PDNTLApplication() {
               </div>
             </Section>
 
+            {/* SECTION 5 — LIENHOLDER */}
+            <Section title="Lienholder Information">
+              <div><Label>Lienholder Name</Label>
+                <input value={lienName} onChange={(e) => setLienName(e.target.value)} {...fieldProps} /></div>
+              <div><Label>Tel #</Label>
+                <input type="tel" value={lienTel} onChange={(e) => setLienTel(e.target.value)} {...fieldProps} /></div>
+              <div><Label>Address</Label>
+                <input value={lienAddress} onChange={(e) => setLienAddress(e.target.value)} {...fieldProps} /></div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div><Label>City</Label>
+                  <input value={lienCity} onChange={(e) => setLienCity(e.target.value)} {...fieldProps} /></div>
+                <div><Label>State</Label>
+                  <select value={lienState} onChange={(e) => setLienState(e.target.value)} {...fieldProps}>
+                    {US_STATES.map((s) => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                </div>
+                <div><Label>ZIP</Label>
+                  <input value={lienZip} onChange={(e) => setLienZip(e.target.value)} {...fieldProps} /></div>
+              </div>
+            </Section>
+
             <button
               type="submit"
               disabled={status === "sending"}
