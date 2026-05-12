@@ -305,6 +305,10 @@ export default function PDNTLApplication() {
             ? documents.map((d, i) => [`Document ${i + 1}`, `${d.type || "—"}${d.file ? ` — ${d.file.name}` : ""}`])
             : [["Documents", "None attached"]],
           },
+          { title: "Signature", rows: [
+            ["Signed", hasSignatureRef.current ? "Yes" : "No"],
+            ["Signed on", signedAt],
+          ]},
         ],
       });
       toast.success("Your PD/NTL application has been sent. Our team will review and contact you shortly.");
