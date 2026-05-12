@@ -150,6 +150,12 @@ export default function PDNTLApplication() {
   const [lienState, setLienState] = useState("Alabama");
   const [lienZip, setLienZip] = useState("");
 
+  // Lease Information
+  const [leaseMotorCarrier, setLeaseMotorCarrier] = useState("");
+  const [leaseDot, setLeaseDot] = useState("");
+  const [leaseMc, setLeaseMc] = useState("");
+  const [leaseEffectiveDate, setLeaseEffectiveDate] = useState("");
+
   // Section 6 — Supporting Documents
   type DocEntry = { type: string; file: File | null };
   const [documents, setDocuments] = useState<DocEntry[]>([]);
@@ -300,6 +306,12 @@ export default function PDNTLApplication() {
             ["City", lienCity],
             ["State", lienState],
             ["ZIP", lienZip],
+          ]},
+          { title: "Lease Information", rows: [
+            ["Permanently Leased to Motor Carrier (Lessee)", leaseMotorCarrier],
+            ["US DOT #", leaseDot],
+            ["MC #", leaseMc],
+            ["Effective Lease Date", leaseEffectiveDate],
           ]},
           { title: "Supporting Documents", rows: documents.length
             ? documents.map((d, i) => [`Document ${i + 1}`, `${d.type || "—"}${d.file ? ` — ${d.file.name}` : ""}`])
