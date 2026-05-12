@@ -19,6 +19,7 @@ import Resources from "./pages/Resources.tsx";
 import Contact from "./pages/Contact.tsx";
 import ClientLogin from "./pages/ClientLogin.tsx";
 import OccAccidentEnrollment from "./pages/OccAccidentEnrollment.tsx";
+import PDNTLApplication from "./pages/PDNTLApplication.tsx";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/client-login" element={<ClientLogin />} />
           <Route path="/occ-accident-enrollment" element={<OccAccidentEnrollment />} />
+          <Route path="/pd-ntl-application" element={<PDNTLApplication />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
