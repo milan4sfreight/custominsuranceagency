@@ -507,6 +507,28 @@ export default function PDNTLApplication() {
               </div>
             </Section>
 
+            {/* LEASE INFORMATION */}
+            <Section title="Lease Information">
+              <div>
+                <Label required>Permanently Leased to Motor Carrier (Lessee)</Label>
+                <input value={leaseMotorCarrier} onChange={(e) => setLeaseMotorCarrier(e.target.value)} {...fieldProps} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label required>US DOT #</Label>
+                  <input value={leaseDot} onChange={(e) => setLeaseDot(e.target.value)} {...fieldProps} />
+                </div>
+                <div>
+                  <Label>MC #</Label>
+                  <input value={leaseMc} onChange={(e) => setLeaseMc(e.target.value)} {...fieldProps} />
+                </div>
+              </div>
+              <div>
+                <Label required>Effective Lease Date</Label>
+                <input type="date" value={leaseEffectiveDate} onChange={(e) => setLeaseEffectiveDate(e.target.value)} {...fieldProps} />
+              </div>
+            </Section>
+
             {/* SECTION 6 — SUPPORTING DOCUMENTS */}
             <Section title="Supporting Documents">
               <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
