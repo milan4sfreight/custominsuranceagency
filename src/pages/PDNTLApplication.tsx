@@ -150,19 +150,44 @@ export default function PDNTLApplication() {
   const [lienState, setLienState] = useState("Alabama");
   const [lienZip, setLienZip] = useState("");
 
+  // Section 6 — Supporting Documents
+  type DocEntry = { type: string; file: File | null };
+  const [documents, setDocuments] = useState<DocEntry[]>([]);
+  const updateDoc = (i: number, patch: Partial<DocEntry>) =>
+    setDocuments((c) => c.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
+
   const [status, setStatus] = useState<"idle" | "sending">("idle");
+
+  const fileToBase64 = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result).split(",").pop() || "");
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (status === "sending") return;
     setStatus("sending");
     try {
+      const attachments = await Promise.all(
+        documents
+          .filter((d) => d.file)
+          .map(async (d) => ({
+            filename: d.file!.name,
+            contentBase64: await fileToBase64(d.file!),
+            contentType: d.file!.type || "application/octet-stream",
+          })),
+      );
+
       await sendQuoteEmail({
         formKind: "Trucking Quote",
         source: "PD/NTL Application Page",
         primaryName: ownerName || completedBy || "PD/NTL Application",
         customerName: ownerName,
         customerPhone: ownerTel,
+        attachments,
         sections: [
           { title: "Application Details", rows: [
             ["Quoted Date", quotedDate],
@@ -194,6 +219,10 @@ export default function PDNTLApplication() {
             ["State", lienState],
             ["ZIP", lienZip],
           ]},
+          { title: "Supporting Documents", rows: documents.length
+            ? documents.map((d, i) => [`Document ${i + 1}`, `${d.type || "—"}${d.file ? ` — ${d.file.name}` : ""}`])
+            : [["Documents", "None attached"]],
+          },
         ],
       });
       toast.success("Your PD/NTL application has been sent. Our team will review and contact you shortly.");
