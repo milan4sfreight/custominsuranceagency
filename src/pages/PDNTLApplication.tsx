@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import { sendQuoteEmail } from "@/lib/sendQuoteEmail";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
 const TEAL = "#2abfbf";
@@ -139,6 +142,53 @@ export default function PDNTLApplication() {
   const [ownerState, setOwnerState] = useState("Alabama");
   const [ownerZip, setOwnerZip] = useState("");
 
+  const [status, setStatus] = useState<"idle" | "sending">("idle");
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      await sendQuoteEmail({
+        formKind: "Trucking Quote",
+        source: "PD/NTL Application Page",
+        primaryName: ownerName || completedBy || "PD/NTL Application",
+        customerName: ownerName,
+        customerPhone: ownerTel,
+        sections: [
+          { title: "Application Details", rows: [
+            ["Quoted Date", quotedDate],
+            ["Effective Date", effectiveDate],
+            ["Liability Limit", liabilityLimit],
+            ["Producer App Completed By", completedBy],
+          ]},
+          { title: "Vehicles", rows: vehicles.map((v, i) => [
+            `Vehicle ${i + 1}`,
+            `VIN: ${v.vin || "—"} | Make: ${v.make || "—"} | Year: ${v.year || "—"} | Unit #: ${v.unit || "—"} | Value: ${v.value || "—"}`,
+          ])},
+          { title: "Drivers", rows: drivers.map((d, i) => [
+            `Driver ${i + 1}`,
+            `Name: ${d.name || "—"} | Experience: ${d.experience || "—"} yrs | License Exp: ${d.licenseExp || "—"} | DOB: ${d.dob || "—"} | DL #: ${d.dl || "—"} | State: ${d.state || "—"}`,
+          ])},
+          { title: "Vehicle Owner (Lessor)", rows: [
+            ["Name", ownerName],
+            ["Tel #", ownerTel],
+            ["Address", ownerAddress],
+            ["City", ownerCity],
+            ["State", ownerState],
+            ["ZIP", ownerZip],
+          ]},
+        ],
+      });
+      toast.success("Your PD/NTL application has been sent. Our team will review and contact you shortly.");
+      setStatus("idle");
+    } catch (err) {
+      console.error(err);
+      toast.error("Submission failed. Please try again or call 708-810-1955.");
+      setStatus("idle");
+    }
+  };
+
   return (
     <div className="min-h-screen w-full" style={{ background: "#ffffff" }}>
       <SEO
@@ -171,7 +221,7 @@ export default function PDNTLApplication() {
 
       <main style={{ padding: "64px 24px", background: "#ffffff" }}>
         <div className="mx-auto" style={{ maxWidth: 760 }}>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={onSubmit}>
             {/* SECTION 1 */}
             <Section title="Application Details">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -292,6 +342,26 @@ export default function PDNTLApplication() {
                   <input value={ownerZip} onChange={(e) => setOwnerZip(e.target.value)} {...fieldProps} /></div>
               </div>
             </Section>
+
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="mt-2 flex w-full items-center justify-center gap-2 font-display uppercase"
+              style={{
+                background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                color: "#1a1a1a",
+                padding: "16px",
+                borderRadius: 8,
+                border: "none",
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                fontSize: 15,
+                opacity: status === "sending" ? 0.7 : 1,
+                cursor: status === "sending" ? "not-allowed" : "pointer",
+              }}
+            >
+              {status === "sending" ? (<><Loader2 size={18} className="animate-spin" />Submitting…</>) : "SUBMIT APPLICATION"}
+            </button>
           </form>
         </div>
       </main>
