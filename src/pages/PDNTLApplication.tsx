@@ -150,6 +150,12 @@ export default function PDNTLApplication() {
   const [lienState, setLienState] = useState("Alabama");
   const [lienZip, setLienZip] = useState("");
 
+  // Lease Information
+  const [leaseMotorCarrier, setLeaseMotorCarrier] = useState("");
+  const [leaseDot, setLeaseDot] = useState("");
+  const [leaseMc, setLeaseMc] = useState("");
+  const [leaseEffectiveDate, setLeaseEffectiveDate] = useState("");
+
   // Section 6 — Supporting Documents
   type DocEntry = { type: string; file: File | null };
   const [documents, setDocuments] = useState<DocEntry[]>([]);
@@ -300,6 +306,12 @@ export default function PDNTLApplication() {
             ["City", lienCity],
             ["State", lienState],
             ["ZIP", lienZip],
+          ]},
+          { title: "Lease Information", rows: [
+            ["Permanently Leased to Motor Carrier (Lessee)", leaseMotorCarrier],
+            ["US DOT #", leaseDot],
+            ["MC #", leaseMc],
+            ["Effective Lease Date", leaseEffectiveDate],
           ]},
           { title: "Supporting Documents", rows: documents.length
             ? documents.map((d, i) => [`Document ${i + 1}`, `${d.type || "—"}${d.file ? ` — ${d.file.name}` : ""}`])
@@ -492,6 +504,28 @@ export default function PDNTLApplication() {
                 </div>
                 <div><Label>ZIP</Label>
                   <input value={lienZip} onChange={(e) => setLienZip(e.target.value)} {...fieldProps} /></div>
+              </div>
+            </Section>
+
+            {/* LEASE INFORMATION */}
+            <Section title="Lease Information">
+              <div>
+                <Label required>Permanently Leased to Motor Carrier (Lessee)</Label>
+                <input value={leaseMotorCarrier} onChange={(e) => setLeaseMotorCarrier(e.target.value)} {...fieldProps} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label required>US DOT #</Label>
+                  <input value={leaseDot} onChange={(e) => setLeaseDot(e.target.value)} {...fieldProps} />
+                </div>
+                <div>
+                  <Label>MC #</Label>
+                  <input value={leaseMc} onChange={(e) => setLeaseMc(e.target.value)} {...fieldProps} />
+                </div>
+              </div>
+              <div>
+                <Label required>Effective Lease Date</Label>
+                <input type="date" value={leaseEffectiveDate} onChange={(e) => setLeaseEffectiveDate(e.target.value)} {...fieldProps} />
               </div>
             </Section>
 
