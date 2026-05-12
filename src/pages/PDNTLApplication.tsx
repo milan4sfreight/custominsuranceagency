@@ -150,19 +150,44 @@ export default function PDNTLApplication() {
   const [lienState, setLienState] = useState("Alabama");
   const [lienZip, setLienZip] = useState("");
 
+  // Section 6 — Supporting Documents
+  type DocEntry = { type: string; file: File | null };
+  const [documents, setDocuments] = useState<DocEntry[]>([]);
+  const updateDoc = (i: number, patch: Partial<DocEntry>) =>
+    setDocuments((c) => c.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
+
   const [status, setStatus] = useState<"idle" | "sending">("idle");
+
+  const fileToBase64 = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result).split(",").pop() || "");
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (status === "sending") return;
     setStatus("sending");
     try {
+      const attachments = await Promise.all(
+        documents
+          .filter((d) => d.file)
+          .map(async (d) => ({
+            filename: d.file!.name,
+            contentBase64: await fileToBase64(d.file!),
+            contentType: d.file!.type || "application/octet-stream",
+          })),
+      );
+
       await sendQuoteEmail({
         formKind: "Trucking Quote",
         source: "PD/NTL Application Page",
         primaryName: ownerName || completedBy || "PD/NTL Application",
         customerName: ownerName,
         customerPhone: ownerTel,
+        attachments,
         sections: [
           { title: "Application Details", rows: [
             ["Quoted Date", quotedDate],
@@ -194,6 +219,10 @@ export default function PDNTLApplication() {
             ["State", lienState],
             ["ZIP", lienZip],
           ]},
+          { title: "Supporting Documents", rows: documents.length
+            ? documents.map((d, i) => [`Document ${i + 1}`, `${d.type || "—"}${d.file ? ` — ${d.file.name}` : ""}`])
+            : [["Documents", "None attached"]],
+          },
         ],
       });
       toast.success("Your PD/NTL application has been sent. Our team will review and contact you shortly.");
@@ -378,6 +407,66 @@ export default function PDNTLApplication() {
                 <div><Label>ZIP</Label>
                   <input value={lienZip} onChange={(e) => setLienZip(e.target.value)} {...fieldProps} /></div>
               </div>
+            </Section>
+
+            {/* SECTION 6 — SUPPORTING DOCUMENTS */}
+            <Section title="Supporting Documents">
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
+                Attach any supporting documents (MVR, lease agreements, etc.).
+              </p>
+
+              {documents.map((d, i) => (
+                <div key={i} style={cardStyle}>
+                  <div className="flex items-center justify-between mb-3">
+                    <span style={cardHeaderTitle}>Document {i + 1}</span>
+                    <button
+                      type="button"
+                      style={removeBtn}
+                      onClick={() => setDocuments((c) => c.filter((_, idx) => idx !== i))}
+                    >
+                      × Remove
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Document Type</Label>
+                      <select value={d.type} onChange={(e) => updateDoc(i, { type: e.target.value })} {...fieldProps}>
+                        <option value="">Select…</option>
+                        <option value="MVR (Motor Vehicle Record)">MVR (Motor Vehicle Record)</option>
+                        <option value="Permanent Lease Agreement">Permanent Lease Agreement</option>
+                        <option value="Title / Registration">Title / Registration</option>
+                        <option value="Custom Document">Custom Document</option>
+                      </select>
+                    </div>
+                    <div>
+                      <Label>File</Label>
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx,image/*"
+                        onChange={(e) => updateDoc(i, { file: e.target.files?.[0] ?? null })}
+                        style={{
+                          background: "#f3f4f6",
+                          border: "1px solid #e5e7eb",
+                          borderRadius: 8,
+                          padding: "10px 14px",
+                          width: "100%",
+                          fontFamily: "Inter, sans-serif",
+                          fontSize: 14,
+                          color: NAVY,
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                style={addBtnStyle}
+                onClick={() => setDocuments((c) => [...c, { type: "", file: null }])}
+              >
+                + Attach Document
+              </button>
             </Section>
 
             <button
