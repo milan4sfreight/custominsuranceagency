@@ -288,42 +288,78 @@ export default function PDNTLApplication() {
         let pageNum = 1;
 
         const drawHeader = () => {
-          doc.setFillColor(...NAVY_RGB);
-          doc.rect(0, 0, PAGE_W, 78, "F");
-          doc.setFillColor(...TEAL_RGB);
-          doc.rect(0, 78, PAGE_W, 4, "F");
+          // Row 1: navy bar
+          doc.setFillColor(31, 77, 122);
+          doc.rect(0, 0, 612, 28, "F");
           doc.setTextColor(255, 255, 255);
           doc.setFont("helvetica", "bold");
-          doc.setFontSize(18);
-          doc.text("PD / NTL APPLICATION", MARGIN, 38);
-          doc.setFont("helvetica", "normal");
           doc.setFontSize(10);
-          doc.setTextColor(203, 213, 225);
-          doc.text("Physical Damage & Non-Trucking Liability Coverage", MARGIN, 56);
-          doc.setFontSize(9);
-          doc.text("Custom Insurance Agency", PAGE_W - MARGIN, 38, { align: "right" });
-          doc.text("custominsure.com  •  708-810-1955", PAGE_W - MARGIN, 54, { align: "right" });
-          y = 110;
+          doc.text("Non-Trucking Automobile Liability", 45, 18);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8);
+          doc.text("Vehicle Physical Damage Individual Application", 612 - 45, 18, { align: "right" });
+          // Row 2: light band
+          doc.setFillColor(232, 240, 248);
+          doc.rect(0, 28, 612, 20, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(7);
+          doc.setTextColor(31, 77, 122);
+          doc.text("Application must be fully completed or coverage cannot be bound.", 45, 42);
+          doc.text(
+            "Producing agent is responsible for obtaining and keeping on file a copy of the permanent lease.",
+            612 - 45,
+            42,
+            { align: "right" },
+          );
+          // Divider
+          doc.setDrawColor(31, 77, 122);
+          doc.setLineWidth(0.5);
+          doc.line(0, 48, 612, 48);
+          y = 55;
         };
 
         const drawFooter = () => {
-          const fy = PAGE_H - 32;
-          doc.setDrawColor(...HAIR);
-          doc.setLineWidth(0.5);
-          doc.line(MARGIN, fy, PAGE_W - MARGIN, fy);
-          doc.setFont("helvetica", "normal");
+          // Left callout box
+          doc.setFillColor(255, 248, 240);
+          doc.rect(40, 740, 390, 45, "F");
+          doc.setDrawColor(245, 130, 31);
+          doc.setLineWidth(3);
+          doc.line(40, 740, 40, 785);
+          doc.setFont("helvetica", "bold");
           doc.setFontSize(8);
-          doc.setTextColor(...MUTED);
-          doc.text(
-            `Submitted ${new Date().toLocaleString("en-US", { timeZone: "America/Chicago", dateStyle: "medium", timeStyle: "short" })} CT`,
-            MARGIN,
-            fy + 14,
-          );
-          doc.text(`Page ${pageNum}`, PAGE_W - MARGIN, fy + 14, { align: "right" });
+          doc.setTextColor(245, 130, 31);
+          doc.text("IMPORTANT - PLEASE NOTE for Non-Trucking Automobile Liability:", 48, 752);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(85, 85, 85);
+          const noteText =
+            "This coverage is issued based on a warranty by the vehicle owner (lessor) that the insured tractor is permanently leased to the governmentally regulated motor carrier named on this application. All coverage expires when the permanent lease has been broken, cancelled, or terminated by either the contractor or motor carrier.";
+          const wrapped = doc.splitTextToSize(noteText, 375);
+          doc.text(wrapped, 48, 762);
+          // Right contact box
+          doc.setFillColor(245, 245, 245);
+          doc.rect(442, 740, 170, 45, "F");
+          doc.setDrawColor(204, 204, 204);
+          doc.setLineWidth(0.5);
+          doc.rect(442, 740, 170, 45, "S");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(31, 77, 122);
+          doc.text("Custom Insurance Agency", 442 + 85, 754, { align: "center" });
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(102, 102, 102);
+          doc.text("708-810-1955", 442 + 85, 764, { align: "center" });
+          doc.text("quotes@custominsure.com", 442 + 85, 774, { align: "center" });
+          // Page number (X of Y via placeholder)
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(153, 153, 153);
+          doc.text(`Page ${pageNum} of {nb}`, 612 / 2, 790, { align: "center" });
         };
 
         const ensureSpace = (needed: number) => {
-          if (y + needed > PAGE_H - 50) {
+          if (y + needed > 735) {
             drawFooter();
             doc.addPage();
             pageNum++;
@@ -569,6 +605,15 @@ export default function PDNTLApplication() {
 
         drawFooter();
 
+        // Replace {nb} placeholder with total page count across all pages
+        const totalPages = doc.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+          doc.setPage(i);
+          // jsPDF's putTotalPages requires the placeholder to have been printed
+        }
+        if (typeof (doc as unknown as { putTotalPages?: (s: string, n: number) => void }).putTotalPages === "function") {
+          (doc as unknown as { putTotalPages: (s: string, n: number) => void }).putTotalPages("{nb}", totalPages);
+        }
         const dataUri = doc.output("datauristring");
         return dataUri.split(",").pop() || "";
       })();
