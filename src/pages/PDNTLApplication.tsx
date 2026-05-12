@@ -605,6 +605,15 @@ export default function PDNTLApplication() {
 
         drawFooter();
 
+        // Replace {nb} placeholder with total page count across all pages
+        const totalPages = doc.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+          doc.setPage(i);
+          // jsPDF's putTotalPages requires the placeholder to have been printed
+        }
+        if (typeof (doc as unknown as { putTotalPages?: (s: string, n: number) => void }).putTotalPages === "function") {
+          (doc as unknown as { putTotalPages: (s: string, n: number) => void }).putTotalPages("{nb}", totalPages);
+        }
         const dataUri = doc.output("datauristring");
         return dataUri.split(",").pop() || "";
       })();
