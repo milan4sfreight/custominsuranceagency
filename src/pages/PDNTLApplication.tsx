@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import jsPDF from "jspdf";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
@@ -268,6 +269,315 @@ export default function PDNTLApplication() {
           contentType: "image/png",
         });
       }
+
+      // ===== Build professional AIG-style PD/NTL Application PDF =====
+      const pdfBase64 = (() => {
+        const doc = new jsPDF({ unit: "pt", format: "letter" });
+        const PAGE_W = 612;
+        const PAGE_H = 792;
+        const MARGIN = 40;
+        const CONTENT_W = PAGE_W - MARGIN * 2;
+        const NAVY_RGB: [number, number, number] = [23, 59, 93];
+        const TEAL_RGB: [number, number, number] = [42, 191, 191];
+        const INK: [number, number, number] = [13, 43, 43];
+        const MUTED: [number, number, number] = [107, 114, 128];
+        const HAIR: [number, number, number] = [229, 231, 235];
+        const SOFT: [number, number, number] = [248, 250, 252];
+
+        let y = 0;
+        let pageNum = 1;
+
+        const drawHeader = () => {
+          doc.setFillColor(...NAVY_RGB);
+          doc.rect(0, 0, PAGE_W, 78, "F");
+          doc.setFillColor(...TEAL_RGB);
+          doc.rect(0, 78, PAGE_W, 4, "F");
+          doc.setTextColor(255, 255, 255);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(18);
+          doc.text("PD / NTL APPLICATION", MARGIN, 38);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(10);
+          doc.setTextColor(203, 213, 225);
+          doc.text("Physical Damage & Non-Trucking Liability Coverage", MARGIN, 56);
+          doc.setFontSize(9);
+          doc.text("Custom Insurance Agency", PAGE_W - MARGIN, 38, { align: "right" });
+          doc.text("custominsure.com  •  708-810-1955", PAGE_W - MARGIN, 54, { align: "right" });
+          y = 110;
+        };
+
+        const drawFooter = () => {
+          const fy = PAGE_H - 32;
+          doc.setDrawColor(...HAIR);
+          doc.setLineWidth(0.5);
+          doc.line(MARGIN, fy, PAGE_W - MARGIN, fy);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8);
+          doc.setTextColor(...MUTED);
+          doc.text(
+            `Submitted ${new Date().toLocaleString("en-US", { timeZone: "America/Chicago", dateStyle: "medium", timeStyle: "short" })} CT`,
+            MARGIN,
+            fy + 14,
+          );
+          doc.text(`Page ${pageNum}`, PAGE_W - MARGIN, fy + 14, { align: "right" });
+        };
+
+        const ensureSpace = (needed: number) => {
+          if (y + needed > PAGE_H - 50) {
+            drawFooter();
+            doc.addPage();
+            pageNum++;
+            drawHeader();
+          }
+        };
+
+        const sectionTitle = (label: string) => {
+          ensureSpace(34);
+          doc.setFillColor(...TEAL_RGB);
+          doc.rect(MARGIN, y, 3, 14, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...NAVY_RGB);
+          doc.text(label.toUpperCase(), MARGIN + 10, y + 11);
+          y += 18;
+          doc.setDrawColor(...HAIR);
+          doc.setLineWidth(0.5);
+          doc.line(MARGIN, y, PAGE_W - MARGIN, y);
+          y += 10;
+        };
+
+        const kvGrid = (rows: Array<[string, string]>, cols = 2) => {
+          const colW = CONTENT_W / cols;
+          const rowH = 30;
+          for (let i = 0; i < rows.length; i += cols) {
+            ensureSpace(rowH + 4);
+            for (let c = 0; c < cols; c++) {
+              const r = rows[i + c];
+              if (!r) continue;
+              const x = MARGIN + c * colW;
+              doc.setFont("helvetica", "normal");
+              doc.setFontSize(7.5);
+              doc.setTextColor(...MUTED);
+              doc.text(r[0].toUpperCase(), x + 4, y + 8);
+              doc.setFont("helvetica", "bold");
+              doc.setFontSize(10);
+              doc.setTextColor(...INK);
+              const val = r[1] && r[1].trim() ? r[1] : "—";
+              const lines = doc.splitTextToSize(val, colW - 8);
+              doc.text(lines.slice(0, 1), x + 4, y + 22);
+            }
+            doc.setDrawColor(...HAIR);
+            doc.setLineWidth(0.3);
+            doc.line(MARGIN, y + rowH, PAGE_W - MARGIN, y + rowH);
+            y += rowH;
+          }
+          y += 8;
+        };
+
+        const dataTable = (headers: string[], rows: string[][], widths: number[]) => {
+          const totalRel = widths.reduce((a, b) => a + b, 0);
+          const colWs = widths.map((w) => (w / totalRel) * CONTENT_W);
+          const rowH = 22;
+          ensureSpace(rowH * 2);
+          // header
+          doc.setFillColor(...NAVY_RGB);
+          doc.rect(MARGIN, y, CONTENT_W, rowH, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(255, 255, 255);
+          let xh = MARGIN;
+          headers.forEach((h, i) => {
+            doc.text(h.toUpperCase(), xh + 6, y + 14);
+            xh += colWs[i];
+          });
+          y += rowH;
+          // body
+          rows.forEach((r, ri) => {
+            ensureSpace(rowH);
+            if (ri % 2 === 0) {
+              doc.setFillColor(...SOFT);
+              doc.rect(MARGIN, y, CONTENT_W, rowH, "F");
+            }
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(9);
+            doc.setTextColor(...INK);
+            let xc = MARGIN;
+            r.forEach((cell, i) => {
+              const txt = cell && cell.trim() ? cell : "—";
+              const lines = doc.splitTextToSize(txt, colWs[i] - 12);
+              doc.text(lines.slice(0, 1), xc + 6, y + 14);
+              xc += colWs[i];
+            });
+            doc.setDrawColor(...HAIR);
+            doc.setLineWidth(0.3);
+            doc.line(MARGIN, y + rowH, PAGE_W - MARGIN, y + rowH);
+            y += rowH;
+          });
+          y += 10;
+        };
+
+        drawHeader();
+
+        // Headline summary band
+        doc.setFillColor(...SOFT);
+        doc.setDrawColor(...HAIR);
+        doc.setLineWidth(0.5);
+        doc.roundedRect(MARGIN, y, CONTENT_W, 56, 6, 6, "FD");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(13);
+        doc.setTextColor(...NAVY_RGB);
+        doc.text(ownerName || completedBy || "PD/NTL Application", MARGIN + 14, y + 22);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(...MUTED);
+        const meta = [
+          ownerTel ? `Tel: ${ownerTel}` : "",
+          effectiveDate ? `Effective: ${effectiveDate}` : "",
+          liabilityLimit ? `Limit: ${liabilityLimit}` : "",
+        ].filter(Boolean).join("    •    ");
+        doc.text(meta || "Submitted via custominsurance.agency", MARGIN + 14, y + 40);
+        y += 70;
+
+        sectionTitle("Application Details");
+        kvGrid([
+          ["Quoted Date", quotedDate],
+          ["Effective Date", effectiveDate],
+          ["Liability Limit", liabilityLimit],
+          ["Producer App Completed By", completedBy],
+        ]);
+
+        sectionTitle(`Vehicles  (${vehicles.length})`);
+        dataTable(
+          ["#", "VIN", "Make", "Year", "Unit #", "Value"],
+          vehicles.map((v, i) => [String(i + 1), v.vin, v.make, v.year, v.unit, v.value]),
+          [0.5, 3, 1.5, 1, 1.2, 1.5],
+        );
+
+        sectionTitle(`Drivers  (${drivers.length})`);
+        dataTable(
+          ["#", "Name", "Exp (yrs)", "Lic Exp", "DOB", "DL #", "State"],
+          drivers.map((d, i) => [String(i + 1), d.name, d.experience, d.licenseExp, d.dob, d.dl, d.state]),
+          [0.5, 2.5, 1, 1.2, 1.2, 1.5, 1.4],
+        );
+
+        sectionTitle("Vehicle Owner (Lessor)");
+        kvGrid([
+          ["Name", ownerName],
+          ["Telephone", ownerTel],
+          ["Address", ownerAddress],
+          ["City", ownerCity],
+          ["State", ownerState],
+          ["ZIP", ownerZip],
+        ]);
+
+        sectionTitle("Lienholder Information");
+        kvGrid([
+          ["Lienholder Name", lienName],
+          ["Telephone", lienTel],
+          ["Address", lienAddress],
+          ["City", lienCity],
+          ["State", lienState],
+          ["ZIP", lienZip],
+        ]);
+
+        sectionTitle("Lease Information");
+        kvGrid([
+          ["Permanently Leased To (Motor Carrier)", leaseMotorCarrier],
+          ["US DOT #", leaseDot],
+          ["MC #", leaseMc],
+          ["Effective Lease Date", leaseEffectiveDate],
+        ]);
+
+        sectionTitle(`Supporting Documents  (${documents.length})`);
+        if (documents.length === 0) {
+          doc.setFont("helvetica", "italic");
+          doc.setFontSize(9);
+          doc.setTextColor(...MUTED);
+          ensureSpace(20);
+          doc.text("No documents attached.", MARGIN, y + 4);
+          y += 18;
+        } else {
+          dataTable(
+            ["#", "Document Type", "Filename"],
+            documents.map((d, i) => [String(i + 1), d.type, d.file ? d.file.name : ""]),
+            [0.5, 2, 3.5],
+          );
+        }
+
+        // PLEASE NOTE block
+        ensureSpace(110);
+        doc.setFillColor(...SOFT);
+        doc.setDrawColor(...HAIR);
+        doc.setLineWidth(0.5);
+        const noteText =
+          "This coverage is issued based on a warranty by the vehicle owner (lessor) that the insured tractor is permanently leased to the governmentally regulated motor carrier named on this application. All coverage expires when the permanent lease has been broken, cancelled, or terminated by either the contractor or motor carrier.";
+        const noteLines = doc.splitTextToSize(noteText, CONTENT_W - 28);
+        const noteH = 44 + noteLines.length * 11;
+        doc.roundedRect(MARGIN, y, CONTENT_W, noteH, 6, 6, "FD");
+        doc.setFillColor(...TEAL_RGB);
+        doc.rect(MARGIN, y, 4, noteH, "F");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        doc.setTextColor(...NAVY_RGB);
+        doc.text("PLEASE NOTE", MARGIN + 14, y + 16);
+        doc.setFontSize(9);
+        doc.setTextColor(...INK);
+        doc.text("For Non-Trucking Automobile Liability:", MARGIN + 14, y + 30);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(...MUTED);
+        doc.text(noteLines, MARGIN + 14, y + 44);
+        y += noteH + 14;
+
+        // Signature
+        sectionTitle("Authorized Signature");
+        ensureSpace(110);
+        const sigW = 280;
+        const sigH = 80;
+        doc.setDrawColor(...HAIR);
+        doc.setLineWidth(0.5);
+        doc.rect(MARGIN, y, sigW, sigH);
+        if (hasSignatureRef.current && canvasRef.current) {
+          try {
+            const sigData = canvasRef.current.toDataURL("image/png");
+            doc.addImage(sigData, "PNG", MARGIN + 4, y + 4, sigW - 8, sigH - 8);
+          } catch {
+            /* ignore */
+          }
+        }
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7.5);
+        doc.setTextColor(...MUTED);
+        doc.text("SIGNATURE", MARGIN, y + sigH + 12);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9);
+        doc.setTextColor(...INK);
+        doc.text(hasSignatureRef.current ? "Signed electronically" : "Not signed", MARGIN, y + sigH + 26);
+
+        const dateX = MARGIN + sigW + 30;
+        doc.setDrawColor(...HAIR);
+        doc.line(dateX, y + sigH, PAGE_W - MARGIN, y + sigH);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7.5);
+        doc.setTextColor(...MUTED);
+        doc.text("DATE SIGNED", dateX, y + sigH + 12);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(9);
+        doc.setTextColor(...INK);
+        doc.text(signedAt, dateX, y + sigH + 26);
+        y += sigH + 36;
+
+        drawFooter();
+
+        const dataUri = doc.output("datauristring");
+        return dataUri.split(",").pop() || "";
+      })();
+
+      attachments.unshift({
+        filename: `PD-NTL-Application-${(ownerName || "applicant").replace(/[^a-z0-9]+/gi, "-")}.pdf`,
+        contentBase64: pdfBase64,
+        contentType: "application/pdf",
+      });
 
       await sendQuoteEmail({
         formKind: "Trucking Quote",
