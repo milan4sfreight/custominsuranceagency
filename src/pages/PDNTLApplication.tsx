@@ -602,6 +602,40 @@ export default function PDNTLApplication() {
               </div>
             </Section>
 
+            {/* PLEASE NOTE */}
+            <div
+              className="mb-8"
+              style={{
+                border: "1px solid #e5e7eb",
+                background: "#f8fafc",
+                borderLeft: `4px solid ${TEAL}`,
+                borderRadius: 8,
+                padding: "16px 20px",
+              }}
+            >
+              <div
+                className="uppercase mb-2"
+                style={{
+                  fontFamily: "'Barlow', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 13,
+                  color: NAVY,
+                  letterSpacing: "0.08em",
+                }}
+              >
+                Please Note
+              </div>
+              <div style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 13, color: "#0d2b2b" }}>
+                For Non-Trucking Automobile Liability:
+              </div>
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280", marginTop: 8, lineHeight: 1.55 }}>
+                This coverage is issued based on a warranty by the vehicle owner (lessor) that the insured tractor is
+                permanently leased to the governmentally regulated motor carrier named on this application. All coverage
+                expires when the permanent lease has been broken, cancelled, or terminated by either the contractor or
+                motor carrier.
+              </p>
+            </div>
+
             <button
               type="submit"
               disabled={status === "sending"}
