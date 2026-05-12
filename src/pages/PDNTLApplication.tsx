@@ -409,6 +409,66 @@ export default function PDNTLApplication() {
               </div>
             </Section>
 
+            {/* SECTION 6 — SUPPORTING DOCUMENTS */}
+            <Section title="Supporting Documents">
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
+                Attach any supporting documents (MVR, lease agreements, etc.).
+              </p>
+
+              {documents.map((d, i) => (
+                <div key={i} style={cardStyle}>
+                  <div className="flex items-center justify-between mb-3">
+                    <span style={cardHeaderTitle}>Document {i + 1}</span>
+                    <button
+                      type="button"
+                      style={removeBtn}
+                      onClick={() => setDocuments((c) => c.filter((_, idx) => idx !== i))}
+                    >
+                      × Remove
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Document Type</Label>
+                      <select value={d.type} onChange={(e) => updateDoc(i, { type: e.target.value })} {...fieldProps}>
+                        <option value="">Select…</option>
+                        <option value="MVR (Motor Vehicle Record)">MVR (Motor Vehicle Record)</option>
+                        <option value="Permanent Lease Agreement">Permanent Lease Agreement</option>
+                        <option value="Title / Registration">Title / Registration</option>
+                        <option value="Custom Document">Custom Document</option>
+                      </select>
+                    </div>
+                    <div>
+                      <Label>File</Label>
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx,image/*"
+                        onChange={(e) => updateDoc(i, { file: e.target.files?.[0] ?? null })}
+                        style={{
+                          background: "#f3f4f6",
+                          border: "1px solid #e5e7eb",
+                          borderRadius: 8,
+                          padding: "10px 14px",
+                          width: "100%",
+                          fontFamily: "Inter, sans-serif",
+                          fontSize: 14,
+                          color: NAVY,
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                style={addBtnStyle}
+                onClick={() => setDocuments((c) => [...c, { type: "", file: null }])}
+              >
+                + Attach Document
+              </button>
+            </Section>
+
             <button
               type="submit"
               disabled={status === "sending"}
