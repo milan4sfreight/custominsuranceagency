@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useRef, useEffect, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
@@ -156,6 +156,79 @@ export default function PDNTLApplication() {
   const updateDoc = (i: number, patch: Partial<DocEntry>) =>
     setDocuments((c) => c.map((row, idx) => (idx === i ? { ...row, ...patch } : row)));
 
+  // Section 7 — Signature
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const drawingRef = useRef(false);
+  const lastPointRef = useRef<{ x: number; y: number } | null>(null);
+  const hasSignatureRef = useRef(false);
+  const [signedAt] = useState<string>(() =>
+    new Date().toLocaleString("en-US", {
+      month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
+    })
+  );
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.scale(dpr, dpr);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.strokeStyle = "#0d2b2b";
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+  }, []);
+
+  const getPoint = (e: React.MouseEvent | React.TouchEvent) => {
+    const canvas = canvasRef.current!;
+    const rect = canvas.getBoundingClientRect();
+    if ("touches" in e) {
+      const t = e.touches[0] || e.changedTouches[0];
+      return { x: t.clientX - rect.left, y: t.clientY - rect.top };
+    }
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  };
+
+  const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    drawingRef.current = true;
+    lastPointRef.current = getPoint(e);
+  };
+  const moveDraw = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!drawingRef.current) return;
+    e.preventDefault();
+    const ctx = canvasRef.current?.getContext("2d");
+    if (!ctx || !lastPointRef.current) return;
+    const p = getPoint(e);
+    ctx.beginPath();
+    ctx.moveTo(lastPointRef.current.x, lastPointRef.current.y);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    lastPointRef.current = p;
+    hasSignatureRef.current = true;
+  };
+  const endDraw = () => {
+    drawingRef.current = false;
+    lastPointRef.current = null;
+  };
+
+  const clearSignature = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const rect = canvas.getBoundingClientRect();
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, rect.width, rect.height);
+    hasSignatureRef.current = false;
+  };
+
   const [status, setStatus] = useState<"idle" | "sending">("idle");
 
   const fileToBase64 = (file: File) =>
@@ -180,6 +253,15 @@ export default function PDNTLApplication() {
             contentType: d.file!.type || "application/octet-stream",
           })),
       );
+
+      if (hasSignatureRef.current && canvasRef.current) {
+        const dataUrl = canvasRef.current.toDataURL("image/png");
+        attachments.push({
+          filename: "signature.png",
+          contentBase64: dataUrl.split(",").pop() || "",
+          contentType: "image/png",
+        });
+      }
 
       await sendQuoteEmail({
         formKind: "Trucking Quote",
@@ -223,6 +305,10 @@ export default function PDNTLApplication() {
             ? documents.map((d, i) => [`Document ${i + 1}`, `${d.type || "—"}${d.file ? ` — ${d.file.name}` : ""}`])
             : [["Documents", "None attached"]],
           },
+          { title: "Signature", rows: [
+            ["Signed", hasSignatureRef.current ? "Yes" : "No"],
+            ["Signed on", signedAt],
+          ]},
         ],
       });
       toast.success("Your PD/NTL application has been sent. Our team will review and contact you shortly.");
@@ -467,6 +553,53 @@ export default function PDNTLApplication() {
               >
                 + Attach Document
               </button>
+            </Section>
+
+            {/* SECTION 7 — SIGNATURE */}
+            <Section title="Signature">
+              <p style={{ fontFamily: "Inter, sans-serif", fontSize: 14, color: "#6b7280", marginBottom: 16 }}>
+                By signing below, you confirm that all information provided is accurate and complete.
+              </p>
+              <canvas
+                ref={canvasRef}
+                style={{
+                  width: "100%",
+                  height: 180,
+                  background: "#ffffff",
+                  border: "2px solid #e5e7eb",
+                  borderRadius: 8,
+                  cursor: "crosshair",
+                  touchAction: "none",
+                  display: "block",
+                }}
+                onMouseDown={startDraw}
+                onMouseMove={moveDraw}
+                onMouseUp={endDraw}
+                onMouseLeave={endDraw}
+                onTouchStart={startDraw}
+                onTouchMove={moveDraw}
+                onTouchEnd={endDraw}
+              />
+              <div className="flex items-center justify-between mt-3">
+                <button
+                  type="button"
+                  onClick={clearSignature}
+                  style={{
+                    background: "transparent",
+                    color: TEAL,
+                    border: "none",
+                    fontFamily: "Inter, sans-serif",
+                    fontSize: 13,
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                >
+                  Clear Signature
+                </button>
+                <span style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
+                  Signed on: {signedAt}
+                </span>
+              </div>
             </Section>
 
             <button
