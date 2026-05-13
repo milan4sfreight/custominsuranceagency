@@ -15,7 +15,20 @@ export const Hero = () => {
         alt="Aerial view of highway interchange"
       />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl items-center justify-center px-6 pt-32 pb-16 sm:pt-36 lg:pt-0 lg:px-10">
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(15,42,66,0.85) 0%, rgba(15,42,66,0.2) 35%, rgba(15,42,66,0.2) 65%, rgba(15,42,66,0.85) 100%)',
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div
+        className="relative mx-auto flex min-h-screen max-w-7xl items-center justify-center px-6 pt-32 pb-16 sm:pt-36 lg:pt-0 lg:px-10"
+        style={{ zIndex: 2 }}
+      >
         <div className="flex w-full max-w-[900px] flex-col items-center text-center">
           <span
             className="inline-block"
