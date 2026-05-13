@@ -38,8 +38,9 @@ export default function Claims() {
 
       {/* HERO */}
       <section
-        className="relative flex h-[300px] w-full flex-col items-center justify-center bg-foreground pt-16"
+        className="relative flex w-full flex-col items-center justify-center bg-foreground pt-16"
         style={{
+          minHeight: "500px",
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -58,7 +59,7 @@ export default function Claims() {
 
       {/* WHITE CONTENT */}
       <section className="bg-white">
-        <div className="mx-auto w-full max-w-[900px] px-6 py-[80px]">
+        <div className="mx-auto w-full max-w-[900px] px-6 pb-[80px]" style={{ paddingTop: 40 }}>
           <h2 className="font-display text-[36px] font-bold leading-tight" style={{ color: "#0d2b2b" }}>
             We're Here to Help.
           </h2>
