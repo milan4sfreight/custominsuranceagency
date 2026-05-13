@@ -28,6 +28,7 @@ const solutions = [
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
@@ -46,6 +47,14 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header
       className={cn(
@@ -62,7 +71,14 @@ export const Navbar = () => {
       {/* Desktop top bar */}
       <div
         className="hidden lg:block"
-        style={{ background: "#0f2a42", padding: "6px 56px" }}
+        style={{
+          background: "#0f2a42",
+          padding: isScrolled ? "0 56px" : "6px 56px",
+          maxHeight: isScrolled ? '0' : '40px',
+          overflow: 'hidden',
+          transition: 'max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease',
+          opacity: isScrolled ? 0 : 1,
+        }}
       >
         <div
           className="flex items-center justify-end gap-3"
@@ -83,7 +99,7 @@ export const Navbar = () => {
       {/* Desktop main nav */}
       <nav
         className="relative hidden lg:flex items-center justify-between"
-        style={{ height: "72px", padding: "0 56px" }}
+        style={{ padding: "8px 56px" }}
       >
         <Link to="/" className="flex items-center">
           <img src={logo} alt="Custom Insurance Agency" style={{ height: "56px", width: "auto" }} />
