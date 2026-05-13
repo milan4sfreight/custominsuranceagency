@@ -4,8 +4,9 @@ import { Plus, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import resourcesHero from "@/assets/resources-hero.jpg";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d";
+const HERO_IMG = resourcesHero;
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
 const guides = [
