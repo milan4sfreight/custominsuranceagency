@@ -189,6 +189,19 @@ const Index = () => {
               >
                 Why Choose Custom Insurance Agency?
               </h2>
+              <p
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: 16,
+                  color: "#6b7280",
+                  lineHeight: 1.7,
+                  maxWidth: 600,
+                  marginTop: 16,
+                  marginBottom: 32,
+                }}
+              >
+                Our mission is simple — Loyalty First. We are an independent insurance agency rooted in community, trusted nationwide, and committed to putting our clients above all else.
+              </p>
               <div className="mt-8">
                 {features.map((f, i) => (
                   <div
