@@ -52,8 +52,15 @@ const Resources = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[300px] w-full flex-col items-center justify-center pt-16"
-        style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        className="relative flex w-full flex-col items-center justify-center pt-16"
+        style={{
+          minHeight: "500px",
+          backgroundImage: `url(${HERO_IMG})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)" }} />
         <div className="relative z-10 px-6 text-center text-white">
@@ -65,7 +72,7 @@ const Resources = () => {
       </section>
 
       {/* GUIDES */}
-      <section className="bg-white px-6 py-16">
+      <section className="bg-white px-6 pb-16" style={{ paddingTop: 40 }}>
         <div className="mx-auto w-full max-w-[1200px]">
           <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em" }}>
             Lines of Coverage
