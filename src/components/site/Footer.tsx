@@ -29,7 +29,7 @@ export const Footer = () => {
           <div>
             <img src={logo} alt="Custom Insurance Agency" className="h-[44px] w-auto" />
             <p className="mt-4 text-sm leading-relaxed text-white/60">
-              Independent insurance agency serving Illinois & Indiana with smarter coverage and friendly local service.
+              Independent insurance agency serving clients nationwide with smarter coverage and friendly service.
             </p>
             <p className="mt-4 text-sm text-white/60">
               1333 Burr Ridge Pkwy STE 200, Burr Ridge, IL 60527<br />
