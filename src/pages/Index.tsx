@@ -23,7 +23,7 @@ const stats = [
   { num: "50+", label: "Insurance Carriers" },
   { num: "21", label: "Coverage Types" },
   { num: "24hr", label: "Quote Response Time" },
-  { num: "IL & IN", label: "Licensed States" },
+  { num: "50", label: "Licensed States" },
 ];
 
 const formatPhone = (v: string) => {
@@ -315,7 +315,7 @@ const Index = () => {
         <div className="mx-auto max-w-[1200px] text-center">
           <p className={EYEBROW}>By the Numbers</p>
           <h2 className="mt-3 text-[28px] md:text-[36px] font-bold text-[#0d2b2b]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700 }}>
-            Trusted by Businesses Across Illinois &amp; Indiana
+            Trusted by Businesses Nationwide
           </h2>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s) => (
