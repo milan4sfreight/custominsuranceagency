@@ -295,7 +295,7 @@ export const Navbar = () => {
             {solutionsOpen && (
               <div
                 className="absolute"
-                style={{ top: "100%", left: 0, width: "100%", zIndex: 50, paddingTop: "12px" }}
+                style={{ top: "100%", left: 0, width: "100%", zIndex: 49, paddingTop: 0, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
               >
                 <div
                   style={{
