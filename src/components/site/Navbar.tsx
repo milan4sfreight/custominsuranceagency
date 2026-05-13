@@ -24,6 +24,16 @@ const solutions = [
   { label: "Freight Broker Insurance", to: "/freight-broker-insurance", subItems: [] },
   { label: "Commercial Insurance", to: "/commercial-insurance", subItems: [] },
   { label: "Risk Management", to: "/risk-management", subItems: [] },
+  {
+    label: "Personal Lines",
+    to: "/get-a-quote",
+    subItems: [
+      "Auto Insurance",
+      "Home Insurance",
+      "Health Insurance",
+      "Life Insurance",
+    ],
+  },
 ];
 
 export const Navbar = () => {
@@ -166,7 +176,7 @@ export const Navbar = () => {
                         onMouseEnter={() => setHoveredSolution(i)}
                         className="flex items-center justify-between transition-colors"
                         style={{
-                          color: hoveredSolution === i ? "#3eaa6d" : "#173b5d",
+                          color: hoveredSolution === i ? "#2abfbf" : "#173b5d",
                           fontSize: "15px",
                           fontWeight: 500,
                           padding: "12px 0",
@@ -206,9 +216,9 @@ export const Navbar = () => {
                         {solutions[hoveredSolution].subItems.map((item) => (
                           <a
                             key={item}
-                            href={solutions[hoveredSolution].to}
+                            href={solutions[hoveredSolution].label === "Personal Lines" ? "/get-a-quote" : solutions[hoveredSolution].to}
                             style={{
-                              color: "#3eaa6d",
+                              color: "#2abfbf",
                               fontSize: "14px",
                               padding: "8px 0",
                               fontFamily: "'Inter', sans-serif",
@@ -224,7 +234,7 @@ export const Navbar = () => {
                     ) : (
                       <Link
                         to={solutions[hoveredSolution].to}
-                        style={{ color: "#3eaa6d", fontSize: "14px", fontFamily: "'Inter', sans-serif" }}
+                        style={{ color: "#2abfbf", fontSize: "14px", fontFamily: "'Inter', sans-serif" }}
                       >
                         Learn more →
                       </Link>
