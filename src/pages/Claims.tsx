@@ -3,8 +3,9 @@ import { Phone, Mail, Clock } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import claimsHero from "@/assets/claims-hero.jpg";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
+const HERO_IMG = claimsHero;
 
 const steps = [
   {
@@ -38,7 +39,13 @@ export default function Claims() {
       {/* HERO */}
       <section
         className="relative flex h-[300px] w-full flex-col items-center justify-center bg-foreground pt-16"
-        style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{
+          backgroundImage: `url(${HERO_IMG})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
       >
         <div className="absolute inset-0 bg-foreground/65" />
         <div className="relative z-10 px-6 text-center text-primary-foreground">
