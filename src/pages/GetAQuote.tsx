@@ -5,7 +5,7 @@ import jsPDF from "jspdf";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-import volvoTruck from "@/assets/hero-truck-highway.png";
+import volvoTruck from "@/assets/getquote-hero.jpg";
 import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 /* ───────── constants ───────── */
@@ -665,6 +665,8 @@ export default function GetAQuote() {
           backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${volvoTruck})`,
           backgroundSize: "cover",
           backgroundPosition: "center 75%",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
