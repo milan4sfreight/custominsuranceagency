@@ -5,6 +5,8 @@ import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import Footer from "@/components/site/Footer";
 import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
+import volvoSemi from "@/assets/volvo-semi.jpeg";
+import handshake from "@/assets/handshake.jpg";
 
 const US_STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
 
@@ -267,7 +269,7 @@ const Index = () => {
       <section className="grid min-h-[500px] grid-cols-1 md:grid-cols-2">
         <div
           className="min-h-[300px] bg-cover bg-center"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1600&q=80)" }}
+          style={{ backgroundImage: `url(${volvoSemi})` }}
           aria-label="Trucking on highway"
         />
         <div className="flex flex-col justify-center bg-dark-gradient px-6 py-16 md:px-14">
@@ -303,7 +305,7 @@ const Index = () => {
         </div>
         <div
           className="order-1 min-h-[300px] bg-cover bg-center md:order-2"
-          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80)" }}
+          style={{ backgroundImage: `url(${handshake})` }}
           aria-label="Team meeting"
         />
       </section>
