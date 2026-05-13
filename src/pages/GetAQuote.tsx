@@ -261,6 +261,291 @@ export default function GetAQuote() {
     if (submitStatus === "sending") return;
     setSubmitStatus("sending");
     try {
+      // ===== Build PDF (same style as PDNTLApplication) =====
+      const pdfBase64 = (() => {
+        const doc = new jsPDF({ unit: "pt", format: "letter" });
+        const PAGE_W = 612;
+        const MARGIN = 40;
+        const CONTENT_W = 532;
+        const NAVY_RGB: [number, number, number] = [31, 77, 122];
+        const TEAL_RGB: [number, number, number] = [42, 191, 191];
+        const INK: [number, number, number] = [13, 43, 43];
+        const MUTED: [number, number, number] = [107, 114, 128];
+        const HAIR: [number, number, number] = [229, 231, 235];
+        const SOFT: [number, number, number] = [248, 250, 252];
+
+        let y = 0;
+        let pageNum = 1;
+
+        const drawHeader = () => {
+          doc.setFillColor(31, 77, 122);
+          doc.rect(0, 0, 612, 28, "F");
+          doc.setTextColor(255, 255, 255);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.text("Custom Insurance Agency", 45, 18);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8);
+          doc.text("Commercial Trucking Quote", 567, 18, { align: "right" });
+          doc.setFillColor(232, 240, 248);
+          doc.rect(0, 28, 612, 20, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(7);
+          doc.setTextColor(31, 77, 122);
+          doc.text("This quote request was submitted electronically.", 45, 42);
+          doc.text("For questions call 708-810-1955", 567, 42, { align: "right" });
+          doc.setDrawColor(31, 77, 122);
+          doc.setLineWidth(0.5);
+          doc.line(0, 48, 612, 48);
+          y = 55;
+        };
+
+        const drawFooter = () => {
+          doc.setFillColor(255, 248, 240);
+          doc.rect(40, 740, 390, 45, "F");
+          doc.setDrawColor(245, 130, 31);
+          doc.setLineWidth(3);
+          doc.line(40, 740, 40, 785);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(245, 130, 31);
+          doc.text("This quote request has been received by Custom Insurance Agency.", 48, 752);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(85, 85, 85);
+          const wrapped = doc.splitTextToSize(
+            "A licensed agent will contact you within 24 hours at 708-810-1955 or Quotes@custominsure.com",
+            375,
+          );
+          doc.text(wrapped, 48, 762);
+          doc.setFillColor(245, 245, 245);
+          doc.rect(442, 740, 170, 45, "F");
+          doc.setDrawColor(204, 204, 204);
+          doc.setLineWidth(0.5);
+          doc.rect(442, 740, 170, 45, "S");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(31, 77, 122);
+          doc.text("Custom Insurance Agency", 527, 754, { align: "center" });
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(102, 102, 102);
+          doc.text("708-810-1955", 527, 764, { align: "center" });
+          doc.text("Quotes@custominsure.com", 527, 774, { align: "center" });
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(153, 153, 153);
+          doc.text(`Page ${pageNum} of {nb}`, 306, 790, { align: "center" });
+        };
+
+        const ensureSpace = (needed: number) => {
+          if (y + needed > 735) {
+            drawFooter();
+            doc.addPage();
+            pageNum++;
+            drawHeader();
+          }
+        };
+
+        const sectionTitle = (label: string) => {
+          ensureSpace(34);
+          doc.setFillColor(...TEAL_RGB);
+          doc.rect(MARGIN, y, 3, 14, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...NAVY_RGB);
+          doc.text(label.toUpperCase(), MARGIN + 10, y + 11);
+          y += 18;
+          doc.setDrawColor(...HAIR);
+          doc.setLineWidth(0.5);
+          doc.line(MARGIN, y, PAGE_W - MARGIN, y);
+          y += 10;
+        };
+
+        const kvGrid = (rows: Array<[string, string]>, cols = 2) => {
+          const colW = CONTENT_W / cols;
+          const rowH = 30;
+          for (let i = 0; i < rows.length; i += cols) {
+            ensureSpace(34);
+            for (let c = 0; c < cols; c++) {
+              const r = rows[i + c];
+              if (!r) continue;
+              const x = MARGIN + c * colW;
+              doc.setFont("helvetica", "normal");
+              doc.setFontSize(7.5);
+              doc.setTextColor(...MUTED);
+              doc.text(r[0].toUpperCase(), x + 4, y + 8);
+              doc.setFont("helvetica", "bold");
+              doc.setFontSize(10);
+              doc.setTextColor(...INK);
+              const val = r[1] && r[1].trim() ? r[1] : "—";
+              const lines = doc.splitTextToSize(val, colW - 8);
+              doc.text(lines.slice(0, 1), x + 4, y + 22);
+            }
+            doc.setDrawColor(...HAIR);
+            doc.setLineWidth(0.3);
+            doc.line(MARGIN, y + rowH, PAGE_W - MARGIN, y + rowH);
+            y += rowH;
+          }
+          y += 8;
+        };
+
+        const dataTable = (headers: string[], rows: string[][], widths: number[]) => {
+          const totalRel = widths.reduce((a, b) => a + b, 0);
+          const colWs = widths.map((w) => (w / totalRel) * CONTENT_W);
+          const rowH = 22;
+          ensureSpace(rowH * 2);
+          doc.setFillColor(...NAVY_RGB);
+          doc.rect(MARGIN, y, CONTENT_W, rowH, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(255, 255, 255);
+          let xh = MARGIN;
+          headers.forEach((h, i) => {
+            doc.text(h.toUpperCase(), xh + 6, y + 14);
+            xh += colWs[i];
+          });
+          y += rowH;
+          rows.forEach((r, ri) => {
+            ensureSpace(rowH);
+            if (ri % 2 === 0) {
+              doc.setFillColor(...SOFT);
+              doc.rect(MARGIN, y, CONTENT_W, rowH, "F");
+            }
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(9);
+            doc.setTextColor(...INK);
+            let xc = MARGIN;
+            r.forEach((cell, i) => {
+              const txt = cell && cell.trim() ? cell : "—";
+              const lines = doc.splitTextToSize(txt, colWs[i] - 12);
+              doc.text(lines.slice(0, 1), xc + 6, y + 14);
+              xc += colWs[i];
+            });
+            doc.setDrawColor(...HAIR);
+            doc.setLineWidth(0.3);
+            doc.line(MARGIN, y + rowH, PAGE_W - MARGIN, y + rowH);
+            y += rowH;
+          });
+          y += 10;
+        };
+
+        drawHeader();
+
+        // Summary band
+        doc.setFillColor(...SOFT);
+        doc.setDrawColor(...HAIR);
+        doc.setLineWidth(0.5);
+        doc.roundedRect(MARGIN, y, CONTENT_W, 56, 6, 6, "FD");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(13);
+        doc.setTextColor(...NAVY_RGB);
+        doc.text(companyName || dba || "Trucking Quote", MARGIN + 14, y + 22);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(...MUTED);
+        const metaLine =
+          ((usDot ? "USDOT: " + usDot : "") + " " + (effectiveDate ? "Eff: " + effectiveDate : "")).trim() ||
+          "Submitted via custominsure.com";
+        doc.text(metaLine, MARGIN + 14, y + 40);
+        y += 70;
+
+        sectionTitle("COMPANY INFORMATION");
+        kvGrid([
+          ["Company Name", companyName],
+          ["DBA", dba],
+          ["Phone", phone],
+          ["Email", email],
+          ["Entity Type", entity],
+          ["Years in Business", yearsInBiz],
+          ["US DOT #", usDot],
+          ["MC #", mc],
+          ["Tax ID", taxId],
+          ["Federal Filings", fedFilings],
+          ["Physical Address", `${pAddr1} ${pAddr2}, ${pCity}, ${pState} ${pZip}`],
+          ["Mailing Address", mAddr1 ? ` ${mAddr1} ${mAddr2}, ${mCity}, ${mState} ${mZip}` : ""],
+        ]);
+
+        sectionTitle("OPERATIONS");
+        kvGrid([
+          ["Operating Area", area],
+          ["Operating Radius", radius],
+          ["Bad Weather Days", badDays],
+          ["Owners", owners.map((o) => o.name).join(", ")],
+        ]);
+
+        sectionTitle("VEHICLES (" + vehicles.length + ")");
+        dataTable(
+          ["#", "YEAR", "MAKE", "MODEL", "TYPE", "VALUE"],
+          vehicles.map((v, i) => [
+            String(i + 1),
+            v.year,
+            v.make,
+            v.model,
+            v.type === "Other" ? v.otherType : v.type,
+            v.value,
+          ]),
+          [0.4, 0.8, 1.2, 1.2, 1.4, 1],
+        );
+
+        sectionTitle("DRIVERS (" + drivers.length + ")");
+        dataTable(
+          ["#", "NAME", "DOB", "LICENSE #", "STATE", "YEARS EXP"],
+          drivers.map((d, i) => [
+            String(i + 1),
+            d.name,
+            d.dob,
+            d.license,
+            d.licenseState,
+            d.experience,
+          ]),
+          [0.4, 2, 1, 1.5, 0.8, 0.8],
+        );
+
+        sectionTitle("COMMODITIES");
+        kvGrid(
+          commodities.map(
+            (c, i) =>
+              [
+                "Commodity " + (i + 1),
+                (c.name === "Other" ? c.otherName : c.name) + " " + c.percent + "%",
+              ] as [string, string],
+          ),
+        );
+
+        sectionTitle("COVERAGE REQUESTED");
+        kvGrid([
+          ["Auto Liability Limit", alLimit === "Other" ? alLimitOther : alLimit],
+          ["Auto Liability Deductible", alDed],
+          ["Motor Truck Cargo Limit", mtcLimit === "Other" ? mtcLimitOther : mtcLimit],
+          ["Motor Truck Cargo Deductible", mtcDed === "Other" ? mtcDedOther : mtcDed],
+          ["Coverage Notes", coverageNotes],
+          ["Desired Effective Date", effectiveDate],
+        ]);
+
+        sectionTitle("LOSS HISTORY");
+        kvGrid([
+          ["Losses in Past 5 Years", losses],
+          ["When", lossesWhen],
+          ["Comments", lossesComments],
+        ]);
+
+        sectionTitle("CURRENT POLICY");
+        kvGrid([
+          ["Current Carrier", currentCarrier],
+          ["Renewal Date", renewalDate],
+          ["Current Premiums", currentPremiums],
+        ]);
+
+        drawFooter();
+
+        const totalPages = doc.getNumberOfPages();
+        if (typeof (doc as unknown as { putTotalPages?: (s: string, n: number) => void }).putTotalPages === "function") {
+          (doc as unknown as { putTotalPages: (s: string, n: number) => void }).putTotalPages("{nb}", totalPages);
+        }
+        return doc.output("datauristring").split(",")[1];
+      })();
+
       await sendQuoteEmail({
         formKind: "Trucking Quote",
         source: "Get A Quote — Trucking (7-step form)",
@@ -268,6 +553,18 @@ export default function GetAQuote() {
         customerName: companyName,
         customerEmail: email,
         customerPhone: phone,
+        attachments: [
+          {
+            filename:
+              "TruckingQuote_" +
+              (companyName || dba || "Quote").replace(/\s+/g, "_") +
+              "_" +
+              new Date().toISOString().split("T")[0] +
+              ".pdf",
+            contentBase64: pdfBase64,
+            contentType: "application/pdf",
+          },
+        ],
         sections: [
           {
             title: "Filings & Tax",
