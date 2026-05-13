@@ -32,7 +32,7 @@ const formatPhone = (v: string) => {
 };
 
 const inputCls =
-  "w-full rounded-lg border border-white/15 bg-white/[0.08] px-[12px] py-[8px] text-[14px] text-white placeholder:text-white/35 outline-none transition focus:border-[#2abfbf] focus:shadow-[0_0_0_3px_rgba(42,191,191,0.15)]";
+  "w-full rounded-lg border border-white/15 bg-white/[0.08] px-[12px] py-[8px] text-[13px] text-white placeholder:text-white/35 outline-none transition focus:border-[#2abfbf] focus:shadow-[0_0_0_3px_rgba(42,191,191,0.15)]";
 
 const labelCls = "mb-1 block text-[10px] font-semibold uppercase tracking-[1px] text-[#2abfbf]";
 
@@ -139,9 +139,9 @@ const QuoteForm = () => {
         </div>
         <div>
           <label className={labelCls}>Comments / Questions</label>
-          <textarea rows={2} maxLength={1000} className={inputCls} placeholder="Tell us a bit about your needs..." value={comments} onChange={(e) => setComments(e.target.value)} />
+          <textarea rows={2} maxLength={1000} className={inputCls} style={{ minHeight: 60 }} placeholder="Tell us a bit about your needs..." value={comments} onChange={(e) => setComments(e.target.value)} />
         </div>
-        <label className="flex items-start gap-3 text-[12px] leading-[1.6] text-white/60">
+        <label className="flex items-start gap-3 text-[11px] leading-[1.6] text-white/60">
           <input type="checkbox" className="mt-1 h-4 w-4 accent-[#2abfbf]" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
           <span>By checking this box, I consent to receive SMS messages from Custom Insurance Agency regarding my insurance quote. Message and data rates may apply. Reply STOP to unsubscribe.</span>
         </label>
@@ -158,7 +158,7 @@ const QuoteForm = () => {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="mt-2 w-full rounded-lg px-6 py-[13px] text-[14px] font-semibold uppercase tracking-wider text-white transition hover:brightness-110"
+          className="mt-2 w-full rounded-lg px-6 py-[12px] text-[14px] font-semibold uppercase tracking-wider text-white transition hover:brightness-110"
           style={{ background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)", fontFamily: "'Barlow', sans-serif" }}
         >
           {status === "sending" ? "Sending…" : "Get Quote"}
@@ -175,15 +175,15 @@ const Index = () => {
       <Hero />
 
       {/* COMBINED SECTION — WHY CHOOSE US + GET A QUOTE */}
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-[1400px] grid-cols-1 md:grid-cols-[60%_40%]">
+      <section className="bg-white overflow-hidden">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-start md:flex-row">
           {/* LEFT — Why Choose Us */}
-          <div className="bg-white px-5 py-12 md:px-14" style={{ paddingTop: 72, paddingBottom: 72, paddingLeft: undefined }}>
-            <div className="md:pl-2 md:pr-8" style={{ paddingLeft: 0, paddingRight: 0 }}>
-              <p className={EYEBROW}>Why Choose Us</p>
+          <div className="bg-white md:w-[60%]" style={{ padding: "48px 40px" }}>
+            <div style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <p className={EYEBROW} style={{ marginBottom: 8 }}>Why Choose Us</p>
               <h2
-                className="mt-3 leading-tight text-[#0d2b2b]"
-                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: "clamp(28px, 4.2vw, 42px)" }}
+                className="leading-tight text-[#0d2b2b]"
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 34 }}
               >
                 Why Choose Custom Insurance Agency?
               </h2>
@@ -191,8 +191,8 @@ const Index = () => {
                 {features.map((f, i) => (
                   <div
                     key={f.title}
-                    className="flex flex-col gap-4 py-6 md:flex-row md:items-start md:gap-5"
-                    style={{ borderTop: i === 0 ? "none" : "1px solid #f0f0f0" }}
+                    className="flex flex-col md:flex-row md:items-start"
+                    style={{ borderTop: i === 0 ? "none" : "1px solid #f0f0f0", gap: 16, padding: "12px 0" }}
                   >
                     <div
                       className="flex shrink-0 items-center justify-center rounded-full text-[20px] text-[#2abfbf]"
@@ -203,11 +203,11 @@ const Index = () => {
                     <div className="flex-1">
                       <h3
                         className="text-[#2abfbf]"
-                        style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, fontSize: 18 }}
+                        style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 600, fontSize: 15 }}
                       >
                         {f.title}
                       </h3>
-                      <p className="mt-2 text-[15px] text-[#4a5568]" style={{ lineHeight: 1.6 }}>
+                      <p className="mt-2 text-[13px] text-[#4a5568]" style={{ lineHeight: 1.6 }}>
                         {f.text}
                       </p>
                     </div>
@@ -219,6 +219,7 @@ const Index = () => {
 
           {/* RIGHT — Get A Quote */}
           <div
+            className="md:w-[40%]"
             style={{
               background: "#ffffff",
               padding: "0 40px",
@@ -226,7 +227,6 @@ const Index = () => {
               position: "sticky",
               top: 24,
             }}
-            className=""
           >
             <div
               style={{
@@ -234,30 +234,30 @@ const Index = () => {
                 border: "1px solid rgba(255, 255, 255, 0.15)",
                 borderRadius: 16,
                 boxShadow: "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
-                padding: "24px",
+                padding: "28px",
                 marginTop: 72,
               }}
             >
-            <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#2abfbf]">Free Quote</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ marginBottom: 4 }}>Free Quote</p>
             <h2
-              className="mt-2 text-white leading-tight"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 26 }}
+              className="text-white leading-tight"
+              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
             >
               Get A Quote
             </h2>
             <div className="mt-4">
               <QuoteForm />
             </div>
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px]">
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
               <a
                 href="tel:7088101955"
-                className="text-[#f5c518] font-semibold"
+                className="text-[#f5c518] font-semibold text-[18px]"
                 style={{ fontFamily: "'Barlow', sans-serif" }}
               >
                 📞 708-810-1955
               </a>
               <span className="text-white/30">|</span>
-              <span className="text-white/50">Monday – Friday | 9:00 AM – 5:00 PM</span>
+              <span className="text-white/50 text-[11px]">Monday – Friday | 9:00 AM – 5:00 PM</span>
             </div>
             </div>
           </div>
