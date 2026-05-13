@@ -6,6 +6,162 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
+const personalLinesContent: Record<string, { icon: string; title: string; body: string }> = {
+  "Auto Insurance": {
+    icon: "🚗",
+    title: "Auto Insurance",
+    body:
+      "Protect your personal vehicle with comprehensive coverage tailored to your needs. From liability to full coverage, we find the best rates from 50+ carriers.",
+  },
+  "Home Insurance": {
+    icon: "🏠",
+    title: "Home Insurance",
+    body:
+      "Your home is your biggest investment. We protect it with the right coverage — from fire and theft to liability and natural disasters. Our team shops 50+ carriers to find you the best protection at the best price.",
+  },
+  "Health Insurance": {
+    icon: "🏥",
+    title: "Health Insurance",
+    body:
+      "Quality health coverage for you and your family. We work with top providers to find plans that fit your budget and lifestyle — from individual plans to family coverage.",
+  },
+  "Life Insurance": {
+    icon: "🛡️",
+    title: "Life Insurance",
+    body:
+      "Give your family financial security for the future. Term, whole, and universal life insurance options — we help you choose the right protection for your loved ones.",
+  },
+};
+
+const PersonalLinesModal = ({
+  optionKey,
+  onClose,
+}: {
+  optionKey: string | null;
+  onClose: () => void;
+}) => {
+  if (!optionKey) return null;
+  const data = personalLinesContent[optionKey];
+  if (!data) return null;
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.6)",
+        zIndex: 100,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+        animation: "fade-in 0.2s ease-out",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "#fff",
+          maxWidth: "560px",
+          width: "100%",
+          borderTop: "4px solid #2abfbf",
+          borderRadius: "12px",
+          padding: "40px",
+          position: "relative",
+          boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          style={{
+            position: "absolute",
+            top: "12px",
+            right: "16px",
+            background: "transparent",
+            border: "none",
+            fontSize: "26px",
+            color: "#6b7280",
+            cursor: "pointer",
+            lineHeight: 1,
+          }}
+        >
+          ×
+        </button>
+        <div style={{ fontSize: "44px", marginBottom: "12px" }}>{data.icon}</div>
+        <div
+          style={{
+            color: "#2abfbf",
+            textTransform: "uppercase",
+            fontSize: "11px",
+            letterSpacing: "2px",
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 600,
+            marginBottom: "8px",
+          }}
+        >
+          Personal Lines Coverage
+        </div>
+        <h2
+          style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontWeight: 700,
+            fontSize: "28px",
+            color: "#0d2b2b",
+            margin: "0 0 16px 0",
+          }}
+        >
+          {data.title}
+        </h2>
+        <p
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "15px",
+            color: "#6b7280",
+            lineHeight: 1.7,
+            margin: "0 0 28px 0",
+          }}
+        >
+          {data.body}
+        </p>
+        <Link
+          to="/get-a-quote"
+          onClick={onClose}
+          style={{
+            display: "block",
+            width: "100%",
+            textAlign: "center",
+            background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+            color: "#fff",
+            borderRadius: "50px",
+            padding: "14px 22px",
+            fontFamily: "'Barlow', sans-serif",
+            fontWeight: 700,
+            fontSize: "16px",
+            textDecoration: "none",
+          }}
+        >
+          Get a Free Quote →
+        </Link>
+        <div style={{ textAlign: "center", marginTop: "14px" }}>
+          <a
+            href="tel:7088101955"
+            style={{
+              color: "#2abfbf",
+              fontSize: "13px",
+              fontFamily: "'Inter', sans-serif",
+              textDecoration: "none",
+            }}
+          >
+            Call us at 708-810-1955
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const solutions = [
   {
     label: "Trucking Insurance",
@@ -43,6 +199,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [hoveredSolution, setHoveredSolution] = useState(0);
+  const [personalLinesModal, setPersonalLinesModal] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -217,6 +374,13 @@ export const Navbar = () => {
                           <a
                             key={item}
                             href={solutions[hoveredSolution].label === "Personal Lines" ? "/get-a-quote" : solutions[hoveredSolution].to}
+                            onClick={(e) => {
+                              if (solutions[hoveredSolution].label === "Personal Lines") {
+                                e.preventDefault();
+                                setSolutionsOpen(false);
+                                setPersonalLinesModal(item);
+                              }
+                            }}
                             style={{
                               color: "#2abfbf",
                               fontSize: "14px",
@@ -399,6 +563,7 @@ export const Navbar = () => {
           </SheetContent>
         </Sheet>
       </nav>
+      <PersonalLinesModal optionKey={personalLinesModal} onClose={() => setPersonalLinesModal(null)} />
     </header>
   );
 };
