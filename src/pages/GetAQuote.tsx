@@ -661,7 +661,7 @@ export default function GetAQuote() {
         className="bd-hero"
         style={{
           width: "100%",
-          height: 280,
+          minHeight: 500,
           backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${volvoTruck})`,
           backgroundSize: "cover",
           backgroundPosition: "center 75%",
@@ -729,7 +729,7 @@ export default function GetAQuote() {
       ) : (
         <>
           {/* INTRO */}
-          <section className="bd-intro" style={{ background: "#fff", padding: "48px 20px" }}>
+          <section className="bd-intro" style={{ background: "#fff", padding: "40px 20px 48px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
               <h2
                 className="bd-intro-h2"
