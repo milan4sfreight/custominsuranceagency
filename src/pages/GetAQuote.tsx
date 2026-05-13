@@ -833,12 +833,6 @@ export default function GetAQuote() {
                   </Field>
                   <Field label="Zip Code"><input style={inputSty()} value={mZip} onChange={(e) => setMZip(e.target.value)} /></Field>
                 </Grid3>
-
-                <div style={{ marginTop: 24, maxWidth: "50%" }} className="bd-half">
-                  <Field label="Number of Bad Days">
-                    <input style={inputSty()} value={badDays} onChange={(e) => setBadDays(e.target.value)} />
-                  </Field>
-                </div>
               </Step>
 
               {/* STEP 2 */}
