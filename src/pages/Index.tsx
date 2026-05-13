@@ -240,25 +240,23 @@ const Index = () => {
               }}
             >
             <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ marginBottom: 4 }}>Free Quote</p>
-            <h2
-              className="text-white leading-tight"
-              style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
-            >
-              Get A Quote
-            </h2>
-            <div className="mt-4">
-              <QuoteForm />
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+              <h2
+                className="text-white leading-tight"
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
+              >
+                Get A Quote
+              </h2>
               <a
                 href="tel:7088101955"
-                className="text-[#f5c518] font-semibold text-[18px]"
-                style={{ fontFamily: "'Barlow', sans-serif" }}
+                className="text-[#f5c518]"
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
               >
                 📞 708-810-1955
               </a>
-              <span className="text-white/30">|</span>
-              <span className="text-white/50 text-[11px]">Monday – Friday | 9:00 AM – 5:00 PM</span>
+            </div>
+            <div className="mt-4">
+              <QuoteForm />
             </div>
             </div>
           </div>
