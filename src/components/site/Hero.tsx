@@ -82,7 +82,7 @@ export const Hero = () => {
           </p>
           <p
             className="text-center"
-            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 32, color: "#ffffff", marginTop: 16 }}
+            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 38, color: "#ffffff", marginTop: 48 }}
           >
             Loyalty First. Local Roots. National Reach.
           </p>
