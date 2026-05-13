@@ -250,7 +250,7 @@ const Index = () => {
               <a
                 href="tel:7088101955"
                 className="text-[#f5c518]"
-                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 28 }}
               >
                 📞 708-810-1955
               </a>
