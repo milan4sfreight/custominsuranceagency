@@ -670,7 +670,7 @@ export default function GetAQuote() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: 110,
+          marginTop: 0,
         }}
       >
         <h1
