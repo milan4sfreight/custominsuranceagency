@@ -19,7 +19,7 @@ export const Hero = () => {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to bottom, rgba(15,42,66,0.85) 0%, rgba(15,42,66,0.2) 35%, rgba(15,42,66,0.2) 65%, rgba(15,42,66,0.85) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.75) 100%)',
           zIndex: 1,
           pointerEvents: 'none',
         }}
