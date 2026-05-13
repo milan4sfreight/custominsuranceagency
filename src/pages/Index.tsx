@@ -12,7 +12,7 @@ const EYEBROW = "text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfb
 const FONT = "font-['Inter',sans-serif]";
 
 const features = [
-  { icon: "🌐", title: "We Speak Your Language", text: "Our first language is trucking and our team serves clients in multiple languages." },
+  { icon: "🌐", title: "We Speak Your Language", text: "Our first language is trucking and our team serves clients in multiple languages — operating ratios or CSA scores, we get it. Our diverse team works closely with you to protect your business." },
   { icon: "🚀", title: "We Build Your Perfect Strategy", text: "We start by listening. Leveraging our network of 50+ insurance companies, we create a customized strategy aligned with your goals — from a single truck to a full fleet." },
   { icon: "🏆", title: "We Go The Extra Mile", text: "We offer guidance on industry changes, help you file claims, and assist in fixing incorrect violations. Fast, direct online access to certificates of insurance. No runaround — just results." },
 ];
