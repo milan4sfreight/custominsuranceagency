@@ -19,7 +19,7 @@ const companyLinks: { label: string; href: string }[] = [
   { label: "Resources", href: "/resources" },
   { label: "Client Login", href: "/client-login" },
   { label: "Carriers", href: "#" },
-  { label: "Privacy", href: "#" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 
 export const Footer = () => {
