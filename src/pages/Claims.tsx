@@ -29,7 +29,7 @@ export default function Claims() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ fontFamily: "'Barlow', sans-serif" }}>
       <SEO
         title="Claims | Custom Insurance Agency"
         description="Need to file an insurance claim? Custom Insurance Agency claims team is here to help. Call 708-810-1955 or email claims@custominsure.com for immediate assistance."
@@ -71,13 +71,16 @@ export default function Claims() {
             <button
               type="button"
               onClick={() => navigate("/claims/file-a-claim")}
-              className="font-display font-bold uppercase"
+              className="font-bold uppercase transition-all hover:brightness-110"
               style={{
-                background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
-                color: "#1a1a1a",
+                background: "linear-gradient(90deg, #f97316 0%, #eab308 100%)",
+                color: "#ffffff",
+                fontFamily: "'Barlow', sans-serif",
                 letterSpacing: "0.08em",
-                padding: "14px 36px",
-                borderRadius: "8px",
+                padding: "16px 40px",
+                borderRadius: "50px",
+                border: "none",
+                boxShadow: "0 4px 15px rgba(245, 130, 31, 0.35)",
               }}
             >
               FILE A CLAIM ONLINE »
