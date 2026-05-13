@@ -14,6 +14,7 @@ const EYEBROW = "text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfb
 const FONT = "font-['Inter',sans-serif]";
 
 const features = [
+  { icon: "🎯", title: "Loyalty First", text: "Our mission is simple — Loyalty First. We are an independent insurance agency rooted in community, trusted nationwide, and committed to putting our clients above all else." },
   { icon: "🌐", title: "Our First Language Is Trucking", text: "The transportation industry is the backbone of this country, and we know it inside and out. Whether you are an owner-operator, a fleet manager, or a logistics company, we understand the risks you face on and off the road. Our team speaks your language — and our loyalty to the trucking community runs deep." },
   { icon: "🚀", title: "We Build Your Perfect Strategy", text: "We start by listening. Leveraging our network of 50+ insurance companies, we create a customized strategy aligned with your goals — from a single truck to a full fleet." },
   { icon: "🏆", title: "We Go The Extra Mile", text: "We offer guidance on industry changes, help you file claims, and assist in fixing incorrect violations. Fast, direct online access to certificates of insurance. No runaround — just results." },
@@ -189,19 +190,6 @@ const Index = () => {
               >
                 Why Choose Custom Insurance Agency?
               </h2>
-              <p
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: 16,
-                  color: "#6b7280",
-                  lineHeight: 1.7,
-                  maxWidth: 600,
-                  marginTop: 16,
-                  marginBottom: 32,
-                }}
-              >
-                Our mission is simple — Loyalty First. We are an independent insurance agency rooted in community, trusted nationwide, and committed to putting our clients above all else.
-              </p>
               <div className="mt-8">
                 {features.map((f, i) => (
                   <div
