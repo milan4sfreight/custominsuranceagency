@@ -275,8 +275,6 @@ export const Navbar = () => {
         <div className="flex items-center" style={{ gap: "28px" }}>
           {/* Solutions with mega dropdown */}
           <div
-            className="relative"
-            style={{ position: "relative" }}
             onMouseEnter={() => setSolutionsOpen(true)}
             onMouseLeave={() => setSolutionsOpen(false)}
           >
@@ -298,7 +296,7 @@ export const Navbar = () => {
             {solutionsOpen && (
               <div
                 className="absolute"
-                style={{ top: "100%", left: 0, zIndex: 50, paddingTop: "12px" }}
+                style={{ top: "100%", left: 0, width: "100%", zIndex: 50, paddingTop: "12px" }}
               >
                 <div
                   style={{
@@ -309,7 +307,7 @@ export const Navbar = () => {
                     display: "grid",
                     gridTemplateColumns: "320px 1fr",
                     gap: "40px",
-                    minWidth: "780px",
+                    width: "100%",
                   }}
                 >
                   {/* Left column */}
