@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.png";
+import footerBg from "@/assets/footer-bg.jpg";
 
 const quoteLinks: { label: string; href: string }[] = [
   { label: "Auto", href: "#" },
@@ -23,8 +24,18 @@ const companyLinks: { label: string; href: string }[] = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-dark-gradient text-white/75">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+    <footer
+      className="relative text-white/75"
+      style={{
+        backgroundImage: `url(${footerBg})`,
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="absolute inset-0" style={{ background: "rgba(10, 25, 50, 0.82)" }} />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <img src={logo} alt="Custom Insurance Agency" className="h-[44px] w-auto" />
