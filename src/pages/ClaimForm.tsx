@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Loader2, Upload, X } from "lucide-react";
 import { toast } from "sonner";
+import jsPDF from "jspdf";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
@@ -228,6 +229,282 @@ export default function ClaimForm() {
           ? `${form.timeHour || "--"}:${(form.timeMinute || "--").toString().padStart(2, "0")} ${form.timeAmpm}`
           : "";
 
+      // ===== Build branded Claim Report PDF (same pattern as PDNTLApplication) =====
+      const pdfBase64 = (() => {
+        const doc = new jsPDF({ unit: "pt", format: "letter" });
+        const PAGE_W = 612;
+        const MARGIN = 40;
+        const CONTENT_W = PAGE_W - MARGIN * 2;
+        const NAVY_RGB: [number, number, number] = [23, 59, 93];
+        const TEAL_RGB: [number, number, number] = [42, 191, 191];
+        const INK: [number, number, number] = [13, 43, 43];
+        const MUTED: [number, number, number] = [107, 114, 128];
+        const HAIR: [number, number, number] = [229, 231, 235];
+        const SOFT: [number, number, number] = [248, 250, 252];
+
+        let y = 0;
+        let pageNum = 1;
+
+        const drawHeader = () => {
+          doc.setFillColor(31, 77, 122);
+          doc.rect(0, 0, 612, 28, "F");
+          doc.setTextColor(255, 255, 255);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.text("Custom Insurance Agency", 45, 18);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(9);
+          doc.text("Claim Report", 612 - 45, 18, { align: "right" });
+          doc.setFillColor(232, 240, 248);
+          doc.rect(0, 28, 612, 20, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(7);
+          doc.setTextColor(31, 77, 122);
+          doc.text("This claim report was submitted electronically.", 45, 42);
+          doc.text("For questions call 708-810-1955", 612 - 45, 42, { align: "right" });
+          doc.setDrawColor(31, 77, 122);
+          doc.setLineWidth(0.5);
+          doc.line(0, 48, 612, 48);
+          y = 55;
+        };
+
+        const drawFooter = () => {
+          doc.setFillColor(255, 248, 240);
+          doc.rect(40, 740, 390, 45, "F");
+          doc.setDrawColor(245, 130, 31);
+          doc.setLineWidth(3);
+          doc.line(40, 740, 40, 785);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(245, 130, 31);
+          doc.text("This claim report has been submitted to Custom Insurance Agency for review.", 48, 752);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(85, 85, 85);
+          const noteText =
+            "Our claims team will contact you within 24 hours at claims@custominsure.com or 708-810-1955.";
+          const wrapped = doc.splitTextToSize(noteText, 375);
+          doc.text(wrapped, 48, 762);
+          doc.setFillColor(245, 245, 245);
+          doc.rect(442, 740, 170, 45, "F");
+          doc.setDrawColor(204, 204, 204);
+          doc.setLineWidth(0.5);
+          doc.rect(442, 740, 170, 45, "S");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(31, 77, 122);
+          doc.text("Custom Insurance Agency", 442 + 85, 754, { align: "center" });
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(102, 102, 102);
+          doc.text("708-810-1955", 442 + 85, 764, { align: "center" });
+          doc.text("claims@custominsure.com", 442 + 85, 774, { align: "center" });
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(153, 153, 153);
+          doc.text(`Page ${pageNum} of {nb}`, 612 / 2, 790, { align: "center" });
+        };
+
+        const ensureSpace = (needed: number) => {
+          if (y + needed > 735) {
+            drawFooter();
+            doc.addPage();
+            pageNum++;
+            drawHeader();
+          }
+        };
+
+        const sectionTitle = (label: string) => {
+          ensureSpace(34);
+          doc.setFillColor(...TEAL_RGB);
+          doc.rect(MARGIN, y, 3, 14, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(10);
+          doc.setTextColor(...NAVY_RGB);
+          doc.text(label.toUpperCase(), MARGIN + 10, y + 11);
+          y += 18;
+          doc.setDrawColor(...HAIR);
+          doc.setLineWidth(0.5);
+          doc.line(MARGIN, y, PAGE_W - MARGIN, y);
+          y += 10;
+        };
+
+        const kvGrid = (rows: Array<[string, string]>, cols = 2) => {
+          const colW = CONTENT_W / cols;
+          const rowH = 30;
+          for (let i = 0; i < rows.length; i += cols) {
+            ensureSpace(rowH + 4);
+            for (let c = 0; c < cols; c++) {
+              const r = rows[i + c];
+              if (!r) continue;
+              const x = MARGIN + c * colW;
+              doc.setFont("helvetica", "normal");
+              doc.setFontSize(7.5);
+              doc.setTextColor(...MUTED);
+              doc.text(r[0].toUpperCase(), x + 4, y + 8);
+              doc.setFont("helvetica", "bold");
+              doc.setFontSize(10);
+              doc.setTextColor(...INK);
+              const val = r[1] && r[1].trim() ? r[1] : "—";
+              const lines = doc.splitTextToSize(val, colW - 8);
+              doc.text(lines.slice(0, 1), x + 4, y + 22);
+            }
+            doc.setDrawColor(...HAIR);
+            doc.setLineWidth(0.3);
+            doc.line(MARGIN, y + rowH, PAGE_W - MARGIN, y + rowH);
+            y += rowH;
+          }
+          y += 8;
+        };
+
+        const dataTable = (headers: string[], rows: string[][], widths: number[]) => {
+          const totalRel = widths.reduce((a, b) => a + b, 0);
+          const colWs = widths.map((w) => (w / totalRel) * CONTENT_W);
+          const rowH = 22;
+          ensureSpace(rowH * 2);
+          doc.setFillColor(...NAVY_RGB);
+          doc.rect(MARGIN, y, CONTENT_W, rowH, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(255, 255, 255);
+          let xh = MARGIN;
+          headers.forEach((h, i) => {
+            doc.text(h.toUpperCase(), xh + 6, y + 14);
+            xh += colWs[i];
+          });
+          y += rowH;
+          rows.forEach((r, ri) => {
+            ensureSpace(rowH);
+            if (ri % 2 === 0) {
+              doc.setFillColor(...SOFT);
+              doc.rect(MARGIN, y, CONTENT_W, rowH, "F");
+            }
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(9);
+            doc.setTextColor(...INK);
+            let xc = MARGIN;
+            r.forEach((cell, i) => {
+              const txt = cell && cell.trim() ? cell : "—";
+              const lines = doc.splitTextToSize(txt, colWs[i] - 12);
+              doc.text(lines.slice(0, 1), xc + 6, y + 14);
+              xc += colWs[i];
+            });
+            doc.setDrawColor(...HAIR);
+            doc.setLineWidth(0.3);
+            doc.line(MARGIN, y + rowH, PAGE_W - MARGIN, y + rowH);
+            y += rowH;
+          });
+          y += 10;
+        };
+
+        drawHeader();
+
+        sectionTitle("POLICY HOLDER INFORMATION");
+        kvGrid([
+          ["Policy Holder Name", form.policyHolderName],
+          ["Policy Number", form.policyNumber],
+          ["Phone", form.insuredPhone],
+          ["Email", form.insuredEmail],
+        ]);
+
+        sectionTitle("WHO IS FILING THIS CLAIM");
+        kvGrid([
+          ["Filing As", form.sameAsHolder ? "Policy Holder" : "Claimant"],
+          ["Claimant Name", claimantNameVal],
+          ["Claimant Address", form.sameAsHolder ? "" : form.claimantAddress],
+          ["Claimant Phone", claimantPhoneVal],
+          ["Claimant Email", claimantEmailVal],
+        ]);
+
+        sectionTitle("GENERAL INFORMATION");
+        kvGrid([
+          ["Date of Loss", form.dateOfLoss],
+          ["Time of Accident", timeOfLoss],
+        ]);
+
+        sectionTitle("LOCATION OF LOSS");
+        kvGrid([
+          ["Street Address", form.lossAddress],
+          ["City", form.lossCity],
+          ["State", form.lossState],
+          ["ZIP", form.lossZip],
+          ["Police Contacted", form.policeReportFiled],
+        ]);
+
+        sectionTitle("ACCIDENT DESCRIPTION");
+        kvGrid([
+          ["Description", form.accidentDescription],
+          ["Third Party Property Damage", form.thirdPartyDamage],
+          ["Injuries", form.injuries],
+        ], 1);
+
+        sectionTitle("DRIVER INFORMATION");
+        kvGrid([
+          ["Driver Name", form.driverName],
+          ["Driver Phone", form.driverPhone],
+          ["Date of Birth", form.driverDob],
+          ["License Number", form.driverLicense],
+          ["State", form.driverLicenseState],
+        ]);
+
+        sectionTitle("TRACTOR INFORMATION");
+        kvGrid([
+          ["Year", form.tractorYear],
+          ["Make", form.tractorMake],
+          ["VIN", form.tractorVin],
+          ["Damage", form.tractorDamage],
+        ]);
+
+        sectionTitle("TRAILER & TOWING & CARGO");
+        kvGrid([
+          ["Trailer Damage", form.trailerDamage],
+          ["Trailer Description", form.trailerDescription],
+          ["Vehicle Towed", form.vehicleTowed],
+          ["Towing Company", form.towingCompany],
+          ["Towing Cost", form.towingCost],
+          ["Cargo Damage", form.cargoDamage],
+          ["Cargo Description", form.cargoDescription],
+          ["Cargo Value", form.cargoValue],
+        ]);
+
+        sectionTitle("ADDITIONAL INFORMATION");
+        kvGrid([
+          ["Additional Details", form.additionalInformation],
+        ], 1);
+
+        sectionTitle("UPLOADED DOCUMENTS");
+        dataTable(
+          ["#", "FILENAME", "TYPE"],
+          uploadedAttachments.map((a, i) => [String(i + 1), a.filename, a.contentType || ""]),
+          [0.5, 3, 2],
+        );
+
+        sectionTitle("AUTHORIZED SIGNATURE");
+        kvGrid([
+          ["SUBMITTED BY", claimantNameVal || form.policyHolderName],
+          ["DATE SUBMITTED", new Date().toLocaleString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })],
+        ]);
+
+        drawFooter();
+
+        const totalPages = doc.getNumberOfPages();
+        if (typeof (doc as unknown as { putTotalPages?: (s: string, n: number) => void }).putTotalPages === "function") {
+          (doc as unknown as { putTotalPages: (s: string, n: number) => void }).putTotalPages("{nb}", totalPages);
+        }
+        return doc.output("datauristring").split(",")[1];
+      })();
+
+      const claimPdfAttachment = {
+        filename:
+          "ClaimReport_" +
+          (form.policyHolderName || "Claim").replace(/\s+/g, "_") +
+          "_" +
+          new Date().toISOString().split("T")[0] +
+          ".pdf",
+        contentBase64: pdfBase64,
+        contentType: "application/pdf",
+      };
+
       await sendQuoteEmail({
         formKind: "Claim Submission",
         source: "Claim Form Page",
@@ -235,7 +512,7 @@ export default function ClaimForm() {
         customerName: claimantNameVal,
         customerEmail: claimantEmailVal,
         customerPhone: claimantPhoneVal,
-        attachments: uploadedAttachments,
+        attachments: [claimPdfAttachment, ...uploadedAttachments],
         sections: [
           { title: "Policy Holder Information", rows: [
             ["Policy Holder Name", form.policyHolderName],
