@@ -175,10 +175,10 @@ const Index = () => {
       <Hero />
 
       {/* COMBINED SECTION — WHY CHOOSE US + GET A QUOTE */}
-      <section className="bg-white overflow-hidden">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-start md:flex-row">
+      <section className="bg-white overflow-hidden" style={{ paddingBottom: 40 }}>
+        <div className="mx-auto flex max-w-[1400px] flex-col items-start md:flex-row md:items-start">
           {/* LEFT — Why Choose Us */}
-          <div className="bg-white md:w-[60%]" style={{ padding: "48px 40px" }}>
+          <div className="bg-white md:w-[60%]" style={{ padding: "48px 40px", alignSelf: "flex-start" }}>
             <div style={{ paddingLeft: 0, paddingRight: 0 }}>
               <p className={EYEBROW} style={{ marginBottom: 8 }}>Why Choose Us</p>
               <h2
@@ -226,6 +226,7 @@ const Index = () => {
               alignSelf: "flex-start",
               position: "sticky",
               top: 24,
+              marginBottom: 40,
             }}
           >
             <div
