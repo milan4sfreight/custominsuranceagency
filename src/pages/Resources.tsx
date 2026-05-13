@@ -64,6 +64,64 @@ const Resources = () => {
       </section>
 
       {/* GUIDES */}
+      <section className="bg-white px-6 py-16">
+        <div className="mx-auto w-full max-w-[1200px]">
+          <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em" }}>
+            Lines of Coverage
+          </p>
+          <h2 className="mt-2 text-[32px] font-bold text-[#0d2b2b] leading-tight" style={{ ...barlow, marginBottom: 40 }}>
+            Get Coverage Today
+          </h2>
+
+          <div className="grid gap-6 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
+            {[
+              { title: "Auto Liability", to: "/get-a-quote" },
+              { title: "Motor Truck Cargo", to: "/get-a-quote" },
+              { title: "Physical Damage & Non-Trucking Liability", to: "/pd-ntl-application" },
+              { title: "Occupational Accident Coverage (OCC/ACC)", to: "/occ-accident-enrollment" },
+              { title: "General Liability Insurance", to: "/get-a-quote" },
+              { title: "Excess or Umbrella Insurance", to: "/get-a-quote" },
+            ].map((c) => (
+              <Link
+                key={c.title}
+                to={c.to}
+                className="flex flex-col justify-between no-underline"
+                style={{
+                  borderLeft: "4px solid #1f4d7a",
+                  border: "1px solid #e5e7eb",
+                  borderLeftWidth: 4,
+                  borderLeftColor: "#1f4d7a",
+                  borderRadius: 10,
+                  padding: "28px 24px",
+                  background: "#ffffff",
+                  minHeight: 140,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+                  textDecoration: "none",
+                }}
+              >
+                <h3 className="text-[18px] font-bold text-[#0d2b2b]" style={barlow}>{c.title}</h3>
+                <span
+                  className="mt-4"
+                  style={{
+                    alignSelf: "flex-start",
+                    background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                    color: "#1a1a1a",
+                    fontFamily: "'Barlow', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 14,
+                    borderRadius: 50,
+                    padding: "10px 28px",
+                  }}
+                >
+                  Quote Now →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GUIDES */}
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
         <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>Helpful Guides</p>
         <h2 className="mt-2 text-[32px] font-bold text-[#0d2b2b] leading-tight" style={barlow}>Insurance Resources & Guides</h2>
