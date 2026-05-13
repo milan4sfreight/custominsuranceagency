@@ -276,6 +276,7 @@ export const Navbar = () => {
           {/* Solutions with mega dropdown */}
           <div
             className="relative"
+            style={{ position: "relative" }}
             onMouseEnter={() => setSolutionsOpen(true)}
             onMouseLeave={() => setSolutionsOpen(false)}
           >
