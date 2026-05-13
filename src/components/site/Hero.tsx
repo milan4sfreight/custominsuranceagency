@@ -73,20 +73,34 @@ export const Hero = () => {
               </Link>
             </Button>
           </div>
-
-          <p
-            className="mt-10 text-xs sm:text-sm"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, color: "rgba(255,255,255,0.6)" }}
-          >
-            A+ rated · 10,000+ businesses covered · Licensed in 50 states
-          </p>
-          <p
-            className="text-center"
-            style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 38, color: "#ffffff", marginTop: 48 }}
-          >
-            Loyalty First. Local Roots. National Reach.
-          </p>
         </div>
+      </div>
+
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '40px',
+          left: 0,
+          right: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '24px',
+          zIndex: 2,
+        }}
+      >
+        <p
+          className="text-xs sm:text-sm"
+          style={{ fontFamily: "'Inter', sans-serif", fontWeight: 400, color: "rgba(255,255,255,0.6)", margin: 0 }}
+        >
+          A+ rated · 10,000+ businesses covered · Licensed in 50 states
+        </p>
+        <p
+          className="text-center"
+          style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 38, color: "#ffffff", margin: 0 }}
+        >
+          Loyalty First. Local Roots. National Reach.
+        </p>
       </div>
     </section>
   );
