@@ -40,12 +40,11 @@ export default function Claims() {
       <section
         className="relative flex w-full flex-col items-center justify-center bg-foreground pt-16"
         style={{
-          minHeight: "500px",
+          minHeight: "320px",
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="absolute inset-0 bg-foreground/65" />
