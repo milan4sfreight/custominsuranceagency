@@ -619,7 +619,7 @@ export default function ClaimForm() {
         </div>
       </section>
 
-      <main style={{ padding: "64px 24px", background: "#ffffff" }}>
+      <main className="px-4 py-8 sm:px-6 sm:py-12 md:px-6 md:py-16" style={{ background: "#ffffff" }}>
         <div className="mx-auto" style={{ maxWidth: 760 }}>
           <form onSubmit={onSubmit}>
             <Section title="Policy Holder Information">
