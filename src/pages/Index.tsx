@@ -340,8 +340,8 @@ const Index = () => {
             borderRadius: 16,
             border: "1px solid rgba(255, 255, 255, 0.15)",
             boxShadow: "0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
-            padding: "40px 48px",
           }}
+          style={undefined as never}
         >
           <div className="max-w-[620px]">
             <h2 className="text-[30px] md:text-[38px] font-bold leading-tight text-white">
