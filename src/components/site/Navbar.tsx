@@ -490,13 +490,14 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-full max-w-md border-0 p-0 text-white"
+            className="w-full max-w-md border-0 p-0 text-white overflow-y-auto"
             style={{
               background:
                 "linear-gradient(to bottom, #1f4d7a 0%, #173b5d 60%, #0f2a42 100%)",
+              height: "100vh",
             }}
           >
-            <div className="flex h-full flex-col px-8 pb-10 pt-20">
+            <div className="flex min-h-full flex-col px-8 pb-10 pt-20">
               <div className="flex flex-col" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 <Link to="/" className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75">
                   Home

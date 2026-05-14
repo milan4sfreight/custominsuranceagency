@@ -52,14 +52,13 @@ const Resources = () => {
 
       {/* HERO */}
       <section
-        className="relative flex w-full flex-col items-center justify-center pt-16"
+        className="relative flex w-full flex-col items-center justify-center pt-16 [background-attachment:scroll] md:[background-attachment:fixed]"
         style={{
           minHeight: "500px",
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)" }} />
