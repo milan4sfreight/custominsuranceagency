@@ -38,14 +38,13 @@ export default function Claims() {
 
       {/* HERO */}
       <section
-        className="relative flex w-full flex-col items-center justify-center bg-foreground pt-16"
+        className="relative flex w-full flex-col items-center justify-center bg-foreground pt-16 [background-attachment:scroll] md:[background-attachment:fixed] md:min-h-[500px]"
         style={{
-          minHeight: "500px",
+          minHeight: "320px",
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="absolute inset-0 bg-foreground/65" />

@@ -36,7 +36,7 @@ export const Footer = () => {
     >
       <div className="absolute inset-0" style={{ background: "rgba(10, 25, 50, 0.82)" }} />
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 lg:px-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <img src={logo} alt="Custom Insurance Agency" className="h-[44px] w-auto" />
             <p className="mt-4 text-sm leading-relaxed text-white/60">
@@ -72,13 +72,13 @@ const FooterCol = ({
 }) => (
   <div>
     <h4 className="text-sm font-semibold uppercase tracking-wider text-white">{title}</h4>
-    <ul className="mt-4 space-y-2 text-sm">
+    <ul className="mt-4 space-y-1 text-sm">
       {links.map((l) => {
         const label = typeof l === "string" ? l : l.label;
         const href = typeof l === "string" ? "#" : l.href;
         return (
           <li key={label}>
-            <a href={href} className="transition hover:text-white">
+            <a href={href} className="block py-2 transition hover:text-white">
               {label}
             </a>
           </li>
