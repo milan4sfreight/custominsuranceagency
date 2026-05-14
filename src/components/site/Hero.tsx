@@ -96,8 +96,8 @@ export const Hero = () => {
           A+ rated · 10,000+ businesses covered · Licensed in 50 states
         </p>
         <p
-          className="text-center"
-          style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 38, color: "#ffffff", margin: 0 }}
+          className="text-center text-[22px] md:text-[38px] whitespace-nowrap"
+          style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, color: "#ffffff", margin: 0 }}
         >
           Loyalty First. Local Roots. National Reach.
         </p>
