@@ -245,15 +245,15 @@ const Index = () => {
             <p className="text-[10px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ marginBottom: 4 }}>Free Quote</p>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
               <h2
-                className="text-white leading-tight"
-                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 24 }}
+                className="text-white leading-tight text-[20px] md:text-[32px]"
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700 }}
               >
                 Get A Quote
               </h2>
               <a
                 href="tel:7088101955"
-                className="text-[#f5c518]"
-                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 28 }}
+                className="text-[#f5c518] text-[18px] md:text-[28px] whitespace-nowrap"
+                style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700 }}
               >
                 📞 708-810-1955
               </a>
