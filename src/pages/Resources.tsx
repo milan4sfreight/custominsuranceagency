@@ -54,7 +54,7 @@ const Resources = () => {
       <section
         className="relative flex w-full flex-col items-center justify-center pt-16 [background-attachment:scroll] md:[background-attachment:fixed]"
         style={{
-          minHeight: "300px",
+          minHeight: "500px",
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
