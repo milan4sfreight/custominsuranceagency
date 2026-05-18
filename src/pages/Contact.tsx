@@ -8,6 +8,7 @@ import Footer from "@/components/site/Footer";
 import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
 
 const HERO_IMG = "https://images.unsplash.com/photo-1423666639041-f56000c27a9a";
+
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
 const inquiryTypes = [
@@ -40,7 +41,7 @@ const contactItems = [
   { icon: "📍", text: "1333 Burr Ridge Pkwy STE 200, Burr Ridge, IL 60527" },
   { icon: "📞", text: "708-810-1955" },
   { icon: "📠", text: "Fax: 708-810-1970" },
-  { icon: "✉️", text: "info@custominsure.com" },
+  { icon: "✉️", text: "coi@custominsure.com" },
   { icon: "🕐", text: "Monday – Friday | 9:00 AM – 5:00 PM" },
 ];
 
@@ -59,14 +60,17 @@ const Contact = () => {
       inquiry: String(fd.get("inquiry") ?? ""),
       message: String(fd.get("message") ?? ""),
     };
+
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Please check your inputs");
       return;
     }
+
     const form = e.currentTarget;
     setSubmitting(true);
     setStatus("idle");
+
     try {
       await sendQuoteEmail({
         formKind: "Contact Request",
@@ -142,9 +146,9 @@ const Contact = () => {
               Contact Custom Insurance Agency
             </h2>
             <p className="mt-4 text-[15px] leading-[1.75] text-[#4a5568]">
-              Our friendly team is ready to help you find the right coverage at the right price. Give us a call, send an email, or stop by our office.
+              Our friendly team is ready to help you find the right coverage at the right price. Give us a call, send an
+              email, or stop by our office.
             </p>
-
             <ul className="mt-6 flex flex-col gap-3">
               {contactItems.map((c) => (
                 <li key={c.text} className="flex items-start gap-3 text-[14px] text-[#4a5568]">
@@ -153,7 +157,6 @@ const Contact = () => {
                 </li>
               ))}
             </ul>
-
             <iframe
               title="Custom Insurance Agency Location"
               src="https://www.google.com/maps?q=1333+Burr+Ridge+Pkwy+STE+200,+Burr+Ridge,+IL+60527&output=embed"
@@ -173,35 +176,50 @@ const Contact = () => {
             <h3 className="text-[22px] font-bold text-[#0d2b2b]" style={barlow}>
               Send Us a Message
             </h3>
-
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div>
-                <label className={labelCls} htmlFor="firstName">First Name *</label>
+                <label className={labelCls} htmlFor="firstName">
+                  First Name *
+                </label>
                 <input id="firstName" name="firstName" required maxLength={60} className={inputCls} />
               </div>
               <div>
-                <label className={labelCls} htmlFor="lastName">Last Name *</label>
+                <label className={labelCls} htmlFor="lastName">
+                  Last Name *
+                </label>
                 <input id="lastName" name="lastName" required maxLength={60} className={inputCls} />
               </div>
               <div>
-                <label className={labelCls} htmlFor="email">Email Address *</label>
+                <label className={labelCls} htmlFor="email">
+                  Email Address *
+                </label>
                 <input id="email" name="email" type="email" required maxLength={255} className={inputCls} />
               </div>
               <div>
-                <label className={labelCls} htmlFor="phone">Phone Number *</label>
+                <label className={labelCls} htmlFor="phone">
+                  Phone Number *
+                </label>
                 <input id="phone" name="phone" type="tel" required maxLength={30} className={inputCls} />
               </div>
               <div className="sm:col-span-2">
-                <label className={labelCls} htmlFor="inquiry">Inquiry Type *</label>
+                <label className={labelCls} htmlFor="inquiry">
+                  Inquiry Type *
+                </label>
                 <select id="inquiry" name="inquiry" required defaultValue="" className={inputCls}>
-                  <option value="" disabled>Select…</option>
+                  <option value="" disabled>
+                    Select…
+                  </option>
                   {inquiryTypes.map((t) => (
-                    <option key={t} value={t}>{t}</option>
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="sm:col-span-2">
-                <label className={labelCls} htmlFor="message">Message *</label>
+                <label className={labelCls} htmlFor="message">
+                  Message *
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -212,7 +230,6 @@ const Contact = () => {
                 />
               </div>
             </div>
-
             <button
               type="submit"
               disabled={submitting}
@@ -231,20 +248,17 @@ const Contact = () => {
                 {ERROR_MSG}
               </p>
             )}
-            <p className="mt-3 text-[12px] text-[#94a3b8]">
-              We will not resell your information to any third party.
-            </p>
+            <p className="mt-3 text-[12px] text-[#94a3b8]">We will not resell your information to any third party.</p>
           </form>
         </div>
       </div>
 
       {/* CTA */}
       <section className="bg-dark-gradient px-6 py-[60px] text-center md:px-12">
-        <h2 className="text-[32px] font-bold text-white" style={barlow}>Ready to Get Covered?</h2>
-        <Link
-          to="/get-a-quote"
-          className="btn-quote mt-8 inline-block px-10 py-4 text-[14px] uppercase tracking-wider"
-        >
+        <h2 className="text-[32px] font-bold text-white" style={barlow}>
+          Ready to Get Covered?
+        </h2>
+        <Link to="/get-a-quote" className="btn-quote mt-8 inline-block px-10 py-4 text-[14px] uppercase tracking-wider">
           Get a Quote
         </Link>
       </section>
