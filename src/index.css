@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Custom Insurance design system. All colors HSL. */
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap");
 
 @layer base {
   :root {
@@ -46,30 +46,28 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 154 47% 46%;
-
     --radius: 0.75rem;
 
     --gradient-brand: linear-gradient(135deg, #3eaa6d 0%, #2d9960 100%);
     --gradient-cta: linear-gradient(135deg, hsl(var(--cta)) 0%, hsl(var(--cta-highlight)) 100%);
-    --gradient-sky: linear-gradient(180deg, hsl(210 50% 99% / 0.95) 0%, hsl(210 60% 96% / 0.6) 60%, hsl(210 60% 94% / 0.2) 100%);
+    --gradient-sky: linear-gradient(
+      180deg,
+      hsl(210 50% 99% / 0.95) 0%,
+      hsl(210 60% 96% / 0.6) 60%,
+      hsl(210 60% 94% / 0.2) 100%
+    );
     --gradient-text: linear-gradient(135deg, #3eaa6d, #2d9960);
+
     --shadow-brand: 0 18px 40px -12px hsl(154 47% 40% / 0.45);
     --shadow-soft: 0 10px 30px -12px hsl(220 40% 30% / 0.18);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -101,6 +99,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -119,51 +118,73 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
   }
 
-  h1, h2, h3, h4, h5, h6, .font-display {
-    font-family: 'Barlow', system-ui, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-display {
+    font-family: "Barlow", system-ui, sans-serif;
     font-weight: 700;
     letter-spacing: -0.5px;
   }
 
-  /* Eyebrow / section label small uppercase text */
   .eyebrow,
   [class*="tracking-[2px]"].uppercase,
   .uppercase[class*="tracking-[2px]"] {
-    font-family: 'Barlow', system-ui, sans-serif;
+    font-family: "Barlow", system-ui, sans-serif;
     font-weight: 600;
     letter-spacing: 2px;
   }
 }
 
 @layer utilities {
-  .bg-brand-gradient { background-image: var(--gradient-brand); }
+  .bg-brand-gradient {
+    background-image: var(--gradient-brand);
+  }
+
   .text-brand-gradient {
     background-image: var(--gradient-text);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .shadow-brand-glow { box-shadow: var(--shadow-brand); }
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .bg-cta-gradient { background-image: var(--gradient-cta); }
+
+  .shadow-brand-glow {
+    box-shadow: var(--shadow-brand);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .bg-cta-gradient {
+    background-image: var(--gradient-cta);
+  }
 
   .btn-quote {
-    background: linear-gradient(135deg, #f5821f 0%, #f5c518 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, #f5821f 0%, #f5c518 100%) !important;
+    color: #ffffff !important;
     font-weight: 600;
     border: none;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(245, 130, 31, 0.35);
-    transition: filter 0.2s ease, transform 0.2s ease;
+    transition:
+      filter 0.2s ease,
+      transform 0.2s ease;
   }
+
   .btn-quote:hover {
     filter: brightness(1.1);
     transform: scale(1.02);
-    color: #ffffff;
+    color: #ffffff !important;
+  }
+
+  .btn-quote * {
+    color: #ffffff !important;
   }
 
   .bg-dark-gradient {
