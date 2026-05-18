@@ -2,16 +2,33 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import volvoSemi from "@/assets/volvo-semi.jpeg";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7";
+const HERO_IMG = volvoSemi;
+
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
 const CONTACT_URL = "/contact";
 
 const cards = [
-  { icon: "📄", title: "Issue a Certificate", text: "Contact our team to request a certificate of insurance.", label: "Contact Us →" },
-  { icon: "🔄", title: "Make a Policy Change", text: "Reach out to our team to request changes to your existing policy.", label: "Contact Us →" },
-  { icon: "👤", title: "Employee Login", text: "Custom Insurance Agency team members — contact us for access details.", label: "Contact Us →" },
+  {
+    icon: "📄",
+    title: "Issue a Certificate",
+    text: "Contact our team to request a certificate of insurance.",
+    label: "Contact Us →",
+  },
+  {
+    icon: "🔄",
+    title: "Make a Policy Change",
+    text: "Reach out to our team to request changes to your existing policy.",
+    label: "Contact Us →",
+  },
+  {
+    icon: "👤",
+    title: "Employee Login",
+    text: "Custom Insurance Agency team members — contact us for access details.",
+    label: "Contact Us →",
+  },
 ];
 
 const ClientLogin = () => {
@@ -56,7 +73,6 @@ const ClientLogin = () => {
           >
             To request a certificate of insurance or make a policy change, please contact our team directly.
           </p>
-
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to={CONTACT_URL} style={primaryBtn}>
               Issue a Certificate
@@ -96,7 +112,6 @@ const ClientLogin = () => {
         <h2 className="mt-2 text-[28px] font-bold leading-tight text-[#0d2b2b]" style={barlow}>
           What Would You Like To Do?
         </h2>
-
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {cards.map((c) => (
             <div
@@ -105,7 +120,9 @@ const ClientLogin = () => {
               style={{ borderTop: "3px solid #3eaa6d" }}
             >
               <div className="text-[32px]">{c.icon}</div>
-              <h3 className="mt-3 text-[16px] font-bold text-[#0d2b2b]" style={barlow}>{c.title}</h3>
+              <h3 className="mt-3 text-[16px] font-bold text-[#0d2b2b]" style={barlow}>
+                {c.title}
+              </h3>
               <p className="mt-2 text-[13px] leading-[1.6] text-[#4a5568]">{c.text}</p>
               <Link
                 to={CONTACT_URL}
