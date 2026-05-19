@@ -3,6 +3,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import volvoCab from "@/assets/volvo-cab.webp";
+import handshake from "@/assets/handshake.jpg";
 
 const whyCards = [
   { icon: "🤝", title: "Loyalty First", text: "Your trust is the foundation of everything we do." },
@@ -21,8 +22,7 @@ const contactItems = [
   { icon: "🕐", text: "Monday – Friday | 9:00 AM – 5:00 PM" },
 ];
 
-const HERO_IMG =
-  "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2000&q=80";
+const HERO_IMG = handshake;
 
 const H2 = "text-[24px] md:text-[26px] font-bold text-[#0d2b2b] leading-tight mb-4";
 const P = "text-[16px] leading-[1.75] text-[#4a5568]";
