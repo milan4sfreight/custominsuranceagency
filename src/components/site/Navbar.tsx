@@ -509,15 +509,13 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-full max-w-md border-0 p-0 text-white overflow-y-auto"
+            className="w-full max-w-md border-0 p-0 text-white overflow-y-auto [&>button.absolute]:hidden"
             style={{
-              backgroundImage: `url(${footerBg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              background: "#0a1932",
               height: "100dvh",
             }}
           >
-            <div className="absolute inset-0" style={{ background: "rgba(10, 25, 50, 0.88)" }} />
+            <div className="absolute inset-0" style={{ background: "#0a1932" }} />
             <button
               type="button"
               onClick={() => setOpen(false)}
