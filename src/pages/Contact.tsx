@@ -123,11 +123,11 @@ const Contact = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[300px] w-full flex-col items-center justify-center pt-16"
+        className="relative flex h-[460px] w-full flex-col items-center justify-center pt-16"
         style={{
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center 35%",
           backgroundAttachment: "fixed",
         }}
       >
