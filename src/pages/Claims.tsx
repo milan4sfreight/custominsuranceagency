@@ -78,7 +78,6 @@ export default function Claims() {
           backgroundAttachment: "fixed",
         }}
       >
-        <div className="absolute inset-0" style={{ background: "rgba(10,25,50,0.35)" }} />
         <div
           className="relative mx-auto w-full max-w-[1100px] px-6 sm:px-10 py-[48px] bg-white rounded-[16px]"
           style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}
