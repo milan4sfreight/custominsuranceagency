@@ -17,7 +17,7 @@ const CompanyNews = () => (
       }}
     >
       <div className="absolute inset-0" style={{ background: "rgba(10,25,50,0.6)" }} />
-      <h1 className="relative z-10 text-[44px] md:text-[64px] font-bold text-white">Coming Soon</h1>
+      <h1 className="relative z-10 text-[44px] md:text-[64px] font-light text-white">Coming Soon</h1>
     </section>
     <Footer />
   </main>
