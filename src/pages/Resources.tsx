@@ -157,6 +157,8 @@ const Resources = () => {
                   background: "#ffffff",
                   minHeight: 140,
                   textDecoration: "none",
+                  position: "relative",
+                  zIndex: 10,
                 }}
               >
                 <h3 className="text-[18px] font-bold text-[#0d2b2b]" style={barlow}>
@@ -205,6 +207,8 @@ const Resources = () => {
                 background: "#ffffff",
                 border: "1px solid #e5e7eb",
                 borderTop: "3px solid #2abfbf",
+                position: "relative",
+                zIndex: 10,
               }}
             >
               <div className="text-[32px]">{g.icon}</div>
@@ -239,6 +243,8 @@ const Resources = () => {
                   style={{
                     background: "#ffffff",
                     border: "1px solid #e5e7eb",
+                    position: "relative",
+                    zIndex: 10,
                   }}
                 >
                   <button
@@ -285,6 +291,8 @@ const Resources = () => {
                 style={{
                   background: "#ffffff",
                   border: "1px solid #e5e7eb",
+                  position: "relative",
+                  zIndex: 10,
                 }}
               >
                 <h4 className="text-[15px] font-bold text-[#0d2b2b]" style={barlow}>
