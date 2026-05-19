@@ -21,6 +21,7 @@ import ClientLogin from "./pages/ClientLogin.tsx";
 import OccAccidentEnrollment from "./pages/OccAccidentEnrollment.tsx";
 import PDNTLApplication from "./pages/PDNTLApplication.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/get-a-quote" element={<GetAQuote />} />
