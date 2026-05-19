@@ -4,12 +4,12 @@ import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 
 const whyCards = [
-  { icon: "🏢", title: "Independent Agency", text: "As an independent agency we are not tied to any single insurance company. We work for you, shopping over 50 carriers to find the best coverage at the best price." },
-  { icon: "🤝", title: "Personalized Service", text: "Our dedicated team treats every client like a neighbor. You get the personal touch of a local agent backed by the resources of national insurance carriers." },
-  { icon: "💰", title: "Affordable Coverage", text: "We shop the market to find you the lowest price without sacrificing coverage. We can review your current policy and find savings you didn't know existed." },
-  { icon: "🔒", title: "50+ Carrier Partners", text: "Access to over 50 regional and national insurance carriers means more options, more competitive rates, and coverage for virtually any insurance need." },
-  { icon: "📍", title: "Local Expertise", text: "Based in La Grange Highlands, IL, we understand the unique insurance needs of Illinois and Indiana residents and businesses." },
-  { icon: "⏰", title: "Extended Hours", text: "We offer extended office hours to serve you better. Our team is available when you need us — not just during standard business hours." },
+  { icon: "🤝", title: "Loyalty First", text: "Your trust is the foundation of everything we do." },
+  { icon: "⚖️", title: "Independent & Unbiased", text: "We shop multiple carriers to find your best option." },
+  { icon: "🚚", title: "Industry Expertise", text: "Deep knowledge in trucking and commercial insurance." },
+  { icon: "🌐", title: "Multilingual Team", text: "Serving clients comfortably in their preferred language." },
+  { icon: "🇺🇸", title: "National Coverage", text: "Licensed and equipped to serve you across the country." },
+  { icon: "👥", title: "Personal Service", text: "Real people who know your name and your policy." },
 ];
 
 const contactItems = [
@@ -50,12 +50,9 @@ const About = () => {
       {/* Section 1 */}
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
         <section>
-          <h2 className={H2}>Your Trusted Independent Insurance Agency</h2>
+          <h2 className={H2}>Loyalty First. Local Roots. National Reach.</h2>
           <p className={P}>
-            Custom Insurance Agency is an independent insurance agency proudly serving the Chicago area and surrounding communities including La Grange, Burr Ridge, Hinsdale, and the greater Illinois and Indiana region. As an independent agency, we have partnerships with over 50 regional and national carriers to offer you the most comprehensive insurance products available.
-          </p>
-          <p className={`${P} mt-4`}>
-            Our professional agents strive to provide you with the coverage you need at a price you can afford. This means we do the comparison shopping for you — saving you time and money while ensuring you have the right protection for your unique needs.
+            We are an independent insurance agency built on one unshakeable principle — loyalty to our clients, our community, and the industries we serve. From our local beginnings, we have grown into a nationally serving agency that never loses sight of what matters most: you.
           </p>
         </section>
       </div>
@@ -64,9 +61,9 @@ const About = () => {
       <section className="bg-[#f0f6ff] px-6 py-[60px] md:px-12">
         <div className="mx-auto max-w-[700px] text-center">
           <div className="text-[80px] leading-none text-[#3eaa6d] font-serif">"</div>
-          <h2 className="text-[28px] font-bold text-[#0d2b2b]">Our Mission</h2>
+          <h2 className="text-[28px] font-bold text-[#0d2b2b]">Loyalty First</h2>
           <p className="mt-4 text-[18px] italic leading-[1.7] text-[#4a5568]">
-            It is our mission and responsibility to provide you with the best service possible. Our dedicated staff of insurance professionals is known for its friendly service and positive attitude. You can expect the exact same treatment that you would get from your neighborhood insurance agent.
+            Our mission is simple — Loyalty First. We are an independent insurance agency rooted in community, trusted nationwide, and committed to putting our clients above all else.
           </p>
         </div>
       </section>
@@ -77,7 +74,7 @@ const About = () => {
           <p className="text-[13px] font-semibold uppercase tracking-[2px] text-[#3eaa6d]">
             Why Choose Us
           </p>
-          <h2 className={`${H2} mt-2`}>The Custom Insurance Agency Difference</h2>
+          <h2 className={`${H2} mt-2`}>What Sets Us Apart</h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {whyCards.map((c) => (
               <div
