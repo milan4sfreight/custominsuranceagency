@@ -91,7 +91,7 @@ export default function Claims() {
                 color: "#ffffff",
                 ...barlow,
                 letterSpacing: "0.08em",
-                padding: "16px 40px",
+                padding: "10px 32px",
                 alignSelf: "stretch",
                 borderRadius: "8px",
                 border: "none",
