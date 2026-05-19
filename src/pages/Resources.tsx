@@ -117,7 +117,7 @@ const Resources = () => {
       {/* HERO */}
       <section
         className="relative flex w-full flex-col items-center justify-center pt-16"
-        style={{ minHeight: "340px", zIndex: 1 }}
+        style={{ minHeight: "220px", zIndex: 1 }}
       >
         <div className="relative z-10 px-6 text-center text-white">
           <h1 style={{ ...barlow, fontWeight: 700, fontSize: "52px", lineHeight: 1.1 }}>Resources</h1>
@@ -128,7 +128,7 @@ const Resources = () => {
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-16" style={{ paddingTop: 40, zIndex: 1 }}>
+      <section className="relative px-6 pb-16" style={{ paddingTop: 16, zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
           <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em" }}>
             Lines of Coverage
