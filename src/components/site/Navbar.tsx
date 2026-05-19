@@ -509,7 +509,7 @@ export const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-full max-w-md border-0 p-0 text-white overflow-y-auto [&>button.absolute]:hidden"
+            className="w-full max-w-md border-0 p-0 text-white overflow-y-auto [&>button.right-4]:hidden"
             style={{
               background: "#0a1932",
               height: "100dvh",
