@@ -70,7 +70,7 @@ export default function Claims() {
 
       {/* WHITE CONTENT on parallax */}
       <section
-        className="relative"
+        className="relative py-[60px]"
         style={{
           backgroundImage: `url(${claimsHero})`,
           backgroundSize: "cover",
@@ -80,7 +80,7 @@ export default function Claims() {
       >
         <div className="absolute inset-0" style={{ background: "rgba(10,25,50,0.35)" }} />
         <div
-          className="relative mx-auto w-full max-w-[900px] px-6 sm:px-10 py-[60px] my-[60px] bg-white rounded-[16px]"
+          className="relative mx-auto w-full max-w-[900px] px-6 sm:px-10 py-[60px] bg-white rounded-[16px]"
           style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}
         >
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
