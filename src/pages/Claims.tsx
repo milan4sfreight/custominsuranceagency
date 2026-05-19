@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import claimsHero from "@/assets/claims-hero.jpg";
+import volvoCab from "@/assets/volvo-cab.webp";
 
 const HERO_IMG = claimsHero;
 
@@ -68,9 +69,21 @@ export default function Claims() {
         </div>
       </section>
 
-      {/* WHITE CONTENT */}
-      <section className="bg-white">
-        <div className="mx-auto w-full max-w-[900px] px-6 pb-[80px]" style={{ paddingTop: 40 }}>
+      {/* WHITE CONTENT on parallax */}
+      <section
+        className="relative"
+        style={{
+          backgroundImage: `url(${volvoCab})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(10,25,50,0.35)" }} />
+        <div
+          className="relative mx-auto w-full max-w-[900px] px-6 sm:px-10 py-[60px] my-[60px] bg-white rounded-[16px]"
+          style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}
+        >
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <h2 style={{ ...barlow, fontSize: 36, fontWeight: 700, lineHeight: 1.2, color: "#0d2b2b", margin: 0 }}>
               We're Here to Help.
