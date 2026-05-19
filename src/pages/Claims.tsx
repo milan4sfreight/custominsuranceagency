@@ -4,7 +4,6 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import claimsHero from "@/assets/claims-hero.jpg";
-import volvoCab from "@/assets/volvo-cab.webp";
 
 const HERO_IMG = claimsHero;
 
@@ -73,7 +72,7 @@ export default function Claims() {
       <section
         className="relative"
         style={{
-          backgroundImage: `url(${volvoCab})`,
+          backgroundImage: `url(${claimsHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
