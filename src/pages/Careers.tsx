@@ -188,7 +188,7 @@ const Careers = () => {
           </div>
 
           <p className="mt-8 text-center text-[14px] italic text-[#718096]">
-            Don't see a position that fits? Send your resume to info@custominsure.com and we'll keep you in mind for future openings.
+            Don't see a position that fits? Send your resume to coi@custominsure.com and we'll keep you in mind for future openings.
           </p>
         </section>
       </div>

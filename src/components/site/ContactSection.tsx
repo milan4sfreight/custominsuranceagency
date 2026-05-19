@@ -79,7 +79,7 @@ export const ContactSection = () => {
               <span className="text-slate-500"> · Fax: 708-810-1970</span>
             </ContactRow>
             <ContactRow icon={<Mail className="h-4 w-4" />}>
-              <a href="mailto:info@custominsure.com" className="hover:text-[#3eaa6d]">info@custominsure.com</a>
+              <a href="mailto:coi@custominsure.com" className="hover:text-[#3eaa6d]">coi@custominsure.com</a>
             </ContactRow>
             <ContactRow icon={<Clock className="h-4 w-4" />}>
               Monday–Friday · 9:00 AM – 5:00 PM
