@@ -39,7 +39,7 @@ const About = () => {
         style={{
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center 65%",
         }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
