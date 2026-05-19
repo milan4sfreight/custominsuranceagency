@@ -6,8 +6,9 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { sendQuoteEmail, SUCCESS_MSG, ERROR_MSG } from "@/lib/sendQuoteEmail";
+import volvoCab from "@/assets/volvo-cab.webp";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1423666639041-f56000c27a9a";
+const HERO_IMG = volvoCab;
 
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
@@ -123,7 +124,12 @@ const Contact = () => {
       {/* HERO */}
       <section
         className="relative flex h-[300px] w-full flex-col items-center justify-center pt-16"
-        style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{
+          backgroundImage: `url(${HERO_IMG})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)" }} />
         <div className="relative z-10 px-6 text-center text-white">
