@@ -426,16 +426,7 @@ const Index = () => {
           {/* RIGHT — Get A Quote */}
 
           <div
-            className="md:w-[40%]"
-            style={{
-              padding: "48px 40px 0 0",
-
-              alignSelf: "flex-start",
-
-              position: "sticky",
-
-              top: 24,
-            }}
+            className="w-full md:w-[40%] px-4 pt-8 md:pl-0 md:pr-10 md:pt-12 md:sticky md:top-6 md:self-start"
           >
             <div
               style={{
