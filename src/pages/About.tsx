@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import volvoCab from "@/assets/volvo-cab.webp";
 
 const whyCards = [
   { icon: "🤝", title: "Loyalty First", text: "Your trust is the foundation of everything we do." },
@@ -66,6 +67,21 @@ const About = () => {
             Our mission is simple — Loyalty First. We are an independent insurance agency rooted in community, trusted nationwide, and committed to putting our clients above all else.
           </p>
         </div>
+      </section>
+
+      {/* Parallax band */}
+      <section
+        aria-hidden="true"
+        className="relative w-full"
+        style={{
+          height: "420px",
+          backgroundImage: `url(${volvoCab})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(10,25,50,0.35)" }} />
       </section>
 
       <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
