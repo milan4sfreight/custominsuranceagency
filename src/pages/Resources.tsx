@@ -106,7 +106,7 @@ const Resources = () => {
       }}
     >
       {/* Fixed dark overlay behind everything */}
-      <div className="fixed inset-0 pointer-events-none" style={{ background: "rgba(10, 25, 50, 0.78)", zIndex: 0 }} />
+      <div className="fixed inset-0 pointer-events-none" style={{ background: "rgba(10, 25, 50, 0.45)", zIndex: 0 }} />
 
       <SEO
         title="Insurance Resources & Guides | Custom Insurance Agency"
