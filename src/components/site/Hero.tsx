@@ -27,7 +27,7 @@ export const Hero = () => {
 
       {/* CENTER CONTENT */}
       <div
-        className="relative mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-6 pt-32 pb-8 sm:pt-36 lg:pt-0 lg:px-10"
+        className="relative mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-6 pt-32 pb-8 sm:pt-36 lg:pt-40 lg:px-10"
         style={{ zIndex: 2 }}
       >
         <div className="flex w-full max-w-[900px] flex-col items-center text-center">
