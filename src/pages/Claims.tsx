@@ -98,7 +98,7 @@ export default function Claims() {
             </button>
           </div>
 
-          <div className="mt-10 w-full flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:flex-wrap">
+          <div className="mt-10 w-full flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:flex-wrap">
             {[
               { Icon: Phone, label: "Phone:", value: "708-810-1955" },
               { Icon: Mail, label: "Email:", value: "claims@custominsure.com" },
@@ -106,7 +106,7 @@ export default function Claims() {
             ].map(({ Icon, label, value }) => (
               <div
                 key={label}
-                className="flex w-full items-center justify-between gap-3 sm:w-auto sm:justify-start"
+                className="flex w-auto items-center justify-start gap-3 sm:justify-start"
               >
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <Icon size={20} style={{ color: "#2abfbf" }} />
@@ -118,7 +118,7 @@ export default function Claims() {
                   </span>
                 </div>
                 <span
-                  className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap text-right sm:text-left"
+                  className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap text-left"
                   style={{ color: "#2abfbf", ...barlow }}
                 >
                   {value}
