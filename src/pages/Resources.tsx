@@ -96,18 +96,8 @@ const Resources = () => {
 
   return (
     <main
-      className="min-h-screen font-['Inter',sans-serif]"
-      style={{
-        backgroundImage: `url(${HERO_IMG})`,
-        backgroundAttachment: "fixed",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="min-h-screen bg-white font-['Inter',sans-serif]"
     >
-      {/* Fixed dark overlay behind everything */}
-      <div className="fixed inset-0 pointer-events-none" style={{ background: "rgba(10, 25, 50, 0.45)", zIndex: 0 }} />
-
       <SEO
         title="Insurance Resources & Guides | Custom Insurance Agency"
         description="Free insurance guides, FAQ, and glossary from Custom Insurance Agency. Learn about trucking insurance, DOT compliance, CSA scores, and more."
@@ -116,9 +106,10 @@ const Resources = () => {
 
       {/* HERO */}
       <section
-        className="relative flex w-full flex-col items-center justify-center pt-16"
-        style={{ minHeight: "220px", zIndex: 1 }}
+        className="relative flex h-[300px] w-full items-center justify-center pt-16"
+        style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
         <div className="relative z-10 px-6 text-center text-white">
           <h1 style={{ ...barlow, fontWeight: 700, fontSize: "52px", lineHeight: 1.1 }}>Resources</h1>
           <p className="mt-2 text-[18px] text-white/85" style={{ ...barlow, fontWeight: 500 }}>
