@@ -936,6 +936,10 @@ export default function PDNTLApplication() {
                           borderRadius: 8,
                           padding: "10px 14px",
                           width: "100%",
+                          maxWidth: "100%",
+                          minWidth: 0,
+                          boxSizing: "border-box",
+                          display: "block",
                           fontFamily: "Inter, sans-serif",
                           fontSize: 14,
                           color: NAVY,
@@ -971,6 +975,8 @@ export default function PDNTLApplication() {
                   cursor: "crosshair",
                   touchAction: "none",
                   display: "block",
+                  maxWidth: "100%",
+                  boxSizing: "border-box",
                 }}
                 onMouseDown={startDraw}
                 onMouseMove={moveDraw}
