@@ -839,7 +839,7 @@ const OccAccidentEnrollment = () => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-2 flex w-full items-center justify-center gap-2 font-display uppercase"
+                className="mt-2 flex w-full items-center justify-center gap-2 uppercase"
                 style={{
                   background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
 
