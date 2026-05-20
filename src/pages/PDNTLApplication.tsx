@@ -33,6 +33,8 @@ const inputBase: React.CSSProperties = {
   fontSize: 16,
   outline: "none",
   fontFamily: "Inter, sans-serif",
+  WebkitAppearance: "none",
+  appearance: "none",
   transition: "border-color .15s ease",
 };
 
@@ -95,7 +97,7 @@ const addBtnStyle: React.CSSProperties = {
 const cardStyle: React.CSSProperties = {
   border: "1px solid #e5e7eb",
   borderRadius: 8,
-  padding: 16,
+  padding: "clamp(12px, 4vw, 16px)",
   background: "#f8fafc",
   marginBottom: 12,
   width: "100%",
