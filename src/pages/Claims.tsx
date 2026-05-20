@@ -81,17 +81,14 @@ export default function Claims() {
             <button
               type="button"
               onClick={() => navigate("/claims/file-a-claim")}
-              className="mt-8 font-bold uppercase transition-all hover:brightness-110"
+              className="mt-8 font-bold uppercase transition-all hover:brightness-110 whitespace-nowrap"
               style={{
                 background: "linear-gradient(90deg, #f97316 0%, #eab308 100%)",
                 color: "#ffffff",
                 ...barlow,
                 letterSpacing: "0.08em",
-                padding: "10px 32px",
-                alignSelf: "stretch",
-                width: "50%",
-                marginLeft: "auto",
-                marginRight: "auto",
+                padding: "12px 36px",
+                alignSelf: "flex-start",
                 borderRadius: "8px",
                 border: "none",
                 boxShadow: "0 4px 15px rgba(245, 130, 31, 0.35)",
@@ -102,34 +99,39 @@ export default function Claims() {
             </button>
           </div>
 
-          <div className="mt-10 flex flex-col gap-3">
-            <div className="flex flex-row flex-nowrap items-center gap-3">
-              <Phone size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
-              <span className="text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
-                Phone:
-              </span>
-              <span className="text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
-                708-810-1955
-              </span>
-            </div>
-            <div className="flex flex-row flex-nowrap items-center gap-3">
-              <Mail size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
-              <span className="text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
-                Email:
-              </span>
-              <span className="text-[15px] font-medium break-all" style={{ color: "#2abfbf", ...barlow }}>
-                claims@custominsure.com
-              </span>
-            </div>
-            <div className="flex flex-row flex-nowrap items-center gap-3">
-              <Clock size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
-              <span className="text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
-                Hours:
-              </span>
-              <span className="text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
-                Mon–Fri, 9:00 AM–5:00 PM
-              </span>
-            </div>
+          <div
+            className="mt-10 w-full"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto auto 1fr",
+              columnGap: 12,
+              rowGap: 12,
+              alignItems: "center",
+            }}
+          >
+            <Phone size={20} style={{ color: "#2abfbf" }} />
+            <span className="text-[14px] sm:text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b] whitespace-nowrap" style={barlow}>
+              Phone:
+            </span>
+            <span className="text-[14px] sm:text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
+              708-810-1955
+            </span>
+
+            <Mail size={20} style={{ color: "#2abfbf" }} />
+            <span className="text-[14px] sm:text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b] whitespace-nowrap" style={barlow}>
+              Email:
+            </span>
+            <span className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
+              claims@custominsure.com
+            </span>
+
+            <Clock size={20} style={{ color: "#2abfbf" }} />
+            <span className="text-[14px] sm:text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b] whitespace-nowrap" style={barlow}>
+              Hours:
+            </span>
+            <span className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
+              Mon–Fri, 9:00 AM–5:00 PM
+            </span>
           </div>
         </div>
       </section>
