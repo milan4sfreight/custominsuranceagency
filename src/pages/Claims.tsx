@@ -98,8 +98,8 @@ export default function Claims() {
             </button>
           </div>
 
-          <div className="mt-10 w-full flex justify-center sm:block">
-            <div className="inline-flex flex-col gap-3 sm:flex sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:flex-wrap sm:w-full">
+          <div className="mt-10 w-full">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:flex-wrap sm:w-full">
               {[
                 { Icon: Phone, label: "Phone:", value: "708-810-1955" },
                 { Icon: Mail, label: "Email:", value: "claims@custominsure.com" },
