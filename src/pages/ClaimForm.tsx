@@ -1354,10 +1354,11 @@ export default function ClaimForm() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="mt-2 flex w-full items-center justify-center gap-2 font-display uppercase"
+              className="mt-2 flex w-full items-center justify-center gap-2 uppercase"
               style={{
                 background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                 color: "#ffffff",
+                fontFamily: "'Barlow', sans-serif",
                 padding: "16px",
                 borderRadius: 8,
                 border: "none",
