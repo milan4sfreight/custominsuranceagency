@@ -192,7 +192,9 @@
   }
 
   .pdntl-application-form,
-  .pdntl-application-form * {
+  .pdntl-application-form *,
+  .oa-enrollment-form,
+  .oa-enrollment-form * {
     box-sizing: border-box;
     max-width: 100%;
   }
@@ -201,7 +203,12 @@
   .pdntl-application-form select,
   .pdntl-application-form textarea,
   .pdntl-application-form canvas,
-  .pdntl-application-form button {
+  .pdntl-application-form button,
+  .oa-enrollment-form input,
+  .oa-enrollment-form select,
+  .oa-enrollment-form textarea,
+  .oa-enrollment-form canvas,
+  .oa-enrollment-form button {
     min-width: 0;
   }
 }
