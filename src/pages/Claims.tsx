@@ -62,18 +62,10 @@ export default function Claims() {
         </div>
       </section>
 
-      {/* WHITE CONTENT on parallax */}
-      <section
-        className="relative pt-6 pb-[60px] px-6"
-        style={{
-          backgroundImage: `url(${claimsHero})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      {/* WHITE CONTENT */}
+      <section className="relative pt-6 pb-[60px] px-6 bg-white">
         <div
-          className="relative mx-auto w-full max-w-[1100px] px-6 sm:px-10 py-[48px] bg-white rounded-[16px]"
-          style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.25)" }}
+          className="relative mx-auto w-full max-w-[1100px] px-6 sm:px-10 py-[48px] bg-white"
         >
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <h2 style={{ ...barlow, fontSize: 36, fontWeight: 700, lineHeight: 1.2, color: "#0d2b2b", margin: 0 }}>
