@@ -661,16 +661,16 @@ export default function GetAQuote() {
         className="bd-hero"
         style={{
           width: "100%",
-          minHeight: 500,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${volvoTruck})`,
+          height: "300px",
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${volvoTruck})`,
           backgroundSize: "cover",
           backgroundPosition: "center 75%",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           marginTop: 0,
+          paddingTop: 64,
         }}
       >
         <h1
@@ -1207,7 +1207,7 @@ export default function GetAQuote() {
           .bd-step-aside { position: static; }
           .bd-grid-2, .bd-grid-3 { grid-template-columns: 1fr !important; }
           .bd-half { max-width: 100% !important; }
-          .bd-hero { height: auto !important; min-height: 200px; padding: 80px 20px 40px; }
+          .bd-hero { height: 220px !important; min-height: 220px; padding: 64px 20px 0 !important; }
           .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
           .bd-intro { padding: 32px 20px !important; }
           .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
