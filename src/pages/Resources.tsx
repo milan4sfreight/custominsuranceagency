@@ -106,25 +106,25 @@ const Resources = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[300px] w-full items-center justify-center pt-16"
+        className="relative flex h-[220px] md:h-[300px] w-full items-center justify-center pt-16"
         style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
         <div className="relative z-10 px-6 text-center text-white">
-          <h1 style={{ ...barlow, fontWeight: 700, fontSize: "52px", lineHeight: 1.1 }}>Resources</h1>
-          <p className="mt-2 text-[18px] text-white/85" style={{ ...barlow, fontWeight: 500 }}>
+          <h1 style={{ ...barlow, fontWeight: 700, fontSize: "clamp(36px, 6vw, 52px)", lineHeight: 1.1 }}>Resources</h1>
+          <p className="mt-2 text-[15px] md:text-[18px] text-white/85" style={{ ...barlow, fontWeight: 500 }}>
             Tools and information to help you make better insurance decisions
           </p>
         </div>
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-16" style={{ paddingTop: 8, zIndex: 1 }}>
+      <section className="relative px-6 pb-16 pt-2 md:pt-2" style={{ zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
           <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em", marginTop: 0 }}>
             Lines of Coverage
           </p>
-          <h2 className="mt-1 text-[28px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 20 }}>
+          <h2 className="mt-1 text-[22px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 12 }}>
             Get Coverage Today
           </h2>
           <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
