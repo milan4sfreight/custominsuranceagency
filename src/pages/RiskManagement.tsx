@@ -56,7 +56,7 @@ const RiskManagement = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[350px] w-full items-center justify-center pt-16"
+        className="relative flex h-[300px] w-full items-center justify-center pt-16"
         style={{
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
