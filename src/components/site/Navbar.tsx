@@ -190,6 +190,16 @@ export const Navbar = () => {
   const [personalLinesModal, setPersonalLinesModal] = useState<string | null>(null);
   const location = useLocation();
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, left: 0 });
+    }
+    setOpen(false);
+  };
+
   useEffect(() => {
     setOpen(false);
     setMobileSolutionsOpen(false);
@@ -265,7 +275,7 @@ export const Navbar = () => {
         style={{ padding: "8px 56px" }}
         onMouseLeave={handleMouseLeave}
       >
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center" onClick={handleLogoClick}>
           <img src={logo} alt="Custom Insurance Agency" style={{ height: "56px", width: "auto" }} />
         </Link>
 
@@ -490,7 +500,7 @@ export const Navbar = () => {
 
       {/* Mobile nav */}
       <nav className="relative mx-auto flex h-20 min-h-20 max-w-7xl items-center justify-between px-6 lg:hidden">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center" onClick={handleLogoClick}>
           <img src={logo} alt="Custom Insurance Agency" className="h-[52px] w-auto md:h-[64px]" />
         </Link>
 
