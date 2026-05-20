@@ -211,4 +211,33 @@
   .oa-enrollment-form button {
     min-width: 0;
   }
+
+  @media (max-width: 767px) {
+    .pdntl-application-form {
+      width: 100%;
+      max-width: calc(100vw - 32px);
+      overflow-x: clip;
+    }
+
+    .pdntl-application-form .grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .pdntl-application-form input,
+    .pdntl-application-form select,
+    .pdntl-application-form textarea,
+    .pdntl-application-form button,
+    .pdntl-application-form canvas {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .pdntl-application-form input[type="file"] {
+      font-size: 12px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+  }
 }
