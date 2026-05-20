@@ -433,7 +433,7 @@ const OccAccidentEnrollment = () => {
   };
 
   return (
-    <div className="min-h-screen w-full" style={{ background: "#ffffff" }}>
+    <div className="min-h-screen w-full overflow-x-hidden" style={{ background: "#ffffff" }}>
       <SEO
         title="OCC/ACC Enrollment | Custom Insurance Agency"
         description="Digital Wesco Occupational Accident enrollment form. Complete, sign, and submit online."
@@ -839,7 +839,7 @@ const OccAccidentEnrollment = () => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-2 flex w-full items-center justify-center gap-2 font-display uppercase"
+                className="mt-2 flex w-full items-center justify-center gap-2 uppercase"
                 style={{
                   background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
 

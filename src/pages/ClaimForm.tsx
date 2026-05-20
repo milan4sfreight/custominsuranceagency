@@ -926,7 +926,7 @@ export default function ClaimForm() {
   };
 
   return (
-    <div className="min-h-screen w-full" style={{ background: "#ffffff" }}>
+    <div className="min-h-screen w-full overflow-x-hidden" style={{ background: "#ffffff" }}>
       <SEO
         title="File a Claim | Custom Insurance Agency"
         description="Submit a commercial trucking insurance claim online. Our claims team will review your report and contact you to begin the process."
@@ -1354,10 +1354,11 @@ export default function ClaimForm() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="mt-2 flex w-full items-center justify-center gap-2 font-display uppercase"
+              className="mt-2 flex w-full items-center justify-center gap-2 uppercase"
               style={{
                 background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                 color: "#ffffff",
+                fontFamily: "'Barlow', sans-serif",
                 padding: "16px",
                 borderRadius: 8,
                 border: "none",
