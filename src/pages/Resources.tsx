@@ -119,15 +119,15 @@ const Resources = () => {
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-16" style={{ paddingTop: 16, zIndex: 1 }}>
+      <section className="relative px-6 pb-16" style={{ paddingTop: 8, zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
-          <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em" }}>
+          <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em", marginTop: 0 }}>
             Lines of Coverage
           </p>
-          <h2 className="mt-2 text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 40 }}>
+          <h2 className="mt-1 text-[28px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 20 }}>
             Get Coverage Today
           </h2>
-          <div className="grid gap-6 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
             {[
               { title: "Auto Liability", to: "/get-a-quote" },
               { title: "Motor Truck Cargo", to: "/get-a-quote" },
@@ -144,9 +144,9 @@ const Resources = () => {
                   border: "1px solid #e5e7eb",
                   borderLeft: "4px solid #2abfbf",
                   borderRadius: 10,
-                  padding: "28px 24px",
+                  padding: "18px 20px",
                   background: "#ffffff",
-                  minHeight: 140,
+                  minHeight: 110,
                   textDecoration: "none",
                   position: "relative",
                   zIndex: 10,
@@ -156,7 +156,7 @@ const Resources = () => {
                   {c.title}
                 </h3>
                 <span
-                  className="mt-4"
+                  className="mt-3"
                   style={{
                     width: "50%",
                     textAlign: "center",
@@ -166,7 +166,7 @@ const Resources = () => {
                     fontWeight: 700,
                     fontSize: 14,
                     borderRadius: 50,
-                    padding: "10px 28px",
+                    padding: "8px 24px",
                   }}
                 >
                   Quote Now →
