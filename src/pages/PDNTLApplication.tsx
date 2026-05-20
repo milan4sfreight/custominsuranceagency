@@ -688,7 +688,7 @@ export default function PDNTLApplication() {
   };
 
   return (
-    <div className="min-h-screen w-full" style={{ background: "#ffffff" }}>
+    <div className="min-h-screen w-full overflow-x-hidden" style={{ background: "#ffffff" }}>
       <SEO
         title="PD / NTL Application | Custom Insurance Agency"
         description="Apply for Physical Damage and Non-Trucking Liability coverage. Submit vehicle, driver, and lessor details to get a quote."
