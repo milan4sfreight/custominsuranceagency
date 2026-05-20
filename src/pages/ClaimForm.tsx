@@ -926,7 +926,7 @@ export default function ClaimForm() {
   };
 
   return (
-    <div className="min-h-screen w-full" style={{ background: "#ffffff" }}>
+    <div className="min-h-screen w-full overflow-x-hidden" style={{ background: "#ffffff" }}>
       <SEO
         title="File a Claim | Custom Insurance Agency"
         description="Submit a commercial trucking insurance claim online. Our claims team will review your report and contact you to begin the process."
