@@ -661,16 +661,16 @@ export default function GetAQuote() {
         className="bd-hero"
         style={{
           width: "100%",
-          minHeight: 500,
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${volvoTruck})`,
+          height: "300px",
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${volvoTruck})`,
           backgroundSize: "cover",
           backgroundPosition: "center 75%",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           marginTop: 0,
+          paddingTop: 64,
         }}
       >
         <h1
