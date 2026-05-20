@@ -1207,7 +1207,7 @@ export default function GetAQuote() {
           .bd-step-aside { position: static; }
           .bd-grid-2, .bd-grid-3 { grid-template-columns: 1fr !important; }
           .bd-half { max-width: 100% !important; }
-          .bd-hero { height: auto !important; min-height: 200px; padding: 80px 20px 40px; }
+          .bd-hero { height: 220px !important; min-height: 220px; padding: 64px 20px 0 !important; }
           .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
           .bd-intro { padding: 32px 20px !important; }
           .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
