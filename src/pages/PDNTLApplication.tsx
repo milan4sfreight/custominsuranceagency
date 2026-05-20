@@ -26,6 +26,10 @@ const inputBase: React.CSSProperties = {
   padding: "10px 14px",
   color: "#0d2b2b",
   width: "100%",
+  maxWidth: "100%",
+  minWidth: 0,
+  boxSizing: "border-box",
+  display: "block",
   fontSize: 16,
   outline: "none",
   fontFamily: "Inter, sans-serif",
@@ -54,7 +58,7 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 min-w-0 max-w-full">
       <h3
         className="mb-6 pb-3 uppercase"
         style={{
@@ -68,7 +72,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       >
         {title}
       </h3>
-      <div className="flex flex-col gap-6">{children}</div>
+      <div className="flex min-w-0 max-w-full flex-col gap-6">{children}</div>
     </div>
   );
 }
@@ -83,6 +87,8 @@ const addBtnStyle: React.CSSProperties = {
   borderRadius: 8,
   padding: "10px 20px",
   width: "100%",
+  maxWidth: "100%",
+  boxSizing: "border-box",
   cursor: "pointer",
 };
 
@@ -92,6 +98,11 @@ const cardStyle: React.CSSProperties = {
   padding: 16,
   background: "#f8fafc",
   marginBottom: 12,
+  width: "100%",
+  maxWidth: "100%",
+  minWidth: 0,
+  boxSizing: "border-box",
+  overflow: "hidden",
 };
 
 const cardHeaderTitle: React.CSSProperties = {
@@ -717,9 +728,9 @@ export default function PDNTLApplication() {
         </div>
       </section>
 
-      <main style={{ padding: "64px 24px", background: "#ffffff" }}>
-        <div className="mx-auto" style={{ maxWidth: 760 }}>
-          <form onSubmit={onSubmit}>
+      <main className="w-full overflow-x-hidden px-4 py-12 md:px-6 md:py-16" style={{ background: "#ffffff" }}>
+        <div className="mx-auto w-full min-w-0 max-w-[760px]">
+          <form className="pdntl-application-form w-full min-w-0" onSubmit={onSubmit}>
             {/* SECTION 1 */}
             <Section title="Application Details">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -925,6 +936,10 @@ export default function PDNTLApplication() {
                           borderRadius: 8,
                           padding: "10px 14px",
                           width: "100%",
+                          maxWidth: "100%",
+                          minWidth: 0,
+                          boxSizing: "border-box",
+                          display: "block",
                           fontFamily: "Inter, sans-serif",
                           fontSize: 14,
                           color: NAVY,
@@ -960,6 +975,8 @@ export default function PDNTLApplication() {
                   cursor: "crosshair",
                   touchAction: "none",
                   display: "block",
+                  maxWidth: "100%",
+                  boxSizing: "border-box",
                 }}
                 onMouseDown={startDraw}
                 onMouseMove={moveDraw}

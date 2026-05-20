@@ -190,4 +190,18 @@
   .bg-dark-gradient {
     background: linear-gradient(135deg, #0f2a42 0%, #173b5d 50%, #0d2b2b 100%);
   }
+
+  .pdntl-application-form,
+  .pdntl-application-form * {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .pdntl-application-form input,
+  .pdntl-application-form select,
+  .pdntl-application-form textarea,
+  .pdntl-application-form canvas,
+  .pdntl-application-form button {
+    min-width: 0;
+  }
 }
