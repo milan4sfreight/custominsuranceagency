@@ -63,7 +63,7 @@ export default function Claims() {
       </section>
 
       {/* WHITE CONTENT */}
-      <section className="relative pt-2 sm:pt-6 pb-[60px] px-6 bg-white">
+      <section className="relative pt-8 sm:pt-6 pb-[60px] px-6 bg-white">
         <div
           className="relative mx-auto w-full max-w-[1100px] px-6 sm:px-10 pt-4 sm:pt-[48px] pb-[48px] bg-white"
         >
