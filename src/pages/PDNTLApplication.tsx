@@ -697,7 +697,7 @@ export default function PDNTLApplication() {
 
       {/* HERO */}
       <section
-        className="relative flex h-[300px] w-full items-center justify-center pt-16"
+        className="relative flex h-[220px] md:h-[300px] w-full items-center justify-center pt-16"
         style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
