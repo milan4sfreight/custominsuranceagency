@@ -98,33 +98,30 @@ export default function Claims() {
             </button>
           </div>
 
-          <div className="mt-10 w-full flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:flex-wrap">
-            {[
-              { Icon: Phone, label: "Phone:", value: "708-810-1955" },
-              { Icon: Mail, label: "Email:", value: "claims@custominsure.com" },
-              { Icon: Clock, label: "Hours:", value: "Mon–Fri, 9:00 AM–5:00 PM" },
-            ].map(({ Icon, label, value }) => (
-              <div
-                key={label}
-                className="flex w-auto items-center justify-start gap-3 sm:justify-start"
-              >
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <Icon size={20} style={{ color: "#2abfbf" }} />
+          <div className="mt-10 w-full flex justify-center sm:block">
+            <div className="inline-flex flex-col gap-3 sm:flex sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:flex-wrap sm:w-full">
+              {[
+                { Icon: Phone, label: "Phone:", value: "708-810-1955" },
+                { Icon: Mail, label: "Email:", value: "claims@custominsure.com" },
+                { Icon: Clock, label: "Hours:", value: "Mon–Fri, 9:00 AM–5:00 PM" },
+              ].map(({ Icon, label, value }) => (
+                <div key={label} className="flex items-center gap-3 justify-start">
+                  <Icon size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
                   <span
                     className="text-[14px] sm:text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b] whitespace-nowrap"
                     style={barlow}
                   >
                     {label}
                   </span>
+                  <span
+                    className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap"
+                    style={{ color: "#2abfbf", ...barlow }}
+                  >
+                    {value}
+                  </span>
                 </div>
-                <span
-                  className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap text-left"
-                  style={{ color: "#2abfbf", ...barlow }}
-                >
-                  {value}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
