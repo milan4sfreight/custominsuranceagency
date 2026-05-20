@@ -63,9 +63,9 @@ export default function Claims() {
       </section>
 
       {/* WHITE CONTENT */}
-      <section className="relative pt-6 pb-[60px] px-6 bg-white">
+      <section className="relative pt-2 sm:pt-6 pb-[60px] px-6 bg-white">
         <div
-          className="relative mx-auto w-full max-w-[1100px] px-6 sm:px-10 py-[48px] bg-white"
+          className="relative mx-auto w-full max-w-[1100px] px-6 sm:px-10 pt-4 sm:pt-[48px] pb-[48px] bg-white"
         >
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
             <h2 style={{ ...barlow, fontSize: 36, fontWeight: 700, lineHeight: 1.2, color: "#0d2b2b", margin: 0 }}>
@@ -108,13 +108,13 @@ export default function Claims() {
                 <div key={label} className="flex items-center gap-3 justify-start">
                   <Icon size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
                   <span
-                    className="text-[14px] sm:text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b] whitespace-nowrap"
+                    className="text-[16px] sm:text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b] whitespace-nowrap"
                     style={barlow}
                   >
                     {label}
                   </span>
                   <span
-                    className="text-[13px] sm:text-[15px] font-medium whitespace-nowrap"
+                    className="text-[16px] sm:text-[15px] font-medium whitespace-nowrap"
                     style={{ color: "#2abfbf", ...barlow }}
                   >
                     {value}
