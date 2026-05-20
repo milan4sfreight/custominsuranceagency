@@ -69,7 +69,6 @@ export default function Claims() {
           backgroundImage: `url(${claimsHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div
