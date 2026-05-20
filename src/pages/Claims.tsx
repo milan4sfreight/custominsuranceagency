@@ -102,33 +102,33 @@ export default function Claims() {
             </button>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
-            <div className="flex flex-col items-start gap-2">
-              <Phone size={22} style={{ color: "#2abfbf" }} />
-              <div className="text-[16px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
-                Phone
-              </div>
-              <div className="text-[18px] font-medium" style={{ color: "#2abfbf", ...barlow }}>
+          <div className="mt-10 flex flex-col gap-3">
+            <div className="flex flex-row flex-nowrap items-center gap-3">
+              <Phone size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
+              <span className="text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
+                Phone:
+              </span>
+              <span className="text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
                 708-810-1955
-              </div>
+              </span>
             </div>
-            <div className="flex flex-col items-start gap-2">
-              <Mail size={22} style={{ color: "#2abfbf" }} />
-              <div className="text-[16px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
-                Email
-              </div>
-              <div className="text-[15px] font-medium break-all" style={{ color: "#2abfbf", ...barlow }}>
+            <div className="flex flex-row flex-nowrap items-center gap-3">
+              <Mail size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
+              <span className="text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
+                Email:
+              </span>
+              <span className="text-[15px] font-medium break-all" style={{ color: "#2abfbf", ...barlow }}>
                 claims@custominsure.com
-              </div>
+              </span>
             </div>
-            <div className="flex flex-col items-start gap-2">
-              <Clock size={22} style={{ color: "#2abfbf" }} />
-              <div className="text-[16px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
-                Hours
-              </div>
-              <div className="text-[18px] font-medium" style={{ color: "#2abfbf", ...barlow }}>
+            <div className="flex flex-row flex-nowrap items-center gap-3">
+              <Clock size={20} style={{ color: "#2abfbf", flexShrink: 0 }} />
+              <span className="text-[15px] font-semibold uppercase tracking-wide text-[#0d2b2b]" style={barlow}>
+                Hours:
+              </span>
+              <span className="text-[15px] font-medium whitespace-nowrap" style={{ color: "#2abfbf", ...barlow }}>
                 Mon–Fri, 9:00 AM–5:00 PM
-              </div>
+              </span>
             </div>
           </div>
         </div>
