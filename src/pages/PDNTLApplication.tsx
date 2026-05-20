@@ -58,7 +58,7 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 min-w-0 max-w-full">
       <h3
         className="mb-6 pb-3 uppercase"
         style={{
@@ -72,7 +72,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       >
         {title}
       </h3>
-      <div className="flex flex-col gap-6">{children}</div>
+      <div className="flex min-w-0 max-w-full flex-col gap-6">{children}</div>
     </div>
   );
 }
