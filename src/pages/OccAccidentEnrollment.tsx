@@ -169,6 +169,14 @@ const inputBase: React.CSSProperties = {
   fontFamily: "Inter, sans-serif",
 
   transition: "border-color .15s ease",
+
+  maxWidth: "100%",
+
+  minWidth: 0,
+
+  boxSizing: "border-box",
+
+  display: "block",
 };
 
 const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -216,7 +224,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
         {title}
       </h3>
 
-      <div className="flex flex-col gap-6">{children}</div>
+      <div className="flex min-w-0 max-w-full flex-col gap-6">{children}</div>
     </div>
   );
 }
@@ -239,6 +247,10 @@ const addBtnStyle: React.CSSProperties = {
   padding: "10px 20px",
 
   cursor: "pointer",
+
+  maxWidth: "100%",
+
+  boxSizing: "border-box",
 };
 
 const OccAccidentEnrollment = () => {
@@ -473,7 +485,7 @@ const OccAccidentEnrollment = () => {
       </section>
 
       <main style={{ padding: "64px 24px", background: "#ffffff" }}>
-        <div className="mx-auto" style={{ maxWidth: 760 }}>
+        <div className="mx-auto min-w-0 max-w-[760px] overflow-x-hidden" style={{ maxWidth: "100%" }}>
           {result ? (
             <div style={{ textAlign: "center", padding: "48px 24px" }}>
               <h2 style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 28, color: NAVY }}>
@@ -539,7 +551,7 @@ const OccAccidentEnrollment = () => {
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="oa-enrollment-form">
               {/* SECTION 1 — ENROLLMENT INFO */}
 
               <Section title="Enrollment Information">
