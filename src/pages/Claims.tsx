@@ -81,7 +81,7 @@ export default function Claims() {
             <button
               type="button"
               onClick={() => navigate("/claims/file-a-claim")}
-              className="mt-8 font-bold uppercase transition-all hover:brightness-110 whitespace-nowrap self-center sm:self-start"
+              className="mt-8 font-bold uppercase transition-all hover:brightness-110 whitespace-nowrap w-full sm:w-auto self-stretch sm:self-start"
               style={{
                 background: "linear-gradient(90deg, #f97316 0%, #eab308 100%)",
                 color: "#ffffff",
