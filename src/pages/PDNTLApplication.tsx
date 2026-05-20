@@ -26,6 +26,10 @@ const inputBase: React.CSSProperties = {
   padding: "10px 14px",
   color: "#0d2b2b",
   width: "100%",
+  maxWidth: "100%",
+  minWidth: 0,
+  boxSizing: "border-box",
+  display: "block",
   fontSize: 16,
   outline: "none",
   fontFamily: "Inter, sans-serif",
@@ -83,6 +87,8 @@ const addBtnStyle: React.CSSProperties = {
   borderRadius: 8,
   padding: "10px 20px",
   width: "100%",
+  maxWidth: "100%",
+  boxSizing: "border-box",
   cursor: "pointer",
 };
 
@@ -92,6 +98,11 @@ const cardStyle: React.CSSProperties = {
   padding: 16,
   background: "#f8fafc",
   marginBottom: 12,
+  width: "100%",
+  maxWidth: "100%",
+  minWidth: 0,
+  boxSizing: "border-box",
+  overflow: "hidden",
 };
 
 const cardHeaderTitle: React.CSSProperties = {
