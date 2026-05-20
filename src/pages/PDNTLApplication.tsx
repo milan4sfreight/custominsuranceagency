@@ -730,7 +730,7 @@ export default function PDNTLApplication() {
 
       <main className="w-full overflow-x-hidden px-4 py-12 md:px-6 md:py-16" style={{ background: "#ffffff" }}>
         <div className="mx-auto w-full min-w-0 max-w-[760px]">
-          <form className="w-full min-w-0" onSubmit={onSubmit}>
+          <form className="pdntl-application-form w-full min-w-0" onSubmit={onSubmit}>
             {/* SECTION 1 */}
             <Section title="Application Details">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
