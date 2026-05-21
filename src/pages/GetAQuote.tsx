@@ -1224,8 +1224,10 @@ export default function GetAQuote() {
         .bd-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
         .bd-step-mobile-indicator { display: none; }
         .bd-form, .bd-form * { box-sizing: border-box; }
-        .bd-form input, .bd-form select, .bd-form textarea, .bd-form button { display: block; max-width: 100%; min-width: 0; max-inline-size: 100%; min-inline-size: 0; }
-        .bd-form input[type="date"] { width: 100%; inline-size: 100%; max-width: 100%; max-inline-size: 100%; min-width: 0; min-inline-size: 0; -webkit-appearance: none; appearance: none; }
+        .bd-form input, .bd-form select, .bd-form textarea, .bd-form button { display: block; width: 100%; inline-size: 100%; max-width: 100%; min-width: 0; max-inline-size: 100%; min-inline-size: 0; box-sizing: border-box; }
+        .bd-form input[type="date"] { display: block; width: 100%; inline-size: 100%; max-width: 100%; max-inline-size: 100%; min-width: 0; min-inline-size: 0; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-appearance: none; appearance: none; }
+        .bd-form input[type="date"]::-webkit-date-and-time-value { text-align: left; min-height: 20px; }
+        .bd-form input[type="date"]::-webkit-calendar-picker-indicator { margin-left: 0; padding-left: 4px; }
         @media (max-width: 768px) {
           .bd-step { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
           .bd-step-aside { position: static; }
@@ -1235,7 +1237,7 @@ export default function GetAQuote() {
           .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
           .bd-intro { padding: 32px 20px !important; }
           .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
-          .bd-form { padding: 0 20px 48px !important; }
+          .bd-form { padding: 0 16px 48px !important; width: 100% !important; max-width: 100vw !important; }
           .bd-step { scroll-margin-top: 130px; }
           .bd-step-aside { display: none !important; }
           .bd-step-mobile-indicator { display: block; font-family: 'Barlow', sans-serif; font-weight: 600; color: ${ORANGE}; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
@@ -1243,7 +1245,8 @@ export default function GetAQuote() {
           .bd-add-btn { width: 100% !important; min-height: 48px !important; padding: 14px 24px !important; }
           .bd-remove-wrap { text-align: left !important; }
           .bd-remove-btn { width: 100% !important; min-height: 44px !important; padding: 10px 14px !important; font-size: 14px !important; }
-          .bd-form input:not([type="radio"]):not([type="checkbox"]), .bd-form select, .bd-form textarea { font-size: 16px !important; width: 100% !important; max-width: 100% !important; }
+          .bd-form input:not([type="radio"]):not([type="checkbox"]), .bd-form select, .bd-form textarea { font-size: 16px !important; width: 100% !important; inline-size: 100% !important; max-width: 100% !important; max-inline-size: 100% !important; min-width: 0 !important; min-inline-size: 0 !important; }
+          .bd-form input[type="date"] { width: 100% !important; inline-size: 100% !important; max-width: 100% !important; max-inline-size: 100% !important; min-width: 0 !important; min-inline-size: 0 !important; }
           label[type="radio"], input[type="radio"] { min-width: 24px; min-height: 24px; }
           html, body { overflow-x: hidden; }
         }
