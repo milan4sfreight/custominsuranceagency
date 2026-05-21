@@ -119,7 +119,7 @@ const Resources = () => {
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-4 pt-2 md:pb-6 md:pt-3" style={{ zIndex: 1 }}>
+      <section className="relative px-6 pb-4 pt-10 md:pb-6 md:pt-12" style={{ zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ ...barlow, marginTop: 0 }}>
             Lines of Coverage
@@ -178,7 +178,7 @@ const Resources = () => {
       </section>
 
       {/* HELPFUL GUIDES */}
-      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-[60px] md:px-12" style={{ zIndex: 1 }}>
+      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-8 md:px-12" style={{ zIndex: 1 }}>
         <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
           Helpful Guides
         </p>
@@ -189,7 +189,7 @@ const Resources = () => {
           Whether you are a first-time insurance buyer or an experienced fleet owner, our resource library has
           everything you need to make informed decisions about your coverage.
         </p>
-        <div className="mt-5 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {guides.map((g) => (
             <div
               key={g.title}
@@ -202,12 +202,12 @@ const Resources = () => {
                 zIndex: 10,
               }}
             >
-              <div className="text-[32px]">{g.icon}</div>
-              <h3 className="mt-3 text-[18px] font-bold text-white" style={barlow}>
+              <div className="text-[28px]">{g.icon}</div>
+              <h3 className="mt-2 text-[16px] font-bold text-[#0d2b2b]" style={barlow}>
                 {g.title}
               </h3>
-              <p className="mt-3 text-[14px] leading-[1.7] text-[#4a5568]">{g.text}</p>
-              <a href="#" className="mt-4 inline-block text-[14px] font-semibold text-[#2abfbf] hover:underline">
+              <p className="mt-2 text-[13px] leading-[1.55] text-[#4a5568]">{g.text}</p>
+              <a href="#" className="mt-3 inline-block text-[13px] font-semibold text-[#2abfbf] hover:underline">
                 Read Guide →
               </a>
             </div>
@@ -216,15 +216,15 @@ const Resources = () => {
       </div>
 
       {/* FAQ */}
-      <section className="relative px-6 py-[60px] md:px-12" style={{ zIndex: 1 }}>
+      <section className="relative px-6 py-8 md:px-12" style={{ zIndex: 1 }}>
         <div className="mx-auto max-w-[900px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
             FAQ
           </p>
-          <h2 className="mt-2 text-[32px] font-bold text-white leading-tight" style={barlow}>
+          <h2 className="mt-2 text-[22px] md:text-[28px] font-bold text-[#0d2b2b] leading-tight" style={barlow}>
             Frequently Asked Questions
           </h2>
-          <div className="mt-8 space-y-3">
+          <div className="mt-5 space-y-3">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
@@ -263,18 +263,18 @@ const Resources = () => {
       </section>
 
       {/* GLOSSARY */}
-      <section className="relative px-6 py-[60px] md:px-12" style={{ zIndex: 1 }}>
+      <section className="relative px-6 py-8 md:px-12" style={{ zIndex: 1 }}>
         <div className="mx-auto max-w-[900px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
             Glossary
           </p>
-          <h2 className="mt-2 text-[32px] font-bold text-white leading-tight" style={barlow}>
+          <h2 className="mt-2 text-[22px] md:text-[28px] font-bold text-[#0d2b2b] leading-tight" style={barlow}>
             Insurance Terms Glossary
           </h2>
-          <p className="mt-4 text-[16px] leading-[1.75] text-white/80">
+          <p className="mt-2 text-[14px] leading-[1.6] text-[#4a5568]">
             Not sure what a term means? Here is a quick reference guide to common insurance terminology.
           </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {glossary.map(([term, def]) => (
               <div
                 key={term}
@@ -297,14 +297,14 @@ const Resources = () => {
       </section>
 
       {/* CTA */}
-      <section className="relative px-6 py-[60px] text-center md:px-12" style={{ zIndex: 1 }}>
-        <h2 className="text-[32px] font-bold text-white" style={barlow}>
+      <section className="relative px-6 py-10 text-center md:px-12" style={{ zIndex: 1 }}>
+        <h2 className="text-[24px] md:text-[28px] font-bold text-[#0d2b2b]" style={barlow}>
           Still Have Questions?
         </h2>
-        <p className="mx-auto mt-4 max-w-[640px] text-[16px] text-white/60">
+        <p className="mx-auto mt-2 max-w-[640px] text-[14px] text-[#4a5568]">
           Our agents are ready to help you find the right coverage.
         </p>
-        <Link to="/get-a-quote" className="btn-quote mt-8 inline-block px-10 py-4 text-[14px] uppercase tracking-wider">
+        <Link to="/get-a-quote" className="btn-quote mt-5 inline-block px-10 py-3 text-[14px] uppercase tracking-wider">
           Get a Quote
         </Link>
       </section>
