@@ -21,10 +21,11 @@ import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
 import logo from "@/assets/logo.png";
+import occAccidentHero from "@/assets/occ-accident-hero.jpg";
 
 import { SEO } from "@/components/SEO";
 
-const HERO_IMG = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85";
+const HERO_IMG = occAccidentHero;
 
 const TEAL = "#2abfbf";
 
