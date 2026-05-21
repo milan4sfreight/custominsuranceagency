@@ -58,6 +58,9 @@ const inputSty = (err = false): React.CSSProperties => ({
   outline: "none",
   background: "#fff",
   color: "#0d2b2b",
+  boxSizing: "border-box",
+  maxWidth: "100%",
+  minWidth: 0,
 });
 const subHeading: React.CSSProperties = {
   fontFamily: "Barlow, sans-serif",
@@ -85,6 +88,8 @@ const addBtnSty: React.CSSProperties = {
   cursor: "pointer",
   fontSize: 13,
   letterSpacing: 0.5,
+  boxSizing: "border-box",
+  maxWidth: "100%",
 };
 const removeBtnSty: React.CSSProperties = {
   color: RED,
