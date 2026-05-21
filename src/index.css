@@ -213,7 +213,7 @@
   .oa-enrollment-form textarea,
   .oa-enrollment-form canvas,
   .oa-enrollment-form button,
-  .claim-form input,
+  .claim-form input:not([type="file"]),
   .claim-form select,
   .claim-form textarea,
   .claim-form canvas,
@@ -325,7 +325,7 @@
       max-width: 100%;
     }
 
-    .claim-form input:not([type="radio"]):not([type="checkbox"]),
+    .claim-form input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
     .claim-form select,
     .claim-form textarea,
     .claim-form button:not([role="radio"]):not([role="checkbox"]),
