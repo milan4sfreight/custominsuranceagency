@@ -835,20 +835,9 @@ const OccAccidentEnrollment = () => {
                     Clear Signature
                   </button>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: NAVY, fontWeight: 500 }}>
-                      Date
-                    </span>
-
-                    <input
-                      type="date"
-                      value={form.signatureDate}
-                      onChange={(e) => update("signatureDate", e.target.value)}
-                      style={{ ...inputBase, width: "auto" }}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                    />
-                  </div>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
+                    Signed on: {signedAt}
+                  </span>
                 </div>
               </Section>
 
