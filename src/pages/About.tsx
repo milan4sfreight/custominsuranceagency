@@ -137,11 +137,8 @@ const About = () => {
       {/* CTA */}
       <section className="bg-dark-gradient px-6 py-20 text-center md:px-12">
         <h2 className="text-[28px] md:text-[36px] font-bold text-white">
-          Serving Chicago & Surrounding Areas Since Day One
+          Independent insurance agency serving clients nationwide
         </h2>
-        <p className="mx-auto mt-4 max-w-[720px] text-[18px] text-white/60">
-          La Grange · Burr Ridge · Hinsdale · Oak Brook · Westmont · Illinois & Indiana
-        </p>
         <Link
           to="/contact"
           className="btn-quote mt-8 inline-block px-10 py-4 text-[14px] uppercase tracking-wider"
