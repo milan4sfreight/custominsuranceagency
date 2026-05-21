@@ -268,6 +268,12 @@ const OccAccidentEnrollment = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [signedAt] = useState<string>(() =>
+    new Date().toLocaleString("en-US", {
+      month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
+    })
+  );
+
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => setForm((s) => ({ ...s, [key]: value }));
 
   const clearSignature = () => sigRef.current?.clear();
