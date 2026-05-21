@@ -195,6 +195,12 @@ const inputBase: React.CSSProperties = {
   fontFamily: "Inter, sans-serif",
 
   transition: "border-color .15s ease",
+
+  boxSizing: "border-box",
+
+  maxWidth: "100%",
+
+  minWidth: 0,
 };
 
 const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -958,7 +964,7 @@ export default function ClaimForm() {
 
       <main className="px-4 py-8 sm:px-6 sm:py-12 md:px-6 md:py-16" style={{ background: "#ffffff" }}>
         <div className="mx-auto" style={{ maxWidth: 760 }}>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="claim-form">
             <Section title="Policy Holder Information">
               <div>
                 <Label required>Policy Holder Name</Label>
