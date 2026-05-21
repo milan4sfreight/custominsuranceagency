@@ -755,7 +755,7 @@ const OccAccidentEnrollment = () => {
                       type="file"
                       multiple
                       accept=".pdf,.doc,.docx,image/*"
-                      className="hidden"
+                      style={{ display: "none" }}
                       onChange={handleFileAttach}
                     />
                   </label>
