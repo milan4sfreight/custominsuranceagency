@@ -764,9 +764,6 @@ export default function GetAQuote() {
               >
                 Ready to get started?
               </h2>
-              <p style={{ fontFamily: "Inter, sans-serif", color: "#334155", fontSize: 16, lineHeight: 1.7, marginBottom: 16 }}>
-                You are one step closer to securing the best insurance coverage for your trucking business. Our team of dedicated transportation insurance experts are standing by ready to assist you.
-              </p>
               <p style={{ fontFamily: "Inter, sans-serif", color: "#334155", fontSize: 16, lineHeight: 1.7 }}>
                 Fill out the short form below, and we'll handle the rest. Your peace of mind is just a conversation away.
               </p>
