@@ -228,7 +228,7 @@
     .pdntl-application-form input:not([type="radio"]):not([type="checkbox"]),
     .pdntl-application-form select,
     .pdntl-application-form textarea,
-    .pdntl-application-form button,
+    .pdntl-application-form button:not([role="radio"]):not([role="checkbox"]),
     .pdntl-application-form canvas {
       width: 100% !important;
       max-width: 100% !important;
@@ -255,7 +255,7 @@
     .oa-enrollment-form input:not([type="radio"]):not([type="checkbox"]),
     .oa-enrollment-form select,
     .oa-enrollment-form textarea,
-    .oa-enrollment-form button,
+    .oa-enrollment-form button:not([role="radio"]):not([role="checkbox"]),
     .oa-enrollment-form canvas {
       width: 100% !important;
       max-width: 100% !important;
