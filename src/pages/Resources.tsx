@@ -119,12 +119,12 @@ const Resources = () => {
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-16 pt-2 md:pt-2" style={{ zIndex: 1 }}>
+      <section className="relative px-6 pb-16 pt-8 md:pt-10" style={{ zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
-          <p className="text-[11px] font-semibold uppercase text-[#2abfbf]" style={{ letterSpacing: "0.12em", marginTop: 0 }}>
+          <p className="text-center text-[11px] font-semibold uppercase text-[#0f2a42]" style={{ letterSpacing: "0.12em", marginTop: 0 }}>
             Lines of Coverage
           </p>
-          <h2 className="mt-1 text-[22px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 12 }}>
+          <h2 className="mt-1 text-center text-[22px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 16 }}>
             Get Coverage Today
           </h2>
           <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
