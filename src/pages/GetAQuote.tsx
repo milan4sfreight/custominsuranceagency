@@ -1221,7 +1221,7 @@ export default function GetAQuote() {
           .bd-add-btn { width: 100% !important; min-height: 48px !important; padding: 14px 24px !important; }
           .bd-remove-wrap { text-align: left !important; }
           .bd-remove-btn { width: 100% !important; min-height: 44px !important; padding: 10px 14px !important; font-size: 14px !important; }
-          .bd-form input, .bd-form select, .bd-form textarea { font-size: 16px !important; width: 100% !important; max-width: 100% !important; }
+          .bd-form input:not([type="radio"]):not([type="checkbox"]), .bd-form select, .bd-form textarea { font-size: 16px !important; width: 100% !important; max-width: 100% !important; }
           label[type="radio"], input[type="radio"] { min-width: 24px; min-height: 24px; }
           html, body { overflow-x: hidden; }
         }
