@@ -521,11 +521,14 @@ export const Navbar = () => {
             side="right"
             className="w-full max-w-md border-0 p-0 text-white overflow-y-auto [&>button.right-4]:hidden"
             style={{
-              background: "#0a1932",
+              backgroundImage: `url(${footerBg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
               height: "100dvh",
             }}
           >
-            <div className="absolute inset-0" style={{ background: "#0a1932" }} />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(10, 25, 50, 0.82)" }} />
             <button
               type="button"
               onClick={() => setOpen(false)}
