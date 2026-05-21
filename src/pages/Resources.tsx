@@ -119,7 +119,7 @@ const Resources = () => {
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-4 pt-3 md:pb-6 md:pt-4" style={{ zIndex: 1 }}>
+      <section className="relative px-6 pb-4 pt-1 md:pb-6 md:pt-2" style={{ zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ ...barlow, marginTop: 0 }}>
             Lines of Coverage
