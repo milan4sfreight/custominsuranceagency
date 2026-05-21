@@ -1072,7 +1072,9 @@ export default function ClaimForm() {
                 <Label required>Date of Loss</Label>
                 <input
                   required
-                  type="date"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="MM/DD/YYYY"
                   name="dateOfLoss"
                   value={form.dateOfLoss}
                   onChange={onChange}
@@ -1187,7 +1189,7 @@ export default function ClaimForm() {
 
               <div>
                 <Label>Date of Birth</Label>
-                <input type="date" name="driverDob" value={form.driverDob} onChange={onChange} {...fieldProps} />
+                <input type="text" inputMode="numeric" placeholder="MM/DD/YYYY" name="driverDob" value={form.driverDob} onChange={onChange} {...fieldProps} />
               </div>
 
               <div>
