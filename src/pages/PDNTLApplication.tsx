@@ -914,6 +914,8 @@ export default function PDNTLApplication() {
                 <label
                   className="cursor-pointer uppercase"
                   style={{
+                    display: "inline-block",
+                    width: "auto",
                     background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                     color: "#ffffff",
                     fontWeight: 700,
