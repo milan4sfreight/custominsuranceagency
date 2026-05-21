@@ -510,8 +510,8 @@ const Index = () => {
               Commercial Insurance →
             </Link>
 
-            <Link to="/get-a-quote" className="block font-medium text-[#3eaa6d] hover:underline">
-              View All Coverage →
+            <Link to="/personal-lines" className="block font-medium text-[#3eaa6d] hover:underline">
+              Personal Lines →
             </Link>
           </div>
         </div>

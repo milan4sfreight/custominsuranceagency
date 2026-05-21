@@ -21,6 +21,7 @@ import ClientLogin from "./pages/ClientLogin.tsx";
 import OccAccidentEnrollment from "./pages/OccAccidentEnrollment.tsx";
 import PDNTLApplication from "./pages/PDNTLApplication.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import PersonalLines from "./pages/PersonalLines.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/occ-accident-enrollment" element={<OccAccidentEnrollment />} />
           <Route path="/pd-ntl-application" element={<PDNTLApplication />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/personal-lines" element={<PersonalLines />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
