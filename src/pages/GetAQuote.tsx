@@ -51,6 +51,7 @@ const labelSty: React.CSSProperties = {
 const inputSty = (err = false): React.CSSProperties => ({
   width: "100%",
   inlineSize: "100%",
+  WebkitBoxSizing: "border-box",
   border: `1.5px solid ${err ? RED : "#c5d5e8"}`,
   borderRadius: 6,
   padding: "12px 14px",
@@ -65,6 +66,16 @@ const inputSty = (err = false): React.CSSProperties => ({
   minWidth: 0,
   minInlineSize: 0,
   display: "block",
+  overflow: "hidden",
+});
+
+const dateInputSty = (err = false): React.CSSProperties => ({
+  ...inputSty(err),
+  minWidth: "100%",
+  maxWidth: "100%",
+  inlineSize: "100%",
+  maxInlineSize: "100%",
+  paddingRight: 10,
 });
 const subHeading: React.CSSProperties = {
   fontFamily: "Barlow, sans-serif",
