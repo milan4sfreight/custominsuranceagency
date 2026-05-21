@@ -941,7 +941,7 @@ export default function ClaimForm() {
       <Navbar />
 
       <section
-        className="relative flex h-[300px] w-full items-center justify-center pt-16 [background-attachment:scroll] md:[background-attachment:fixed]"
+        className="relative flex h-[300px] w-full items-center justify-center pt-16"
         style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
