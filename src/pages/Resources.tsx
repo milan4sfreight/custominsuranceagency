@@ -178,18 +178,18 @@ const Resources = () => {
       </section>
 
       {/* HELPFUL GUIDES */}
-      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-6 pb-[60px] md:px-12" style={{ zIndex: 1 }}>
+      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-[60px] md:px-12" style={{ zIndex: 1 }}>
         <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
           Helpful Guides
         </p>
-        <h2 className="mt-2 text-[32px] font-bold text-white leading-tight" style={barlow}>
+        <h2 className="mt-2 text-[22px] md:text-[28px] font-bold text-[#0d2b2b] leading-tight" style={barlow}>
           Insurance Resources & Guides
         </h2>
-        <p className="mt-4 text-[16px] leading-[1.75] text-white/80">
+        <p className="mt-2 text-[14px] leading-[1.6] text-[#4a5568]">
           Whether you are a first-time insurance buyer or an experienced fleet owner, our resource library has
           everything you need to make informed decisions about your coverage.
         </p>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-5 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           {guides.map((g) => (
             <div
               key={g.title}
