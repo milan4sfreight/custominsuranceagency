@@ -7,7 +7,7 @@ const quoteLinks: { label: string; href: string }[] = [
   { label: "Occupational Accident", href: "/occ-accident-enrollment" },
 ];
 
-const moreLinks = ["Trucking", "Flood", "Motorcycle", "Watercraft & Boat", "Recreational Vehicle"];
+const moreLinks = ["Personal Auto", "Home", "Life", "Health", "Motorcycle", "Watercraft & Boat", "Recreational Vehicle"];
 
 const companyLinks: { label: string; href: string }[] = [
   { label: "About", href: "/about" },
