@@ -752,7 +752,7 @@ export default function GetAQuote() {
       ) : (
         <>
           {/* INTRO */}
-          <section className="bd-intro" style={{ background: "#fff", padding: "40px 20px 48px" }}>
+          <section className="bd-intro" style={{ background: "#fff", padding: "20px 20px 16px" }}>
             <div style={{ maxWidth: 1100, margin: "0 auto" }}>
               <h2
                 className="bd-intro-h2"
@@ -762,7 +762,7 @@ export default function GetAQuote() {
                   fontWeight: 700,
                   fontSize: 32,
                   textTransform: "uppercase",
-                  marginBottom: 20,
+                  marginBottom: 12,
                 }}
               >
                 Ready to get started?
