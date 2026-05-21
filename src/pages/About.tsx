@@ -72,19 +72,17 @@ const About = () => {
       {/* Parallax band */}
       <section
         aria-hidden="true"
-        className="relative w-full"
+        className="relative w-full h-[360px] md:h-[400px]"
         style={{
-          height: "420px",
           backgroundImage: `url(${volvoCab})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(10,25,50,0.35)" }} />
       </section>
 
-      <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
+      <div className="mx-auto w-full max-w-[900px] px-6 pt-[24px] pb-[60px] md:px-12">
         {/* Section 3 — Why Choose Us */}
         <section>
           <p className="text-[13px] font-semibold uppercase tracking-[2px] text-[#3eaa6d]">
