@@ -1315,7 +1315,7 @@ export default function ClaimForm() {
                 <Upload size={26} style={{ color: TEAL }} />
 
                 <div style={{ color: NAVY, fontSize: 13, fontFamily: "Inter, sans-serif" }}>
-                  Drop photos, police report, or documents here
+                  Drop photos, police report, repair estimate, towing bill, copy of the title and other supporting documents here
                 </div>
 
                 <label
