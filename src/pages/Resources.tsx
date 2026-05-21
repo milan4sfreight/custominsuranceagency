@@ -142,7 +142,7 @@ const Resources = () => {
                 className="flex flex-col justify-between no-underline"
                 style={{
                   border: "1px solid #e5e7eb",
-                  borderLeft: "4px solid #2abfbf",
+                  borderLeft: "4px solid #0f2a42",
                   borderRadius: 10,
                   padding: "18px 20px",
                   background: "#ffffff",
