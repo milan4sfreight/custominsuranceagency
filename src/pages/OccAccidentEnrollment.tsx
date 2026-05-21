@@ -268,6 +268,12 @@ const OccAccidentEnrollment = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [signedAt] = useState<string>(() =>
+    new Date().toLocaleString("en-US", {
+      month: "long", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit",
+    })
+  );
+
   const update = <K extends keyof FormState>(key: K, value: FormState[K]) => setForm((s) => ({ ...s, [key]: value }));
 
   const clearSignature = () => sigRef.current?.clear();
@@ -309,8 +315,6 @@ const OccAccidentEnrollment = () => {
       ["beneficiaryContact", "Beneficiary Contact Info"],
 
       ["driverType", "Driver Type"],
-
-      ["signatureDate", "Signature Date"],
     ];
 
     for (const [k, label] of required) if (!String(form[k]).trim()) return `${label} is required`;
@@ -379,7 +383,7 @@ const OccAccidentEnrollment = () => {
 
     const safeName = form.driverName.replace(/[^a-zA-Z0-9]+/g, "_");
 
-    const fileName = `OA_Enrollment_${safeName}_${form.signatureDate}.pdf`;
+    const fileName = `OA_Enrollment_${safeName}_${new Date().toISOString().slice(0, 10)}.pdf`;
 
     const dataUri = pdf.output("datauristring");
 
@@ -829,20 +833,9 @@ const OccAccidentEnrollment = () => {
                     Clear Signature
                   </button>
 
-                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                    <span style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: NAVY, fontWeight: 500 }}>
-                      Date
-                    </span>
-
-                    <input
-                      type="date"
-                      value={form.signatureDate}
-                      onChange={(e) => update("signatureDate", e.target.value)}
-                      style={{ ...inputBase, width: "auto" }}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                    />
-                  </div>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontSize: 13, color: "#6b7280" }}>
+                    Signed on: {signedAt}
+                  </span>
                 </div>
               </Section>
 
@@ -940,7 +933,7 @@ const OccAccidentEnrollment = () => {
             <SignatureImage sigRef={sigRef} />
 
             <div style={{ marginTop: 6, fontSize: 11, color: "#333" }}>
-              Date: <strong>{form.signatureDate}</strong>
+              Signed on: <strong>{signedAt}</strong>
             </div>
           </div>
 
