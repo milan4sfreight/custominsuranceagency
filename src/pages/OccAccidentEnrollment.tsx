@@ -315,8 +315,6 @@ const OccAccidentEnrollment = () => {
       ["beneficiaryContact", "Beneficiary Contact Info"],
 
       ["driverType", "Driver Type"],
-
-      ["signatureDate", "Signature Date"],
     ];
 
     for (const [k, label] of required) if (!String(form[k]).trim()) return `${label} is required`;
@@ -385,7 +383,7 @@ const OccAccidentEnrollment = () => {
 
     const safeName = form.driverName.replace(/[^a-zA-Z0-9]+/g, "_");
 
-    const fileName = `OA_Enrollment_${safeName}_${form.signatureDate}.pdf`;
+    const fileName = `OA_Enrollment_${safeName}_${new Date().toISOString().slice(0, 10)}.pdf`;
 
     const dataUri = pdf.output("datauristring");
 
@@ -935,7 +933,7 @@ const OccAccidentEnrollment = () => {
             <SignatureImage sigRef={sigRef} />
 
             <div style={{ marginTop: 6, fontSize: 11, color: "#333" }}>
-              Date: <strong>{form.signatureDate}</strong>
+              Signed on: <strong>{signedAt}</strong>
             </div>
           </div>
 
