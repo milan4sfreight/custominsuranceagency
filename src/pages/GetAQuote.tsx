@@ -1229,13 +1229,14 @@ export default function GetAQuote() {
         .bd-form input[type="date"]::-webkit-date-and-time-value { text-align: left; min-height: 20px; }
         .bd-form input[type="date"]::-webkit-calendar-picker-indicator { margin-left: 0; padding-left: 4px; }
         @media (max-width: 768px) {
-          .bd-step { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+          .bd-step { grid-template-columns: minmax(0, 1fr) !important; gap: 12px !important; margin-top: 16px !important; }
           .bd-step-aside { position: static; }
           .bd-grid-2, .bd-grid-3 { grid-template-columns: minmax(0, 1fr) !important; }
           .bd-half { max-width: 100% !important; }
           .bd-hero { height: 220px !important; min-height: 220px; padding: 64px 20px 0 !important; }
           .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
-          .bd-intro { padding: 32px 20px !important; }
+          .bd-intro { padding: 16px 20px 8px !important; }
+          .bd-intro-h2 { margin-bottom: 8px !important; }
           .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
           .bd-form { padding: 0 16px 48px !important; width: 100% !important; max-width: 100vw !important; }
           .bd-step { scroll-margin-top: 130px; }
