@@ -51,6 +51,7 @@ const labelSty: React.CSSProperties = {
 const inputSty = (err = false): React.CSSProperties => ({
   width: "100%",
   inlineSize: "100%",
+  WebkitBoxSizing: "border-box",
   border: `1.5px solid ${err ? RED : "#c5d5e8"}`,
   borderRadius: 6,
   padding: "12px 14px",
@@ -65,6 +66,16 @@ const inputSty = (err = false): React.CSSProperties => ({
   minWidth: 0,
   minInlineSize: 0,
   display: "block",
+  overflow: "hidden",
+});
+
+const dateInputSty = (err = false): React.CSSProperties => ({
+  ...inputSty(err),
+  minWidth: "100%",
+  maxWidth: "100%",
+  inlineSize: "100%",
+  maxInlineSize: "100%",
+  paddingRight: 10,
 });
 const subHeading: React.CSSProperties = {
   fontFamily: "Barlow, sans-serif",
@@ -856,7 +867,7 @@ export default function GetAQuote() {
                         <input style={inputSty(err(`owner-${i}-name`))} value={o.name} onChange={(e) => updateList(owners, setOwners, i, { name: e.target.value })} />
                       </Field>
                       <Field label="Date of Birth" required>
-                        <input type="date" style={inputSty(err(`owner-${i}-dob`))} value={o.dob} onChange={(e) => updateList(owners, setOwners, i, { dob: e.target.value })} />
+                        <input type="date" style={dateInputSty(err(`owner-${i}-dob`))} value={o.dob} onChange={(e) => updateList(owners, setOwners, i, { dob: e.target.value })} />
                       </Field>
                       <Field label="Drivers License #" required>
                         <input style={inputSty(err(`owner-${i}-license`))} value={o.license} onChange={(e) => updateList(owners, setOwners, i, { license: e.target.value })} />
@@ -973,10 +984,10 @@ export default function GetAQuote() {
                         <input style={inputSty(err(`drv-${i}-name`))} value={d.name} onChange={(e) => updateList(drivers, setDrivers, i, { name: e.target.value })} />
                       </Field>
                       <Field label="Date of Birth" required>
-                        <input type="date" style={inputSty(err(`drv-${i}-dob`))} value={d.dob} onChange={(e) => updateList(drivers, setDrivers, i, { dob: e.target.value })} />
+                        <input type="date" style={dateInputSty(err(`drv-${i}-dob`))} value={d.dob} onChange={(e) => updateList(drivers, setDrivers, i, { dob: e.target.value })} />
                       </Field>
                       <Field label="Hire Date">
-                        <input type="date" style={inputSty()} value={d.hireDate} onChange={(e) => updateList(drivers, setDrivers, i, { hireDate: e.target.value })} />
+                        <input type="date" style={dateInputSty()} value={d.hireDate} onChange={(e) => updateList(drivers, setDrivers, i, { hireDate: e.target.value })} />
                       </Field>
                       <Field label="Years of Experience">
                         <input style={inputSty()} value={d.experience} onChange={(e) => updateList(drivers, setDrivers, i, { experience: e.target.value })} />
@@ -1151,13 +1162,13 @@ export default function GetAQuote() {
                     <input style={inputSty()} value={currentCarrier} onChange={(e) => setCurrentCarrier(e.target.value)} />
                   </Field>
                   <Field label="Renewal Date">
-                    <input type="date" style={inputSty()} value={renewalDate} onChange={(e) => setRenewalDate(e.target.value)} />
+                    <input type="date" style={dateInputSty()} value={renewalDate} onChange={(e) => setRenewalDate(e.target.value)} />
                   </Field>
                   <Field label="Current Premiums">
                     <input style={inputSty()} value={currentPremiums} onChange={(e) => setCurrentPremiums(e.target.value)} />
                   </Field>
                   <Field label="Effective Date">
-                    <input type="date" style={inputSty()} value={effectiveDate} onChange={(e) => setEffectiveDate(e.target.value)} />
+                    <input type="date" style={dateInputSty()} value={effectiveDate} onChange={(e) => setEffectiveDate(e.target.value)} />
                   </Field>
                 </Grid2>
               </Step>
@@ -1213,8 +1224,10 @@ export default function GetAQuote() {
         .bd-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
         .bd-step-mobile-indicator { display: none; }
         .bd-form, .bd-form * { box-sizing: border-box; }
-        .bd-form input, .bd-form select, .bd-form textarea, .bd-form button { display: block; max-width: 100%; min-width: 0; max-inline-size: 100%; min-inline-size: 0; }
-        .bd-form input[type="date"] { width: 100%; inline-size: 100%; max-width: 100%; max-inline-size: 100%; min-width: 0; min-inline-size: 0; -webkit-appearance: none; appearance: none; }
+        .bd-form input, .bd-form select, .bd-form textarea, .bd-form button { display: block; width: 100%; inline-size: 100%; max-width: 100%; min-width: 0; max-inline-size: 100%; min-inline-size: 0; box-sizing: border-box; }
+        .bd-form input[type="date"] { display: block; width: 100%; inline-size: 100%; max-width: 100%; max-inline-size: 100%; min-width: 0; min-inline-size: 0; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-appearance: none; appearance: none; }
+        .bd-form input[type="date"]::-webkit-date-and-time-value { text-align: left; min-height: 20px; }
+        .bd-form input[type="date"]::-webkit-calendar-picker-indicator { margin-left: 0; padding-left: 4px; }
         @media (max-width: 768px) {
           .bd-step { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
           .bd-step-aside { position: static; }
@@ -1224,7 +1237,7 @@ export default function GetAQuote() {
           .bd-hero-h1 { font-size: clamp(24px, 5vw, 48px) !important; }
           .bd-intro { padding: 32px 20px !important; }
           .bd-intro-h2 { font-size: clamp(22px, 5vw, 32px) !important; }
-          .bd-form { padding: 0 20px 48px !important; }
+          .bd-form { padding: 0 16px 48px !important; width: 100% !important; max-width: 100vw !important; }
           .bd-step { scroll-margin-top: 130px; }
           .bd-step-aside { display: none !important; }
           .bd-step-mobile-indicator { display: block; font-family: 'Barlow', sans-serif; font-weight: 600; color: ${ORANGE}; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
@@ -1232,7 +1245,8 @@ export default function GetAQuote() {
           .bd-add-btn { width: 100% !important; min-height: 48px !important; padding: 14px 24px !important; }
           .bd-remove-wrap { text-align: left !important; }
           .bd-remove-btn { width: 100% !important; min-height: 44px !important; padding: 10px 14px !important; font-size: 14px !important; }
-          .bd-form input:not([type="radio"]):not([type="checkbox"]), .bd-form select, .bd-form textarea { font-size: 16px !important; width: 100% !important; max-width: 100% !important; }
+          .bd-form input:not([type="radio"]):not([type="checkbox"]), .bd-form select, .bd-form textarea { font-size: 16px !important; width: 100% !important; inline-size: 100% !important; max-width: 100% !important; max-inline-size: 100% !important; min-width: 0 !important; min-inline-size: 0 !important; }
+          .bd-form input[type="date"] { width: 100% !important; inline-size: 100% !important; max-width: 100% !important; max-inline-size: 100% !important; min-width: 0 !important; min-inline-size: 0 !important; }
           label[type="radio"], input[type="radio"] { min-width: 24px; min-height: 24px; }
           html, body { overflow-x: hidden; }
         }

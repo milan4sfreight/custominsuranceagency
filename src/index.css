@@ -231,14 +231,27 @@
   }
 
   .bd-form input[type="date"] {
+    display: block;
     width: 100%;
     inline-size: 100%;
-    min-width: 0;
+    min-width: 100%;
     max-width: 100%;
-    min-inline-size: 0;
+    min-inline-size: 100%;
     max-inline-size: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     -webkit-appearance: none;
     appearance: none;
+  }
+
+  .bd-form input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+    min-height: 20px;
+  }
+
+  .bd-form input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-left: 0;
+    padding-left: 4px;
   }
 
   @media (max-width: 767px) {
@@ -338,6 +351,17 @@
       inline-size: 100% !important;
       max-width: 100% !important;
       max-inline-size: 100% !important;
+      min-width: 0 !important;
+      min-inline-size: 0 !important;
+    }
+
+    .bd-form input[type="date"] {
+      width: 100% !important;
+      inline-size: 100% !important;
+      max-width: 100% !important;
+      max-inline-size: 100% !important;
+      min-width: 0 !important;
+      min-inline-size: 0 !important;
     }
   }
 }
