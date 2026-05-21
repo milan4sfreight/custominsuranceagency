@@ -573,11 +573,46 @@ export const Navbar = () => {
                   </button>
                   {mobileSolutionsOpen && (
                     <div className="flex flex-col gap-3 pb-4 pl-5">
-                      {solutions.map((s) => (
-                        <Link key={s.to} to={s.to} className="text-[18px] font-medium text-white/80 hover:text-white">
-                          {s.label}
-                        </Link>
-                      ))}
+                      {solutions.map((s) =>
+                        s.label === "Personal Lines" ? (
+                          <div key={s.to} className="flex flex-col">
+                            <button
+                              type="button"
+                              onClick={() => setMobilePersonalOpen((v) => !v)}
+                              className="flex w-full items-center justify-between text-[18px] font-medium text-white/80 hover:text-white"
+                            >
+                              {s.label}
+                              <ChevronDown
+                                className={cn(
+                                  "h-5 w-5 transition-transform duration-200",
+                                  mobilePersonalOpen && "rotate-180",
+                                )}
+                              />
+                            </button>
+                            {mobilePersonalOpen && (
+                              <div className="mt-2 flex flex-col gap-2 pl-4">
+                                {s.subItems.map((item) => (
+                                  <button
+                                    key={item}
+                                    type="button"
+                                    onClick={() => {
+                                      setOpen(false);
+                                      setPersonalLinesModal(item);
+                                    }}
+                                    className="text-left text-[16px] font-normal text-white/75 hover:text-white"
+                                  >
+                                    {item}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <Link key={s.to} to={s.to} className="text-[18px] font-medium text-white/80 hover:text-white">
+                            {s.label}
+                          </Link>
+                        ),
+                      )}
                     </div>
                   )}
                 </div>
