@@ -123,18 +123,18 @@ const Contact = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[600px] w-full flex-col items-center justify-center pt-16"
+        className="relative flex h-[360px] w-full flex-col items-center justify-center pt-16 md:h-[400px]"
         style={{
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 25%",
-          backgroundAttachment: "fixed",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)" }} />
         <div className="relative z-10 px-6 text-center text-white">
-          <h1 style={{ ...barlow, fontWeight: 700, fontSize: "52px", lineHeight: 1.1 }}>Contact Us</h1>
-          <p className="mt-2 text-[18px] text-white/85" style={{ ...barlow, fontWeight: 500 }}>
+          <h1 style={{ ...barlow, fontWeight: 700, fontSize: "40px", lineHeight: 1.1 }}>Contact Us</h1>
+          <p className="mt-2 text-[16px] text-white/85" style={{ ...barlow, fontWeight: 500 }}>
             We're here to help — reach out anytime
           </p>
         </div>
