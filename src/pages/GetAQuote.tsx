@@ -71,11 +71,14 @@ const inputSty = (err = false): React.CSSProperties => ({
 
 const dateInputSty = (err = false): React.CSSProperties => ({
   ...inputSty(err),
+  height: 48,
+  minHeight: 48,
+  lineHeight: "22px",
   minWidth: "100%",
   maxWidth: "100%",
   inlineSize: "100%",
   maxInlineSize: "100%",
-  paddingRight: 10,
+  padding: "12px 14px",
 });
 const subHeading: React.CSSProperties = {
   fontFamily: "Barlow, sans-serif",
@@ -864,7 +867,7 @@ export default function GetAQuote() {
                         <input style={inputSty(err(`owner-${i}-name`))} value={o.name} onChange={(e) => updateList(owners, setOwners, i, { name: e.target.value })} />
                       </Field>
                       <Field label="Date of Birth" required>
-                        <input type="date" style={dateInputSty(err(`owner-${i}-dob`))} value={o.dob} onChange={(e) => updateList(owners, setOwners, i, { dob: e.target.value })} />
+                        <input type="text" inputMode="numeric" placeholder="MM/DD/YYYY" style={dateInputSty(err(`owner-${i}-dob`))} value={o.dob} onChange={(e) => updateList(owners, setOwners, i, { dob: e.target.value })} />
                       </Field>
                       <Field label="Drivers License #" required>
                         <input style={inputSty(err(`owner-${i}-license`))} value={o.license} onChange={(e) => updateList(owners, setOwners, i, { license: e.target.value })} />
@@ -981,10 +984,10 @@ export default function GetAQuote() {
                         <input style={inputSty(err(`drv-${i}-name`))} value={d.name} onChange={(e) => updateList(drivers, setDrivers, i, { name: e.target.value })} />
                       </Field>
                       <Field label="Date of Birth" required>
-                        <input type="date" style={dateInputSty(err(`drv-${i}-dob`))} value={d.dob} onChange={(e) => updateList(drivers, setDrivers, i, { dob: e.target.value })} />
+                        <input type="text" inputMode="numeric" placeholder="MM/DD/YYYY" style={dateInputSty(err(`drv-${i}-dob`))} value={d.dob} onChange={(e) => updateList(drivers, setDrivers, i, { dob: e.target.value })} />
                       </Field>
                       <Field label="Hire Date">
-                        <input type="date" style={dateInputSty()} value={d.hireDate} onChange={(e) => updateList(drivers, setDrivers, i, { hireDate: e.target.value })} />
+                        <input type="text" inputMode="numeric" placeholder="MM/DD/YYYY" style={dateInputSty()} value={d.hireDate} onChange={(e) => updateList(drivers, setDrivers, i, { hireDate: e.target.value })} />
                       </Field>
                       <Field label="Years of Experience">
                         <input style={inputSty()} value={d.experience} onChange={(e) => updateList(drivers, setDrivers, i, { experience: e.target.value })} />
@@ -1159,13 +1162,13 @@ export default function GetAQuote() {
                     <input style={inputSty()} value={currentCarrier} onChange={(e) => setCurrentCarrier(e.target.value)} />
                   </Field>
                   <Field label="Renewal Date">
-                    <input type="date" style={dateInputSty()} value={renewalDate} onChange={(e) => setRenewalDate(e.target.value)} />
+                    <input type="text" inputMode="numeric" placeholder="MM/DD/YYYY" style={dateInputSty()} value={renewalDate} onChange={(e) => setRenewalDate(e.target.value)} />
                   </Field>
                   <Field label="Current Premiums">
                     <input style={inputSty()} value={currentPremiums} onChange={(e) => setCurrentPremiums(e.target.value)} />
                   </Field>
                   <Field label="Effective Date">
-                    <input type="date" style={dateInputSty()} value={effectiveDate} onChange={(e) => setEffectiveDate(e.target.value)} />
+                    <input type="text" inputMode="numeric" placeholder="MM/DD/YYYY" style={dateInputSty()} value={effectiveDate} onChange={(e) => setEffectiveDate(e.target.value)} />
                   </Field>
                 </Grid2>
               </Step>
