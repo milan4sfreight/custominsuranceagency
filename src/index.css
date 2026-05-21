@@ -194,7 +194,11 @@
   .pdntl-application-form,
   .pdntl-application-form *,
   .oa-enrollment-form,
-  .oa-enrollment-form * {
+  .oa-enrollment-form *,
+  .claim-form,
+  .claim-form *,
+  .bd-form,
+  .bd-form * {
     box-sizing: border-box;
     max-width: 100%;
   }
@@ -208,7 +212,17 @@
   .oa-enrollment-form select,
   .oa-enrollment-form textarea,
   .oa-enrollment-form canvas,
-  .oa-enrollment-form button {
+  .oa-enrollment-form button,
+  .claim-form input,
+  .claim-form select,
+  .claim-form textarea,
+  .claim-form canvas,
+  .claim-form button,
+  .bd-form input,
+  .bd-form select,
+  .bd-form textarea,
+  .bd-form canvas,
+  .bd-form button {
     min-width: 0;
   }
 
