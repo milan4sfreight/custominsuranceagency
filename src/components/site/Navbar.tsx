@@ -184,6 +184,7 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [mobilePersonalOpen, setMobilePersonalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [hoveredSolution, setHoveredSolution] = useState(0);
