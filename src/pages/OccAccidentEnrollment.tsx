@@ -480,7 +480,7 @@ const OccAccidentEnrollment = () => {
               lineHeight: 1.1,
             }}
           >
-            Occupational Accidental
+            Occupational Accident
           </h1>
 
           <p style={{ color: "rgba(255,255,255,0.75)", marginTop: 10, fontFamily: "Inter, sans-serif", fontSize: 16 }}>
