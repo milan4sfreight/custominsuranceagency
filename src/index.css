@@ -225,7 +225,7 @@
       max-width: 100%;
     }
 
-    .pdntl-application-form input,
+    .pdntl-application-form input:not([type="radio"]):not([type="checkbox"]),
     .pdntl-application-form select,
     .pdntl-application-form textarea,
     .pdntl-application-form button,
@@ -252,7 +252,7 @@
       max-width: 100%;
     }
 
-    .oa-enrollment-form input,
+    .oa-enrollment-form input:not([type="radio"]):not([type="checkbox"]),
     .oa-enrollment-form select,
     .oa-enrollment-form textarea,
     .oa-enrollment-form button,
