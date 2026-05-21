@@ -280,5 +280,26 @@
       padding-left: 8px !important;
       padding-right: 8px !important;
     }
+
+    .claim-form {
+      width: 100%;
+      max-width: calc(100vw - 32px);
+      overflow-x: clip;
+    }
+
+    .claim-form .grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .claim-form input:not([type="radio"]):not([type="checkbox"]),
+    .claim-form select,
+    .claim-form textarea,
+    .claim-form button:not([role="radio"]):not([role="checkbox"]),
+    .claim-form canvas {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
   }
 }
