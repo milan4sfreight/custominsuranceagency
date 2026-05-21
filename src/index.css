@@ -223,7 +223,22 @@
   .bd-form textarea,
   .bd-form canvas,
   .bd-form button {
+    display: block;
     min-width: 0;
+    max-width: 100%;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+  }
+
+  .bd-form input[type="date"] {
+    width: 100%;
+    inline-size: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   @media (max-width: 767px) {
@@ -300,6 +315,29 @@
     .claim-form canvas {
       width: 100% !important;
       max-width: 100% !important;
+    }
+
+    .bd-form {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: clip;
+    }
+
+    .bd-form .bd-grid-2,
+    .bd-form .bd-grid-3 {
+      grid-template-columns: minmax(0, 1fr) !important;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .bd-form input:not([type="radio"]):not([type="checkbox"]),
+    .bd-form select,
+    .bd-form textarea,
+    .bd-form button:not([role="radio"]):not([role="checkbox"]) {
+      width: 100% !important;
+      inline-size: 100% !important;
+      max-width: 100% !important;
+      max-inline-size: 100% !important;
     }
   }
 }
