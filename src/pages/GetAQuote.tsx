@@ -948,6 +948,7 @@ export default function GetAQuote() {
                 <div style={{ marginBottom: 24 }}>
                   <button
                     type="button"
+                    className="bd-add-btn"
                     style={{ ...addBtnSty, background: TEAL }}
                     onClick={addOwnersAsDrivers}
                   >
