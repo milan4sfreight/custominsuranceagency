@@ -931,7 +931,7 @@ export default function PDNTLApplication() {
                     type="file"
                     multiple
                     accept=".pdf,.doc,.docx,image/*"
-                    className="hidden"
+                    style={{ display: "none" }}
                     onChange={(e) => {
                       const picked = Array.from(e.target.files ?? []);
                       if (!picked.length) return;
