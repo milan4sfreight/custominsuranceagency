@@ -119,9 +119,9 @@ const Resources = () => {
       </section>
 
       {/* GUIDES — Lines of Coverage */}
-      <section className="relative px-6 pb-10 pt-10 md:pb-12 md:pt-12" style={{ zIndex: 1 }}>
+      <section className="relative px-6 pb-4 pt-6 md:pb-6 md:pt-8" style={{ zIndex: 1 }}>
         <div className="mx-auto w-full max-w-[1200px]">
-          <p className="text-[11px] font-semibold uppercase text-[#0f2a42]" style={{ letterSpacing: "0.12em", marginTop: 0 }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={{ ...barlow, marginTop: 0 }}>
             Lines of Coverage
           </p>
           <h2 className="mt-1 text-[22px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 24 }}>
@@ -178,7 +178,7 @@ const Resources = () => {
       </section>
 
       {/* HELPFUL GUIDES */}
-      <div className="relative mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12" style={{ zIndex: 1 }}>
+      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-6 pb-[60px] md:px-12" style={{ zIndex: 1 }}>
         <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
           Helpful Guides
         </p>
