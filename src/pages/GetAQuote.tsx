@@ -50,6 +50,7 @@ const labelSty: React.CSSProperties = {
 };
 const inputSty = (err = false): React.CSSProperties => ({
   width: "100%",
+  inlineSize: "100%",
   border: `1.5px solid ${err ? RED : "#c5d5e8"}`,
   borderRadius: 6,
   padding: "12px 14px",
@@ -60,7 +61,10 @@ const inputSty = (err = false): React.CSSProperties => ({
   color: "#0d2b2b",
   boxSizing: "border-box",
   maxWidth: "100%",
+  maxInlineSize: "100%",
   minWidth: 0,
+  minInlineSize: 0,
+  display: "block",
 });
 const subHeading: React.CSSProperties = {
   fontFamily: "Barlow, sans-serif",
@@ -111,7 +115,7 @@ function Field({
   label, required, children,
 }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
-    <div>
+    <div style={{ minWidth: 0, maxWidth: "100%" }}>
       <label style={labelSty}>
         {label}{required && <Req />}
       </label>
@@ -1205,11 +1209,12 @@ export default function GetAQuote() {
       <style>{`
         .bd-step { display: grid; grid-template-columns: 200px 1fr; gap: 40px; margin-top: 48px; }
         .bd-step-aside { position: sticky; top: 130px; align-self: start; }
-        .bd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .bd-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .bd-grid-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+        .bd-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
         .bd-step-mobile-indicator { display: none; }
         .bd-form, .bd-form * { box-sizing: border-box; }
-        .bd-form input, .bd-form select, .bd-form textarea, .bd-form button { max-width: 100%; min-width: 0; }
+        .bd-form input, .bd-form select, .bd-form textarea, .bd-form button { display: block; max-width: 100%; min-width: 0; max-inline-size: 100%; min-inline-size: 0; }
+        .bd-form input[type="date"] { width: 100%; inline-size: 100%; max-width: 100%; max-inline-size: 100%; min-width: 0; min-inline-size: 0; -webkit-appearance: none; appearance: none; }
         @media (max-width: 768px) {
           .bd-step { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
           .bd-step-aside { position: static; }
