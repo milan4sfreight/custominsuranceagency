@@ -118,14 +118,14 @@ const About = () => {
                 </li>
               ))}
             </ul>
-            <div className="rounded-2xl bg-dark-gradient p-8 text-white flex flex-col items-center text-center">
+            <div className="rounded-2xl bg-dark-gradient px-8 pt-8 pb-5 text-white flex flex-col items-center text-center">
               <h3 className="text-[20px] font-bold">Request a Free Quote</h3>
-              <p className="mt-3 text-[15px] leading-[1.7] text-white/80">
+              <p className="mt-3 text-[14px] leading-[1.6] text-white/80">
                 Ready to get started? Fill out our quick quote form and a Custom Insurance Agency representative will contact you within 24 hours.
               </p>
               <Link
                 to="/get-a-quote"
-                className="btn-quote mt-6 inline-block px-6 py-3 text-[14px] uppercase tracking-wider"
+                className="btn-quote mt-4 inline-block px-6 py-2.5 text-[13px] uppercase tracking-wider"
               >
                 Get a Quote →
               </Link>
