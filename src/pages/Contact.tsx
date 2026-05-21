@@ -141,7 +141,7 @@ const Contact = () => {
       </section>
 
       {/* MAIN */}
-      <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
+      <div className="mx-auto w-full max-w-[900px] px-6 pt-[24px] pb-[60px] md:px-12">
         <div className="grid gap-10 md:grid-cols-2">
           {/* LEFT */}
           <div>
