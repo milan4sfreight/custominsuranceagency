@@ -49,7 +49,7 @@ const About = () => {
       </section>
 
       {/* Section 1 */}
-      <div className="mx-auto w-full max-w-[900px] px-6 pt-[24px] pb-[60px] md:px-12">
+      <div className="mx-auto w-full max-w-[900px] px-6 pt-[20px] pb-[24px] md:px-12">
         <section>
           <h2 className={H2}>Loyalty First. Local Roots. National Reach.</h2>
           <p className={P}>
@@ -59,9 +59,9 @@ const About = () => {
       </div>
 
       {/* Section 2 — Mission */}
-      <section className="bg-[#f0f6ff] px-6 py-[60px] md:px-12">
+      <section className="bg-[#f0f6ff] px-6 py-[28px] md:px-12">
         <div className="mx-auto max-w-[700px] text-center">
-          <div className="text-[80px] leading-none text-[#3eaa6d] font-serif">"</div>
+          <div className="text-[56px] leading-none text-[#3eaa6d] font-serif">"</div>
           <h2 className="text-[28px] font-bold text-[#0d2b2b]">Loyalty First</h2>
           <p className="mt-4 text-[18px] italic leading-[1.7] text-[#4a5568]">
             Our mission is simple — Loyalty First. We are an independent insurance agency rooted in community, trusted nationwide, and committed to putting our clients above all else.
