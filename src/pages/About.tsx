@@ -105,19 +105,21 @@ const About = () => {
 
         {/* Section 4 — Get in touch */}
         <section className="mt-[60px]">
-          <h2 className={H2}>Get In Touch</h2>
-          <p className={P}>
-            We would love to hear from you. Whether you have questions about coverage, need a quote, or just want to learn more about how we can help — our team is ready to assist.
-          </p>
-          <div className="mt-8 grid gap-8 md:grid-cols-2">
-            <ul className="flex flex-col gap-4">
-              {contactItems.map((c) => (
-                <li key={c.text} className="flex items-start gap-3 text-[15px] text-[#4a5568]">
-                  <span className="text-[20px] leading-none">{c.icon}</span>
-                  <span className="leading-[1.6]">{c.text}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="grid gap-8 md:grid-cols-2 md:items-start">
+            <div>
+              <h2 className={H2}>Get In Touch</h2>
+              <p className={P}>
+                We would love to hear from you. Whether you have questions about coverage, need a quote, or just want to learn more about how we can help — our team is ready to assist.
+              </p>
+              <ul className="mt-8 flex flex-col gap-4">
+                {contactItems.map((c) => (
+                  <li key={c.text} className="flex items-start gap-3 text-[15px] text-[#4a5568]">
+                    <span className="text-[20px] leading-none">{c.icon}</span>
+                    <span className="leading-[1.6]">{c.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="rounded-2xl bg-dark-gradient p-8 text-white flex flex-col items-center text-center">
               <h3 className="text-[20px] font-bold">Request a Free Quote</h3>
               <p className="mt-3 text-[15px] leading-[1.7] text-white/80">
