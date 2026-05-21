@@ -564,7 +564,9 @@ const OccAccidentEnrollment = () => {
                     <FieldLabel required>Driver Enrollment Date</FieldLabel>
 
                     <input
-                      type="date"
+                      type="text"
+                      inputMode="numeric"
+                      placeholder="MM/DD/YYYY"
                       value={form.enrollmentDate}
                       onChange={(e) => update("enrollmentDate", e.target.value)}
                       {...fieldProps}
@@ -605,7 +607,9 @@ const OccAccidentEnrollment = () => {
                     <FieldLabel required>Date of Birth</FieldLabel>
 
                     <input
-                      type="date"
+                      type="text"
+                      inputMode="numeric"
+                      placeholder="MM/DD/YYYY"
                       value={form.dob}
                       onChange={(e) => update("dob", e.target.value)}
                       {...fieldProps}
