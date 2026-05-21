@@ -2,12 +2,9 @@ import logo from "@/assets/logo.png";
 import footerBg from "@/assets/footer-bg.jpg";
 
 const quoteLinks: { label: string; href: string }[] = [
-  { label: "Auto", href: "#" },
-  { label: "Homeowners", href: "#" },
-  { label: "Renters", href: "#" },
-  { label: "Business", href: "#" },
-  { label: "Life & Health", href: "#" },
-  { label: "OCC/ACC Enrollment", href: "/occ-accident-enrollment" },
+  { label: "Commercial Trucking", href: "/get-a-quote" },
+  { label: "Physical Damage & Non-Trucking Liability", href: "/pd-ntl-application" },
+  { label: "Occupational Accident", href: "/occ-accident-enrollment" },
 ];
 
 const moreLinks = ["Trucking", "Flood", "Motorcycle", "Watercraft & Boat", "Recreational Vehicle"];
