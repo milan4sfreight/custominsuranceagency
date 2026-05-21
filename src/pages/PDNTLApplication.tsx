@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Upload, X } from "lucide-react";
 import { toast } from "sonner";
 import jsPDF from "jspdf";
 import SEO from "@/components/SEO";
@@ -903,62 +903,64 @@ export default function PDNTLApplication() {
                 Attach any supporting documents (MVR, lease agreements, etc.).
               </p>
 
-              {documents.map((d, i) => (
-                <div key={i} style={cardStyle}>
-                  <div className="flex items-center justify-between mb-3">
-                    <span style={cardHeaderTitle}>Document {i + 1}</span>
-                    <button
-                      type="button"
-                      style={removeBtn}
-                      onClick={() => setDocuments((c) => c.filter((_, idx) => idx !== i))}
-                    >
-                      × Remove
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label>Document Type</Label>
-                      <select value={d.type} onChange={(e) => updateDoc(i, { type: e.target.value })} {...fieldProps}>
-                        <option value="">Select…</option>
-                        <option value="MVR (Motor Vehicle Record)">MVR (Motor Vehicle Record)</option>
-                        <option value="Permanent Lease Agreement">Permanent Lease Agreement</option>
-                        <option value="Title / Registration">Title / Registration</option>
-                        <option value="Custom Document">Custom Document</option>
-                      </select>
-                    </div>
-                    <div>
-                      <Label>File</Label>
-                      <input
-                        type="file"
-                        accept=".pdf,.doc,.docx,image/*"
-                        onChange={(e) => updateDoc(i, { file: e.target.files?.[0] ?? null })}
-                        style={{
-                          background: "#f3f4f6",
-                          border: "1px solid #e5e7eb",
-                          borderRadius: 8,
-                          padding: "10px 14px",
-                          width: "100%",
-                          maxWidth: "100%",
-                          minWidth: 0,
-                          boxSizing: "border-box",
-                          display: "block",
-                          fontFamily: "Inter, sans-serif",
-                          fontSize: 14,
-                          color: NAVY,
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              <button
-                type="button"
-                style={addBtnStyle}
-                onClick={() => setDocuments((c) => [...c, { type: "", file: null }])}
+              <div
+                className="flex flex-col items-center justify-center gap-3 rounded-[8px] py-10 text-center"
+                style={{ border: "2px dashed #d1d5db", background: "#fafafa" }}
               >
-                + Attach Document
-              </button>
+                <Upload size={26} style={{ color: TEAL }} />
+                <div style={{ color: NAVY, fontSize: 13, fontFamily: "Inter, sans-serif" }}>
+                  Drop photos, documents, or files here
+                </div>
+                <label
+                  className="cursor-pointer uppercase"
+                  style={{
+                    background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                    color: "#ffffff",
+                    fontWeight: 700,
+                    padding: "10px 22px",
+                    borderRadius: 8,
+                    fontSize: 13,
+                    letterSpacing: "0.08em",
+                    fontFamily: "Inter, sans-serif",
+                  }}
+                >
+                  Select Files
+                  <input
+                    type="file"
+                    multiple
+                    accept=".pdf,.doc,.docx,image/*"
+                    className="hidden"
+                    onChange={(e) => {
+                      const picked = Array.from(e.target.files ?? []);
+                      if (!picked.length) return;
+                      setDocuments((c) => [...c, ...picked.map((f) => ({ type: "", file: f }))]);
+                      e.target.value = "";
+                    }}
+                  />
+                </label>
+                <div style={{ color: "#6b7280", fontSize: 12 }}>Up to 8 files</div>
+              </div>
+
+              {documents.length > 0 && (
+                <ul className="space-y-2">
+                  {documents.map((d, i) => (
+                    <li
+                      key={i}
+                      className="flex items-center justify-between rounded-[8px] px-3 py-2 text-[13px]"
+                      style={{ background: "#f9fafb", border: "1px solid #e5e7eb", color: NAVY }}
+                    >
+                      <span className="truncate pr-3">{d.file ? d.file.name : `Document ${i + 1}`}</span>
+                      <button
+                        type="button"
+                        onClick={() => setDocuments((c) => c.filter((_, idx) => idx !== i))}
+                        style={{ color: "#6b7280" }}
+                      >
+                        <X size={16} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </Section>
 
             {/* SECTION 7 — SIGNATURE */}
