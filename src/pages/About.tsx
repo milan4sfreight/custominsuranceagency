@@ -35,11 +35,11 @@ const About = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[550px] w-full items-center justify-center pt-16"
+        className="relative flex h-[380px] w-full items-center justify-center pt-16 md:h-[440px]"
         style={{
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover",
-          backgroundPosition: "center 30%",
+          backgroundPosition: "center 40%",
         }}
       >
         <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
@@ -49,7 +49,7 @@ const About = () => {
       </section>
 
       {/* Section 1 */}
-      <div className="mx-auto w-full max-w-[900px] px-6 py-[60px] md:px-12">
+      <div className="mx-auto w-full max-w-[900px] px-6 pt-[24px] pb-[60px] md:px-12">
         <section>
           <h2 className={H2}>Loyalty First. Local Roots. National Reach.</h2>
           <p className={P}>
