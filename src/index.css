@@ -239,5 +239,32 @@
       padding-left: 8px !important;
       padding-right: 8px !important;
     }
+
+    .oa-enrollment-form {
+      width: 100%;
+      max-width: calc(100vw - 32px);
+      overflow-x: clip;
+    }
+
+    .oa-enrollment-form .grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .oa-enrollment-form input,
+    .oa-enrollment-form select,
+    .oa-enrollment-form textarea,
+    .oa-enrollment-form button,
+    .oa-enrollment-form canvas {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .oa-enrollment-form input[type="file"] {
+      font-size: 12px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
   }
 }
