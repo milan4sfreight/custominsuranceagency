@@ -23,6 +23,7 @@ import PDNTLApplication from "./pages/PDNTLApplication.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import PersonalLines from "./pages/PersonalLines.tsx";
 import ScrollToTop from "./components/ScrollToTop";
+import BackToTop from "./components/BackToTop";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <BackToTop />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
