@@ -489,8 +489,8 @@ const OccAccidentEnrollment = () => {
         </div>
       </section>
 
-      <main style={{ padding: "64px 24px", background: "#ffffff" }}>
-        <div className="mx-auto min-w-0 max-w-[760px] overflow-x-hidden" style={{ maxWidth: "100%" }}>
+      <main className="w-full overflow-x-hidden px-4 py-12 md:px-6 md:py-16" style={{ background: "#ffffff" }}>
+        <div className="mx-auto w-full min-w-0 max-w-[760px]">
           {result ? (
             <div style={{ textAlign: "center", padding: "48px 24px" }}>
               <h2 style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 700, fontSize: 28, color: NAVY }}>
