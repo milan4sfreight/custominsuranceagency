@@ -302,6 +302,7 @@ export const Navbar = () => {
           {[
             { label: "Resources", to: "/resources" },
             { label: "Claims", to: "/claims" },
+            { label: "Policy Services", to: "/policy-services" },
           ].map((l) => (
             <Link
               key={l.to}
