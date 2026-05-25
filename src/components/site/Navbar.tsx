@@ -655,6 +655,12 @@ export const Navbar = () => {
                   Resources
                 </Link>
                 <Link
+                  to="/policy-services"
+                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                >
+                  Policy Services
+                </Link>
+                <Link
                   to="/client-login"
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
