@@ -6,7 +6,8 @@ export type FormKind =
   | "Trucking Quote"
   | "Contact Request"
   | "Claim Submission"
-  | "Policy Cancellation";
+  | "Policy Cancellation"
+  | "Policy Endorsement";
 
 export interface FormSection {
   title: string;
@@ -38,6 +39,7 @@ const subjectPrefix: Record<FormKind, string> = {
   "Contact Request": "New Contact Request",
   "Claim Submission": "New Claim Submission",
   "Policy Cancellation": "Policy Cancellation Request",
+  "Policy Endorsement": "Policy Endorsement Request",
 };
 
 const filenamePrefix: Record<FormKind, string> = {
@@ -46,6 +48,7 @@ const filenamePrefix: Record<FormKind, string> = {
   "Contact Request": "Contact",
   "Claim Submission": "Claim",
   "Policy Cancellation": "Cancellation",
+  "Policy Endorsement": "Endorsement",
 };
 
 const today = () => {
