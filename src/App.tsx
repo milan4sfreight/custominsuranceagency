@@ -22,6 +22,9 @@ import OccAccidentEnrollment from "./pages/OccAccidentEnrollment.tsx";
 import PDNTLApplication from "./pages/PDNTLApplication.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import PersonalLines from "./pages/PersonalLines.tsx";
+import PolicyServices from "./pages/PolicyServices.tsx";
+import EndorsementForm from "./pages/EndorsementForm.tsx";
+import CancellationForm from "./pages/CancellationForm.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTop from "./components/BackToTop";
 
@@ -53,6 +56,9 @@ const App = () => (
           <Route path="/pd-ntl-application" element={<PDNTLApplication />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/personal-lines" element={<PersonalLines />} />
+          <Route path="/policy-services" element={<PolicyServices />} />
+          <Route path="/policy-services/endorse" element={<EndorsementForm />} />
+          <Route path="/policy-services/cancel" element={<CancellationForm />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
