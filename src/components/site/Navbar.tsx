@@ -302,6 +302,7 @@ export const Navbar = () => {
           {[
             { label: "Resources", to: "/resources" },
             { label: "Claims", to: "/claims" },
+            { label: "Policy Services", to: "/policy-services" },
           ].map((l) => (
             <Link
               key={l.to}
@@ -652,6 +653,12 @@ export const Navbar = () => {
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Resources
+                </Link>
+                <Link
+                  to="/policy-services"
+                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                >
+                  Policy Services
                 </Link>
                 <Link
                   to="/client-login"
