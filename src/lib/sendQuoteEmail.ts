@@ -1,7 +1,12 @@
 import { supabase } from "@/integrations/supabase/client";
 import jsPDF from "jspdf";
 
-export type FormKind = "Homepage Quote" | "Trucking Quote" | "Contact Request" | "Claim Submission";
+export type FormKind =
+  | "Homepage Quote"
+  | "Trucking Quote"
+  | "Contact Request"
+  | "Claim Submission"
+  | "Policy Cancellation";
 
 export interface FormSection {
   title: string;
@@ -32,6 +37,7 @@ const subjectPrefix: Record<FormKind, string> = {
   "Trucking Quote": "New Trucking Quote",
   "Contact Request": "New Contact Request",
   "Claim Submission": "New Claim Submission",
+  "Policy Cancellation": "Policy Cancellation Request",
 };
 
 const filenamePrefix: Record<FormKind, string> = {
@@ -39,6 +45,7 @@ const filenamePrefix: Record<FormKind, string> = {
   "Trucking Quote": "Quote",
   "Contact Request": "Contact",
   "Claim Submission": "Claim",
+  "Policy Cancellation": "Cancellation",
 };
 
 const today = () => {
