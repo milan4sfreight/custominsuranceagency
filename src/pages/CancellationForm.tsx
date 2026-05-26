@@ -28,12 +28,13 @@ const inputBase: React.CSSProperties = {
   background: "#ffffff",
   border: "1px solid #d1d5db",
   borderRadius: 6,
-  padding: "10px 14px",
+  padding: "6px 12px",
+  height: 36,
   color: "#0d2b2b",
   width: "100%",
   boxSizing: "border-box",
   display: "block",
-  fontSize: 15,
+  fontSize: 14,
   outline: "none",
   fontFamily: "Inter, sans-serif",
   WebkitAppearance: "none",
@@ -53,7 +54,7 @@ const fieldProps = { style: inputBase, onFocus: handleFocus, onBlur: handleBlur 
 function Label({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
     <label
-      className="mb-2 block"
+      className="mb-1 block"
       style={{ color: NAVY, fontSize: 13, fontWeight: 500, fontFamily: "Inter, sans-serif" }}
     >
       {children}
@@ -64,9 +65,9 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <h3
-        className="mb-6 pb-3 uppercase"
+        className="mb-3 pb-2 uppercase"
         style={{
           color: NAVY,
           fontSize: 13,
@@ -78,7 +79,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       >
         {title}
       </h3>
-      <div className="flex flex-col gap-5">{children}</div>
+      <div className="flex flex-col gap-3">{children}</div>
     </div>
   );
 }
@@ -522,12 +523,12 @@ export default function CancellationForm() {
       <section className="px-4 py-10 md:px-12">
         <form
           onSubmit={onSubmit}
-          className="mx-auto max-w-[900px] rounded-2xl bg-white p-6 md:p-10"
+          className="mx-auto max-w-[900px] rounded-2xl bg-white p-6"
           style={{ border: "1px solid #e5e7eb", borderTop: `3px solid ${TEAL}`, boxShadow: "0 8px 30px rgba(0,0,0,0.04)" }}
         >
           {/* Section 1 */}
           <Section title="1. Insurance Agent / Producer">
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <div>
                 <Label>Insurance Agent / Producer</Label>
                 <input style={lockedInput} value="Custom Insurance Agency" readOnly />
@@ -549,7 +550,7 @@ export default function CancellationForm() {
 
           {/* Section 2 */}
           <Section title="2. Cancellation Details">
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <div>
                 <Label required>Cancellation Effective Date</Label>
                 <input type="date" placeholder="MM/DD/YYYY" value={effDate} onChange={(e) => setEffDate(e.target.value)} {...fieldProps} />
@@ -581,7 +582,7 @@ export default function CancellationForm() {
               <Label required>Street Address</Label>
               <input value={street} onChange={(e) => setStreet(e.target.value)} {...fieldProps} />
             </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
               <div>
                 <Label required>City</Label>
                 <input value={city} onChange={(e) => setCity(e.target.value)} {...fieldProps} />
@@ -599,7 +600,7 @@ export default function CancellationForm() {
                 <input value={zip} onChange={(e) => setZip(e.target.value)} {...fieldProps} />
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <div>
                 <Label required>Phone</Label>
                 <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} {...fieldProps} />
@@ -645,7 +646,7 @@ export default function CancellationForm() {
               >
                 <canvas
                   ref={canvasRef}
-                  style={{ width: "100%", height: 160, touchAction: "none", display: "block" }}
+                  style={{ width: "100%", height: 80, touchAction: "none", display: "block" }}
                   onMouseDown={startDraw}
                   onMouseMove={moveDraw}
                   onMouseUp={endDraw}
