@@ -89,13 +89,13 @@ const blankPolicy = (): PolicyDetail => ({ company: "", number: "", effective: "
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
-const slimInput: React.CSSProperties = {
+const accInput: React.CSSProperties = {
   background: "#ffffff",
   border: "0.5px solid #9FE1CB",
-  borderRadius: 4,
-  padding: "0 6px",
-  height: 20,
-  fontSize: 11,
+  borderRadius: 5,
+  padding: "0 8px",
+  height: 28,
+  fontSize: 12,
   color: "#0d2b2b",
   width: "100%",
   boxSizing: "border-box",
