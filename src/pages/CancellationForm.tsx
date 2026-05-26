@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, ChevronDown, Check, X } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
