@@ -366,55 +366,12 @@ export default function CancellationForm() {
 
           {/* Section 3 */}
           <Section title="3. Policy Type — Check all that apply">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              {POLICY_TYPES.map((p) => {
-                const open = !!selected[p.key];
-                const d = details[p.key] ?? blankPolicy();
-                return (
-                  <div
-                    key={p.key}
-                    className="rounded-lg"
-                    style={{ border: `1px solid ${open ? TEAL : "#e5e7eb"}`, background: open ? "#f0fbfb" : "#ffffff" }}
-                  >
-                    <label className="flex cursor-pointer items-center gap-3 p-3">
-                      <input
-                        type="checkbox"
-                        checked={open}
-                        onChange={() => togglePolicy(p.key)}
-                        style={{ width: 18, height: 18, accentColor: TEAL }}
-                      />
-                      <span style={{ color: NAVY, fontWeight: 600, fontSize: 14 }}>{p.label}</span>
-                    </label>
-                    <div
-                      style={{
-                        maxHeight: open ? 600 : 0,
-                        overflow: "hidden",
-                        transition: "max-height .35s ease",
-                      }}
-                    >
-                      <div className="grid grid-cols-1 gap-3 p-3 pt-0 md:grid-cols-2">
-                        <div className="md:col-span-2">
-                          <Label>Insurance Company Name</Label>
-                          <input value={d.company} onChange={(e) => updateDetail(p.key, "company", e.target.value)} {...fieldProps} />
-                        </div>
-                        <div className="md:col-span-2">
-                          <Label>Policy Number</Label>
-                          <input value={d.number} onChange={(e) => updateDetail(p.key, "number", e.target.value)} {...fieldProps} />
-                        </div>
-                        <div>
-                          <Label>Effective Date</Label>
-                          <input type="date" value={d.effective} onChange={(e) => updateDetail(p.key, "effective", e.target.value)} {...fieldProps} />
-                        </div>
-                        <div>
-                          <Label>Expiration Date</Label>
-                          <input type="date" value={d.expiration} onChange={(e) => updateDetail(p.key, "expiration", e.target.value)} {...fieldProps} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <PolicyPicker
+              selected={selected}
+              details={details}
+              onToggle={togglePolicy}
+              onUpdate={updateDetail}
+            />
           </Section>
 
           {/* Section 4 */}
