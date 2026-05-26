@@ -88,6 +88,203 @@ const blankPolicy = (): PolicyDetail => ({ company: "", number: "", effective: "
 
 const todayISO = () => new Date().toISOString().slice(0, 10);
 
+const slimInput: React.CSSProperties = {
+  background: "#ffffff",
+  border: "0.5px solid #9FE1CB",
+  borderRadius: 4,
+  padding: "0 6px",
+  height: 20,
+  fontSize: 11,
+  color: "#0d2b2b",
+  width: "100%",
+  boxSizing: "border-box",
+  outline: "none",
+  fontFamily: "Inter, sans-serif",
+};
+const slimLabel: React.CSSProperties = {
+  fontSize: 10,
+  color: "#0f6e56",
+  fontFamily: "Inter, sans-serif",
+  marginBottom: 2,
+  display: "block",
+  fontWeight: 500,
+};
+
+function PolicyPicker({
+  selected,
+  details,
+  onToggle,
+  onUpdate,
+}: {
+  selected: Record<string, boolean>;
+  details: Record<string, PolicyDetail>;
+  onToggle: (key: string) => void;
+  onUpdate: (key: string, k: keyof PolicyDetail, v: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      if (!wrapRef.current) return;
+      if (!wrapRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  const activeKeys = POLICY_TYPES.filter((p) => selected[p.key]);
+
+  return (
+    <div className="flex flex-col gap-4 md:flex-row md:items-start">
+      <div ref={wrapRef} className="relative w-full md:w-[200px] md:shrink-0">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left"
+          style={{
+            border: `1px solid ${open ? TEAL : "#d1d5db"}`,
+            background: "#fff",
+            color: NAVY,
+            fontSize: 13,
+            fontWeight: 600,
+            fontFamily: "Inter, sans-serif",
+          }}
+        >
+          <span>Add policy type</span>
+          <ChevronDown size={16} style={{ transition: "transform .2s", transform: open ? "rotate(180deg)" : "none" }} />
+        </button>
+
+        {open && (
+          <div
+            className="absolute z-20 mt-1 w-full overflow-hidden rounded-md"
+            style={{ border: "1px solid #e5e7eb", background: "#fff", boxShadow: "0 8px 20px rgba(0,0,0,0.08)" }}
+          >
+            {POLICY_TYPES.map((p) => {
+              const isSel = !!selected[p.key];
+              return (
+                <button
+                  key={p.key}
+                  type="button"
+                  disabled={isSel}
+                  onClick={() => { if (!isSel) onToggle(p.key); }}
+                  className="flex w-full items-center justify-between px-3 py-2 text-left"
+                  style={{
+                    fontSize: 12,
+                    fontFamily: "Inter, sans-serif",
+                    color: isSel ? "#9ca3af" : NAVY,
+                    background: "#fff",
+                    cursor: isSel ? "not-allowed" : "pointer",
+                    borderTop: "1px solid #f3f4f6",
+                  }}
+                >
+                  <span>{p.label}</span>
+                  {isSel && <Check size={14} color={TEAL} />}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {activeKeys.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-2">
+            {activeKeys.map((p) => (
+              <span
+                key={p.key}
+                className="inline-flex items-center gap-1 rounded-full"
+                style={{
+                  background: "#e8fafa",
+                  border: `1px solid ${TEAL}`,
+                  color: "#0f6e56",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  padding: "2px 6px 2px 8px",
+                  fontFamily: "Inter, sans-serif",
+                }}
+              >
+                {p.key}
+                <button
+                  type="button"
+                  onClick={() => onToggle(p.key)}
+                  className="flex h-4 w-4 items-center justify-center rounded-full"
+                  style={{ background: "transparent", color: "#0f6e56" }}
+                  aria-label={`Remove ${p.label}`}
+                >
+                  <X size={11} />
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="flex-1">
+        {activeKeys.length === 0 ? (
+          <div
+            className="flex items-center justify-center rounded-md"
+            style={{
+              border: "1.5px dashed #cbd5e1",
+              color: "#94a3b8",
+              fontSize: 13,
+              padding: "28px 16px",
+              fontFamily: "Inter, sans-serif",
+              background: "#fafafa",
+            }}
+          >
+            Select a policy type to enter details
+          </div>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {activeKeys.map((p) => {
+              const d = details[p.key] ?? blankPolicy();
+              return (
+                <div
+                  key={p.key}
+                  className="relative"
+                  style={{
+                    background: "#e8fafa",
+                    border: `1px solid ${TEAL}`,
+                    borderRadius: 8,
+                    padding: "7px 10px",
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => onToggle(p.key)}
+                    aria-label={`Remove ${p.label}`}
+                    className="absolute flex h-5 w-5 items-center justify-center rounded-full"
+                    style={{ top: 4, right: 4, background: "transparent", color: "#0f6e56" }}
+                  >
+                    <X size={12} />
+                  </button>
+                  <div className="grid grid-cols-2 gap-2 pr-5">
+                    <div>
+                      <label style={slimLabel}>Insurance Company Name</label>
+                      <input style={slimInput} value={d.company} onChange={(e) => onUpdate(p.key, "company", e.target.value)} />
+                    </div>
+                    <div>
+                      <label style={slimLabel}>Policy Number</label>
+                      <input style={slimInput} value={d.number} onChange={(e) => onUpdate(p.key, "number", e.target.value)} />
+                    </div>
+                    <div>
+                      <label style={slimLabel}>Effective Date</label>
+                      <input type="date" style={slimInput} value={d.effective} onChange={(e) => onUpdate(p.key, "effective", e.target.value)} />
+                    </div>
+                    <div>
+                      <label style={slimLabel}>Expiration Date</label>
+                      <input type="date" style={slimInput} value={d.expiration} onChange={(e) => onUpdate(p.key, "expiration", e.target.value)} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function CancellationForm() {
   // Section 2
   const [effDate, setEffDate] = useState("");
