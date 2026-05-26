@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Loader2, ChevronDown, Check, X } from "lucide-react";
+import { Loader2, ChevronDown, Check } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
@@ -111,7 +111,7 @@ const slimLabel: React.CSSProperties = {
   fontWeight: 500,
 };
 
-function PolicyPicker({
+function PolicyAccordion({
   selected,
   details,
   onToggle,
@@ -122,166 +122,101 @@ function PolicyPicker({
   onToggle: (key: string) => void;
   onUpdate: (key: string, k: keyof PolicyDetail, v: string) => void;
 }) {
-  const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const onDoc = (e: MouseEvent) => {
-      if (!wrapRef.current) return;
-      if (!wrapRef.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
-  }, []);
-
-  const activeKeys = POLICY_TYPES.filter((p) => selected[p.key]);
-
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-start">
-      <div ref={wrapRef} className="relative w-full md:w-[200px] md:shrink-0">
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          className="flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left"
-          style={{
-            border: `1px solid ${open ? TEAL : "#d1d5db"}`,
-            background: "#fff",
-            color: NAVY,
-            fontSize: 13,
-            fontWeight: 600,
-            fontFamily: "Inter, sans-serif",
-          }}
-        >
-          <span>Add policy type</span>
-          <ChevronDown size={16} style={{ transition: "transform .2s", transform: open ? "rotate(180deg)" : "none" }} />
-        </button>
-
-        {open && (
+    <div className="flex flex-col gap-2">
+      {POLICY_TYPES.map((p) => {
+        const isSel = !!selected[p.key];
+        const d = details[p.key] ?? blankPolicy();
+        return (
           <div
-            className="absolute z-20 mt-1 w-full overflow-hidden rounded-md"
-            style={{ border: "1px solid #e5e7eb", background: "#fff", boxShadow: "0 8px 20px rgba(0,0,0,0.08)" }}
-          >
-            {POLICY_TYPES.map((p) => {
-              const isSel = !!selected[p.key];
-              return (
-                <button
-                  key={p.key}
-                  type="button"
-                  disabled={isSel}
-                  onClick={() => { if (!isSel) onToggle(p.key); }}
-                  className="flex w-full items-center justify-between px-3 py-2 text-left"
-                  style={{
-                    fontSize: 12,
-                    fontFamily: "Inter, sans-serif",
-                    color: isSel ? "#9ca3af" : NAVY,
-                    background: "#fff",
-                    cursor: isSel ? "not-allowed" : "pointer",
-                    borderTop: "1px solid #f3f4f6",
-                  }}
-                >
-                  <span>{p.label}</span>
-                  {isSel && <Check size={14} color={TEAL} />}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        {activeKeys.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-2">
-            {activeKeys.map((p) => (
-              <span
-                key={p.key}
-                className="inline-flex items-center gap-1 rounded-full"
-                style={{
-                  background: "#e8fafa",
-                  border: `1px solid ${TEAL}`,
-                  color: "#0f6e56",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  padding: "2px 6px 2px 8px",
-                  fontFamily: "Inter, sans-serif",
-                }}
-              >
-                {p.key}
-                <button
-                  type="button"
-                  onClick={() => onToggle(p.key)}
-                  className="flex h-4 w-4 items-center justify-center rounded-full"
-                  style={{ background: "transparent", color: "#0f6e56" }}
-                  aria-label={`Remove ${p.label}`}
-                >
-                  <X size={11} />
-                </button>
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <div className="flex-1">
-        {activeKeys.length === 0 ? (
-          <div
-            className="flex items-center justify-center rounded-md"
+            key={p.key}
             style={{
-              border: "1.5px dashed #cbd5e1",
-              color: "#94a3b8",
-              fontSize: 13,
-              padding: "28px 16px",
-              fontFamily: "Inter, sans-serif",
-              background: "#fafafa",
+              background: "#ffffff",
+              border: isSel ? `1.5px solid ${TEAL}` : "1px solid #e5e7eb",
+              borderRadius: 8,
+              overflow: "hidden",
+              transition: "border-color .2s ease",
             }}
           >
-            Select a policy type to enter details
-          </div>
-        ) : (
-          <div className="flex flex-col gap-2">
-            {activeKeys.map((p) => {
-              const d = details[p.key] ?? blankPolicy();
-              return (
-                <div
-                  key={p.key}
-                  className="relative"
-                  style={{
-                    background: "#e8fafa",
-                    border: `1px solid ${TEAL}`,
-                    borderRadius: 8,
-                    padding: "7px 10px",
-                  }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => onToggle(p.key)}
-                    aria-label={`Remove ${p.label}`}
-                    className="absolute flex h-5 w-5 items-center justify-center rounded-full"
-                    style={{ top: 4, right: 4, background: "transparent", color: "#0f6e56" }}
-                  >
-                    <X size={12} />
-                  </button>
-                  <div className="grid grid-cols-2 gap-2 pr-5">
-                    <div>
-                      <label style={slimLabel}>Insurance Company Name</label>
-                      <input style={slimInput} value={d.company} onChange={(e) => onUpdate(p.key, "company", e.target.value)} />
-                    </div>
-                    <div>
-                      <label style={slimLabel}>Policy Number</label>
-                      <input style={slimInput} value={d.number} onChange={(e) => onUpdate(p.key, "number", e.target.value)} />
-                    </div>
-                    <div>
-                      <label style={slimLabel}>Effective Date</label>
-                      <input type="date" style={slimInput} value={d.effective} onChange={(e) => onUpdate(p.key, "effective", e.target.value)} />
-                    </div>
-                    <div>
-                      <label style={slimLabel}>Expiration Date</label>
-                      <input type="date" style={slimInput} value={d.expiration} onChange={(e) => onUpdate(p.key, "expiration", e.target.value)} />
-                    </div>
+            <button
+              type="button"
+              onClick={() => onToggle(p.key)}
+              className="flex w-full items-center gap-3 px-3 py-2 text-left"
+              style={{ background: "transparent", fontFamily: "Inter, sans-serif" }}
+              aria-expanded={isSel}
+            >
+              <span
+                className="flex items-center justify-center"
+                style={{
+                  width: 16,
+                  height: 16,
+                  borderRadius: 3,
+                  border: isSel ? `1.5px solid ${TEAL}` : "1.5px solid #cbd5e1",
+                  background: isSel ? TEAL : "#ffffff",
+                  flexShrink: 0,
+                  transition: "all .15s ease",
+                }}
+              >
+                {isSel && <Check size={11} color="#ffffff" strokeWidth={3} />}
+              </span>
+              <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: NAVY }}>{p.label}</span>
+              <ChevronDown
+                size={16}
+                color={isSel ? TEAL : "#94a3b8"}
+                style={{ transition: "transform .2s ease", transform: isSel ? "rotate(180deg)" : "none" }}
+              />
+            </button>
+
+            <div
+              style={{
+                maxHeight: isSel ? 240 : 0,
+                overflow: "hidden",
+                transition: "max-height .25s ease",
+                background: "#e8fafa",
+              }}
+            >
+              <div style={{ borderTop: "1px solid #9FE1CB", padding: "10px 14px 12px 40px" }}>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label style={slimLabel}>Insurance Company Name</label>
+                    <input
+                      style={accInput}
+                      value={d.company}
+                      onChange={(e) => onUpdate(p.key, "company", e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label style={slimLabel}>Policy Number</label>
+                    <input
+                      style={accInput}
+                      value={d.number}
+                      onChange={(e) => onUpdate(p.key, "number", e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label style={slimLabel}>Effective Date</label>
+                    <input
+                      type="date"
+                      style={accInput}
+                      value={d.effective}
+                      onChange={(e) => onUpdate(p.key, "effective", e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label style={slimLabel}>Expiration Date</label>
+                    <input
+                      type="date"
+                      style={accInput}
+                      value={d.expiration}
+                      onChange={(e) => onUpdate(p.key, "expiration", e.target.value)}
+                    />
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
-        )}
-      </div>
+        );
+      })}
     </div>
   );
 }
@@ -564,7 +499,7 @@ export default function CancellationForm() {
 
           {/* Section 3 */}
           <Section title="3. Policy Type — Check all that apply">
-            <PolicyPicker
+            <PolicyAccordion
               selected={selected}
               details={details}
               onToggle={togglePolicy}
