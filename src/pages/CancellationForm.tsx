@@ -28,12 +28,13 @@ const inputBase: React.CSSProperties = {
   background: "#ffffff",
   border: "1px solid #d1d5db",
   borderRadius: 6,
-  padding: "10px 14px",
+  padding: "6px 12px",
+  height: 36,
   color: "#0d2b2b",
   width: "100%",
   boxSizing: "border-box",
   display: "block",
-  fontSize: 15,
+  fontSize: 14,
   outline: "none",
   fontFamily: "Inter, sans-serif",
   WebkitAppearance: "none",
@@ -53,7 +54,7 @@ const fieldProps = { style: inputBase, onFocus: handleFocus, onBlur: handleBlur 
 function Label({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
     <label
-      className="mb-2 block"
+      className="mb-1 block"
       style={{ color: NAVY, fontSize: 13, fontWeight: 500, fontFamily: "Inter, sans-serif" }}
     >
       {children}
@@ -64,9 +65,9 @@ function Label({ children, required }: { children: React.ReactNode; required?: b
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <h3
-        className="mb-6 pb-3 uppercase"
+        className="mb-3 pb-2 uppercase"
         style={{
           color: NAVY,
           fontSize: 13,
@@ -78,7 +79,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       >
         {title}
       </h3>
-      <div className="flex flex-col gap-5">{children}</div>
+      <div className="flex flex-col gap-3">{children}</div>
     </div>
   );
 }
