@@ -86,58 +86,67 @@ const PolicyServices = () => {
             Choose an option below to get started.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2 border-b border-[#e5e7eb]">
-            {tabs.map((t) => {
-              const Icon = t.icon;
-              const isActive = t.key === active;
-              return (
-                <button
-                  key={t.key}
-                  type="button"
-                  onClick={() => setActive(t.key)}
-                  className="inline-flex items-center gap-2 px-4 py-3 text-[14px] font-semibold transition-colors"
-                  style={{
-                    ...barlow,
-                    color: isActive ? "#0d2b2b" : "#4a5568",
-                    borderBottom: isActive ? "3px solid #2abfbf" : "3px solid transparent",
-                    marginBottom: -1,
-                  }}
-                >
-                  <Icon className="h-4 w-4" />
-                  {t.label}
-                </button>
-              );
-            })}
-          </div>
-
           <div
-            className="mt-6 rounded-2xl p-7 md:p-9"
-            style={{
-              background: "#ffffff",
-              border: "1px solid #e5e7eb",
-              borderTop: "3px solid #2abfbf",
-              position: "relative",
-              zIndex: 10,
-            }}
+            className="mt-6 overflow-hidden bg-white"
+            style={{ border: "2px solid #2abfbf", borderRadius: 16 }}
           >
-            <h3 className="text-[20px] md:text-[24px] font-bold text-[#0d2b2b]" style={barlow}>
-              {current.title}
-            </h3>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[#4a5568]">{current.intro}</p>
-            <ul className="mt-5 space-y-2">
-              {current.bullets.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-[14px] leading-[1.6] text-[#4a5568]">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[#2abfbf]" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <Link
-              to={current.to}
-              className="btn-quote mt-7 inline-block px-8 py-3 text-[13px] uppercase tracking-wider"
+            <div
+              className="grid"
+              style={{ gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid #e5e7eb" }}
             >
-              {current.cta}
-            </Link>
+              {tabs.map((t, idx) => {
+                const Icon = t.icon;
+                const isActive = t.key === active;
+                return (
+                  <button
+                    key={t.key}
+                    type="button"
+                    onClick={() => setActive(t.key)}
+                    onMouseEnter={(e) => {
+                      if (!isActive) e.currentTarget.style.background = "#ffffff";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) e.currentTarget.style.background = "#f3f4f6";
+                    }}
+                    className="flex items-center justify-center gap-2 transition-colors"
+                    style={{
+                      ...barlow,
+                      padding: "18px 20px",
+                      fontSize: 15,
+                      fontWeight: 500,
+                      background: isActive ? "#ffffff" : "#f3f4f6",
+                      color: isActive ? "#0f6e56" : "#6b7280",
+                      borderRight: idx === 0 ? "1px solid #e5e7eb" : "none",
+                      borderBottom: isActive ? "3px solid #2abfbf" : "3px solid transparent",
+                    }}
+                  >
+                    <Icon size={18} style={{ color: isActive ? "#2abfbf" : "#9ca3af" }} />
+                    {t.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div style={{ padding: 28 }} className="transition-opacity duration-200">
+              <h3 className="text-[20px] md:text-[24px] font-bold text-[#0d2b2b]" style={barlow}>
+                {current.title}
+              </h3>
+              <p className="mt-3 text-[15px] leading-[1.7] text-[#4a5568]">{current.intro}</p>
+              <ul className="mt-5 space-y-2">
+                {current.bullets.map((b) => (
+                  <li key={b} className="flex items-start gap-3 text-[14px] leading-[1.6] text-[#4a5568]">
+                    <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[#2abfbf]" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to={current.to}
+                className="btn-quote mt-7 inline-block px-8 py-3 text-[13px] uppercase tracking-wider"
+              >
+                {current.cta}
+              </Link>
+            </div>
           </div>
         </div>
       </section>
