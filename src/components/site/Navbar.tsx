@@ -356,8 +356,10 @@ export const Navbar = () => {
             >
               Client Login
             </Link>
-            <Link
-              to="/pay-now"
+            <a
+              href="https://custominsure.epaypolicy.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
                 color: "#fff",
@@ -372,7 +374,7 @@ export const Navbar = () => {
               }}
             >
               Pay Now
-            </Link>
+            </a>
           </div>
         </div>
 
