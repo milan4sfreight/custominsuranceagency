@@ -45,6 +45,18 @@ const cards: Card[] = [
     desc: "Extra liability protection above your existing coverage limits for added peace of mind and security.",
     to: "/get-a-quote",
   },
+  {
+    Icon: HardHat,
+    title: "Workers Compensation",
+    desc: "Protect your employees and your business with workers compensation coverage required by law.",
+    to: "/workers-comp-quote",
+  },
+  {
+    Icon: Building2,
+    title: "Commercial Property Insurance",
+    desc: "Coverage for your business property, building, contents, and equipment against damage and loss.",
+    to: "/commercial-property-quote",
+  },
 ];
 
 const CommercialLines = () => {
