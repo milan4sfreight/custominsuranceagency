@@ -8,7 +8,7 @@ const NAVY = "#173b5d";
 const ORANGE_GRADIENT = "linear-gradient(135deg, #f5821f, #f5c518)";
 
 // NOTE: replace this single placeholder URL with the real ePayPolicy URL when ready.
-const EPAY_URL = "https://PLACEHOLDER.epaypolicy.com";
+const EPAY_URL = "https://custominsure.epaypolicy.com/";
 
 const features = [
   "Credit card and ACH/bank transfer accepted",
