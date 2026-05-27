@@ -28,6 +28,7 @@ import CancellationForm from "./pages/CancellationForm.tsx";
 import AutoInsuranceQuote from "./pages/AutoInsuranceQuote.tsx";
 import HealthInsuranceQuote from "./pages/HealthInsuranceQuote.tsx";
 import HomeInsuranceQuote from "./pages/HomeInsuranceQuote.tsx";
+import PayNow from "./pages/PayNow.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTop from "./components/BackToTop";
 
@@ -65,6 +66,7 @@ const App = () => (
           <Route path="/auto-insurance-quote" element={<AutoInsuranceQuote />} />
           <Route path="/health-insurance-quote" element={<HealthInsuranceQuote />} />
           <Route path="/home-insurance-quote" element={<HomeInsuranceQuote />} />
+          <Route path="/pay-now" element={<PayNow />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
