@@ -22,6 +22,14 @@ import OccAccidentEnrollment from "./pages/OccAccidentEnrollment.tsx";
 import PDNTLApplication from "./pages/PDNTLApplication.tsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
 import PersonalLines from "./pages/PersonalLines.tsx";
+import CommercialLines from "./pages/CommercialLines.tsx";
+import OtherForms from "./pages/OtherForms.tsx";
+import MotorcycleInsuranceQuote from "./pages/MotorcycleInsuranceQuote.tsx";
+import BoatInsuranceQuote from "./pages/BoatInsuranceQuote.tsx";
+import RVInsuranceQuote from "./pages/RVInsuranceQuote.tsx";
+import FloodInsuranceQuote from "./pages/FloodInsuranceQuote.tsx";
+import RentersInsuranceQuote from "./pages/RentersInsuranceQuote.tsx";
+import SnowmobileInsuranceQuote from "./pages/SnowmobileInsuranceQuote.tsx";
 import PolicyServices from "./pages/PolicyServices.tsx";
 import EndorsementForm from "./pages/EndorsementForm.tsx";
 import CancellationForm from "./pages/CancellationForm.tsx";
@@ -60,6 +68,14 @@ const App = () => (
           <Route path="/pd-ntl-application" element={<PDNTLApplication />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/personal-lines" element={<PersonalLines />} />
+          <Route path="/commercial-lines" element={<CommercialLines />} />
+          <Route path="/other-forms" element={<OtherForms />} />
+          <Route path="/motorcycle-insurance-quote" element={<MotorcycleInsuranceQuote />} />
+          <Route path="/boat-insurance-quote" element={<BoatInsuranceQuote />} />
+          <Route path="/rv-insurance-quote" element={<RVInsuranceQuote />} />
+          <Route path="/flood-insurance-quote" element={<FloodInsuranceQuote />} />
+          <Route path="/renters-insurance-quote" element={<RentersInsuranceQuote />} />
+          <Route path="/snowmobile-insurance-quote" element={<SnowmobileInsuranceQuote />} />
           <Route path="/policy-services" element={<PolicyServices />} />
           <Route path="/policy-services/endorse" element={<EndorsementForm />} />
           <Route path="/policy-services/cancel" element={<CancellationForm />} />
