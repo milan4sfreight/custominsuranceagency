@@ -4,6 +4,7 @@ import jsPDF from "jspdf";
 export type FormKind =
   | "Homepage Quote"
   | "Trucking Quote"
+  | "Auto Insurance Quote"
   | "Contact Request"
   | "Claim Submission"
   | "Policy Cancellation"
@@ -36,6 +37,7 @@ const SITE_URL = "custominsurance.agency";
 const subjectPrefix: Record<FormKind, string> = {
   "Homepage Quote": "New Homepage Quote",
   "Trucking Quote": "New Trucking Quote",
+  "Auto Insurance Quote": "Auto Insurance Quote",
   "Contact Request": "New Contact Request",
   "Claim Submission": "New Claim Submission",
   "Policy Cancellation": "Policy Cancellation Request",
@@ -45,6 +47,7 @@ const subjectPrefix: Record<FormKind, string> = {
 const filenamePrefix: Record<FormKind, string> = {
   "Homepage Quote": "Quote",
   "Trucking Quote": "Quote",
+  "Auto Insurance Quote": "AutoQuote",
   "Contact Request": "Contact",
   "Claim Submission": "Claim",
   "Policy Cancellation": "Cancellation",
