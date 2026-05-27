@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Loader2, Plus, X } from "lucide-react";
+import { Loader2, Plus, X, ChevronDown, Check } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
@@ -16,12 +16,12 @@ const US_STATES = [
 ];
 
 const POLICY_TYPES = [
-  { key: "AL", label: "Auto Liability (AL)", expand: true },
-  { key: "MTC", label: "Motor Truck Cargo (MTC)", expand: true },
-  { key: "GL", label: "General Liability (GL)", expand: true },
-  { key: "PD", label: "Physical Damage (PD)", expand: false },
-  { key: "NTL", label: "Non-Trucking Liability (NTL)", expand: false },
-  { key: "OCC", label: "Occupational Accident (OCC)", expand: false },
+  { key: "AL", label: "Auto Liability (AL)" },
+  { key: "MTC", label: "Motor Truck Cargo (MTC)" },
+  { key: "GL", label: "General Liability (GL)" },
+  { key: "PD", label: "Physical Damage (PD)" },
+  { key: "NTL", label: "Non-Trucking Liability (NTL)" },
+  { key: "OCC", label: "Occupational Accident (OCC)" },
 ];
 
 const ENDORSEMENT_TYPES = [
@@ -123,6 +123,28 @@ const removeBtn: React.CSSProperties = {
   cursor: "pointer",
   padding: 4,
   display: "inline-flex",
+};
+
+const accInput: React.CSSProperties = {
+  background: "#ffffff",
+  border: "0.5px solid #9FE1CB",
+  borderRadius: 5,
+  padding: "0 8px",
+  height: 28,
+  fontSize: 12,
+  color: "#0d2b2b",
+  width: "100%",
+  boxSizing: "border-box",
+  outline: "none",
+  fontFamily: "Inter, sans-serif",
+};
+const slimLabel: React.CSSProperties = {
+  fontSize: 10,
+  color: "#0f6e56",
+  fontFamily: "Inter, sans-serif",
+  marginBottom: 2,
+  display: "block",
+  fontWeight: 500,
 };
 
 type PolicyDetail = { company: string; number: string; effective: string; expiration: string };
@@ -337,9 +359,7 @@ export default function EndorsementForm() {
         },
         {
           title: "Policy Information",
-          rows: policyKeys
-            .filter((p) => p.expand)
-            .map((p) => {
+          rows: policyKeys.map((p) => {
               const d = policyDetails[p.key] ?? blankPolicy();
               return [
                 p.label,
@@ -491,47 +511,78 @@ export default function EndorsementForm() {
             </div>
             <div>
               <Label required>Policy Type — Check all that apply</Label>
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <div className="flex flex-col gap-2">
                 {POLICY_TYPES.map((p) => {
-                  const open = !!selectedPolicies[p.key];
+                  const isSel = !!selectedPolicies[p.key];
                   const d = policyDetails[p.key] ?? blankPolicy();
                   return (
                     <div
                       key={p.key}
-                      className="rounded-lg"
-                      style={{ border: `1px solid ${open ? TEAL : "#e5e7eb"}`, background: open ? "#f0fbfb" : "#ffffff" }}
+                      style={{
+                        background: "#ffffff",
+                        border: isSel ? `1.5px solid ${TEAL}` : "1px solid #e5e7eb",
+                        borderRadius: 10,
+                        overflow: "hidden",
+                        transition: "border-color .2s ease",
+                      }}
                     >
-                      <label className="flex cursor-pointer items-center gap-3 p-3">
-                        <input
-                          type="checkbox"
-                          checked={open}
-                          onChange={() => togglePolicy(p.key)}
-                          style={{ width: 18, height: 18, accentColor: TEAL }}
+                      <button
+                        type="button"
+                        onClick={() => togglePolicy(p.key)}
+                        className="flex w-full items-center gap-3 px-3 py-2 text-left"
+                        style={{ background: "transparent", fontFamily: "Inter, sans-serif" }}
+                        aria-expanded={isSel}
+                      >
+                        <span
+                          className="flex items-center justify-center"
+                          style={{
+                            width: 16,
+                            height: 16,
+                            borderRadius: 3,
+                            border: isSel ? `1.5px solid ${TEAL}` : "1.5px solid #cbd5e1",
+                            background: isSel ? TEAL : "#ffffff",
+                            flexShrink: 0,
+                            transition: "all .15s ease",
+                          }}
+                        >
+                          {isSel && <Check size={11} color="#ffffff" strokeWidth={3} />}
+                        </span>
+                        <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: NAVY }}>{p.label}</span>
+                        <ChevronDown
+                          size={16}
+                          color={isSel ? TEAL : "#94a3b8"}
+                          style={{ transition: "transform .2s ease", transform: isSel ? "rotate(180deg)" : "none" }}
                         />
-                        <span style={{ color: NAVY, fontWeight: 600, fontSize: 14 }}>{p.label}</span>
-                      </label>
-                      {p.expand && (
-                        <div style={{ maxHeight: open ? 600 : 0, overflow: "hidden", transition: "max-height .35s ease" }}>
-                          <div className="grid grid-cols-1 gap-3 p-3 pt-0 md:grid-cols-2">
-                            <div className="md:col-span-2">
-                              <Label>Insurance Company Name</Label>
-                              <input value={d.company} onChange={(e) => updatePolicy(p.key, "company", e.target.value)} {...fieldProps} />
-                            </div>
-                            <div className="md:col-span-2">
-                              <Label>Policy Number</Label>
-                              <input value={d.number} onChange={(e) => updatePolicy(p.key, "number", e.target.value)} {...fieldProps} />
+                      </button>
+                      <div
+                        style={{
+                          maxHeight: isSel ? 240 : 0,
+                          overflow: "hidden",
+                          transition: "max-height .25s ease",
+                          background: "#e8fafa",
+                        }}
+                      >
+                        <div style={{ borderTop: "1px solid #9FE1CB", padding: "0 16px 14px 44px", paddingTop: 10 }}>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div>
+                              <label style={slimLabel}>Insurance Company Name</label>
+                              <input style={accInput} value={d.company} onChange={(e) => updatePolicy(p.key, "company", e.target.value)} />
                             </div>
                             <div>
-                              <Label>Effective Date</Label>
-                              <input type="date" value={d.effective} onChange={(e) => updatePolicy(p.key, "effective", e.target.value)} {...fieldProps} />
+                              <label style={slimLabel}>Policy Number</label>
+                              <input style={accInput} value={d.number} onChange={(e) => updatePolicy(p.key, "number", e.target.value)} />
                             </div>
                             <div>
-                              <Label>Expiration Date</Label>
-                              <input type="date" value={d.expiration} onChange={(e) => updatePolicy(p.key, "expiration", e.target.value)} {...fieldProps} />
+                              <label style={slimLabel}>Effective Date</label>
+                              <input type="date" style={accInput} value={d.effective} onChange={(e) => updatePolicy(p.key, "effective", e.target.value)} />
+                            </div>
+                            <div>
+                              <label style={slimLabel}>Expiration Date</label>
+                              <input type="date" style={accInput} value={d.expiration} onChange={(e) => updatePolicy(p.key, "expiration", e.target.value)} />
                             </div>
                           </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   );
                 })}
