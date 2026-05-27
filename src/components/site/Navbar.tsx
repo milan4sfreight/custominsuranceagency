@@ -267,6 +267,23 @@ export const Navbar = () => {
           <Link to="/contact" className="transition-colors hover:text-white">
             Contact
           </Link>
+          <Link
+            to="/pay-now"
+            style={{
+              background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
+              color: "#fff",
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.06em",
+              borderRadius: "999px",
+              padding: "4px 14px",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              marginLeft: "8px",
+            }}
+          >
+            Pay Now
+          </Link>
         </div>
       </div>
 
@@ -355,6 +372,23 @@ export const Navbar = () => {
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               Client Login
+            </Link>
+            <Link
+              to="/pay-now"
+              style={{
+                background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
+                color: "#fff",
+                borderRadius: "999px",
+                padding: "8px 18px",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "12px",
+                fontWeight: 600,
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                textDecoration: "none",
+              }}
+            >
+              Pay Now
             </Link>
           </div>
         </div>
