@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
-import { Loader2, Plus, X } from "lucide-react";
+import { Loader2, Plus, X, ChevronDown, Check } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
@@ -16,12 +16,12 @@ const US_STATES = [
 ];
 
 const POLICY_TYPES = [
-  { key: "AL", label: "Auto Liability (AL)", expand: true },
-  { key: "MTC", label: "Motor Truck Cargo (MTC)", expand: true },
-  { key: "GL", label: "General Liability (GL)", expand: true },
-  { key: "PD", label: "Physical Damage (PD)", expand: false },
-  { key: "NTL", label: "Non-Trucking Liability (NTL)", expand: false },
-  { key: "OCC", label: "Occupational Accident (OCC)", expand: false },
+  { key: "AL", label: "Auto Liability (AL)" },
+  { key: "MTC", label: "Motor Truck Cargo (MTC)" },
+  { key: "GL", label: "General Liability (GL)" },
+  { key: "PD", label: "Physical Damage (PD)" },
+  { key: "NTL", label: "Non-Trucking Liability (NTL)" },
+  { key: "OCC", label: "Occupational Accident (OCC)" },
 ];
 
 const ENDORSEMENT_TYPES = [
@@ -123,6 +123,28 @@ const removeBtn: React.CSSProperties = {
   cursor: "pointer",
   padding: 4,
   display: "inline-flex",
+};
+
+const accInput: React.CSSProperties = {
+  background: "#ffffff",
+  border: "0.5px solid #9FE1CB",
+  borderRadius: 5,
+  padding: "0 8px",
+  height: 28,
+  fontSize: 12,
+  color: "#0d2b2b",
+  width: "100%",
+  boxSizing: "border-box",
+  outline: "none",
+  fontFamily: "Inter, sans-serif",
+};
+const slimLabel: React.CSSProperties = {
+  fontSize: 10,
+  color: "#0f6e56",
+  fontFamily: "Inter, sans-serif",
+  marginBottom: 2,
+  display: "block",
+  fontWeight: 500,
 };
 
 type PolicyDetail = { company: string; number: string; effective: string; expiration: string };
