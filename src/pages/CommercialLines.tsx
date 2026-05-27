@@ -84,43 +84,21 @@ const CommercialLines = () => {
             Get a free quote for any commercial insurance product. Fill out the form and our team will get back to you within 1 business day.
           </p>
 
-          <div
-            className="mt-6"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, alignItems: "stretch" }}
-          >
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             {cards.map(({ Icon, title, desc, to }) => (
               <div
                 key={title}
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid #e5e7eb",
-                  borderTop: "3px solid #2abfbf",
-                  borderRadius: 12,
-                  padding: "20px 18px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 10,
-                }}
+                className="flex flex-col gap-3 p-5 bg-white rounded-xl border border-gray-200 border-t-[3px] border-t-[#2abfbf]"
               >
-                <Icon size={24} color="#2abfbf" />
-                <h3 className="text-[14px] font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
+                <Icon className="w-6 h-6 text-[#2abfbf]" />
+                <h3 className="text-sm font-bold text-[#0d2b2b]" style={barlow}>
                   {title}
                 </h3>
-                <p className="text-[13px] leading-[1.55] text-[#4a5568]">{desc}</p>
-                <div style={{ flex: 1 }} />
+                <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
-                  className="no-underline"
-                  style={{
-                    alignSelf: "flex-start",
-                    background: "linear-gradient(135deg, #f5821f, #f5c518)",
-                    color: "#ffffff",
-                    borderRadius: 999,
-                    padding: "9px 16px",
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: "0.07em",
-                  }}
+                  className="self-start text-xs font-bold tracking-wide text-white px-4 py-2 rounded-full no-underline"
+                  style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   QUOTE NOW →
                 </Link>
