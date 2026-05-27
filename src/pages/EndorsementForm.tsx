@@ -359,9 +359,7 @@ export default function EndorsementForm() {
         },
         {
           title: "Policy Information",
-          rows: policyKeys
-            .filter((p) => p.expand)
-            .map((p) => {
+          rows: policyKeys.map((p) => {
               const d = policyDetails[p.key] ?? blankPolicy();
               return [
                 p.label,
