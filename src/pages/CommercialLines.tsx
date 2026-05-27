@@ -48,6 +48,7 @@ const cards: Card[] = [
 ];
 
 const CommercialLines = () => {
+  // trigger rebuild
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <SEO
