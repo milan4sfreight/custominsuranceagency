@@ -17,6 +17,7 @@ const companyLinks: { label: string; href: string }[] = [
   { label: "Claims", href: "/claims" },
   { label: "Resources", href: "/resources" },
   { label: "Client Login", href: "/client-login" },
+  { label: "Pay Now", href: "/pay-now" },
   { label: "Carriers", href: "#" },
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];
