@@ -6,6 +6,7 @@ export type FormKind =
   | "Trucking Quote"
   | "Auto Insurance Quote"
   | "Health Insurance Quote"
+  | "Home Insurance Quote"
   | "Contact Request"
   | "Claim Submission"
   | "Policy Cancellation"
@@ -40,6 +41,7 @@ const subjectPrefix: Record<FormKind, string> = {
   "Trucking Quote": "New Trucking Quote",
   "Auto Insurance Quote": "Auto Insurance Quote",
   "Health Insurance Quote": "Health Insurance Quote",
+  "Home Insurance Quote": "Home Insurance Quote",
   "Contact Request": "New Contact Request",
   "Claim Submission": "New Claim Submission",
   "Policy Cancellation": "Policy Cancellation Request",
@@ -51,6 +53,7 @@ const filenamePrefix: Record<FormKind, string> = {
   "Trucking Quote": "Quote",
   "Auto Insurance Quote": "AutoQuote",
   "Health Insurance Quote": "HealthQuote",
+  "Home Insurance Quote": "HomeQuote",
   "Contact Request": "Contact",
   "Claim Submission": "Claim",
   "Policy Cancellation": "Cancellation",
