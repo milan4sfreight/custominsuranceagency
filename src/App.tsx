@@ -25,6 +25,9 @@ import PersonalLines from "./pages/PersonalLines.tsx";
 import PolicyServices from "./pages/PolicyServices.tsx";
 import EndorsementForm from "./pages/EndorsementForm.tsx";
 import CancellationForm from "./pages/CancellationForm.tsx";
+import AutoInsuranceQuote from "./pages/AutoInsuranceQuote.tsx";
+import HealthInsuranceQuote from "./pages/HealthInsuranceQuote.tsx";
+import HomeInsuranceQuote from "./pages/HomeInsuranceQuote.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTop from "./components/BackToTop";
 
@@ -59,6 +62,9 @@ const App = () => (
           <Route path="/policy-services" element={<PolicyServices />} />
           <Route path="/policy-services/endorse" element={<EndorsementForm />} />
           <Route path="/policy-services/cancel" element={<CancellationForm />} />
+          <Route path="/auto-insurance-quote" element={<AutoInsuranceQuote />} />
+          <Route path="/health-insurance-quote" element={<HealthInsuranceQuote />} />
+          <Route path="/home-insurance-quote" element={<HomeInsuranceQuote />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
