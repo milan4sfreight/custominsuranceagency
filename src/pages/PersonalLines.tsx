@@ -1,187 +1,105 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Car, Home, HeartPulse, Shield } from "lucide-react";
+import { Car, Heart, Home, Bike, Anchor, Truck, Droplets, KeyRound, Snowflake, type LucideIcon } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
-import resourcesHero from "@/assets/resources-hero.jpg";
 
-const HERO_IMG = resourcesHero;
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
-const tabs = [
-  {
-    key: "auto",
-    label: "Auto Insurance",
-    icon: Car,
-    title: "Auto Insurance",
-    intro:
-      "Protect yourself and your vehicle with comprehensive personal auto coverage tailored to your driving needs and budget.",
-    bullets: [
-      "Liability coverage for bodily injury and property damage",
-      "Collision and comprehensive protection",
-      "Uninsured / underinsured motorist coverage",
-      "Medical payments and personal injury protection",
-      "Roadside assistance and rental reimbursement",
-    ],
-  },
-  {
-    key: "home",
-    label: "Home Insurance",
-    icon: Home,
-    title: "Home Insurance",
-    intro:
-      "Safeguard your home, belongings, and family with homeowners insurance that fits your property and lifestyle.",
-    bullets: [
-      "Dwelling and other structures coverage",
-      "Personal property protection",
-      "Personal liability and medical payments",
-      "Loss of use / additional living expenses",
-      "Optional flood, earthquake, and umbrella endorsements",
-    ],
-  },
-  {
-    key: "health",
-    label: "Health Insurance",
-    icon: HeartPulse,
-    title: "Health Insurance",
-    intro:
-      "Find the right health plan for you and your family from leading carriers — individual, family, and short-term options.",
-    bullets: [
-      "Individual and family medical plans",
-      "Short-term and supplemental coverage",
-      "Dental and vision options",
-      "ACA-compliant marketplace plans",
-      "Guidance choosing networks, deductibles, and premiums",
-    ],
-  },
-  {
-    key: "life",
-    label: "Life Insurance",
-    icon: Shield,
-    title: "Life Insurance",
-    intro:
-      "Provide lasting financial security for your loved ones with term, whole, or universal life insurance options.",
-    bullets: [
-      "Term life insurance",
-      "Whole and universal life policies",
-      "Final expense and burial coverage",
-      "Disability income protection",
-      "Estate planning and beneficiary guidance",
-    ],
-  },
+type Quote = { Icon: LucideIcon; title: string; desc: string; to: string };
+
+const quotes: Quote[] = [
+  { Icon: Car, title: "Auto Insurance Quote", desc: "Get a free auto insurance quote tailored to your needs. Quick, easy, and no obligation.", to: "/auto-insurance-quote" },
+  { Icon: Heart, title: "Health Insurance Quote", desc: "Compare health insurance plans for you and your family. We'll find the right coverage at the right price.", to: "/health-insurance-quote" },
+  { Icon: Home, title: "Home Insurance Quote", desc: "Protect your home and belongings with the right homeowners insurance coverage.", to: "/home-insurance-quote" },
+  { Icon: Bike, title: "Motorcycle Insurance Quote", desc: "Coverage for your motorcycle tailored to your riding needs, year-round or seasonal.", to: "/motorcycle-insurance-quote" },
+  { Icon: Anchor, title: "Boat Insurance Quote", desc: "Protect your boat, watercraft, and passengers on the water.", to: "/boat-insurance-quote" },
+  { Icon: Truck, title: "RV Insurance Quote", desc: "Motor home or travel trailer — comprehensive RV coverage for the open road.", to: "/rv-insurance-quote" },
+  { Icon: Droplets, title: "Flood Insurance Quote", desc: "Protect your property from flood damage with the right flood insurance coverage.", to: "/flood-insurance-quote" },
+  { Icon: KeyRound, title: "Renters Insurance Quote", desc: "Affordable coverage for renters and their personal belongings.", to: "/renters-insurance-quote" },
+  { Icon: Snowflake, title: "Snowmobile Insurance Quote", desc: "Stay covered on the trails this winter with snowmobile insurance.", to: "/snowmobile-insurance-quote" },
 ];
 
 const PersonalLines = () => {
-  const [active, setActive] = useState(tabs[0].key);
-  const current = tabs.find((t) => t.key === active) ?? tabs[0];
-
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <SEO
-        title="Personal Lines Insurance | Custom Insurance Agency"
-        description="Personal insurance from Custom Insurance Agency — auto, home, health, and life insurance for individuals and families in Illinois, Indiana, and beyond."
+        title="Personal Lines Insurance Quotes | Custom Insurance Agency"
+        description="Free quotes on auto, home, health, motorcycle, boat, RV, flood, renters, and snowmobile insurance from Custom Insurance Agency."
       />
       <Navbar />
 
       {/* HERO */}
       <section
         className="relative flex h-[220px] md:h-[300px] w-full items-center justify-center pt-16"
-        style={{ backgroundImage: `url(${HERO_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        style={{ background: "linear-gradient(135deg, #0f2a42 0%, #0d2b2b 100%)" }}
       >
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.55)" }} />
         <div className="relative z-10 px-6 text-center text-white">
           <h1 style={{ ...barlow, fontWeight: 700, fontSize: "clamp(36px, 6vw, 52px)", lineHeight: 1.1 }}>
             Personal Lines
           </h1>
           <p className="mt-2 text-[15px] md:text-[18px] text-white/85" style={{ ...barlow, fontWeight: 500 }}>
-            Coverage for the people, places, and things that matter most
+            Get a free quote on any personal insurance product
           </p>
         </div>
       </section>
 
-      {/* TABS */}
+      {/* QUOTES */}
       <section className="relative px-6 py-10 md:px-12" style={{ zIndex: 1 }}>
-        <div className="mx-auto max-w-[1000px]">
+        <div className="mx-auto max-w-[1100px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
-            Personal Insurance
+            Personal Lines
           </p>
           <h2 className="mt-2 text-[22px] md:text-[28px] font-bold text-[#0d2b2b] leading-tight" style={barlow}>
-            Explore Our Personal Lines Coverage
+            Personal Insurance Quotes
           </h2>
-          <p className="mt-2 text-[14px] leading-[1.6] text-[#4a5568]">
-            Choose a category below to learn more about what we offer.
+          <p className="mt-2 text-[14px] leading-[1.6] text-[#4a5568] max-w-[700px]">
+            Get a free quote for any personal insurance product. Fill out the form and our team will get back to you within 1 business day.
           </p>
 
-          {/* Tab buttons */}
-          <div className="mt-6 flex flex-wrap gap-2 border-b border-[#e5e7eb]">
-            {tabs.map((t) => {
-              const Icon = t.icon;
-              const isActive = t.key === active;
-              return (
-                <button
-                  key={t.key}
-                  type="button"
-                  onClick={() => setActive(t.key)}
-                  className="inline-flex items-center gap-2 px-4 py-3 text-[14px] font-semibold transition-colors"
+          <div
+            className="mt-6"
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
+          >
+            {quotes.map(({ Icon, title, desc, to }) => (
+              <div
+                key={title}
+                className="flex flex-col"
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderTop: "3px solid #2abfbf",
+                  borderRadius: 12,
+                  padding: "20px 18px",
+                  position: "relative",
+                  zIndex: 10,
+                }}
+              >
+                <Icon size={24} color="#2abfbf" />
+                <h3 className="mt-3 text-[15px] font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
+                  {title}
+                </h3>
+                <p className="mt-2 text-[13px] leading-[1.55] text-[#4a5568] flex-1">{desc}</p>
+                <Link
+                  to={to}
+                  className="mt-4 no-underline"
                   style={{
-                    ...barlow,
-                    color: isActive ? "#0d2b2b" : "#4a5568",
-                    borderBottom: isActive ? "3px solid #2abfbf" : "3px solid transparent",
-                    marginBottom: -1,
+                    alignSelf: "flex-start",
+                    background: "linear-gradient(135deg, #f5821f, #f5c518)",
+                    color: "#ffffff",
+                    borderRadius: 999,
+                    padding: "9px 16px",
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
                   }}
                 >
-                  <Icon className="h-4 w-4" />
-                  {t.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Tab content */}
-          <div
-            className="mt-6 rounded-2xl p-7 md:p-9"
-            style={{
-              background: "#ffffff",
-              border: "1px solid #e5e7eb",
-              borderTop: "3px solid #2abfbf",
-              position: "relative",
-              zIndex: 10,
-            }}
-          >
-            <h3 className="text-[20px] md:text-[24px] font-bold text-[#0d2b2b]" style={barlow}>
-              {current.title}
-            </h3>
-            <p className="mt-3 text-[15px] leading-[1.7] text-[#4a5568]">{current.intro}</p>
-            <ul className="mt-5 space-y-2">
-              {current.bullets.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-[14px] leading-[1.6] text-[#4a5568]">
-                  <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[#2abfbf]" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/get-a-quote"
-              className="btn-quote mt-7 inline-block px-8 py-3 text-[13px] uppercase tracking-wider"
-            >
-              Get a Quote →
-            </Link>
+                  GET A QUOTE →
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative px-6 py-10 text-center md:px-12" style={{ zIndex: 1 }}>
-        <h2 className="text-[24px] md:text-[28px] font-bold text-[#0d2b2b]" style={barlow}>
-          Not Sure Which Coverage You Need?
-        </h2>
-        <p className="mx-auto mt-2 max-w-[640px] text-[14px] text-[#4a5568]">
-          Our agents will help you find the right personal insurance for your life.
-        </p>
-        <Link to="/contact" className="btn-quote mt-5 inline-block px-10 py-3 text-[14px] uppercase tracking-wider">
-          Contact Us
-        </Link>
       </section>
 
       <Footer />
