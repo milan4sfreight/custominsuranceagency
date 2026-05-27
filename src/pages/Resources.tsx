@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Plus, X, Car, Building2, ClipboardList } from "lucide-react";
+import { Plus, X, Car, Building2, ClipboardList, Truck, Package, Shield, HardHat, Umbrella, type LucideIcon } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
@@ -128,18 +128,18 @@ const Resources = () => {
             Get Coverage Today
           </h2>
           <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
-            {[
-              { title: "Auto Liability", to: "/get-a-quote" },
-              { title: "Motor Truck Cargo", to: "/get-a-quote" },
-              { title: "Physical Damage & Non-Trucking Liability", to: "/pd-ntl-application" },
-              { title: "Occupational Accident Coverage (OCC/ACC)", to: "/occ-accident-enrollment" },
-              { title: "General Liability Insurance", to: "/get-a-quote" },
-              { title: "Excess or Umbrella Insurance", to: "/get-a-quote" },
-            ].map((c) => (
+            {([
+              { Icon: Truck, title: "Auto Liability", desc: "Commercial auto liability coverage for your trucking operation. Protect your business from claims arising from accidents.", to: "/get-a-quote" },
+              { Icon: Package, title: "Motor Truck Cargo", desc: "Coverage for freight and cargo you haul. Protect your loads against damage, theft, and loss in transit.", to: "/get-a-quote" },
+              { Icon: Shield, title: "Physical Damage & Non-Trucking Liability", desc: "Protect your trucks and trailers from physical damage, and cover non-trucking use liability gaps.", to: "/pd-ntl-application" },
+              { Icon: HardHat, title: "Occupational Accident Coverage (OCC/ACC)", desc: "Occupational accident and accidental coverage for owner-operators and independent contractors.", to: "/occ-accident-enrollment" },
+              { Icon: Building2, title: "General Liability Insurance", desc: "Protect your business from third-party claims of bodily injury, property damage, and personal injury.", to: "/get-a-quote" },
+              { Icon: Umbrella, title: "Excess or Umbrella Insurance", desc: "Extra liability protection above your existing coverage limits for added peace of mind.", to: "/get-a-quote" },
+            ] as { Icon: LucideIcon; title: string; desc: string; to: string }[]).map((c) => (
               <Link
                 key={c.title}
                 to={c.to}
-                className="flex flex-col justify-between no-underline"
+                className="flex flex-col no-underline"
                 style={{
                   border: "1px solid #e5e7eb",
                   borderLeft: "4px solid #0f2a42",
@@ -152,9 +152,11 @@ const Resources = () => {
                   zIndex: 10,
                 }}
               >
-                <h3 className="text-[18px] font-bold text-[#0d2b2b]" style={barlow}>
+                <c.Icon className="w-6 h-6 text-[#2abfbf]" />
+                <h3 className="mt-2 text-[18px] font-bold text-[#0d2b2b]" style={barlow}>
                   {c.title}
                 </h3>
+                <p className="mt-2 text-xs text-gray-500 leading-relaxed flex-1">{c.desc}</p>
                 <span
                   className="mt-3"
                   style={{
