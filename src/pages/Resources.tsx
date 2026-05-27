@@ -180,6 +180,57 @@ const Resources = () => {
 
       {/* HELPFUL GUIDES */}
       <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-8 md:px-12" style={{ zIndex: 1 }}>
+        {/* PERSONAL LINES */}
+        <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
+          Personal Lines
+        </p>
+        <h2 className="mt-2 text-[22px] md:text-[28px] font-bold text-[#0d2b2b] leading-tight" style={barlow}>
+          Personal Insurance Quotes
+        </h2>
+        <div className="mt-5 grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {[
+            { Icon: Car, title: "Auto Insurance Quote", desc: "Get a free auto insurance quote tailored to your needs. Quick, easy, and no obligation.", to: "/auto-insurance-quote" },
+            { Icon: Heart, title: "Health Insurance Quote", desc: "Compare health insurance plans for you and your family. We'll find the right coverage at the right price.", to: "/health-insurance-quote" },
+            { Icon: Home, title: "Home Insurance Quote", desc: "Protect your home and belongings with the right homeowners insurance coverage.", to: "/home-insurance-quote" },
+          ].map(({ Icon, title, desc, to }) => (
+            <div
+              key={title}
+              className="flex flex-col"
+              style={{
+                background: "#ffffff",
+                border: "1px solid #e5e7eb",
+                borderTop: "3px solid #2abfbf",
+                borderRadius: 12,
+                padding: "24px 20px",
+                position: "relative",
+                zIndex: 10,
+              }}
+            >
+              <Icon size={28} color="#2abfbf" />
+              <h3 className="mt-3 text-[16px] font-bold text-[#0d2b2b]" style={barlow}>
+                {title}
+              </h3>
+              <p className="mt-2 text-[13px] leading-[1.55] text-[#4a5568] flex-1">{desc}</p>
+              <Link
+                to={to}
+                className="mt-4 inline-block self-start no-underline"
+                style={{
+                  background: "linear-gradient(135deg, #f5821f, #f5c518)",
+                  color: "#ffffff",
+                  borderRadius: 999,
+                  padding: "10px 20px",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  letterSpacing: "0.07em",
+                }}
+              >
+                GET A QUOTE →
+              </Link>
+            </div>
+          ))}
+        </div>
+        <hr style={{ border: 0, borderTop: "1px solid #e5e7eb", margin: "40px 0" }} />
+
         <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
           Helpful Guides
         </p>
