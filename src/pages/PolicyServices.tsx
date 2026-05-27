@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Pencil, XCircle } from "lucide-react";
 import SEO from "@/components/SEO";
@@ -9,7 +8,7 @@ import resourcesHero from "@/assets/resources-hero.jpg";
 const HERO_IMG = resourcesHero;
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
-const tabs = [
+const cards = [
   {
     key: "endorse",
     label: "Endorse Your Policy",
@@ -24,7 +23,7 @@ const tabs = [
       "Update Loss Payee information",
       "Fast processing by our licensed team",
     ],
-    cta: "Start Endorsement Request →",
+    cta: "START ENDORSEMENT REQUEST →",
     to: "/policy-services/endorse",
   },
   {
@@ -40,15 +39,12 @@ const tabs = [
       "Secure e-signature required",
       "Processed by Custom Insurance Agency",
     ],
-    cta: "Start Cancellation Request →",
+    cta: "START CANCELLATION REQUEST →",
     to: "/policy-services/cancel",
   },
 ];
 
 const PolicyServices = () => {
-  const [active, setActive] = useState(tabs[0].key);
-  const current = tabs.find((t) => t.key === active) ?? tabs[0];
-
   return (
     <main className="min-h-screen bg-white font-['Inter',sans-serif]">
       <SEO
@@ -73,7 +69,7 @@ const PolicyServices = () => {
         </div>
       </section>
 
-      {/* TABS */}
+      {/* CARDS */}
       <section className="relative px-6 py-10 md:px-12" style={{ zIndex: 1 }}>
         <div className="mx-auto max-w-[1000px]">
           <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
@@ -87,66 +83,58 @@ const PolicyServices = () => {
           </p>
 
           <div
-            className="mt-6 overflow-hidden bg-white"
-            style={{ border: "2px solid #2abfbf", borderRadius: 16 }}
+            className="mt-6 grid"
+            style={{ gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "stretch" }}
           >
-            <div
-              className="grid"
-              style={{ gridTemplateColumns: "1fr 1fr", borderBottom: "1px solid #e5e7eb" }}
-            >
-              {tabs.map((t, idx) => {
-                const Icon = t.icon;
-                const isActive = t.key === active;
-                return (
-                  <button
-                    key={t.key}
-                    type="button"
-                    onClick={() => setActive(t.key)}
-                    onMouseEnter={(e) => {
-                      if (!isActive) e.currentTarget.style.background = "#ffffff";
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) e.currentTarget.style.background = "#f3f4f6";
-                    }}
-                    className="flex items-center justify-center gap-2 transition-colors"
+            {cards.map((c) => {
+              const Icon = c.icon;
+              return (
+                <div
+                  key={c.key}
+                  style={{
+                    background: "white",
+                    border: "1px solid #e5e7eb",
+                    borderTop: "3px solid #2abfbf",
+                    borderRadius: 12,
+                    padding: "28px 24px",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 14,
+                  }}
+                >
+                  <Icon size={28} style={{ color: "#2abfbf" }} />
+                  <h3 style={{ ...barlow, fontSize: 18, fontWeight: 700, color: "#0d2b2b" }}>
+                    {c.title}
+                  </h3>
+                  <p className="text-[14px] leading-[1.6] text-[#4a5568]">{c.intro}</p>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                    {c.bullets.map((b) => (
+                      <li key={b} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13, color: "#4a5568", lineHeight: 1.5 }}>
+                        <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#2abfbf", flex: "none", marginTop: 7 }} />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div style={{ flex: 1 }} />
+                  <Link
+                    to={c.to}
                     style={{
-                      ...barlow,
-                      padding: "18px 20px",
-                      fontSize: 15,
-                      fontWeight: 500,
-                      background: isActive ? "#ffffff" : "#f3f4f6",
-                      color: isActive ? "#0f6e56" : "#6b7280",
-                      borderRight: idx === 0 ? "1px solid #e5e7eb" : "none",
-                      borderBottom: isActive ? "3px solid #2abfbf" : "3px solid transparent",
+                      alignSelf: "flex-start",
+                      background: "linear-gradient(135deg, #f5821f, #f5c518)",
+                      color: "white",
+                      borderRadius: 999,
+                      padding: "12px 22px",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      letterSpacing: "0.07em",
+                      textDecoration: "none",
                     }}
                   >
-                    <Icon size={18} style={{ color: isActive ? "#2abfbf" : "#9ca3af" }} />
-                    {t.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            <div style={{ padding: 28 }} className="transition-opacity duration-200">
-              <h3 className="text-[20px] md:text-[24px] font-bold text-[#0d2b2b]" style={barlow}>
-                {current.title}
-              </h3>
-              <p className="mt-3 text-[15px] leading-[1.7] text-[#4a5568]">{current.intro}</p>
-              <ul className="mt-5 space-y-2">
-                {current.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-3 text-[14px] leading-[1.6] text-[#4a5568]">
-                    <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[#2abfbf]" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to={current.to}
-                className="btn-quote mt-7 inline-block px-8 py-3 text-[13px] uppercase tracking-wider"
-              >
-                {current.cta}
-              </Link>
-            </div>
+                    {c.cta}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
