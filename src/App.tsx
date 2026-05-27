@@ -37,6 +37,8 @@ import AutoInsuranceQuote from "./pages/AutoInsuranceQuote.tsx";
 import HealthInsuranceQuote from "./pages/HealthInsuranceQuote.tsx";
 import HomeInsuranceQuote from "./pages/HomeInsuranceQuote.tsx";
 import PayNow from "./pages/PayNow.tsx";
+import WorkersCompQuote from "./pages/WorkersCompQuote.tsx";
+import CommercialPropertyQuote from "./pages/CommercialPropertyQuote.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTop from "./components/BackToTop";
 
@@ -83,6 +85,8 @@ const App = () => (
           <Route path="/health-insurance-quote" element={<HealthInsuranceQuote />} />
           <Route path="/home-insurance-quote" element={<HomeInsuranceQuote />} />
           <Route path="/pay-now" element={<PayNow />} />
+          <Route path="/workers-comp-quote" element={<WorkersCompQuote />} />
+          <Route path="/commercial-property-quote" element={<CommercialPropertyQuote />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
