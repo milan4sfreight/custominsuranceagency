@@ -127,7 +127,7 @@ const Resources = () => {
           <h2 className="mt-1 text-[22px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 16 }}>
             Get Coverage Today
           </h2>
-          <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3">
+          <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3" style={{ alignItems: "stretch", marginBottom: 48 }}>
             {([
               { Icon: Truck, title: "Auto Liability", desc: "Commercial auto liability coverage for your trucking operation. Protect your business from claims arising from accidents.", to: "/get-a-quote" },
               { Icon: Package, title: "Motor Truck Cargo", desc: "Coverage for freight and cargo you haul. Protect your loads against damage, theft, and loss in transit.", to: "/get-a-quote" },
@@ -141,9 +141,9 @@ const Resources = () => {
                 to={c.to}
                 className="flex flex-col no-underline"
                 style={{
-                  border: "1px solid #e5e7eb",
-                  borderLeft: "4px solid #0f2a42",
-                  borderRadius: 10,
+                  border: "1px solid #e2e8f0",
+                  borderTop: "3px solid #2abfbf",
+                  borderRadius: 12,
                   padding: "18px 20px",
                   background: "#ffffff",
                   minHeight: 110,
@@ -181,10 +181,12 @@ const Resources = () => {
 
       {/* HELPFUL GUIDES */}
       <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-8 md:px-12" style={{ zIndex: 1 }}>
+        {/* DIVIDER */}
+        <hr style={{ border: 0, borderTop: "1px solid #e2e8f0", margin: 0 }} />
         {/* NAV CARDS */}
         <div
           className="mb-8"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}
+          style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "stretch", marginTop: 40 }}
         >
           {[
             { Icon: Car, title: "Personal Lines", desc: "Auto, Home, Health, Motorcycle, Boat, RV, Flood, Renters, and Snowmobile insurance quotes", to: "/personal-lines" },
@@ -196,33 +198,36 @@ const Resources = () => {
               className="flex flex-col"
               style={{
                 background: "#ffffff",
-                border: "1px solid #e5e7eb",
+                border: "1px solid #e2e8f0",
                 borderTop: "3px solid #2abfbf",
                 borderRadius: 12,
                 padding: "20px 18px",
+                gap: 10,
                 position: "relative",
                 zIndex: 10,
               }}
             >
               <Icon size={24} color="#2abfbf" />
-              <h3 className="mt-3 text-[15px] font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
+              <h3 className="text-sm font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
                 {title}
               </h3>
-              <p className="mt-2 text-[13px] leading-[1.55] text-[#4a5568] flex-1">{desc}</p>
+              <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
               <Link
                 to={to}
-                className="mt-4 inline-block self-start no-underline"
+                className="self-start no-underline"
                 style={{
-                  background: "linear-gradient(135deg, #f5821f, #f5c518)",
+                  width: "50%",
+                  textAlign: "center",
+                  background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                   color: "#ffffff",
-                  borderRadius: 999,
-                  padding: "9px 16px",
-                  fontSize: 10,
+                  fontFamily: "'Barlow', sans-serif",
                   fontWeight: 700,
-                  letterSpacing: "0.06em",
+                  fontSize: 14,
+                  borderRadius: 50,
+                  padding: "8px 24px",
                 }}
               >
-                EXPLORE →
+                Explore →
               </Link>
             </div>
           ))}
