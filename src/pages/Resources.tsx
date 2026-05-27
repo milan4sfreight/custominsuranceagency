@@ -179,60 +179,63 @@ const Resources = () => {
         </div>
       </section>
 
-      {/* HELPFUL GUIDES */}
-      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-8 md:px-12" style={{ zIndex: 1 }}>
-        {/* DIVIDER */}
-        <hr style={{ border: 0, borderTop: "1px solid #e2e8f0", margin: 0 }} />
-        {/* NAV CARDS */}
-        <div
-          className="mb-8"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, alignItems: "stretch", marginTop: 40 }}
-        >
-          {[
-            { Icon: Car, title: "Personal Lines", desc: "Auto, Home, Health, Motorcycle, Boat, RV, Flood, Renters, and Snowmobile insurance quotes", to: "/personal-lines" },
-            { Icon: Building2, title: "Commercial Lines", desc: "Business insurance quotes and commercial coverage options for your company", to: "/commercial-lines" },
-            { Icon: ClipboardList, title: "Other Forms", desc: "Additional insurance forms, applications, and documentation", to: "/other-forms" },
-          ].map(({ Icon, title, desc, to }) => (
-            <div
-              key={title}
-              className="flex flex-col"
-              style={{
-                background: "#ffffff",
-                border: "1px solid #e2e8f0",
-                borderTop: "3px solid #2abfbf",
-                borderRadius: 12,
-                padding: "20px 18px",
-                gap: 10,
-                position: "relative",
-                zIndex: 10,
-              }}
-            >
-              <Icon size={24} color="#2abfbf" />
-              <h3 className="text-sm font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
-                {title}
-              </h3>
-              <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
-              <Link
-                to={to}
-                className="self-start no-underline"
+      {/* NAV CARDS */}
+      <section className="relative px-6 md:px-12" style={{ zIndex: 1 }}>
+        <div className="mx-auto w-full max-w-[1200px]">
+          <hr style={{ border: 0, borderTop: "1px solid #e2e8f0", margin: 0 }} />
+          <div
+            className="grid grid-cols-3 gap-4"
+            style={{ alignItems: "stretch", marginTop: 40, marginBottom: 32 }}
+          >
+            {[
+              { Icon: Car, title: "Personal Lines", desc: "Auto, Home, Health, Motorcycle, Boat, RV, Flood, Renters, and Snowmobile insurance quotes", to: "/personal-lines" },
+              { Icon: Building2, title: "Commercial Lines", desc: "Business insurance quotes and commercial coverage options for your company", to: "/commercial-lines" },
+              { Icon: ClipboardList, title: "Other Forms", desc: "Additional insurance forms, applications, and documentation", to: "/other-forms" },
+            ].map(({ Icon, title, desc, to }) => (
+              <div
+                key={title}
                 style={{
-                  width: "50%",
-                  textAlign: "center",
-                  background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
-                  color: "#ffffff",
-                  fontFamily: "'Barlow', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 14,
-                  borderRadius: 50,
-                  padding: "8px 24px",
+                  border: "1px solid #e2e8f0",
+                  borderTop: "3px solid #2abfbf",
+                  borderRadius: "12px",
+                  padding: "20px 18px",
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
                 }}
               >
-                Explore →
-              </Link>
-            </div>
-          ))}
+                <Icon size={24} color="#2abfbf" />
+                <h3 className="text-sm font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
+                  {title}
+                </h3>
+                <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
+                <Link
+                  to={to}
+                  className="self-start no-underline"
+                  style={{
+                    width: "50%",
+                    textAlign: "center",
+                    background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
+                    color: "#ffffff",
+                    fontFamily: "'Barlow', sans-serif",
+                    fontWeight: 700,
+                    fontSize: 14,
+                    borderRadius: 50,
+                    padding: "8px 24px",
+                  }}
+                >
+                  Explore →
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
-        <hr style={{ border: 0, borderTop: "1px solid #e5e7eb", margin: "40px 0" }} />
+      </section>
+
+      {/* HELPFUL GUIDES */}
+      <div className="relative mx-auto w-full max-w-[900px] px-6 pt-4 pb-8 md:px-12" style={{ zIndex: 1 }}>
+        <hr style={{ border: 0, borderTop: "1px solid #e5e7eb", margin: "0 0 40px 0" }} />
 
         <p className="text-[11px] font-semibold uppercase tracking-[2px] text-[#2abfbf]" style={barlow}>
           Helpful Guides
