@@ -586,6 +586,7 @@ export const Navbar = () => {
               <div className="flex flex-col" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 <Link
                   to="/"
+                  onClick={() => setOpen(false)}
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Home
@@ -638,7 +639,12 @@ export const Navbar = () => {
                             )}
                           </div>
                         ) : (
-                          <Link key={s.to} to={s.to} className="text-[18px] font-medium text-white/80 hover:text-white">
+                          <Link
+                            key={s.to}
+                            to={s.to}
+                            onClick={() => setOpen(false)}
+                            className="text-[18px] font-medium text-white/80 hover:text-white"
+                          >
                             {s.label}
                           </Link>
                         ),
@@ -647,69 +653,77 @@ export const Navbar = () => {
                   )}
                 </div>
                 <Link
+                  to="/resources"
+                  onClick={() => setOpen(false)}
+                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                >
+                  Resources
+                </Link>
+                <Link
+                  to="/claims"
+                  onClick={() => setOpen(false)}
+                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                >
+                  Claims
+                </Link>
+                <Link
+                  to="/policy-services"
+                  onClick={() => setOpen(false)}
+                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                >
+                  Policy Services
+                </Link>
+                <Link
                   to="/about"
+                  onClick={() => setOpen(false)}
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   About Us
                 </Link>
                 <Link
-                  to="/contact"
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
-                >
-                  Contact
-                </Link>
-                <Link
                   to="/company-news"
+                  onClick={() => setOpen(false)}
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Company News
                 </Link>
                 <Link
                   to="/careers"
+                  onClick={() => setOpen(false)}
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Careers
                 </Link>
                 <Link
-                  to="/claims"
+                  to="/contact"
+                  onClick={() => setOpen(false)}
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
-                  Claims
-                </Link>
-                <Link
-                  to="/resources"
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
-                >
-                  Resources
-                </Link>
-                <Link
-                  to="/policy-services"
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
-                >
-                  Endorsements
-                </Link>
-                <Link
-                  to="/policy-services"
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
-                >
-                  Policy Services
+                  Contact
                 </Link>
                 <Link
                   to="/client-login"
+                  onClick={() => setOpen(false)}
                   className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Client Login
                 </Link>
-                <a
-                  href="https://custominsure.epaypolicy.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
-                >
-                  Pay Now
-                </a>
               </div>
-              <Button asChild className="btn-quote mt-8 h-14 w-full text-base uppercase tracking-[2px]">
+              <a
+                href="https://custominsure.epaypolicy.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="mt-8 flex h-14 w-full items-center justify-center rounded-md text-base font-semibold uppercase tracking-[2px] text-white"
+                style={{ background: "linear-gradient(135deg, #2abfbf, #1a9a9a)" }}
+              >
+                Pay Now
+              </a>
+              <Button
+                asChild
+                className="btn-quote mt-4 h-14 w-full text-base uppercase tracking-[2px]"
+                onClick={() => setOpen(false)}
+              >
                 <Link to="/get-a-quote">Get a Quote</Link>
               </Button>
             </div>
