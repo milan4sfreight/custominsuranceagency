@@ -857,7 +857,7 @@ export default function EndorsementForm() {
                     placeholder="List commodities to add..."
                     value={mtcCommodities}
                     onChange={(ev) => setMtcCommodities(ev.target.value)}
-                    style={{ ...inputBase, resize: "vertical" }}
+                    style={{ ...inputBase, height: "auto", resize: "none" }}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                   />
