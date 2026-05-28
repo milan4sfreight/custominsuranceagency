@@ -205,7 +205,7 @@ const Resources = () => {
                 }}
               >
                 <Icon size={24} color="#2abfbf" />
-                <h3 className="text-sm font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
+                <h3 className="text-sm font-bold text-[#1f4d7a]" style={{ ...barlow, fontWeight: 700 }}>
                   {title}
                 </h3>
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
