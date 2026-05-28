@@ -57,10 +57,7 @@ const PersonalLines = () => {
             Get a free quote for any personal insurance product. Fill out the form and our team will get back to you within 1 business day.
           </p>
 
-          <div
-            className="mt-6"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
-          >
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {quotes.map(({ Icon, title, desc, to }) => (
               <div
                 key={title}

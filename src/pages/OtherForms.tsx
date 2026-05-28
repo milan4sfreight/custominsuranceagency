@@ -73,10 +73,7 @@ const OtherForms = () => {
             Download the standard ACORD forms below. Fill them out and email to Quotes@custominsure.com or bring them to our office.
           </p>
 
-          <div
-            className="mt-6"
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, alignItems: "stretch" }}
-          >
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style={{ alignItems: "stretch" }}>
             {cards.map(({ Icon, title, subtitle, desc, href }) => (
               <div
                 key={title}
