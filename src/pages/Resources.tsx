@@ -247,7 +247,7 @@ const Resources = () => {
           Whether you are a first-time insurance buyer or an experienced fleet owner, our resource library has
           everything you need to make informed decisions about your coverage.
         </p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {guides.map((g) => (
             <div
               key={g.title}
