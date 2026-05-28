@@ -225,7 +225,7 @@ const Resources = () => {
                     padding: "8px 24px",
                   }}
                 >
-                  {title === "Other Forms" ? "Explore →" : "QUOTE NOW →"}
+                  {title === "Other Forms" ? "Explore →" : "GET A QUOTE →"}
                 </Link>
               </div>
             ))}
