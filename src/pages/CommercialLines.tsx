@@ -97,7 +97,7 @@ const CommercialLines = () => {
             Get a free quote for any commercial insurance product. Fill out the form and our team will get back to you within 1 business day.
           </p>
 
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {cards.map(({ Icon, title, desc, to }) => (
               <div
                 key={title}
