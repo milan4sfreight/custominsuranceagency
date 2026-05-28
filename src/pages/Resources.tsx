@@ -158,9 +158,8 @@ const Resources = () => {
                 </h3>
                 <p className="mt-2 text-xs text-gray-500 leading-relaxed flex-1">{c.desc}</p>
                 <span
-                  className="mt-3"
+                  className="mt-3 self-start whitespace-nowrap"
                   style={{
-                    width: "50%",
                     textAlign: "center",
                     background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                     color: "#ffffff",
