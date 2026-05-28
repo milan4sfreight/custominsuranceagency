@@ -13,28 +13,28 @@ const cards: Card[] = [
     title: "Commercial Insurance Application",
     subtitle: "ACORD 125",
     desc: "Standard commercial insurance application form. Complete and submit to your agent for a commercial insurance quote.",
-    href: "https://hakhbkjgnozkjkkubkli.supabase.co/storage/v1/object/public/assets/Commercial_Insurance_125.pdf",
+    href: "/forms/Commercial_Insurance_125.pdf",
   },
   {
     Icon: Shield,
     title: "Commercial General Liability",
     subtitle: "ACORD 126",
     desc: "Commercial general liability section form. Required supplement to the ACORD 125 for liability coverage.",
-    href: "https://hakhbkjgnozkjkkubkli.supabase.co/storage/v1/object/public/assets/Commercial_General_Liability_126.pdf",
+    href: "/forms/Commercial_General_Liability_126.pdf",
   },
   {
     Icon: XCircle,
     title: "Cancellation Request / Policy Release",
     subtitle: "ACORD 35",
     desc: "Standard policy cancellation request form. Use to cancel an existing policy or submit a policy release statement.",
-    href: "https://hakhbkjgnozkjkkubkli.supabase.co/storage/v1/object/public/assets/Cancellation_Request_35.pdf",
+    href: "/forms/Cancellation_Request_35.pdf",
   },
   {
     Icon: UserCheck,
     title: "Agent / Broker of Record Change",
     subtitle: "ACORD 36",
     desc: "Use this form to designate Custom Insurance Agency as your exclusive insurance representative for your policies.",
-    href: "https://hakhbkjgnozkjkkubkli.supabase.co/storage/v1/object/public/assets/Agent_of_Record_Change_36.pdf",
+    href: "/forms/Agent_of_Record_Change_36.pdf",
   },
 ];
 
