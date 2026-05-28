@@ -211,9 +211,8 @@ const Resources = () => {
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
-                  className="self-start no-underline"
+                  className="self-start no-underline whitespace-nowrap"
                   style={{
-                    width: "50%",
                     textAlign: "center",
                     background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
                     color: "#ffffff",
