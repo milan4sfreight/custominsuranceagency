@@ -127,7 +127,7 @@ const Resources = () => {
           <h2 className="mt-1 text-[22px] md:text-[32px] font-bold text-white leading-tight" style={{ ...barlow, marginBottom: 16 }}>
             Get Coverage Today
           </h2>
-          <div className="grid gap-4 grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-3" style={{ alignItems: "stretch", marginBottom: 48 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style={{ alignItems: "stretch", marginBottom: 48 }}>
             {([
               { Icon: Truck, title: "Auto Liability", desc: "Commercial auto liability coverage for your trucking operation. Protect your business from claims arising from accidents.", to: "/get-a-quote" },
               { Icon: Package, title: "Motor Truck Cargo", desc: "Coverage for freight and cargo you haul. Protect your loads against damage, theft, and loss in transit.", to: "/get-a-quote" },
@@ -184,7 +184,7 @@ const Resources = () => {
         <div className="mx-auto w-full max-w-[1200px]">
           <hr style={{ border: 0, borderTop: "1px solid #e2e8f0", margin: 0 }} />
           <div
-            className="grid grid-cols-3 gap-4"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
             style={{ alignItems: "stretch", marginTop: 40, marginBottom: 32 }}
           >
             {[
