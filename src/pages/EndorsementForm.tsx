@@ -128,11 +128,11 @@ const removeBtn: React.CSSProperties = {
 
 const accInput: React.CSSProperties = {
   background: "#ffffff",
-  border: "0.5px solid #9FE1CB",
-  borderRadius: 5,
-  padding: "0 8px",
-  height: 28,
-  fontSize: 12,
+  border: "1px solid #d1d5db",
+  borderRadius: 8,
+  padding: "8px 12px",
+  height: 40,
+  fontSize: 14,
   color: "#0d2b2b",
   width: "100%",
   boxSizing: "border-box",
