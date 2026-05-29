@@ -92,7 +92,7 @@ const OtherForms = () => {
                 <div style={{ fontSize: 11, color: "#2abfbf", fontWeight: 600 }}>
                   {subtitle}
                 </div>
-                <h3 className="text-sm font-bold text-[#1f4d7a]" style={barlow}>
+                <h3 className="text-[18px] font-bold text-[#0d2b2b]" style={barlow}>
                   {title}
                 </h3>
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
