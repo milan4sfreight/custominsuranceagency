@@ -61,35 +61,26 @@ const PersonalLines = () => {
             {quotes.map(({ Icon, title, desc, to }) => (
               <div
                 key={title}
-                className="flex flex-col"
                 style={{
-                  background: "#ffffff",
-                  border: "1px solid #e5e7eb",
+                  border: "1px solid #e2e8f0",
                   borderTop: "3px solid #2abfbf",
-                  borderRadius: 12,
+                  borderRadius: "12px",
                   padding: "20px 18px",
-                  position: "relative",
-                  zIndex: 10,
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
                 }}
               >
-                <Icon size={24} color="#2abfbf" />
-                <h3 className="mt-3 text-[15px] font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
+                <Icon className="w-6 h-6 text-[#2abfbf]" />
+                <h3 className="text-sm font-bold text-[#1f4d7a]" style={{ ...barlow, fontWeight: 700 }}>
                   {title}
                 </h3>
-                <p className="mt-2 text-[13px] leading-[1.55] text-[#4a5568] flex-1">{desc}</p>
+                <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
-                  className="mt-4 no-underline"
-                  style={{
-                    alignSelf: "flex-start",
-                    background: "linear-gradient(135deg, #f5821f, #f5c518)",
-                    color: "#ffffff",
-                    borderRadius: 999,
-                    padding: "9px 16px",
-                    fontSize: 10,
-                    fontWeight: 700,
-                    letterSpacing: "0.06em",
-                  }}
+                  className="self-start text-xs font-bold tracking-wide text-white px-4 py-2 rounded-full no-underline"
+                  style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   GET A QUOTE →
                 </Link>
