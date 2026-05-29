@@ -530,7 +530,7 @@ export default function EndorsementForm() {
                       <button
                         type="button"
                         onClick={() => togglePolicy(p.key)}
-                        className="flex w-full items-center gap-3 px-3 py-2 text-left"
+                        className="flex w-full items-center gap-3 px-4 py-3 text-left cursor-pointer"
                         style={{ background: "transparent", fontFamily: "Inter, sans-serif" }}
                         aria-expanded={isSel}
                       >
@@ -548,7 +548,7 @@ export default function EndorsementForm() {
                         >
                           {isSel && <Check size={11} color="#ffffff" strokeWidth={3} />}
                         </span>
-                        <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: NAVY }}>{p.label}</span>
+                        <span className="text-sm font-medium text-[#1f4d7a] flex-1">{p.label}</span>
                         <ChevronDown
                           size={16}
                           color={isSel ? TEAL : "#94a3b8"}
@@ -563,23 +563,23 @@ export default function EndorsementForm() {
                           background: "#e8fafa",
                         }}
                       >
-                        <div style={{ borderTop: "1px solid #9FE1CB", padding: "0 16px 14px 44px", paddingTop: 10 }}>
-                          <div className="grid grid-cols-2 gap-3">
+                        <div style={{ borderTop: "1px solid #9FE1CB", padding: "0 16px 12px 44px", paddingTop: 10 }}>
+                          <div className="grid grid-cols-2 gap-2 mb-2">
                             <div>
-                              <label style={slimLabel}>Insurance Company Name</label>
-                              <input style={accInput} value={d.company} onChange={(e) => updatePolicy(p.key, "company", e.target.value)} />
+                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Insurance Company Name</label>
+                              <input className="w-full h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.company} onChange={(e) => updatePolicy(p.key, "company", e.target.value)} />
                             </div>
                             <div>
-                              <label style={slimLabel}>Policy Number</label>
-                              <input style={accInput} value={d.number} onChange={(e) => updatePolicy(p.key, "number", e.target.value)} />
+                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Policy Number</label>
+                              <input className="w-full h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.number} onChange={(e) => updatePolicy(p.key, "number", e.target.value)} />
                             </div>
                             <div>
-                              <label style={slimLabel}>Effective Date</label>
-                              <input type="date" style={accInput} value={d.effective} onChange={(e) => updatePolicy(p.key, "effective", e.target.value)} />
+                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Effective Date</label>
+                              <input type="date" className="w-full h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.effective} onChange={(e) => updatePolicy(p.key, "effective", e.target.value)} />
                             </div>
                             <div>
-                              <label style={slimLabel}>Expiration Date</label>
-                              <input type="date" style={accInput} value={d.expiration} onChange={(e) => updatePolicy(p.key, "expiration", e.target.value)} />
+                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Expiration Date</label>
+                              <input type="date" className="w-full h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.expiration} onChange={(e) => updatePolicy(p.key, "expiration", e.target.value)} />
                             </div>
                           </div>
                         </div>
