@@ -297,6 +297,138 @@ export const Navbar = () => {
               Solutions
               <ChevronDown className={cn("h-4 w-4 transition-transform", solutionsOpen && "rotate-180")} />
             </button>
+
+            {/* Dropdown anchored under Solutions trigger (left-aligned) */}
+            {solutionsOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  width: "640px",
+                  zIndex: 49,
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "240px 1fr",
+                    borderRadius: 0,
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* Left column — gray background */}
+                  <div style={{ background: "#f0f0ee", padding: "28px 28px" }}>
+                    <div
+                      style={{
+                        color: "#999",
+                        textTransform: "uppercase",
+                        fontSize: "10.5px",
+                        letterSpacing: "2px",
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 600,
+                        marginBottom: "16px",
+                      }}
+                    >
+                      Solutions
+                    </div>
+                    {solutions.map((s, i) => (
+                      <Link
+                        key={s.to}
+                        to={s.to}
+                        onMouseEnter={() => setHoveredSolution(i)}
+                        onClick={() => setSolutionsOpen(false)}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "14px 0",
+                          borderBottom: i < solutions.length - 1 ? "1px solid #d9d9d6" : "none",
+                          color: hoveredSolution === i ? "#2abfbf" : "#0d2b2b",
+                          fontSize: "15px",
+                          fontWeight: hoveredSolution === i ? 600 : 500,
+                          fontFamily: "'Inter', sans-serif",
+                          textDecoration: "none",
+                          transition: "color 0.15s ease",
+                        }}
+                      >
+                        <span>{s.label}</span>
+                        {hoveredSolution === i && <ChevronRight className="h-4 w-4" />}
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Right column — white background with sub-items */}
+                  <div style={{ background: "#ffffff", padding: "28px 32px" }}>
+                    <div
+                      style={{
+                        color: "#999",
+                        textTransform: "uppercase",
+                        fontSize: "10.5px",
+                        letterSpacing: "2px",
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 600,
+                        marginBottom: "20px",
+                      }}
+                    >
+                      {solutions[hoveredSolution].label}
+                    </div>
+                    {solutions[hoveredSolution].subItems.length > 0 ? (
+                      <div
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "1fr 1fr",
+                          gap: "16px 28px",
+                        }}
+                      >
+                        {solutions[hoveredSolution].subItems.map((item) => (
+                          <Link
+                            key={item}
+                            to={
+                              solutions[hoveredSolution].label === "Personal Lines"
+                                ? "/personal-lines"
+                                : solutions[hoveredSolution].to
+                            }
+                            onClick={() => {
+                              if (solutions[hoveredSolution].label === "Personal Lines") {
+                                sessionStorage.setItem("personal-lines-scroll-to", item);
+                              }
+                              setSolutionsOpen(false);
+                            }}
+                            style={{
+                              color: "#2abfbf",
+                              fontSize: "14px",
+                              fontWeight: 400,
+                              fontFamily: "'Inter', sans-serif",
+                              textDecoration: "none",
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {item}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <Link
+                        to={solutions[hoveredSolution].to}
+                        style={{
+                          color: "#2abfbf",
+                          fontSize: "14px",
+                          fontWeight: 400,
+                          fontFamily: "'Inter', sans-serif",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Learn more →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {[
