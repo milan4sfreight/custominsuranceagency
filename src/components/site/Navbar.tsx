@@ -551,14 +551,15 @@ export const Navbar = () => {
             side="right"
             className="w-full max-w-md border-0 p-0 text-white overflow-y-auto [&>button.right-4]:hidden"
             style={{
-              backgroundImage: `url(${footerBg})`,
+              backgroundColor: "#0a1932",
+              backgroundImage: `linear-gradient(rgba(10, 25, 50, 0.82), rgba(10, 25, 50, 0.82)), url(${footerBg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
+              backgroundAttachment: "local",
               height: "100dvh",
             }}
           >
-            <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(10, 25, 50, 0.82)" }} />
             <button
               type="button"
               onClick={() => setOpen(false)}
@@ -714,18 +715,21 @@ export const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-8 flex h-14 w-full items-center justify-center rounded-md text-base font-semibold uppercase tracking-[2px] text-white"
-                style={{ background: "linear-gradient(135deg, #2abfbf, #1a9a9a)" }}
+                className="mt-8 flex h-14 w-full items-center justify-center rounded-full text-base font-semibold uppercase tracking-[2px] text-white"
+                style={{
+                  background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
+                  boxShadow: "0 4px 15px rgba(42, 191, 191, 0.35)",
+                }}
               >
                 Pay Now
               </a>
-              <Button
-                asChild
-                className="btn-quote mt-4 h-14 w-full text-base uppercase tracking-[2px]"
+              <Link
+                to="/get-a-quote"
                 onClick={() => setOpen(false)}
+                className="btn-quote mt-4 flex h-14 w-full items-center justify-center text-base font-semibold uppercase tracking-[2px]"
               >
-                <Link to="/get-a-quote">Get a Quote</Link>
-              </Button>
+                Get a Quote
+              </Link>
             </div>
           </SheetContent>
         </Sheet>
