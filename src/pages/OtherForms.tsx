@@ -77,20 +77,22 @@ const OtherForms = () => {
             {cards.map(({ Icon, title, subtitle, desc, href }) => (
               <div
                 key={title}
-                className="flex flex-col gap-[10px]"
                 style={{
-                  background: "#ffffff",
                   border: "1px solid #e2e8f0",
                   borderTop: "3px solid #2abfbf",
-                  borderRadius: 12,
+                  borderRadius: "12px",
                   padding: "20px 18px",
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
                 }}
               >
                 <Icon className="w-6 h-6 text-[#2abfbf]" />
-                <div style={{ fontSize: 11, color: "#2abfbf", fontWeight: 600, marginBottom: 4 }}>
+                <div style={{ fontSize: 11, color: "#2abfbf", fontWeight: 600 }}>
                   {subtitle}
                 </div>
-                <h3 className="text-sm font-bold text-[#0d2b2b]" style={barlow}>
+                <h3 className="text-sm font-bold text-[#1f4d7a]" style={barlow}>
                   {title}
                 </h3>
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
@@ -99,7 +101,7 @@ const OtherForms = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="self-start text-xs font-bold tracking-wide text-white px-4 py-2 rounded-full no-underline"
-                  style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)", borderRadius: 999 }}
+                  style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   DOWNLOAD FORM →
                 </a>
