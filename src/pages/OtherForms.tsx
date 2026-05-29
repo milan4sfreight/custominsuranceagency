@@ -48,9 +48,15 @@ const OtherForms = () => {
       <Navbar />
 
       <section
-        className="relative flex h-[220px] md:h-[300px] w-full items-center justify-center pt-16"
+        className="relative flex h-[220px] md:h-[300px] w-full items-center justify-center overflow-hidden pt-16"
         style={{ background: "linear-gradient(135deg, #0f2a42 0%, #0d2b2b 100%)" }}
       >
+        <img
+          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
+          alt="Insurance forms background"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/55" />
         <div className="relative z-10 px-6 text-center text-white">
           <h1 style={{ ...barlow, fontWeight: 700, fontSize: "clamp(36px, 6vw, 52px)", lineHeight: 1.1 }}>
             Other Forms
