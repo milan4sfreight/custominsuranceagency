@@ -101,10 +101,19 @@ const CommercialLines = () => {
             {cards.map(({ Icon, title, desc, to }) => (
               <div
                 key={title}
-                className="flex flex-col gap-3 p-5 bg-white rounded-xl border border-gray-200 border-t-[3px] border-t-[#2abfbf]"
+                style={{
+                  border: "1px solid #e2e8f0",
+                  borderTop: "3px solid #2abfbf",
+                  borderRadius: "12px",
+                  padding: "20px 18px",
+                  background: "white",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
               >
                 <Icon className="w-6 h-6 text-[#2abfbf]" />
-                <h3 className="text-sm font-bold text-[#0d2b2b]" style={barlow}>
+                <h3 className="text-sm font-bold text-[#1f4d7a]" style={barlow}>
                   {title}
                 </h3>
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
