@@ -119,7 +119,7 @@ const CommercialLines = () => {
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
-                  className="self-start text-xs font-bold tracking-wide text-white px-4 py-2 rounded-full no-underline"
+                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap no-underline"
                   style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   QUOTE NOW →
