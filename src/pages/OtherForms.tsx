@@ -100,7 +100,7 @@ const OtherForms = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap no-underline"
+                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap mt-auto no-underline"
                   style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   DOWNLOAD FORM →

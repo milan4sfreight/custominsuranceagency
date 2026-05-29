@@ -87,7 +87,7 @@ const PersonalLines = () => {
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
-                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap no-underline"
+                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap mt-auto no-underline"
                   style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   Quote Now →
