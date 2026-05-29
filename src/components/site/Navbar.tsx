@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -297,6 +297,143 @@ export const Navbar = () => {
               Solutions
               <ChevronDown className={cn("h-4 w-4 transition-transform", solutionsOpen && "rotate-180")} />
             </button>
+
+            {/* Dropdown anchored under Solutions trigger (left-aligned) */}
+            {solutionsOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  width: "640px",
+                  zIndex: 49,
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+                }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "240px 1fr",
+                    borderRadius: 0,
+                    overflow: "hidden",
+                  }}
+                >
+                  {/* Left column — gray background */}
+                  <div style={{ background: "#f0f0ee", padding: "28px 28px" }}>
+                    <div
+                      style={{
+                        color: "#999",
+                        textTransform: "uppercase",
+                        fontSize: "10.5px",
+                        letterSpacing: "2px",
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 600,
+                        marginBottom: "16px",
+                      }}
+                    >
+                      Solutions
+                    </div>
+                    {solutions.map((s, i) => (
+                      <Link
+                        key={s.to}
+                        to={s.to}
+                        onMouseEnter={() => setHoveredSolution(i)}
+                        onClick={() => setSolutionsOpen(false)}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "14px 0",
+                          borderBottom: i < solutions.length - 1 ? "1px solid #d9d9d6" : "none",
+                          color: hoveredSolution === i ? "#2abfbf" : "#0d2b2b",
+                          fontSize: "15px",
+                          fontWeight: hoveredSolution === i ? 600 : 500,
+                          fontFamily: "'Inter', sans-serif",
+                          textDecoration: "none",
+                          transition: "color 0.15s ease",
+                        }}
+                      >
+                        <span>{s.label}</span>
+                        {hoveredSolution === i && <ChevronRight className="h-4 w-4" />}
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Right column — white background with sub-items */}
+                  <div style={{ background: "#ffffff", padding: "28px 32px" }}>
+                    <div
+                      style={{
+                        color: "#999",
+                        textTransform: "uppercase",
+                        fontSize: "10.5px",
+                        letterSpacing: "2px",
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 600,
+                        marginBottom: "20px",
+                      }}
+                    >
+                      {solutions[hoveredSolution].label}
+                    </div>
+                    {solutions[hoveredSolution].subItems.length > 0 ? (
+                      <div
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "1fr 1fr",
+                          gap: "16px 28px",
+                        }}
+                      >
+                        {solutions[hoveredSolution].subItems.map((item) => (
+                          <a
+                            key={item}
+                            href={
+                              solutions[hoveredSolution].label === "Personal Lines"
+                                ? "/get-a-quote"
+                                : solutions[hoveredSolution].to
+                            }
+                            onClick={(e) => {
+                              if (solutions[hoveredSolution].label === "Personal Lines") {
+                                e.preventDefault();
+                                setSolutionsOpen(false);
+                                setPersonalLinesModal(item);
+                              }
+                            }}
+                            style={{
+                              color: "#2abfbf",
+                              fontSize: "13px",
+                              fontWeight: 400,
+                              padding: "8px 0",
+                              fontFamily: "'Inter', sans-serif",
+                              textDecoration: "none",
+                              display: "block",
+                              borderBottom: "1px solid #f5f5f5",
+                            }}
+                            onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+                            onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
+                          >
+                            {item}
+                          </a>
+                        ))}
+                      </div>
+                    ) : (
+                      <Link
+                        to={solutions[hoveredSolution].to}
+                        style={{
+                          color: "#2abfbf",
+                          fontSize: "14px",
+                          fontWeight: 400,
+                          fontFamily: "'Inter', sans-serif",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Learn more →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {[
@@ -386,146 +523,6 @@ export const Navbar = () => {
             </a>
           </div>
         </div>
-
-        {/* Dropdown — Reliance Partners style: gray left col, white right, square corners */}
-        {solutionsOpen && (
-          <div
-            style={{
-              position: "absolute",
-              top: "100%",
-              right: 0,
-              width: "640px",
-              zIndex: 49,
-              boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
-            }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "240px 1fr",
-                borderRadius: 0,
-                overflow: "hidden",
-              }}
-            >
-              {/* Left column — gray background */}
-              <div style={{ background: "#f0f0ee", padding: "28px 28px" }}>
-                <div
-                  style={{
-                    color: "#999",
-                    textTransform: "uppercase",
-                    fontSize: "10.5px",
-                    letterSpacing: "2px",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 600,
-                    marginBottom: "16px",
-                  }}
-                >
-                  Solutions
-                </div>
-                {solutions.map((s, i) => (
-                  <Link
-                    key={s.to}
-                    to={s.to}
-                    onMouseEnter={() => setHoveredSolution(i)}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      color: hoveredSolution === i ? "#2abfbf" : "#333",
-                      fontSize: "14px",
-                      fontWeight: 400,
-                      padding: "11px 0",
-                      borderBottom: "1px solid #ddd",
-                      fontFamily: "'Inter', sans-serif",
-                      textDecoration: "none",
-                      transition: "color 0.15s",
-                    }}
-                  >
-                    <span>{s.label}</span>
-                    {hoveredSolution === i && (
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2abfbf" strokeWidth="2.5">
-                        <polyline points="9 18 15 12 9 6" />
-                      </svg>
-                    )}
-                  </Link>
-                ))}
-              </div>
-
-              {/* Right column — white background */}
-              <div style={{ background: "#fff", padding: "28px 28px" }}>
-                <div
-                  style={{
-                    color: "#999",
-                    textTransform: "uppercase",
-                    fontSize: "10.5px",
-                    letterSpacing: "2px",
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 600,
-                    marginBottom: "16px",
-                  }}
-                >
-                  {solutions[hoveredSolution].label}
-                </div>
-                {solutions[hoveredSolution].subItems.length > 0 ? (
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      columnGap: "20px",
-                    }}
-                  >
-                    {solutions[hoveredSolution].subItems.map((item) => (
-                      <a
-                        key={item}
-                        href={
-                          solutions[hoveredSolution].label === "Personal Lines"
-                            ? "/get-a-quote"
-                            : solutions[hoveredSolution].to
-                        }
-                        onClick={(e) => {
-                          if (solutions[hoveredSolution].label === "Personal Lines") {
-                            e.preventDefault();
-                            setSolutionsOpen(false);
-                            setPersonalLinesModal(item);
-                          }
-                        }}
-                        style={{
-                          color: "#2abfbf",
-                          fontSize: "13px",
-                          fontWeight: 400,
-                          padding: "8px 0",
-                          fontFamily: "'Inter', sans-serif",
-                          textDecoration: "none",
-                          display: "block",
-                          borderBottom: "1px solid #f5f5f5",
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
-                        onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <Link
-                    to={solutions[hoveredSolution].to}
-                    style={{
-                      color: "#2abfbf",
-                      fontSize: "14px",
-                      fontWeight: 400,
-                      fontFamily: "'Inter', sans-serif",
-                      textDecoration: "none",
-                    }}
-                  >
-                    Learn more →
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </nav>
 
       {/* Mobile nav */}
