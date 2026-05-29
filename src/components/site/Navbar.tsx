@@ -385,30 +385,35 @@ export const Navbar = () => {
                         }}
                       >
                         {solutions[hoveredSolution].subItems.map((item) => (
-                          <Link
+                          <a
                             key={item}
-                            to={
+                            href={
                               solutions[hoveredSolution].label === "Personal Lines"
-                                ? "/personal-lines"
+                                ? "/get-a-quote"
                                 : solutions[hoveredSolution].to
                             }
-                            onClick={() => {
+                            onClick={(e) => {
                               if (solutions[hoveredSolution].label === "Personal Lines") {
-                                sessionStorage.setItem("personal-lines-scroll-to", item);
+                                e.preventDefault();
+                                setSolutionsOpen(false);
+                                setPersonalLinesModal(item);
                               }
-                              setSolutionsOpen(false);
                             }}
                             style={{
                               color: "#2abfbf",
-                              fontSize: "14px",
+                              fontSize: "13px",
                               fontWeight: 400,
+                              padding: "8px 0",
                               fontFamily: "'Inter', sans-serif",
                               textDecoration: "none",
-                              lineHeight: 1.4,
+                              display: "block",
+                              borderBottom: "1px solid #f5f5f5",
                             }}
+                            onMouseEnter={(e) => (e.currentTarget.style.textDecoration = "underline")}
+                            onMouseLeave={(e) => (e.currentTarget.style.textDecoration = "none")}
                           >
                             {item}
-                          </Link>
+                          </a>
                         ))}
                       </div>
                     ) : (
