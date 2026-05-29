@@ -3,6 +3,7 @@ import { Car, Heart, Home, Bike, Anchor, Truck, Droplets, KeyRound, Snowflake, t
 import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
+import heroImg from "@/assets/personal-lines-hero.png";
 
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
@@ -34,6 +35,12 @@ const PersonalLines = () => {
         className="relative flex h-[220px] md:h-[300px] w-full items-center justify-center pt-16"
         style={{ background: "linear-gradient(135deg, #0f2a42 0%, #0d2b2b 100%)" }}
       >
+        <img
+          src={heroImg}
+          alt="Personal lines insurance collage: watch, car, home, boat, kitchen"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/55" />
         <div className="relative z-10 px-6 text-center text-white">
           <h1 style={{ ...barlow, fontWeight: 700, fontSize: "clamp(36px, 6vw, 52px)", lineHeight: 1.1 }}>
             Personal Lines
