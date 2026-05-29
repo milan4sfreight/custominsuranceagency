@@ -158,17 +158,8 @@ const Resources = () => {
                 </h3>
                 <p className="mt-2 text-xs text-gray-500 leading-relaxed flex-1">{c.desc}</p>
                 <span
-                  className="mt-3 self-start whitespace-nowrap"
-                  style={{
-                    textAlign: "center",
-                    background: "linear-gradient(135deg, #f5821f 0%, #f5c518 100%)",
-                    color: "#ffffff",
-                    fontFamily: "'Barlow', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 14,
-                    borderRadius: 50,
-                    padding: "8px 24px",
-                  }}
+                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap"
+                  style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   Quote Now →
                 </span>
@@ -211,7 +202,7 @@ const Resources = () => {
                 <p className="mt-2 text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
-                  className="self-start text-xs font-bold tracking-wide text-white px-4 py-2 rounded-full no-underline"
+                  className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap no-underline"
                   style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
                   {title === "Other Forms" ? "Explore →" : "Get a Quote →"}
