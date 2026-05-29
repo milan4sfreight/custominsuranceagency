@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import heroImg from "@/assets/personal-lines-hero.png";
+import heroImgDesktop from "@/assets/personal-lines-hero-desktop.png";
 
 const barlow = { fontFamily: "'Barlow', sans-serif" };
 
@@ -38,8 +39,13 @@ const PersonalLines = () => {
         <img
           src={heroImg}
           alt="Personal lines insurance collage: watch, car, home, boat, kitchen"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
           style={{ objectPosition: "center 75%" }}
+        />
+        <img
+          src={heroImgDesktop}
+          alt="Personal lines insurance collage: watch, car, home, boat, kitchen"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 px-6 text-center text-white">
