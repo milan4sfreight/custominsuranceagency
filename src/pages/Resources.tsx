@@ -205,10 +205,10 @@ const Resources = () => {
                 }}
               >
                 <Icon size={24} color="#2abfbf" />
-                <h3 className="text-sm font-bold text-[#1f4d7a]" style={{ ...barlow, fontWeight: 700 }}>
+                <h3 className="text-[18px] font-bold text-[#0d2b2b]" style={{ ...barlow, fontWeight: 700 }}>
                   {title}
                 </h3>
-                <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
+                <p className="mt-2 text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <Link
                   to={to}
                   className="self-start no-underline whitespace-nowrap"
