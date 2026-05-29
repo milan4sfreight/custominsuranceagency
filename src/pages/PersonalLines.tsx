@@ -82,7 +82,7 @@ const PersonalLines = () => {
                   className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap no-underline"
                   style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
-                  GET A QUOTE →
+                  Quote Now →
                 </Link>
               </div>
             ))}
