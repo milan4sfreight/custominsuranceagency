@@ -305,6 +305,7 @@ export const Navbar = () => {
                   position: "absolute",
                   top: "100%",
                   left: 0,
+                  marginTop: "16px",
                   width: "640px",
                   zIndex: 49,
                   boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
