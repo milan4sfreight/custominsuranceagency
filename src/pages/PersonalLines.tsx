@@ -33,7 +33,7 @@ const PersonalLines = () => {
 
       {/* HERO */}
       <section
-        className="relative flex h-[300px] md:h-[420px] w-full items-center justify-center pt-16"
+        className="relative flex h-[300px] md:h-auto md:aspect-[32/7] w-full items-center justify-center pt-16"
         style={{ background: "linear-gradient(135deg, #0f2a42 0%, #0d2b2b 100%)" }}
       >
         <img
@@ -45,7 +45,7 @@ const PersonalLines = () => {
         <img
           src={heroImgDesktop}
           alt="Personal lines insurance collage: watch, car, home, boat, kitchen"
-          className="absolute inset-0 hidden h-full w-full object-contain object-center md:block"
+          className="absolute inset-0 hidden h-full w-full object-cover md:block"
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 px-6 text-center text-white">
