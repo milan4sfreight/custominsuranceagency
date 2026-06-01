@@ -45,7 +45,7 @@ const PersonalLines = () => {
         <img
           src={heroImgDesktop}
           alt="Personal lines insurance collage: watch, car, home, boat, kitchen"
-          className="absolute inset-0 hidden h-full w-full object-cover md:block"
+          className="absolute inset-0 hidden h-full w-full object-contain object-center md:block"
         />
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 px-6 text-center text-white">
