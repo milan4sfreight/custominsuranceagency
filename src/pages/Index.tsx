@@ -506,7 +506,7 @@ const Index = () => {
               Trucking Insurance →
             </Link>
 
-            <Link to="/commercial-insurance" className="block font-medium text-[#3eaa6d] hover:underline">
+            <Link to="/commercial-lines" className="block font-medium text-[#3eaa6d] hover:underline">
               Commercial Insurance →
             </Link>
 
