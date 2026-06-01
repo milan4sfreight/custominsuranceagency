@@ -6,9 +6,9 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
 import { sendQuoteEmail } from "@/lib/sendQuoteEmail";
-import heroTruck from "@/assets/pdntl-hero-truck.jpeg";
+import heroTruck from "@/assets/pdntl-hero-truck-city.png.asset.json";
 
-const HERO_IMG = heroTruck;
+const HERO_IMG = heroTruck.url;
 const TEAL = "#2abfbf";
 const NAVY = "#173b5d";
 
