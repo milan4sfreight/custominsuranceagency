@@ -498,7 +498,7 @@ const Index = () => {
           <p className="mt-5 text-[16px] leading-[1.75] text-white/65">
             Our dedicated team starts by matching you with a knowledgeable agent who understands the intricacies of
             trucking and commercial insurance. We offer solutions for truck, homeowners, life, health, commercial, and
-            freight broker insurance. We cover Illinois, Indiana, and surrounding states.
+            freight broker insurance. We provide coverage nationwide.
           </p>
 
           <div className="mt-6 space-y-3">
