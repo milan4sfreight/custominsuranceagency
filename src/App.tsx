@@ -41,7 +41,6 @@ import WorkersCompQuote from "./pages/WorkersCompQuote.tsx";
 import CommercialPropertyQuote from "./pages/CommercialPropertyQuote.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import BackToTop from "./components/BackToTop";
-import BackButton from "./components/BackButton";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +51,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <BackButton />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/get-a-quote" element={<GetAQuote />} />
