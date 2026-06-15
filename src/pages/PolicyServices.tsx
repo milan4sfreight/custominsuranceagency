@@ -83,8 +83,8 @@ const PolicyServices = () => {
           </p>
 
           <div
-            className="mt-6 grid"
-            style={{ gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "stretch" }}
+            className="mt-6 grid grid-cols-1 md:grid-cols-2"
+            style={{ gap: 20, alignItems: "stretch" }}
           >
             {cards.map((c) => {
               const Icon = c.icon;
