@@ -104,8 +104,7 @@ const OtherForms = () => {
                 <p className="text-xs text-gray-500 leading-relaxed flex-1">{desc}</p>
                 <a
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  download
                   className="self-start text-sm font-semibold text-white px-5 py-2.5 rounded-full whitespace-nowrap mt-auto no-underline"
                   style={{ background: "linear-gradient(135deg, #f5821f, #f5c518)" }}
                 >
