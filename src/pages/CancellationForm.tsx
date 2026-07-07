@@ -176,37 +176,37 @@ function PolicyAccordion({
               }}
             >
               <div style={{ borderTop: "1px solid #9FE1CB", padding: "10px 14px 12px 40px" }}>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="min-w-0">
                     <label style={slimLabel}>Insurance Company Name</label>
                     <input
-                      style={accInput}
+                      style={{ ...accInput, minWidth: 0 }}
                       value={d.company}
                       onChange={(e) => onUpdate(p.key, "company", e.target.value)}
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label style={slimLabel}>Policy Number</label>
                     <input
-                      style={accInput}
+                      style={{ ...accInput, minWidth: 0 }}
                       value={d.number}
                       onChange={(e) => onUpdate(p.key, "number", e.target.value)}
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label style={slimLabel}>Effective Date</label>
                     <input
                       type="date"
-                      style={accInput}
+                      style={{ ...accInput, minWidth: 0 }}
                       value={d.effective}
                       onChange={(e) => onUpdate(p.key, "effective", e.target.value)}
                     />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label style={slimLabel}>Expiration Date</label>
                     <input
                       type="date"
-                      style={accInput}
+                      style={{ ...accInput, minWidth: 0 }}
                       value={d.expiration}
                       onChange={(e) => onUpdate(p.key, "expiration", e.target.value)}
                     />
