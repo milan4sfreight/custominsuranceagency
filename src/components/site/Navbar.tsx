@@ -580,47 +580,47 @@ export const Navbar = () => {
             </button>
             <div
               className="relative flex min-h-full flex-col px-8 pt-20"
-              style={{ zIndex: 1, paddingBottom: "max(40px, env(safe-area-inset-bottom, 40px))" }}
+              style={{ zIndex: 1, paddingBottom: "max(20px, env(safe-area-inset-bottom, 20px))" }}
             >
               <div className="flex flex-col" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 <Link
                   to="/"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Home
                 </Link>
-                <div className="border-b border-white/10">
+                <div className="border-b border-white/5">
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                    className="flex w-full items-center justify-between py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                   >
                     Solutions
                     <ChevronDown
-                      className={cn("h-6 w-6 transition-transform duration-200", mobileSolutionsOpen && "rotate-180")}
+                      className={cn("h-5 w-5 transition-transform duration-200", mobileSolutionsOpen && "rotate-180")}
                     />
                   </button>
                   {mobileSolutionsOpen && (
-                    <div className="flex flex-col gap-3 pb-4 pl-5">
+                    <div className="flex flex-col gap-2 pb-3 pl-5">
                       {solutions.map((s) =>
                         s.label === "Personal Lines" ? (
                           <div key={s.to} className="flex flex-col">
                             <button
                               type="button"
                               onClick={() => setMobilePersonalOpen((v) => !v)}
-                              className="flex w-full items-center justify-between text-[18px] font-medium text-white/80 hover:text-white"
+                              className="flex w-full items-center justify-between text-[15px] font-medium text-white/80 hover:text-white"
                             >
                               {s.label}
                               <ChevronDown
                                 className={cn(
-                                  "h-5 w-5 transition-transform duration-200",
+                                  "h-4 w-4 transition-transform duration-200",
                                   mobilePersonalOpen && "rotate-180",
                                 )}
                               />
                             </button>
                             {mobilePersonalOpen && (
-                              <div className="mt-2 flex flex-col gap-2 pl-4">
+                              <div className="mt-1 flex flex-col gap-1.5 pl-4">
                                 {s.subItems.map((item) => (
                                   <button
                                     key={item}
@@ -629,7 +629,7 @@ export const Navbar = () => {
                                       setOpen(false);
                                       setPersonalLinesModal(item);
                                     }}
-                                    className="text-left text-[16px] font-normal text-white/75 hover:text-white"
+                                    className="text-left text-[14px] font-normal text-white/75 hover:text-white"
                                   >
                                     {item}
                                   </button>
@@ -642,7 +642,7 @@ export const Navbar = () => {
                             key={s.to}
                             to={s.to}
                             onClick={() => setOpen(false)}
-                            className="text-[18px] font-medium text-white/80 hover:text-white"
+                            className="text-[15px] font-medium text-white/80 hover:text-white"
                           >
                             {s.label}
                           </Link>
@@ -654,56 +654,56 @@ export const Navbar = () => {
                 <Link
                   to="/resources"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Resources
                 </Link>
                 <Link
                   to="/claims"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Claims
                 </Link>
                 <Link
                   to="/policy-services"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Policy Services
                 </Link>
                 <Link
                   to="/about"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   About Us
                 </Link>
                 <Link
                   to="/company-news"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Company News
                 </Link>
                 <Link
                   to="/careers"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Careers
                 </Link>
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Contact
                 </Link>
                 <Link
                   to="/client-login"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/10 py-4 text-[24px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Client Login
                 </Link>
@@ -713,7 +713,7 @@ export const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-8 flex h-14 w-full items-center justify-center rounded-full text-base font-semibold uppercase tracking-[2px] text-white"
+                className="mt-3 flex h-11 w-full items-center justify-center rounded-full text-sm font-semibold uppercase tracking-[2px] text-white"
                 style={{
                   background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
                   boxShadow: "0 4px 15px rgba(42, 191, 191, 0.35)",
@@ -724,7 +724,7 @@ export const Navbar = () => {
               <Link
                 to="/get-a-quote"
                 onClick={() => setOpen(false)}
-                className="btn-quote mt-4 flex h-14 w-full items-center justify-center text-base font-semibold uppercase tracking-[2px]"
+                className="btn-quote mt-2 flex h-11 w-full items-center justify-center text-sm font-semibold uppercase tracking-[2px]"
               >
                 Get a Quote
               </Link>
