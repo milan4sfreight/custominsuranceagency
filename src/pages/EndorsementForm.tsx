@@ -555,35 +555,36 @@ export default function EndorsementForm() {
                           style={{ transition: "transform .2s ease", transform: isSel ? "rotate(180deg)" : "none" }}
                         />
                       </button>
-                      <div
-                        style={{
-                          maxHeight: isSel ? 240 : 0,
-                          overflow: "hidden",
-                          transition: "max-height .25s ease",
-                          background: "#e8fafa",
-                        }}
-                      >
-                        <div style={{ borderTop: "1px solid #9FE1CB", padding: "0 16px 12px 44px", paddingTop: 10 }}>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
-                            <div className="min-w-0">
-                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Insurance Company Name</label>
-                              <input className="min-w-0 w-full box-border h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.company} onChange={(e) => updatePolicy(p.key, "company", e.target.value)} />
-                            </div>
-                            <div className="min-w-0">
-                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Policy Number</label>
-                              <input className="min-w-0 w-full box-border h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.number} onChange={(e) => updatePolicy(p.key, "number", e.target.value)} />
-                            </div>
-                            <div className="min-w-0">
-                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Effective Date</label>
-                              <input type="date" className="min-w-0 w-full box-border h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.effective} onChange={(e) => updatePolicy(p.key, "effective", e.target.value)} />
-                            </div>
-                            <div className="min-w-0">
-                              <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Expiration Date</label>
-                              <input type="date" className="min-w-0 w-full box-border h-9 px-3 py-1.5 text-xs border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.expiration} onChange={(e) => updatePolicy(p.key, "expiration", e.target.value)} />
+                      {isSel && (
+                        <div
+                          style={{
+                            height: "auto",
+                            overflow: "visible",
+                            background: "#e8fafa",
+                          }}
+                        >
+                          <div style={{ borderTop: "1px solid #9FE1CB", padding: "12px 16px 16px 44px" }}>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-1">
+                              <div className="min-w-0">
+                                <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Insurance Company Name</label>
+                                <input className="min-w-0 w-full box-border h-11 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.company} onChange={(e) => updatePolicy(p.key, "company", e.target.value)} />
+                              </div>
+                              <div className="min-w-0">
+                                <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Policy Number</label>
+                                <input className="min-w-0 w-full box-border h-11 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.number} onChange={(e) => updatePolicy(p.key, "number", e.target.value)} />
+                              </div>
+                              <div className="min-w-0">
+                                <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Effective Date</label>
+                                <input type="date" className="min-w-0 w-full box-border h-11 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.effective} onChange={(e) => updatePolicy(p.key, "effective", e.target.value)} />
+                              </div>
+                              <div className="min-w-0">
+                                <label className="text-[10px] font-medium text-[#0f6e56] mb-1 block">Expiration Date</label>
+                                <input type="date" className="min-w-0 w-full box-border h-11 px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2abfbf] bg-white" value={d.expiration} onChange={(e) => updatePolicy(p.key, "expiration", e.target.value)} />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   );
                 })}
