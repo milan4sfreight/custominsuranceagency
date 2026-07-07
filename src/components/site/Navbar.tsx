@@ -582,7 +582,7 @@ export const Navbar = () => {
               className="relative flex min-h-full flex-col px-8 pt-20"
               style={{ zIndex: 1, paddingBottom: "max(20px, env(safe-area-inset-bottom, 20px))" }}
             >
-              <div className="flex flex-col" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              <div className="flex flex-1 flex-col justify-between" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 <Link
                   to="/"
                   onClick={() => setOpen(false)}
@@ -713,7 +713,7 @@ export const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-3 flex h-11 w-full items-center justify-center rounded-full text-sm font-semibold uppercase tracking-[2px] text-white"
+                className="mt-auto flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold uppercase tracking-[2px] text-white"
                 style={{
                   background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
                   boxShadow: "0 4px 15px rgba(42, 191, 191, 0.35)",
@@ -724,7 +724,7 @@ export const Navbar = () => {
               <Link
                 to="/get-a-quote"
                 onClick={() => setOpen(false)}
-                className="btn-quote mt-2 flex h-11 w-full items-center justify-center text-sm font-semibold uppercase tracking-[2px]"
+                className="btn-quote mt-3 flex h-12 w-full items-center justify-center text-sm font-semibold uppercase tracking-[2px]"
               >
                 Get a Quote
               </Link>
