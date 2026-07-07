@@ -582,11 +582,11 @@ export const Navbar = () => {
               className="relative flex min-h-full flex-col px-8 pt-20"
               style={{ zIndex: 1, paddingBottom: "max(20px, env(safe-area-inset-bottom, 20px))" }}
             >
-              <div className="flex flex-col" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              <div className="flex flex-1 flex-col justify-between" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 <Link
                   to="/"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Home
                 </Link>
@@ -594,7 +594,7 @@ export const Navbar = () => {
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                    className="flex w-full items-center justify-between py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                   >
                     Solutions
                     <ChevronDown
@@ -654,56 +654,56 @@ export const Navbar = () => {
                 <Link
                   to="/resources"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Resources
                 </Link>
                 <Link
                   to="/claims"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Claims
                 </Link>
                 <Link
                   to="/policy-services"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Policy Services
                 </Link>
                 <Link
                   to="/about"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   About Us
                 </Link>
                 <Link
                   to="/company-news"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Company News
                 </Link>
                 <Link
                   to="/careers"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Careers
                 </Link>
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Contact
                 </Link>
                 <Link
                   to="/client-login"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Client Login
                 </Link>
@@ -713,7 +713,7 @@ export const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-3 flex h-11 w-full items-center justify-center rounded-full text-sm font-semibold uppercase tracking-[2px] text-white"
+                className="mt-auto flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold uppercase tracking-[2px] text-white"
                 style={{
                   background: "linear-gradient(135deg, #2abfbf, #1a9a9a)",
                   boxShadow: "0 4px 15px rgba(42, 191, 191, 0.35)",
@@ -724,7 +724,7 @@ export const Navbar = () => {
               <Link
                 to="/get-a-quote"
                 onClick={() => setOpen(false)}
-                className="btn-quote mt-2 flex h-11 w-full items-center justify-center text-sm font-semibold uppercase tracking-[2px]"
+                className="btn-quote mt-3 flex h-12 w-full items-center justify-center text-sm font-semibold uppercase tracking-[2px]"
               >
                 Get a Quote
               </Link>
