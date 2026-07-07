@@ -122,6 +122,13 @@
     font-feature-settings: "ss01", "cv11";
   }
 
+  /* Prevent iOS Safari auto-zoom on focus of form controls */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
   h1,
   h2,
   h3,
