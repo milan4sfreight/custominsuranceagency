@@ -631,38 +631,34 @@ export default function EndorsementForm() {
 
           {/* Section 3 */}
           <Section title="3. Endorsement Type — Select all that apply">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            <div className="flex flex-col gap-3">
               {ENDORSEMENT_TYPES.map((e) => {
                 const active = !!endorsements[e.key];
                 return (
-                  <button
-                    key={e.key}
-                    type="button"
-                    onClick={() => toggleEndorsement(e.key)}
-                    className="text-left transition-all"
-                    style={{
-                      padding: "14px 16px",
-                      borderRadius: 10,
-                      border: `2px solid ${active ? TEAL : "#e5e7eb"}`,
-                      background: active ? "#f0fbfb" : "#ffffff",
-                      color: NAVY,
-                      fontFamily: "'Barlow', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 14,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.5px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {e.label}
-                  </button>
-                );
-              })}
-            </div>
+                  <div key={e.key} className="flex flex-col gap-3">
+                    <button
+                      type="button"
+                      onClick={() => toggleEndorsement(e.key)}
+                      className="text-left transition-all"
+                      style={{
+                        padding: "14px 16px",
+                        borderRadius: 10,
+                        border: `2px solid ${active ? TEAL : "#e5e7eb"}`,
+                        background: active ? "#f0fbfb" : "#ffffff",
+                        color: NAVY,
+                        fontFamily: "'Barlow', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 14,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {e.label}
+                    </button>
 
-            {/* Add Vehicle */}
-            {endorsements.add_vehicle && (
-              <div className="mt-2 flex flex-col gap-3">
+                    {active && e.key === "add_vehicle" && (
+              <div className="flex flex-col gap-3">
                 <h4 style={{ color: NAVY, fontWeight: 700, fontSize: 14, fontFamily: "'Barlow', sans-serif" }}>
                   Vehicles / Trailers to Add
                 </h4>
@@ -715,11 +711,10 @@ export default function EndorsementForm() {
                   <Plus className="h-4 w-4" /> Add Another Vehicle/Trailer
                 </button>
               </div>
-            )}
+                    )}
 
-            {/* Delete Vehicle */}
-            {endorsements.delete_vehicle && (
-              <div className="mt-2 flex flex-col gap-3">
+                    {active && e.key === "delete_vehicle" && (
+              <div className="flex flex-col gap-3">
                 <h4 style={{ color: NAVY, fontWeight: 700, fontSize: 14, fontFamily: "'Barlow', sans-serif" }}>
                   Vehicles / Trailers to Remove
                 </h4>
@@ -756,11 +751,10 @@ export default function EndorsementForm() {
                   <Plus className="h-4 w-4" /> Add Another Vehicle/Trailer to Remove
                 </button>
               </div>
-            )}
+                    )}
 
-            {/* Add Driver */}
-            {endorsements.add_driver && (
-              <div className="mt-2 flex flex-col gap-3">
+                    {active && e.key === "add_driver" && (
+              <div className="flex flex-col gap-3">
                 <h4 style={{ color: NAVY, fontWeight: 700, fontSize: 14, fontFamily: "'Barlow', sans-serif" }}>
                   Drivers to Add
                 </h4>
@@ -804,11 +798,10 @@ export default function EndorsementForm() {
                   <Plus className="h-4 w-4" /> Add Another Driver
                 </button>
               </div>
-            )}
+                    )}
 
-            {/* Delete Driver */}
-            {endorsements.delete_driver && (
-              <div className="mt-2 flex flex-col gap-3">
+                    {active && e.key === "delete_driver" && (
+              <div className="flex flex-col gap-3">
                 <h4 style={{ color: NAVY, fontWeight: 700, fontSize: 14, fontFamily: "'Barlow', sans-serif" }}>
                   Drivers to Remove
                 </h4>
@@ -831,11 +824,10 @@ export default function EndorsementForm() {
                   <Plus className="h-4 w-4" /> Remove Another Driver
                 </button>
               </div>
-            )}
+                    )}
 
-            {/* Modify MTC */}
-            {endorsements.modify_mtc && (
-              <div className="mt-2 flex flex-col gap-4" style={cardStyle}>
+                    {active && e.key === "modify_mtc" && (
+              <div className="flex flex-col gap-4" style={cardStyle}>
                 <div>
                   <Label>Increase Motor Truck Cargo limit to:</Label>
                   <div style={{ position: "relative" }}>
@@ -863,7 +855,11 @@ export default function EndorsementForm() {
                   />
                 </div>
               </div>
-            )}
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </Section>
 
           {/* Section 4 */}
