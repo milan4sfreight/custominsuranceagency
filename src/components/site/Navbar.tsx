@@ -586,7 +586,7 @@ export const Navbar = () => {
                 <Link
                   to="/"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Home
                 </Link>
@@ -594,7 +594,7 @@ export const Navbar = () => {
                   <button
                     type="button"
                     onClick={() => setMobileSolutionsOpen((v) => !v)}
-                    className="flex w-full items-center justify-between py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                    className="flex w-full items-center justify-between py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                   >
                     Solutions
                     <ChevronDown
@@ -654,56 +654,56 @@ export const Navbar = () => {
                 <Link
                   to="/resources"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Resources
                 </Link>
                 <Link
                   to="/claims"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Claims
                 </Link>
                 <Link
                   to="/policy-services"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Policy Services
                 </Link>
                 <Link
                   to="/about"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   About Us
                 </Link>
                 <Link
                   to="/company-news"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Company News
                 </Link>
                 <Link
                   to="/careers"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Careers
                 </Link>
                 <Link
                   to="/contact"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Contact
                 </Link>
                 <Link
                   to="/client-login"
                   onClick={() => setOpen(false)}
-                  className="border-b border-white/5 py-2.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
+                  className="border-b border-white/5 py-3.5 text-[18px] font-semibold tracking-tight text-white hover:text-white/75"
                 >
                   Client Login
                 </Link>
