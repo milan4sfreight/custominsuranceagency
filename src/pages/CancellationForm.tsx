@@ -93,9 +93,9 @@ const accInput: React.CSSProperties = {
   background: "#ffffff",
   border: "0.5px solid #9FE1CB",
   borderRadius: 5,
-  padding: "0 8px",
-  height: 28,
-  fontSize: 12,
+  padding: "8px 10px",
+  height: 44,
+  fontSize: 14,
   color: "#0d2b2b",
   width: "100%",
   boxSizing: "border-box",
@@ -167,15 +167,15 @@ function PolicyAccordion({
               />
             </button>
 
-            <div
-              style={{
-                maxHeight: isSel ? 240 : 0,
-                overflow: "hidden",
-                transition: "max-height .25s ease",
-                background: "#e8fafa",
-              }}
-            >
-              <div style={{ borderTop: "1px solid #9FE1CB", padding: "10px 14px 12px 40px" }}>
+            {isSel && (
+              <div
+                style={{
+                  height: "auto",
+                  overflow: "visible",
+                  background: "#e8fafa",
+                }}
+              >
+                <div style={{ borderTop: "1px solid #9FE1CB", padding: "12px 14px 16px 40px" }}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="min-w-0">
                     <label style={slimLabel}>Insurance Company Name</label>
@@ -212,8 +212,9 @@ function PolicyAccordion({
                     />
                   </div>
                 </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         );
       })}
